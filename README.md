@@ -1,3 +1,4 @@
+
 # Cologne Raves 🕺🌃
 
 This is the repository behind [cologne-raves.pages.dev](https://cologne-raves.pages.dev) — a community-powered party calendar for the Cologne area.
@@ -10,18 +11,22 @@ We use [Astro](https://astro.build/) to build and deploy the site statically, an
 
 - Submit party or live music events happening in and around Cologne
 - All events are published on the site:
-  - **This Weekend**: Homepage shows upcoming weekend events
+  - **This Week**: Homepage shows this week's events (Mon–Sun, shown after Monday 13:00 CET)
   - **All Parties**: Full listing across all dates
 
 ---
 
 ## 🔄 How to Contribute Events
 
-1. **Fork this repository** (or create a new branch if you have write access)
-2. Add or edit a `.json` file inside the `/data/` folder
-3. Open a **Pull Request** (PR)
+1. **Create a new branch** from `main` in this repository  
+   (e.g. `add-2025-04-bootshaus`)
+2. Add or edit a `.json` file inside the `/data/` folder  
+   Each file should contain an array of party objects (see below)
+3. Open a **Pull Request** (PR) into `main` from your branch
 
 Once your PR is merged, the website will automatically rebuild and display your events.
+
+> ✅ You do not need to fork this repository — it's public, and branching is preferred.
 
 ---
 
@@ -52,6 +57,7 @@ Each `.json` file must contain an **array of event objects** like this:
 ### Optional fields:
 - `artists` (array of strings)
 - `url` (link to event page or ticket)
+- `id` (string – if omitted, it will be auto-generated)
 
 ---
 
@@ -60,7 +66,7 @@ Each `.json` file must contain an **array of event objects** like this:
 - You can **assign an `id` manually** to make the event editable in future PRs.
 - If no `id` is given, one will be **automatically generated** using a hash of the `venue`, `title`, and `date`.
 - This ID is displayed in the corner of each event card (e.g., `#e67c76e1`)
-- You can update an existing event by submitting a new one with the **same `id`**.
+- To **update an existing event**, submit a new version with the **same `id`**.
 
 ---
 
@@ -86,6 +92,7 @@ If validation fails, the PR will be blocked with an error message.
 - Stick to one `.json` file per submission
 - File naming convention suggestion: `2025-04-bootshaus.json`, `2025-05-underground.json`, etc.
 - Avoid duplicating the same event across files
+- Use one branch per submission for clarity
 
 ---
 
@@ -103,3 +110,39 @@ via Cloudflare Pages after each PR merge into `main`.
 
 Community project maintained by volunteers.  
 Powered by Astro + GitHub + JSON + ❤️
+
+
+---
+
+## 💬 Commit message example (when updating this README)
+
+```bash
+git checkout -b update-readme-instructions
+# edit README.md
+
+git add README.md
+git commit -m "docs: update contribution guide with PR workflow and event ID rules"
+git push origin update-readme-instructions
+```
+
+Then open a Pull Request into `main`.
+
+
+---
+
+## 📂 Guidelines for the `/data` folder
+
+- All event data must be placed in individual `.json` files in the `/data/` directory
+- Each file should contain an **array of event objects**, not a single object or nested structures
+- Use clear, consistent filenames, such as:
+  - `2025-04-bootshaus.json`
+  - `2025-04-cologne-mixed.json`
+- Avoid mixing events from different months or cities unless intentional
+- Do not include fields outside the allowed schema (`event.schema.json`)
+- If you are updating an existing event, make sure the `id` is the same as before
+
+> 💡 Tip: Run schema validation locally with [ajv-cli](https://ajv.js.org/packages/ajv-cli.html) before opening a PR.
+
+```
+ajv validate -s event.schema.json -d data/*.json
+```
