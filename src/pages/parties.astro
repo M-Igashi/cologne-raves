@@ -1,4 +1,5 @@
 ---
+import Analytics from '../components/Analytics.astro';
 import PartyCard from '../components/PartyCard.astro';
 import { getAllParties } from '../lib/getAllParties';
 
@@ -7,6 +8,7 @@ const parties = await getAllParties();
 
 <html lang="en">
   <head>
+    <Analytics />
     <title>All Parties | Cologne Raves</title>
     <meta charset="utf-8" />
   </head>
