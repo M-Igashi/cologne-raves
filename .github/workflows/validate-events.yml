@@ -1,7 +1,28 @@
-# validate-events.yml
-- name: Validate JSON files
-  run: |
-    for file in data/*.json; do
-      echo "Validating $file"
-      ajv validate -s event.schema.json -d "$file" --strict=false
-    done
+name: Validate JSON files
+
+on:
+  pull_request:
+    paths:
+      - 'data/**/*.json'
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20
+
+      - name: Install ajv-cli
+        run: npm install -g ajv-cli
+
+      - name: Validate JSON files against schema
+        run: |
+          for file in data/*.json; do
+            echo "Validating $file"
+            ajv validate -s event.schema.json -d "$file" --strict=false
+          done
