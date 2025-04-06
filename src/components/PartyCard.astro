@@ -1,0 +1,18 @@
+---
+export interface Props {
+  venue: string;
+  date: string;
+  title: string;
+  artists: string[];
+  startTime: string;
+  url: string;
+}
+const { venue, date, title, artists, startTime, url } = Astro.props;
+---
+
+<article>
+  <h3>{title} @ {venue}</h3>
+  <p>{new Date(date).toDateString()} – Start: {startTime}</p>
+  <p>Artists: {artists.join(', ')}</p>
+  <a href={url}>More Info</a>
+</article>
