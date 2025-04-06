@@ -1,0 +1,18 @@
+[
+  {
+    "venue": "Bootshaus",
+    "date": "2025-04-05",
+    "title": "Techno All Night",
+    "artists": ["DJ Hell", "Ellen Allien"],
+    "startTime": "22:00",
+    "url": "https://example.com/event"
+  },
+  {
+    "venue": "Gewölbe",
+    "date": "2025-04-06",
+    "title": "Sunday Rave",
+    "artists": ["Local Hero"],
+    "startTime": "20:00",
+    "url": "https://example.com/event"
+  }
+]
