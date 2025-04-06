@@ -1,0 +1,25 @@
+---
+import PartyCard from '../components/PartyCard.astro';
+import { getAllParties } from '../lib/getParties';
+
+const parties = await getAllParties();
+---
+
+<html lang="en">
+  <head>
+    <title>All Parties</title>
+  </head>
+  <body>
+    <h1>All Upcoming & Past Parties</h1>
+
+    {parties.length === 0 ? (
+      <p>No party data available.</p>
+    ) : (
+      <ul>
+        {parties.map(party => (
+          <li><PartyCard {...party} /></li>
+        ))}
+      </ul>
+    )}
+  </body>
+</html>
