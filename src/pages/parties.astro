@@ -7,15 +7,49 @@ const parties = await getAllParties();
 
 <html lang="en">
   <head>
-    <title>All Parties</title>
+    <title>All Parties | Cologne Parties</title>
+    <meta charset="utf-8" />
+    <style>
+      body {
+        font-family: sans-serif;
+        padding: 2rem;
+        max-width: 800px;
+        margin: 0 auto;
+      }
+
+      nav {
+        display: flex;
+        gap: 1rem;
+        margin-bottom: 2rem;
+      }
+
+      nav a {
+        text-decoration: none;
+        color: black;
+        padding: 0.5rem 1rem;
+        border-radius: 6px;
+        border: 1px solid #ccc;
+      }
+
+      nav a.active {
+        background-color: #000;
+        color: #fff;
+        border-color: #000;
+      }
+    </style>
   </head>
   <body>
-    <h1>All Upcoming & Past Parties</h1>
+    <nav>
+      <a href="/">This Weekend</a>
+      <a href="/parties" class="active">All Parties</a>
+    </nav>
+
+    <h1>All Parties</h1>
 
     {parties.length === 0 ? (
       <p>No party data available.</p>
     ) : (
-      <ul>
+      <ul style="list-style: none; padding: 0;">
         {parties.map(party => (
           <li><PartyCard {...party} /></li>
         ))}
