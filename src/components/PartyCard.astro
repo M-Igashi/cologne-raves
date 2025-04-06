@@ -1,5 +1,6 @@
 ---
 export interface Props {
+  id?: string;
   venue: string;
   date: string;
   title: string;
@@ -8,7 +9,7 @@ export interface Props {
   url?: string;
 }
 
-const { venue, date, title, artists, startTime, url } = Astro.props;
+const { id, venue, date, title, artists, startTime, url } = Astro.props;
 
 const formattedDate = new Date(date).toLocaleDateString('en-GB', {
   weekday: 'short',
@@ -18,9 +19,14 @@ const formattedDate = new Date(date).toLocaleDateString('en-GB', {
 });
 ---
 
-<article style="border: 1px solid #ccc; padding: 1rem; border-radius: 8px; margin-bottom: 1rem;">
+<article style="border: 1px solid #ccc; padding: 1rem; border-radius: 8px; margin-bottom: 1rem; position: relative;">
+  {id && (
+    <div style="position: absolute; top: 0.5rem; right: 0.5rem; font-size: 0.7rem; color: #999;">
+      #{id}
+    </div>
+  )}
   <h3 style="margin: 0 0 0.5rem 0;">{title} @ {venue}</h3>
-  <p style="margin: 0 0 0.25rem 0;">🗓 {formattedDate} – 🕗 {startTime}</p>
+  <p style="margin: 0 0 0.25rem 0;">📅 {formattedDate} – 🕗 {startTime}</p>
   {artists && artists.length > 0 && (
     <p style="margin: 0 0 0.25rem 0;">🎧 {artists.join(', ')}</p>
   )}

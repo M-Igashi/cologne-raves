@@ -1,5 +1,6 @@
 import fs from 'fs';
 import path from 'path';
+import crypto from 'crypto';
 
 export interface Party {
   id?: string;
@@ -11,6 +12,14 @@ export interface Party {
   url?: string;
 }
 
+// 安定したID生成関数
+function generateStableId(party: Party): string {
+  const input = `${party.venue || ''}-${party.date || ''}-${party.title || ''}`;
+  const hash = crypto.createHash('sha1').update(input).digest('hex');
+  return hash.slice(0, 8);
+}
+
+// 現在時刻を Europe/Berlin タイムゾーンで取得
 function getBerlinNow(): Date {
   const now = new Date();
   const berlinOffset = new Intl.DateTimeFormat('en-US', {
@@ -29,6 +38,7 @@ function getBerlinNow(): Date {
   return new Date(`${berlinOffset.year}-${berlinOffset.month}-${berlinOffset.day}T${berlinOffset.hour}:${berlinOffset.minute}:${berlinOffset.second}+01:00`);
 }
 
+// 月曜13:00以降で今週(月〜日)、それ以前は前週末(金〜日)を返す
 function getFeaturedDateRange(): { start: Date; end: Date } {
   const now = getBerlinNow();
   const day = now.getDay();
@@ -69,6 +79,13 @@ export async function getFeaturedParties(): Promise<Party[]> {
 
     const content = fs.readFileSync(path.join(dataDir, file), 'utf-8');
     const events: Party[] = JSON.parse(content);
+
+    events.forEach(event => {
+      if (!event.id || event.id.trim() === "") {
+        event.id = generateStableId(event);
+      }
+    });
+
     allParties.push(...events);
   }
 
