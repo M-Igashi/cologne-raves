@@ -3,23 +3,35 @@
   "type": "array",
   "items": {
     "type": "object",
-    "required": ["venue", "date", "title", "startTime"],
+    "required": [
+      "venue",
+      "date",
+      "title",
+      "startTime"
+    ],
     "properties": {
-      "venue": { "type": "string", "minLength": 1 },
+      "id": {
+        "type": "string"
+      },
+      "venue": {
+        "type": "string"
+      },
       "date": {
         "type": "string",
-        "format": "date",
-        "pattern": "^20[2-9][0-9]-[0-1][0-9]-[0-3][0-9]$"
+        "format": "date"
       },
-      "title": { "type": "string", "minLength": 1 },
-      "artists": {
-        "type": "array",
-        "items": { "type": "string" },
-        "minItems": 1
+      "title": {
+        "type": "string"
       },
       "startTime": {
         "type": "string",
-        "pattern": "^([01]\\d|2[0-3]):[0-5]\\d$"
+        "pattern": "^\\d{2}:\\d{2}$"
+      },
+      "artists": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
       },
       "url": {
         "type": "string",
