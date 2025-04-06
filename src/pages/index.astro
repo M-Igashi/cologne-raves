@@ -1,13 +1,13 @@
 ---
 import PartyCard from '../components/PartyCard.astro';
-import { getThisWeekendParties } from '../lib/getParties';
+import { getFeaturedParties } from '../lib/getFeaturedParties';
 
-const parties = await getThisWeekendParties();
+const parties = await getFeaturedParties();
 ---
 
 <html lang="en">
   <head>
-    <title>This Weekend | Cologne Parties</title>
+    <title>This Week | Cologne Parties</title>
     <meta charset="utf-8" />
     <style>
       body {
@@ -40,14 +40,14 @@ const parties = await getThisWeekendParties();
   </head>
   <body>
     <nav>
-      <a href="/" class="active">This Weekend</a>
+      <a href="/" class="active">This Week</a>
       <a href="/parties">All Parties</a>
     </nav>
 
-    <h1>This Weekend in Cologne</h1>
+    <h1>This Week in Cologne</h1>
 
     {parties.length === 0 ? (
-      <p>No events found for this weekend.</p>
+      <p>No events to display.</p>
     ) : (
       <ul style="list-style: none; padding: 0;">
         {parties.map(party => (

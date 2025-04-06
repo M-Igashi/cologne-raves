@@ -1,6 +1,6 @@
 ---
 import PartyCard from '../components/PartyCard.astro';
-import { getAllParties } from '../lib/getParties';
+import { getAllParties } from '../lib/getAllParties';
 
 const parties = await getAllParties();
 ---
@@ -40,7 +40,7 @@ const parties = await getAllParties();
   </head>
   <body>
     <nav>
-      <a href="/">This Weekend</a>
+      <a href="/">This Week</a>
       <a href="/parties" class="active">All Parties</a>
     </nav>
 
