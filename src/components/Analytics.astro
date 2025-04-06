@@ -1,0 +1,22 @@
+---
+const measurementId = "G-MPTTHYN2RN"; 
+---
+
+<!-- Consent Mode v2 with denied storage (no cookies) -->
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    analytics_storage: 'denied',
+    wait_for_update: 500
+  });
+</script>
+
+<!-- GA Measurement script -->
+<script async src={`https://www.googletagmanager.com/gtag/js?id=${measurementId}`}></script>
+
+<script>
+  gtag('js', new Date());
+  gtag('config', measurementId);
+</script>
