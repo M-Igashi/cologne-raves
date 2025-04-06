@@ -7,53 +7,29 @@ const parties = await getAllParties();
 
 <html lang="en">
   <head>
-    <title>All Parties | Cologne Parties</title>
+    <title>All Parties | Cologne Raves</title>
     <meta charset="utf-8" />
-    <style>
-      body {
-        font-family: sans-serif;
-        padding: 2rem;
-        max-width: 800px;
-        margin: 0 auto;
-      }
-
-      nav {
-        display: flex;
-        gap: 1rem;
-        margin-bottom: 2rem;
-      }
-
-      nav a {
-        text-decoration: none;
-        color: black;
-        padding: 0.5rem 1rem;
-        border-radius: 6px;
-        border: 1px solid #ccc;
-      }
-
-      nav a.active {
-        background-color: #000;
-        color: #fff;
-        border-color: #000;
-      }
-    </style>
   </head>
-  <body>
-    <nav>
-      <a href="/">This Week</a>
-      <a href="/parties" class="active">All Parties</a>
+  <body class="bg-white text-gray-900 font-sans max-w-3xl mx-auto p-4">
+    <header class="flex justify-between items-center mb-6">
+      <h1 class="text-2xl font-bold">Cologne Raves</h1>
+      <a href="https://github.com/M-Igashi/cologne-raves" target="_blank" class="flex items-center text-gray-800 hover:text-black">
+        <svg class="w-6 h-6 mr-1" fill="currentColor" viewBox="0 0 24 24"><path d="M12 .5C5.37.5 0 5.87 0 12.5c0 5.28 3.438 9.755 8.207 11.338.6.11.793-.26.793-.577v-2.234c-3.338.725-4.033-1.612-4.033-1.612-.546-1.385-1.333-1.753-1.333-1.753-1.089-.745.083-.73.083-.73 1.204.084 1.837 1.236 1.837 1.236 1.07 1.834 2.807 1.304 3.492.997.108-.775.418-1.305.76-1.605-2.665-.305-5.466-1.332-5.466-5.932 0-1.31.468-2.38 1.236-3.22-.124-.303-.536-1.527.117-3.176 0 0 1.008-.322 3.3 1.23a11.48 11.48 0 0 1 6 0c2.29-1.552 3.297-1.23 3.297-1.23.654 1.649.242 2.873.12 3.176.77.84 1.236 1.91 1.236 3.22 0 4.61-2.804 5.624-5.475 5.92.43.37.813 1.096.813 2.21v3.277c0 .32.192.694.8.576C20.565 22.252 24 17.78 24 12.5 24 5.87 18.63.5 12 .5z"/></svg>
+        <span class="text-sm">Contribute on GitHub</span>
+      </a>
+    </header>
+
+    <nav class="flex gap-4 mb-6">
+      <a href="/" class="px-3 py-1 border rounded-full text-sm">This Week</a>
+      <a href="/parties" class="px-3 py-1 border rounded-full bg-black text-white text-sm">All Parties</a>
     </nav>
 
-    <h1>All Parties</h1>
+    <h2 class="text-xl font-semibold mb-4">All Parties</h2>
 
-    {parties.length === 0 ? (
-      <p>No party data available.</p>
-    ) : (
-      <ul style="list-style: none; padding: 0;">
-        {parties.map(party => (
-          <li><PartyCard {...party} /></li>
-        ))}
-      </ul>
-    )}
+    <ul class="space-y-4">
+      {parties.map(party => (
+        <li><PartyCard {...party} /></li>
+      ))}
+    </ul>
   </body>
 </html>
