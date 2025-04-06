@@ -3,16 +3,28 @@ export interface Props {
   venue: string;
   date: string;
   title: string;
-  artists: string[];
+  artists?: string[];
   startTime: string;
-  url: string;
+  url?: string;
 }
+
 const { venue, date, title, artists, startTime, url } = Astro.props;
+
+const formattedDate = new Date(date).toLocaleDateString('en-GB', {
+  weekday: 'short',
+  day: 'numeric',
+  month: 'short',
+  year: 'numeric'
+});
 ---
 
-<article>
-  <h3>{title} @ {venue}</h3>
-  <p>{new Date(date).toDateString()} – Start: {startTime}</p>
-  <p>Artists: {artists.join(', ')}</p>
-  <a href={url}>More Info</a>
+<article style="border: 1px solid #ccc; padding: 1rem; border-radius: 8px; margin-bottom: 1rem;">
+  <h3 style="margin: 0 0 0.5rem 0;">{title} @ {venue}</h3>
+  <p style="margin: 0 0 0.25rem 0;">🗓 {formattedDate} – 🕗 {startTime}</p>
+  {artists && artists.length > 0 && (
+    <p style="margin: 0 0 0.25rem 0;">🎧 {artists.join(', ')}</p>
+  )}
+  {url && (
+    <p style="margin: 0;"><a href={url} target="_blank" rel="noopener">More Info</a></p>
+  )}
 </article>
