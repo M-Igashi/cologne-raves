@@ -1,60 +1,105 @@
-# Astro Starter Kit: Blog
+# Cologne Raves 🕺🌃
 
-![Astro Template Preview](https://github.com/withastro/astro/assets/2244813/ff10799f-a816-4703-b967-c78997e8323d)
+This is the repository behind [cologne-raves.pages.dev](https://cologne-raves.pages.dev) — a community-powered party calendar for the Cologne area.
 
-<!-- dash-content-start -->
+We use [Astro](https://astro.build/) to build and deploy the site statically, and GitHub Pull Requests to manage event data contributed by the community.
 
-Create a blog with Astro and deploy it on Cloudflare Workers as a [static website](https://developers.cloudflare.com/workers/static-assets/).
+---
 
-Features:
+## 🗓 What You Can Do
 
-- ✅ Minimal styling (make it your own!)
-- ✅ 100/100 Lighthouse performance
-- ✅ SEO-friendly with canonical URLs and OpenGraph data
-- ✅ Sitemap support
-- ✅ RSS Feed support
-- ✅ Markdown & MDX support
+- Submit party or live music events happening in and around Cologne
+- All events are published on the site:
+  - **This Weekend**: Homepage shows upcoming weekend events
+  - **All Parties**: Full listing across all dates
 
-<!-- dash-content-end -->
+---
 
-## Getting Started
+## 🔄 How to Contribute Events
 
-Outside of this repo, you can start a new project with this template using [C3](https://developers.cloudflare.com/pages/get-started/c3/) (the `create-cloudflare` CLI):
+1. **Fork this repository** (or create a new branch if you have write access)
+2. Add or edit a `.json` file inside the `/data/` folder
+3. Open a **Pull Request** (PR)
 
-```bash
-npm create cloudflare@latest -- --template=cloudflare/templates/cologne-raves
+Once your PR is merged, the website will automatically rebuild and display your events.
+
+---
+
+## 📁 File Format
+
+Each `.json` file must contain an **array of event objects** like this:
+
+```json
+[
+  {
+    "id": "optional-custom-id",
+    "venue": "Bootshaus",
+    "date": "2025-04-11",
+    "title": "Kaytranada",
+    "artists": ["Kaytranada"],
+    "startTime": "23:00",
+    "url": "https://ra.co/events/2061225"
+  }
+]
 ```
 
-A live public deployment of this template is available at [https://cologne-raves.templates.workers.dev](https://cologne-raves.templates.workers.dev)
+### Required fields:
+- `venue` (string)
+- `date` (string in `YYYY-MM-DD` format)
+- `title` (string)
+- `startTime` (24h format `HH:mm`)
 
-## 🚀 Project Structure
+### Optional fields:
+- `artists` (array of strings)
+- `url` (link to event page or ticket)
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+---
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+## 🔢 Event ID & Updates
 
-The `src/content/` directory contains "collections" of related Markdown and MDX documents. Use `getCollection()` to retrieve posts from `src/content/blog/`, and type-check your frontmatter using an optional schema. See [Astro's Content Collections docs](https://docs.astro.build/en/guides/content-collections/) to learn more.
+- You can **assign an `id` manually** to make the event editable in future PRs.
+- If no `id` is given, one will be **automatically generated** using a hash of the `venue`, `title`, and `date`.
+- This ID is displayed in the corner of each event card (e.g., `#e67c76e1`)
+- You can update an existing event by submitting a new one with the **same `id`**.
 
-Any static assets, like images, can be placed in the `public/` directory.
+---
 
-## 🧞 Commands
+## ✅ Validation on PRs
 
-All commands are run from the root of the project, from a terminal:
+Each pull request will automatically trigger a GitHub Action that:
+- Validates each JSON file against the schema (`event.schema.json`)
+- Ensures required fields are present and well-formed
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
-| `npm run deploy`          | Deploy your production site to Cloudflare        |
+### Schema Validation Includes:
+- Date format: `YYYY-MM-DD`
+- Time format: `HH:mm`
+- URL must be valid if provided
+- `artists` must be a non-empty array if included
 
-## 👀 Want to learn more?
+If validation fails, the PR will be blocked with an error message.
 
-Check out [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+---
 
-## Credit
+## 💡 Tips for Contributors
 
-This theme is based off of the lovely [Bear Blog](https://github.com/HermanMartinus/bearblog/).
+- Use clear, concise event titles
+- Stick to one `.json` file per submission
+- File naming convention suggestion: `2025-04-bootshaus.json`, `2025-05-underground.json`, etc.
+- Avoid duplicating the same event across files
+
+---
+
+## 🚀 Deployment
+
+The site is automatically deployed to:
+
+👉 **[https://cologne-raves.pages.dev](https://cologne-raves.pages.dev)**
+
+via Cloudflare Pages after each PR merge into `main`.
+
+---
+
+## 🙏 Credits
+
+Community project maintained by volunteers.  
+Powered by Astro + GitHub + JSON + ❤️
