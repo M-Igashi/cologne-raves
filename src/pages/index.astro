@@ -3,6 +3,14 @@ import PartyCard from '../components/PartyCard.astro';
 import { getFeaturedParties } from '../lib/getFeaturedParties';
 
 const parties = await getFeaturedParties();
+
+// Group events by weekday
+const partiesByDay = parties.reduce((acc, party) => {
+  const day = new Date(party.date).toLocaleDateString('en-GB', { weekday: 'long' });
+  if (!acc[day]) acc[day] = [];
+  acc[day].push(party);
+  return acc;
+}, {});
 ---
 
 <html lang="en">
@@ -36,7 +44,37 @@ const parties = await getFeaturedParties();
         color: #fff;
         border-color: #000;
       }
+
+      .whatsapp-button {
+        margin-top: 2rem;
+        text-align: center;
+      }
+
+      .whatsapp-button button {
+        padding: 0.6rem 1.2rem;
+        background-color: #25D366;
+        border: none;
+        color: white;
+        font-weight: bold;
+        border-radius: 6px;
+        cursor: pointer;
+      }
+
+      .whatsapp-link {
+        margin-top: 0.5rem;
+        font-size: 0.9rem;
+        color: #444;
+      }
     </style>
+    <script type="module">
+      function revealWhatsappLink() {
+        const link = document.getElementById('whatsapp-link');
+        if (link) {
+          link.innerHTML = '<a href="https://chat.whatsapp.com/GQRhHCczk74BppW0w6T8QY" target="_blank" rel="noopener">Join Cologne Ravers WhatsApp Group</a>';
+        }
+      }
+      globalThis.revealWhatsappLink = revealWhatsappLink;
+    </script>
   </head>
   <body>
     <nav>
@@ -46,14 +84,20 @@ const parties = await getFeaturedParties();
 
     <h1>This Week in Cologne</h1>
 
-    {parties.length === 0 ? (
-      <p>No events to display.</p>
-    ) : (
-      <ul style="list-style: none; padding: 0;">
-        {parties.map(party => (
-          <li><PartyCard {...party} /></li>
-        ))}
-      </ul>
-    )}
+    {Object.entries(partiesByDay).map(([day, dayParties]) => (
+      <>
+        <h2>{day}</h2>
+        <ul style="list-style: none; padding: 0;">
+          {dayParties.map(party => (
+            <li><PartyCard {...party} /></li>
+          ))}
+        </ul>
+      </>
+    ))}
+
+    <div class="whatsapp-button">
+      <button onclick="revealWhatsappLink()">Reveal WhatsApp Group</button>
+      <div id="whatsapp-link" class="whatsapp-link"></div>
+    </div>
   </body>
 </html>
