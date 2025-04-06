@@ -5,13 +5,55 @@ import { getThisWeekendParties } from '../lib/getParties';
 const parties = await getThisWeekendParties();
 ---
 
-<h2>This Weekend</h2>
-{parties.length === 0 ? (
-  <p>No parties this weekend.</p>
-) : (
-  <ul>
-    {parties.map(party => (
-      <li><PartyCard {...party} /></li>
-    ))}
-  </ul>
-)}
+<html lang="en">
+  <head>
+    <title>This Weekend | Cologne Parties</title>
+    <meta charset="utf-8" />
+    <style>
+      body {
+        font-family: sans-serif;
+        padding: 2rem;
+        max-width: 800px;
+        margin: 0 auto;
+      }
+
+      nav {
+        display: flex;
+        gap: 1rem;
+        margin-bottom: 2rem;
+      }
+
+      nav a {
+        text-decoration: none;
+        color: black;
+        padding: 0.5rem 1rem;
+        border-radius: 6px;
+        border: 1px solid #ccc;
+      }
+
+      nav a.active {
+        background-color: #000;
+        color: #fff;
+        border-color: #000;
+      }
+    </style>
+  </head>
+  <body>
+    <nav>
+      <a href="/" class="active">This Weekend</a>
+      <a href="/parties">All Parties</a>
+    </nav>
+
+    <h1>This Weekend in Cologne</h1>
+
+    {parties.length === 0 ? (
+      <p>No events found for this weekend.</p>
+    ) : (
+      <ul style="list-style: none; padding: 0;">
+        {parties.map(party => (
+          <li><PartyCard {...party} /></li>
+        ))}
+      </ul>
+    )}
+  </body>
+</html>
