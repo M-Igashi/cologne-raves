@@ -12,28 +12,10 @@ export interface Party {
   url?: string;
 }
 
-/**
- * venue + date + title をもとにハッシュ化した一意IDを生成
- */
 function generateStableId(party: Party): string {
   const input = `${party.venue || ''}-${party.date || ''}-${party.title || ''}`;
   const hash = crypto.createHash('sha1').update(input).digest('hex');
-  return hash.slice(0, 8); // 最初の8文字だけ使用（短くて比較しやすい）
-}
-
-function isThisWeekend(dateStr: string): boolean {
-  const date = new Date(dateStr);
-  const today = new Date();
-
-  const friday = new Date(today);
-  friday.setDate(today.getDate() + ((5 - today.getDay() + 7) % 7));
-  friday.setHours(0, 0, 0, 0);
-
-  const sunday = new Date(friday);
-  sunday.setDate(friday.getDate() + 2);
-  sunday.setHours(23, 59, 59, 999);
-
-  return date >= friday && date <= sunday;
+  return hash.slice(0, 8);
 }
 
 export async function getAllParties(): Promise<Party[]> {
@@ -42,6 +24,8 @@ export async function getAllParties(): Promise<Party[]> {
   let allParties: Party[] = [];
 
   for (const file of files) {
+    if (!file.endsWith('.json')) continue;
+
     const content = fs.readFileSync(path.join(dataDir, file), 'utf-8');
     const events: Party[] = JSON.parse(content);
 
@@ -57,9 +41,4 @@ export async function getAllParties(): Promise<Party[]> {
   return allParties.sort(
     (a, b) => new Date(a.date).getTime() - new Date(b.date).getTime()
   );
-}
-
-export async function getThisWeekendParties(): Promise<Party[]> {
-  const all = await getAllParties();
-  return all.filter(p => isThisWeekend(p.date));
 }
