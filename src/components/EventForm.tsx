@@ -1,107 +1,115 @@
-import React, { useState } from 'react';
-import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
-import { Textarea } from "@/components/ui/textarea";
-import saveAs from 'file-saver';
+"use client";
 
-function generateStableId(venue: string, date: string, title: string): Promise<string> {
-  const input = `${venue}-${date}-${title}`;
-  const hashBuffer = new TextEncoder().encode(input);
-  return crypto.subtle.digest('SHA-1', hashBuffer).then(buffer => {
-    return Array.from(new Uint8Array(buffer))
-      .map(b => b.toString(16).padStart(2, '0'))
-      .join('')
-      .slice(0, 8);
-  });
+import React, { useState } from "react";
+import { saveAs } from "file-saver";
+import { v4 as uuidv4 } from "uuid";
+import { Card } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { Button } from "@/components/ui/button";
+
+interface EventData {
+  id: string;
+  title: string;
+  venue: string;
+  date: string;
+  startTime: string;
+  artists?: string[];
+  url?: string;
 }
 
-export default function EventForm() {
-  const [events, setEvents] = useState([
-    { title: '', venue: '', date: '', startTime: '', artists: '', url: '', id: '' },
-  ]);
-  const [output, setOutput] = useState('');
+const generateDefaultEvent = (): EventData => ({
+  id: "",
+  title: "",
+  venue: "",
+  date: "",
+  startTime: "",
+  artists: [],
+  url: ""
+});
 
-  const handleChange = (index: number, field: string, value: string) => {
+export default function EventForm() {
+  const [events, setEvents] = useState<EventData[]>([generateDefaultEvent()]);
+  const [filenameSuffix, setFilenameSuffix] = useState<string>("");
+  const [showJson, setShowJson] = useState(false);
+
+  const updateEvent = (index: number, field: keyof EventData, value: string) => {
     const updated = [...events];
-    updated[index][field] = value;
+    if (field === "artists") {
+      updated[index][field] = value.split(",").map((s) => s.trim());
+    } else {
+      updated[index][field] = value;
+    }
     setEvents(updated);
   };
 
   const addEvent = () => {
-    if (events.length < 4) {
-      setEvents([...events, { title: '', venue: '', date: '', startTime: '', artists: '', url: '', id: '' }]);
-    }
+    if (events.length < 4) setEvents([...events, generateDefaultEvent()]);
   };
 
-  const generateJSON = async () => {
-    const processed = await Promise.all(events.map(async (e) => {
-      const id = e.id || await generateStableId(e.venue, e.date, e.title);
-      return {
-        id,
-        title: e.title.trim(),
-        venue: e.venue.trim(),
-        date: e.date,
-        startTime: e.startTime,
-        artists: e.artists ? e.artists.split(',').map(a => a.trim()).filter(Boolean) : [],
-        url: e.url.trim() || undefined,
-      };
+  const removeEvent = (index: number) => {
+    const updated = [...events];
+    updated.splice(index, 1);
+    setEvents(updated);
+  };
+
+  const generateJson = () => {
+    return events.map((event) => ({
+      ...event,
+      id: event.id.trim() === "" ? uuidv4().slice(0, 8) : event.id.trim()
     }));
-    const json = JSON.stringify(processed, null, 2);
-    setOutput(json);
   };
 
-  const downloadJSON = () => {
-    const blob = new Blob([output], { type: 'application/json' });
-    saveAs(blob, 'cologne-events.json');
+  const getFilename = () => {
+    const now = new Date();
+    const y = now.getFullYear();
+    const m = String(now.getMonth() + 1).padStart(2, "0");
+    const suffix = filenameSuffix.trim().replace(/[^a-zA-Z0-9_-]/g, "-");
+    return `${y}-${m}-cologne-${suffix || "events"}.json`;
+  };
+
+  const downloadJson = () => {
+    const json = JSON.stringify(generateJson(), null, 2);
+    const blob = new Blob([json], { type: "application/json" });
+    saveAs(blob, getFilename());
   };
 
   return (
-    <div className="max-w-4xl mx-auto p-4 space-y-6">
-      <h1 className="text-2xl font-bold">Create Your Cologne Raves Events JSON</h1>
+    <div className="space-y-6">
+      <h2 className="text-xl font-bold">Create Cologne Events JSON</h2>
+
+      <div>
+        <label className="block font-medium">Filename suffix <span className="text-gray-500 text-sm">(e.g. "update")</span></label>
+        <Input value={filenameSuffix} onChange={(e) => setFilenameSuffix(e.target.value)} placeholder="events-update" />
+      </div>
+
       {events.map((event, i) => (
-        <Card key={i} className="p-4">
-          <CardContent className="grid gap-4">
-            <div>
-              <label className="block text-sm font-medium text-red-500">Title *</label>
-              <Input value={event.title} onChange={(e) => handleChange(i, 'title', e.target.value)} required />
-            </div>
-            <div>
-              <label className="block text-sm font-medium text-red-500">Venue *</label>
-              <Input value={event.venue} onChange={(e) => handleChange(i, 'venue', e.target.value)} required />
-            </div>
-            <div>
-              <label className="block text-sm font-medium text-red-500">Date *</label>
-              <Input type="date" value={event.date} onChange={(e) => handleChange(i, 'date', e.target.value)} required />
-            </div>
-            <div>
-              <label className="block text-sm font-medium text-red-500">Start Time (e.g. 23:00) *</label>
-              <Input value={event.startTime} onChange={(e) => handleChange(i, 'startTime', e.target.value)} required />
-            </div>
-            <div>
-              <label className="block text-sm font-medium text-gray-500">Artists (comma-separated)</label>
-              <Input value={event.artists} onChange={(e) => handleChange(i, 'artists', e.target.value)} />
-            </div>
-            <div>
-              <label className="block text-sm font-medium text-gray-500">Event URL</label>
-              <Input value={event.url} onChange={(e) => handleChange(i, 'url', e.target.value)} />
-            </div>
-            <div>
-              <label className="block text-sm font-medium text-gray-500">Custom ID (optional)</label>
-              <Input value={event.id} onChange={(e) => handleChange(i, 'id', e.target.value)} />
-            </div>
-          </CardContent>
+        <Card key={i} className="p-4 space-y-3 border border-gray-300">
+          <h3 className="font-semibold">Event {i + 1}</h3>
+          <Input placeholder="ID (optional)" value={event.id} onChange={(e) => updateEvent(i, "id", e.target.value)} />
+          <Input placeholder="Title (required)" value={event.title} onChange={(e) => updateEvent(i, "title", e.target.value)} />
+          <Input placeholder="Venue (required)" value={event.venue} onChange={(e) => updateEvent(i, "venue", e.target.value)} />
+          <Input placeholder="Date (required, YYYY-MM-DD)" value={event.date} onChange={(e) => updateEvent(i, "date", e.target.value)} />
+          <Input placeholder="Start Time (e.g. 23:00)" value={event.startTime} onChange={(e) => updateEvent(i, "startTime", e.target.value)} />
+          <Input placeholder="Artists (optional, comma separated)" value={event.artists?.join(", ") || ""} onChange={(e) => updateEvent(i, "artists", e.target.value)} />
+          <Textarea placeholder="URL (optional)" value={event.url || ""} onChange={(e) => updateEvent(i, "url", e.target.value)} />
+          {events.length > 1 && <Button variant="destructive" onClick={() => removeEvent(i)}>Remove</Button>}
         </Card>
       ))}
-      <div className="flex gap-2">
-        <Button onClick={addEvent} disabled={events.length >= 4}>+ Add Event</Button>
-        <Button onClick={generateJSON}>Generate JSON</Button>
+
+      {events.length < 4 && (
+        <Button onClick={addEvent}>Add Another Event</Button>
+      )}
+
+      <div className="flex flex-wrap gap-4 pt-4">
+        <Button onClick={downloadJson}>Download JSON</Button>
+        <Button variant="outline" onClick={() => setShowJson(!showJson)}>Show JSON</Button>
       </div>
-      {output && (
-        <div className="space-y-4">
-          <Textarea className="w-full h-64 font-mono text-sm" readOnly value={output} />
-          <Button onClick={downloadJSON}>Download JSON</Button>
-        </div>
+
+      {showJson && (
+        <pre className="mt-4 p-4 bg-gray-100 text-sm overflow-x-auto">
+          {JSON.stringify(generateJson(), null, 2)}
+        </pre>
       )}
     </div>
   );
