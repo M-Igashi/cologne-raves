@@ -30,7 +30,6 @@ const generateDefaultEvent = (): EventData => ({
 
 export default function EventForm() {
   const [events, setEvents] = useState<EventData[]>([generateDefaultEvent()]);
-  const [filenameSuffix, setFilenameSuffix] = useState<string>("");
   const [showJson, setShowJson] = useState(false);
 
   const updateEvent = (index: number, field: keyof EventData, value: string) => {
@@ -61,11 +60,12 @@ export default function EventForm() {
   };
 
   const getFilename = () => {
-    const now = new Date();
-    const y = now.getFullYear();
-    const m = String(now.getMonth() + 1).padStart(2, "0");
-    const suffix = filenameSuffix.trim().replace(/[^a-zA-Z0-9_-]/g, "-");
-    return `${y}-${m}-cologne-${suffix || "events"}.json`;
+    const validEvent = events.find(e => /^\d{4}-\d{2}-\d{2}$/.test(e.date));
+    const date = validEvent ? new Date(validEvent.date) : new Date();
+    const y = date.getFullYear();
+    const m = String(date.getMonth() + 1).padStart(2, "0");
+    const d = String(date.getDate()).padStart(2, "0");
+    return `${y}-${m}-cologne-${d}.json`;
   };
 
   const downloadJson = () => {
@@ -77,11 +77,6 @@ export default function EventForm() {
   return (
     <div className="space-y-6">
       <h2 className="text-xl font-bold">Create Cologne Events JSON</h2>
-
-      <div>
-        <label className="block font-medium">Filename suffix <span className="text-gray-500 text-sm">(e.g. "update")</span></label>
-        <Input value={filenameSuffix} onChange={(e) => setFilenameSuffix(e.target.value)} placeholder="events-update" />
-      </div>
 
       {events.map((event, i) => (
         <Card key={i} className="p-4 space-y-3 border border-gray-300">
