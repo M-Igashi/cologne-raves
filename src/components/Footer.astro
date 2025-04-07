@@ -1,0 +1,16 @@
+<footer class="text-center mt-10">
+  <script type="module">
+    function revealWhatsappLink() {
+      const link = document.getElementById('whatsapp-link');
+      if (link) {
+        link.innerHTML = '<a href="https://chat.whatsapp.com/GQRhHCczk74BppW0w6T8QY" target="_blank" rel="noopener" class="text-green-600 underline">Join Cologne Ravers WhatsApp Group</a>';
+      }
+    }
+    globalThis.revealWhatsappLink = revealWhatsappLink;
+  </script>
+
+  <button onclick="revealWhatsappLink()" class="bg-green-500 hover:bg-green-600 text-white font-semibold py-2 px-4 rounded">
+    Reveal WhatsApp Group
+  </button>
+  <div id="whatsapp-link" class="mt-2 text-sm text-gray-700"></div>
+</footer>
