@@ -1,38 +1,27 @@
 ---
-import PartyCard from '../components/PartyCard.astro';
-import { getFeaturedParties } from '../lib/getFeaturedParties';
+import BaseHead from '../components/BaseHead.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import PartyCard from '../components/PartyCard.astro';
+import { getFeaturedParties } from '../lib/getFeaturedParties';
 
 const parties = await getFeaturedParties();
-
-const partiesByDay = parties.reduce((acc, party) => {
-  const day = new Date(party.date).toLocaleDateString('en-GB', { weekday: 'long' });
-  if (!acc[day]) acc[day] = [];
-  acc[day].push(party);
-  return acc;
-}, {});
 ---
 
 <html lang="en">
-  <head>
-    <title>This Week | Cologne Raves</title>
-    <meta charset="utf-8" />
-  </head>
+  <BaseHead title="This Week | Cologne Raves" />
   <body class="bg-white text-gray-900 font-sans max-w-3xl mx-auto px-4 py-6 sm:px-6 lg:px-8">
-    <Header current="thisweek" />
-
-    {Object.entries(partiesByDay).map(([day, dayParties]) => (
-      <>
-        <h2 class="text-xl font-semibold mt-6 mb-2">{day}</h2>
-        <ul class="space-y-4">
-          {dayParties.map(party => (
-            <li><PartyCard {...party} /></li>
-          ))}
-        </ul>
-      </>
-    ))}
-
+    <Header />
+    <nav class="flex flex-wrap gap-2 mb-6 text-sm">
+      <a href="/" class="px-3 py-1 border rounded-full bg-black text-white text-sm">This Week</a>
+      <a href="/parties" class="px-3 py-1 border rounded-full text-sm">All Parties</a>
+    </nav>
+    <h2 class="text-xl font-semibold mb-4">This Week</h2>
+    <ul class="space-y-4">
+      {parties.map(party => (
+        <li><PartyCard {...party} /></li>
+      ))}
+    </ul>
     <Footer />
   </body>
 </html>

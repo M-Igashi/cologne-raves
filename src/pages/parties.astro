@@ -1,28 +1,27 @@
 ---
-import PartyCard from '../components/PartyCard.astro';
-import { getAllParties } from '../lib/getAllParties';
+import BaseHead from '../components/BaseHead.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import PartyCard from '../components/PartyCard.astro';
+import { getAllParties } from '../lib/getAllParties';
 
 const parties = await getAllParties();
 ---
 
 <html lang="en">
-  <head>
-    <title>All Parties | Cologne Raves</title>
-    <meta charset="utf-8" />
-  </head>
+  <BaseHead title="All Parties | Cologne Raves" />
   <body class="bg-white text-gray-900 font-sans max-w-3xl mx-auto px-4 py-6 sm:px-6 lg:px-8">
-    <Header current="all" />
-
+    <Header />
+    <nav class="flex flex-wrap gap-2 mb-6 text-sm">
+      <a href="/" class="px-3 py-1 border rounded-full text-sm">This Week</a>
+      <a href="/parties" class="px-3 py-1 border rounded-full bg-black text-white text-sm">All Parties</a>
+    </nav>
     <h2 class="text-xl font-semibold mb-4">All Parties</h2>
-
     <ul class="space-y-4">
       {parties.map(party => (
         <li><PartyCard {...party} /></li>
       ))}
     </ul>
-
     <Footer />
   </body>
 </html>
