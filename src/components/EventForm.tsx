@@ -66,8 +66,9 @@ export default function EventForm() {
     const now = new Date();
     const y = now.getFullYear();
     const m = String(now.getMonth() + 1).padStart(2, "0");
+    const d = String(now.getDate()).padStart(2, "0");
     const suffix = filenameSuffix.trim().replace(/[^a-zA-Z0-9_-]/g, "-");
-    return `${y}-${m}-cologne-${suffix || "events"}.json`;
+    return `${y}-${m}-cologne-${d}${suffix ? '-' + suffix : ''}.json`;
   };
 
   const downloadJson = () => {
@@ -92,7 +93,7 @@ export default function EventForm() {
           <Input placeholder="ID (optional)" value={event.id} onChange={(e) => updateEvent(i, "id", e.target.value)} />
           <Input required className="border-l-4 border-red-500" placeholder="Title (required)" value={event.title} onChange={(e) => updateEvent(i, "title", e.target.value)} />
           <Input required className="border-l-4 border-red-500" placeholder="Venue (required)" value={event.venue} onChange={(e) => updateEvent(i, "venue", e.target.value)} />
-          <Input required className="border-l-4 border-red-500" placeholder="Date (required, YYYY-MM-DD)" value={event.date} onChange={(e) => updateEvent(i, "date", e.target.value)} />
+          <Input required className="border-l-4 border-red-500" type="date" placeholder="Date (required)" value={event.date} onChange={(e) => updateEvent(i, "date", e.target.value)} />
           <Input className="border-l-4 border-gray-300" placeholder="Start Time (e.g. 23:00)" value={event.startTime} onChange={(e) => updateEvent(i, "startTime", e.target.value)} />
           <Input className="border-l-4 border-gray-300" placeholder="Artists (optional, comma separated)" value={event.artists?.join(", ") || ""} onChange={(e) => updateEvent(i, "artists", e.target.value)} />
           <Textarea className="border-l-4 border-gray-300" placeholder="URL (optional)" value={event.url || ""} onChange={(e) => updateEvent(i, "url", e.target.value)} />
