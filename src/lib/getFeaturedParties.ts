@@ -1,6 +1,6 @@
-import fs from "fs";
-import path from "path";
-import crypto from "crypto";
+import fs from 'fs';
+import path from 'path';
+import crypto from 'crypto';
 
 export interface Party {
   id?: string;
@@ -12,31 +12,38 @@ export interface Party {
   url?: string;
 }
 
+// 安定したID生成
 function generateStableId(party: Party): string {
-  const input = `${party.venue || ''}-${party.date || ''}-${party.title || ''}`;
-  const hash = crypto.createHash("sha1").update(input).digest("hex");
+  const input = `${party.venue}-${party.date}-${party.title}`;
+  const hash = crypto.createHash('sha1').update(input).digest('hex');
   return hash.slice(0, 8);
 }
 
+// Europe/Berlin 現在時刻を取得
 function getBerlinNow(): Date {
   const now = new Date();
-  const tz = "Europe/Berlin";
-  const parts = new Intl.DateTimeFormat("en-US", {
-    timeZone: tz,
+  const berlinNow = new Intl.DateTimeFormat('en-GB', {
+    timeZone: 'Europe/Berlin',
     hour12: false,
-    year: "numeric",
-    month: "2-digit",
-    day: "2-digit",
-    hour: "2-digit",
-    minute: "2-digit",
-    second: "2-digit"
-  }).formatToParts(now).reduce((acc: any, part) => {
-    if (part.type !== "literal") acc[part.type] = part.value;
-    return acc;
-  }, {});
-  return new Date(`${parts.year}-${parts.month}-${parts.day}T${parts.hour}:${parts.minute}:${parts.second}+01:00`);
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit',
+    hour: '2-digit',
+    minute: '2-digit',
+    second: '2-digit'
+  })
+    .formatToParts(now)
+    .reduce((acc, part) => {
+      if (part.type !== 'literal') acc[part.type] = part.value;
+      return acc;
+    }, {} as any);
+
+  return new Date(
+    `${berlinNow.year}-${berlinNow.month}-${berlinNow.day}T${berlinNow.hour}:${berlinNow.minute}:${berlinNow.second}+01:00`
+  );
 }
 
+// 月曜13:00以降 → 今週、それ以前 → 前週末（金〜日）
 function getFeaturedDateRange(): { start: Date; end: Date } {
   const now = getBerlinNow();
   const day = now.getDay();
@@ -68,30 +75,36 @@ function getFeaturedDateRange(): { start: Date; end: Date } {
 }
 
 export async function getFeaturedParties(): Promise<Party[]> {
-  const dataDir = path.resolve("./data");
-  const files = fs.readdirSync(dataDir).filter(f => f.endsWith(".json")).sort();
+  const dataDir = path.resolve('./data');
+  const files = fs.readdirSync(dataDir);
   const allParties: Party[] = [];
 
   for (const file of files) {
-    const filePath = path.join(dataDir, file);
-    const content = fs.readFileSync(filePath, "utf-8");
+    if (!file.endsWith('.json')) continue;
+
+    const content = fs.readFileSync(path.join(dataDir, file), 'utf-8');
+    let events: Party[] = [];
+
     try {
-      const events: Party[] = JSON.parse(content);
-      events.forEach(event => {
-        if (!event.id || event.id.trim() === "") {
-          event.id = generateStableId(event);
-        }
-      });
-      allParties.push(...events);
-    } catch (err) {
-      console.warn(`Warning: Skipping invalid JSON file ${file}`);
+      events = JSON.parse(content);
+    } catch {
+      continue;
     }
+
+    events.forEach(event => {
+      if (!event.id || event.id.trim() === '') {
+        event.id = generateStableId(event);
+      }
+    });
+
+    allParties.push(...events);
   }
 
   const { start, end } = getFeaturedDateRange();
 
   return allParties
     .filter(p => {
+      if (!p.date) return false;
       const date = new Date(p.date);
       return date >= start && date <= end;
     })
