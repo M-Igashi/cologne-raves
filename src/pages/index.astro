@@ -6,6 +6,17 @@ import PartyCard from '../components/PartyCard.astro';
 import { getFeaturedParties } from '../lib/getFeaturedParties';
 
 const parties = await getFeaturedParties();
+
+// Group parties by weekday
+const daysOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+
+const grouped = parties.reduce((acc, party) => {
+  const date = new Date(party.date);
+  const weekday = daysOfWeek[date.getDay()];
+  if (!acc[weekday]) acc[weekday] = [];
+  acc[weekday].push(party);
+  return acc;
+}, {});
 ---
 
 <html lang="en">
@@ -16,12 +27,24 @@ const parties = await getFeaturedParties();
       <a href="/" class="px-3 py-1 border rounded-full bg-black text-white text-sm">This Week</a>
       <a href="/parties" class="px-3 py-1 border rounded-full text-sm">All Parties</a>
     </nav>
+
     <h2 class="text-xl font-semibold mb-4">This Week</h2>
-    <ul class="space-y-4">
-      {parties.map(party => (
-        <li><PartyCard {...party} /></li>
-      ))}
-    </ul>
+
+    {
+      daysOfWeek.map(day => (
+        grouped[day] && grouped[day].length > 0 ? (
+          <section>
+            <h3 class="text-lg font-medium mt-6 mb-2">{day}</h3>
+            <ul class="space-y-4">
+              {grouped[day].map(party => (
+                <li><PartyCard {...party} /></li>
+              ))}
+            </ul>
+          </section>
+        ) : null
+      ))
+    }
+
     <Footer />
   </body>
 </html>
