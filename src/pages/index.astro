@@ -1,5 +1,4 @@
 ---
-import Analytics from '../components/Analytics.astro';
 import PartyCard from '../components/PartyCard.astro';
 import { getFeaturedParties } from '../lib/getFeaturedParties';
 
@@ -15,7 +14,6 @@ const partiesByDay = parties.reduce((acc, party) => {
 
 <html lang="en">
   <head>
-    <Analytics />
     <title>This Week | Cologne Raves</title>
     <meta charset="utf-8" />
     <script type="module">
