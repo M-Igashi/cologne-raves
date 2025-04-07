@@ -1,6 +1,6 @@
-import fs from 'fs';
-import path from 'path';
-import crypto from 'crypto';
+import fs from "fs";
+import path from "path";
+import crypto from "crypto";
 
 export interface Party {
   id?: string;
@@ -12,71 +12,88 @@ export interface Party {
   url?: string;
 }
 
-// 安定したID生成関数
 function generateStableId(party: Party): string {
   const input = `${party.venue || ''}-${party.date || ''}-${party.title || ''}`;
-  const hash = crypto.createHash('sha1').update(input).digest('hex');
+  const hash = crypto.createHash("sha1").update(input).digest("hex");
   return hash.slice(0, 8);
 }
 
-// 現在時刻を Europe/Berlin タイムゾーンで取得
 function getBerlinNow(): Date {
   const now = new Date();
-  const berlinParts = new Intl.DateTimeFormat('en-US', {
-    timeZone: 'Europe/Berlin',
+  const tz = "Europe/Berlin";
+  const parts = new Intl.DateTimeFormat("en-US", {
+    timeZone: tz,
     hour12: false,
-    year: 'numeric',
-    month: '2-digit',
-    day: '2-digit',
-    hour: '2-digit',
-    minute: '2-digit',
-    second: '2-digit',
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+    hour: "2-digit",
+    minute: "2-digit",
+    second: "2-digit"
   }).formatToParts(now).reduce((acc: any, part) => {
-    if (part.type !== 'literal') acc[part.type] = part.value;
+    if (part.type !== "literal") acc[part.type] = part.value;
     return acc;
   }, {});
-  return new Date(`${berlinParts.year}-${berlinParts.month}-${berlinParts.day}T${berlinParts.hour}:${berlinParts.minute}:${berlinParts.second}+01:00`);
+  return new Date(`${parts.year}-${parts.month}-${parts.day}T${parts.hour}:${parts.minute}:${parts.second}+01:00`);
 }
 
-// 今週 (月〜日) の範囲を返す
-function getWeekRange(date: Date): { start: Date; end: Date } {
-  const day = date.getDay(); // 0:Sun - 6:Sat
-  const diffToMonday = (day + 6) % 7;
-  const start = new Date(date);
-  start.setDate(date.getDate() - diffToMonday);
-  start.setHours(0, 0, 0, 0);
+function getFeaturedDateRange(): { start: Date; end: Date } {
+  const now = getBerlinNow();
+  const day = now.getDay();
 
-  const end = new Date(start);
-  end.setDate(start.getDate() + 6);
-  end.setHours(23, 59, 59, 999);
+  const monday = new Date(now);
+  monday.setDate(now.getDate() - day + 1);
+  monday.setHours(0, 0, 0, 0);
 
-  return { start, end };
+  const sunday = new Date(monday);
+  sunday.setDate(monday.getDate() + 6);
+  sunday.setHours(23, 59, 59, 999);
+
+  const monday13 = new Date(monday);
+  monday13.setHours(13, 0, 0, 0);
+
+  if (now >= monday13) {
+    return { start: monday, end: sunday };
+  } else {
+    const lastFriday = new Date(monday);
+    lastFriday.setDate(monday.getDate() - 3);
+    lastFriday.setHours(0, 0, 0, 0);
+
+    const lastSunday = new Date(monday);
+    lastSunday.setDate(monday.getDate() - 1);
+    lastSunday.setHours(23, 59, 59, 999);
+
+    return { start: lastFriday, end: lastSunday };
+  }
 }
 
 export async function getFeaturedParties(): Promise<Party[]> {
-  const dataDir = path.resolve('./data');
-  const files = fs.readdirSync(dataDir);
+  const dataDir = path.resolve("./data");
+  const files = fs.readdirSync(dataDir).filter(f => f.endsWith(".json")).sort();
   const allParties: Party[] = [];
 
   for (const file of files) {
-    if (!file.endsWith('.json')) continue;
-    const content = fs.readFileSync(path.join(dataDir, file), 'utf-8');
-    const events: Party[] = JSON.parse(content);
-    events.forEach(event => {
-      if (!event.id || event.id.trim() === "") {
-        event.id = generateStableId(event);
-      }
-    });
-    allParties.push(...events);
+    const filePath = path.join(dataDir, file);
+    const content = fs.readFileSync(filePath, "utf-8");
+    try {
+      const events: Party[] = JSON.parse(content);
+      events.forEach(event => {
+        if (!event.id || event.id.trim() === "") {
+          event.id = generateStableId(event);
+        }
+      });
+      allParties.push(...events);
+    } catch (err) {
+      console.warn(`Warning: Skipping invalid JSON file ${file}`);
+    }
   }
 
-  const now = getBerlinNow();
-  const { start, end } = getWeekRange(now);
+  const { start, end } = getFeaturedDateRange();
 
-  const featured = allParties.filter(p => {
-    const date = new Date(p.date);
-    return date >= start && date <= end;
-  });
-
-  return featured.sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
+  return allParties
+    .filter(p => {
+      const date = new Date(p.date);
+      return date >= start && date <= end;
+    })
+    .sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
 }
