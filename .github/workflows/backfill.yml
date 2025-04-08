@@ -1,0 +1,33 @@
+name: Backfill Event IDs
+
+on:
+  push:
+    branches:
+      - main  # 任意のブランチで調整可
+  workflow_dispatch: # 手動実行も許可
+
+jobs:
+  backfill:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run backfill script
+        run: node backfill-id.js
+
+      - name: Commit & Push changes
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/*.json
+          git diff --cached --quiet || git commit -m "chore: backfill missing IDs"
+          git push
