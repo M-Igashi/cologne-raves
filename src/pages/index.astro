@@ -37,7 +37,17 @@ const grouped = parties.reduce((acc, party) => {
             <h3 class="text-lg font-medium mt-6 mb-2">{day}</h3>
             <ul class="space-y-4">
               {grouped[day].map(party => (
-                <li><PartyCard {...party} /></li>
+                <li>
+                  <PartyCard
+                    id={party.id}
+                    date={party.date}
+                    venue={party.venue}
+                    title={party.title}
+                    url={party.url}
+                    artists={party.artists}
+                    startTime={party.startTime}
+                  />
+                </li>
               ))}
             </ul>
           </section>

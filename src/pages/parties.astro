@@ -16,12 +16,25 @@ const parties = await getAllParties();
       <a href="/" class="px-3 py-1 border rounded-full text-sm">This Week</a>
       <a href="/parties" class="px-3 py-1 border rounded-full bg-black text-white text-sm">All Parties</a>
     </nav>
+
     <h2 class="text-xl font-semibold mb-4">All Parties</h2>
+
     <ul class="space-y-4">
       {parties.map(party => (
-        <li><PartyCard {...party} /></li>
+        <li>
+          <PartyCard
+            id={party.id}
+            date={party.date}
+            venue={party.venue}
+            title={party.title}
+            url={party.url}
+            artists={party.artists}
+            startTime={party.startTime}
+            sourceFile={party.sourceFile} />
+        </li>
       ))}
     </ul>
+
     <Footer />
   </body>
 </html>
