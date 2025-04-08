@@ -2,182 +2,198 @@
 
 import React, { useState } from "react";
 import fileSaver from "file-saver";
-const { saveAs } = fileSaver;
+import { v4 as uuidv4 } from "uuid";
+import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
-import { Card } from "@/components/ui/card";
 import {
   Dialog,
-  DialogTrigger,
   DialogContent,
+  DialogTrigger,
   DialogHeader,
   DialogTitle,
-  DialogDescription,
+  DialogDescription
 } from "@/components/ui/dialog";
-import { cn } from "@/lib/utils";
+import Image from "next/image";
 
-function generateStableId(venue: string, date: string, title: string): string {
-  const input = `${venue}-${date}-${title}`;
-  const hashBuffer = new TextEncoder().encode(input);
-  return crypto.subtle.digest("SHA-1", hashBuffer).then((buffer) =>
-    Array.from(new Uint8Array(buffer))
-      .map((b) => b.toString(16).padStart(2, "0"))
-      .join("")
-      .slice(0, 8)
-  );
+const { saveAs } = fileSaver;
+
+interface EventData {
+  id: string;
+  title: string;
+  venue: string;
+  date: string;
+  startTime: string;
+  artists?: string[];
+  url?: string;
 }
 
-export default function EventForm() {
-  const [events, setEvents] = useState([
-    { title: "", venue: "", date: "", startTime: "", artists: "", url: "", id: "" },
-  ]);
-  const [output, setOutput] = useState("");
-  const timePattern = /^([01]\d|2[0-3]):([0-5]\d)$/;
+const generateDefaultEvent = (): EventData => ({
+  id: "",
+  title: "",
+  venue: "",
+  date: "",
+  startTime: "",
+  artists: [],
+  url: ""
+});
 
-  const handleChange = (index: number, field: string, value: string) => {
+export default function EventForm() {
+  const [events, setEvents] = useState<EventData[]>([generateDefaultEvent()]);
+  const [filenameSuffix, setFilenameSuffix] = useState<string>("");
+  const [showJson, setShowJson] = useState(false);
+
+  const updateEvent = (index: number, field: keyof EventData, value: string) => {
     const updated = [...events];
-    updated[index][field] = value;
+    if (field === "artists") {
+      updated[index][field] = value.split(",").map((s) => s.trim());
+    } else {
+      updated[index][field] = value;
+    }
     setEvents(updated);
   };
 
   const addEvent = () => {
-    if (events.length < 4) {
-      setEvents([
-        ...events,
-        { title: "", venue: "", date: "", startTime: "", artists: "", url: "", id: "" },
-      ]);
-    }
+    if (events.length < 4) setEvents([...events, generateDefaultEvent()]);
   };
 
-  const generateJSON = async () => {
-    const processed = await Promise.all(
-      events.map(async (e) => {
-        const id = e.id || (await generateStableId(e.venue, e.date, e.title));
-        return {
-          id,
-          title: e.title.trim(),
-          venue: e.venue.trim(),
-          date: e.date,
-          startTime: e.startTime,
-          artists: e.artists
-            ? e.artists.split(",").map((a) => a.trim()).filter(Boolean)
-            : [],
-          url: e.url.trim() || undefined,
-        };
-      })
-    );
-    setOutput(JSON.stringify(processed, null, 2));
+  const removeEvent = (index: number) => {
+    const updated = [...events];
+    updated.splice(index, 1);
+    setEvents(updated);
   };
 
-  const downloadJSON = () => {
-    const blob = new Blob([output], { type: "application/json" });
-    saveAs(blob, "cologne-events.json");
+  const generateJson = () => {
+    return events.map((event) => ({
+      ...event,
+      id: event.id.trim() === "" ? uuidv4().slice(0, 8) : event.id.trim()
+    }));
+  };
+
+  const getFilename = () => {
+    const now = new Date();
+    const y = now.getFullYear();
+    const m = String(now.getMonth() + 1).padStart(2, "0");
+    const d = String(now.getDate()).padStart(2, "0");
+    const suffix = filenameSuffix.trim().replace(/[^a-zA-Z0-9_-]/g, "-");
+    return `${y}-${m}-cologne-${d}${suffix ? '-' + suffix : ''}.json`;
+  };
+
+  const downloadJson = () => {
+    const json = JSON.stringify(generateJson(), null, 2);
+    const blob = new Blob([json], { type: "application/json" });
+    saveAs(blob, getFilename());
   };
 
   return (
-    <div className="max-w-4xl mx-auto p-4 space-y-6">
-      <h1 className="text-2xl font-bold">Create Your Cologne Raves Events JSON</h1>
+    <div className="space-y-6">
+      <h2 className="text-xl font-bold">Create Event JSON</h2>
+      <p className="text-gray-700">Create Your Cologne Raves Events JSON</p>
 
-      {events.map((event, i) => (
-        <Card key={i} className="p-4 space-y-4">
-          <Input
-            placeholder="Title (required)"
-            value={event.title}
-            onChange={(e) => handleChange(i, "title", e.target.value)}
-            required
-            className="border-l-4 border-red-500"
-          />
-          <Input
-            placeholder="Venue (required)"
-            value={event.venue}
-            onChange={(e) => handleChange(i, "venue", e.target.value)}
-            required
-            className="border-l-4 border-red-500"
-          />
-          <Input
-            type="date"
-            value={event.date}
-            onChange={(e) => handleChange(i, "date", e.target.value)}
-            required
-            className="border-l-4 border-red-500"
-          />
-          <Input
-            placeholder="Start Time (hh:mm, required)"
-            value={event.startTime}
-            onChange={(e) => handleChange(i, "startTime", e.target.value)}
-            required
-            className={cn(
-              "border-l-4",
-              event.startTime && !timePattern.test(event.startTime)
-                ? "border-red-500"
-                : "border-red-500"
-            )}
-          />
-          {event.startTime && !timePattern.test(event.startTime) && (
-            <p className="text-red-500 text-sm">Please enter a valid time in hh:mm format.</p>
-          )}
-          <Input
-            placeholder="Artists (comma-separated, optional)"
-            value={event.artists}
-            onChange={(e) => handleChange(i, "artists", e.target.value)}
-            className="border-l-4 border-gray-300"
-          />
-          <Input
-            placeholder="Event URL (optional)"
-            value={event.url}
-            onChange={(e) => handleChange(i, "url", e.target.value)}
-            className="border-l-4 border-gray-300"
-          />
-
-          <div className="flex items-center gap-2">
-            <Input
-              placeholder="Custom ID (optional)"
-              value={event.id}
-              onChange={(e) => handleChange(i, "id", e.target.value)}
-              className="flex-1"
-            />
-            <Dialog>
-              <DialogTrigger asChild>
-                <Button variant="outline" size="sm">
-                  Info
-                </Button>
-              </DialogTrigger>
-              <DialogContent>
-                <DialogHeader>
-                  <DialogTitle>Overwriting Existing Event</DialogTitle>
-                  <DialogDescription>
-                    If you enter an existing event ID here, the uploaded JSON will
-                    <strong> overwrite</strong> that event instead of creating a new one.
-                  </DialogDescription>
-                </DialogHeader>
-                <img
-                  src="/id-override.png"
-                  alt="ID override illustration"
-                  className="mx-auto rounded-md mt-4 max-w-full"
-                />
-              </DialogContent>
-            </Dialog>
-          </div>
-        </Card>
-      ))}
-
-      <div className="flex gap-2">
-        <Button onClick={addEvent} disabled={events.length >= 4}>
-          + Add Event
-        </Button>
-        <Button onClick={generateJSON}>Generate JSON</Button>
+      <div>
+        <label className="block font-medium">
+          Filename suffix <span className="text-gray-500 text-sm">(e.g. "update")</span>
+        </label>
+        <Input
+          value={filenameSuffix}
+          onChange={(e) => setFilenameSuffix(e.target.value)}
+          placeholder="events-update"
+        />
       </div>
 
-      {output && (
-        <div className="space-y-4">
-          <Textarea
-            className="w-full h-64 font-mono text-sm"
-            readOnly
-            value={output}
-          />
-          <Button onClick={downloadJSON}>Download JSON</Button>
-        </div>
+      {events.map((event, i) => {
+        const isStartTimeValid = /^\d{2}:\d{2}$/.test(event.startTime);
+        return (
+          <Card key={i} className="p-4 space-y-3 border border-gray-300">
+            <h3 className="font-semibold">Event {i + 1}</h3>
+            <Input
+              placeholder="ID (optional)"
+              value={event.id}
+              onChange={(e) => updateEvent(i, "id", e.target.value)}
+            />
+            <Input
+              required
+              className="border-l-4 border-red-500"
+              placeholder="Title (required)"
+              value={event.title}
+              onChange={(e) => updateEvent(i, "title", e.target.value)}
+            />
+            <Input
+              required
+              className="border-l-4 border-red-500"
+              placeholder="Venue (required)"
+              value={event.venue}
+              onChange={(e) => updateEvent(i, "venue", e.target.value)}
+            />
+            <Input
+              required
+              className="border-l-4 border-red-500"
+              type="date"
+              placeholder="Date (required)"
+              value={event.date}
+              onChange={(e) => updateEvent(i, "date", e.target.value)}
+            />
+            <Input
+              required
+              className={`border-l-4 ${isStartTimeValid ? "border-green-500" : "border-red-500"}`}
+              placeholder="Start Time (e.g. 23:00)"
+              value={event.startTime}
+              onChange={(e) => updateEvent(i, "startTime", e.target.value)}
+            />
+            <Input
+              className="border-l-4 border-gray-300"
+              placeholder="Artists (optional, comma separated)"
+              value={event.artists?.join(", ") || ""}
+              onChange={(e) => updateEvent(i, "artists", e.target.value)}
+            />
+            <Textarea
+              className="border-l-4 border-gray-300"
+              placeholder="URL (optional)"
+              value={event.url || ""}
+              onChange={(e) => updateEvent(i, "url", e.target.value)}
+            />
+            {events.length > 1 && (
+              <Button variant="destructive" onClick={() => removeEvent(i)}>
+                Remove
+              </Button>
+            )}
+          </Card>
+        );
+      })}
+
+      {events.length < 4 && (
+        <Button onClick={addEvent}>+ Add Event</Button>
+      )}
+
+      <div className="flex flex-wrap gap-4 pt-4">
+        <Button onClick={downloadJson}>Generate JSON</Button>
+        <Dialog>
+          <DialogTrigger asChild>
+            <Button variant="outline">Info</Button>
+          </DialogTrigger>
+          <DialogContent className="max-w-lg">
+            <DialogHeader>
+              <DialogTitle>Custom ID Override</DialogTitle>
+              <DialogDescription>
+                If you want to overwrite an existing event, enter its ID without the <code>#</code>.
+              </DialogDescription>
+            </DialogHeader>
+            <Image
+              src="/id-override.png"
+              width={600}
+              height={350}
+              alt="ID override example"
+              className="rounded border shadow"
+            />
+          </DialogContent>
+        </Dialog>
+      </div>
+
+      {showJson && (
+        <pre className="mt-4 p-4 bg-gray-100 text-sm overflow-x-auto">
+          {JSON.stringify(generateJson(), null, 2)}
+        </pre>
       )}
     </div>
   );
