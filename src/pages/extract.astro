@@ -1,15 +1,17 @@
 ---
-import BaseHead from "@/components/BaseHead.astro";
 import ExtractEvents from "@/components/Extract";
+import { getAllParties } from "@/lib/getAllParties";
+
+const allParties = await getAllParties();
 ---
 
 <html lang="en">
   <head>
-    <BaseHead title="Extract Events | Cologne Raves" />
+    <title>Extract Events | Cologne Raves</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   </head>
-  <body class="bg-white text-black p-8 max-w-3xl mx-auto min-h-screen">
-    <main class="space-y-8">
-      <ExtractEvents client:load />
-    </main>
+  <body class="p-8 max-w-3xl mx-auto bg-white text-black min-h-screen">
+    <ExtractEvents client:load allParties={allParties} />
   </body>
 </html>
