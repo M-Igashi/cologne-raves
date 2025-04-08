@@ -1,24 +1,29 @@
-name: backfill
+name: Backfill Event IDs
 
 on:
-  workflow_dispatch: # 手動実行が可能
-  push:
-    paths:
-      - 'data/**/*.json'
-      - 'backfill-id.js'
+  workflow_dispatch:
+  schedule:
+    - cron: '0 3 * * *'  # 毎日午前4時（CET）
 
 jobs:
-  run-backfill:
+  backfill:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash
+    env:
+      GH_PAT: ${{ secrets.GH_PAT }}
 
     steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v3
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Set up Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
-          node-version: '18'
+          node-version: 18
 
       - name: Install dependencies
         run: npm ci
@@ -27,11 +32,9 @@ jobs:
         run: node backfill-id.js
 
       - name: Commit & Push changes
-        env:
-          GH_TOKEN: ${{ secrets.GH_PAT }}
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add data/*.json
-          git diff --cached --quiet || git commit -m "chore: backfill missing IDs"
-          git push https://x-access-token:${GH_TOKEN}@github.com/${{ github.repository }}.git HEAD:${{ github.ref_name }}
+          git commit -m "chore: backfill missing IDs" || echo "No changes to commit"
+          git push https://x-access-token:${GH_PAT}@github.com/M-Igashi/cologne-raves.git HEAD:main
