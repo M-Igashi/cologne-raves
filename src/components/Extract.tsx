@@ -2,9 +2,8 @@
 
 import React, { useState } from "react";
 import fileSaver from "file-saver";
-import { parseISO, format } from "date-fns";
 import * as tz from "date-fns-tz";
-
+import { parseISO } from "date-fns";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 
@@ -19,15 +18,16 @@ export default function ExtractEvents() {
   const handleExtract = async () => {
     if (!startDate || !endDate) return;
 
-    const { getAllParties } = await import("@/lib/getAllParties");
-    const all = await getAllParties();
-
     const start = tz.zonedTimeToUtc(parseISO(startDate), "Europe/Berlin");
     const end = tz.zonedTimeToUtc(parseISO(endDate), "Europe/Berlin");
 
-    const filtered = all.filter((e: any) => {
-      const date = tz.zonedTimeToUtc(parseISO(e.date), "Europe/Berlin");
-      return date >= start && date <= end;
+    // getAllParties はサーバーサイド用なので dynamic import
+    const { getAllParties } = await import("@/lib/getAllParties");
+    const allEvents = await getAllParties();
+
+    const filtered = allEvents.filter((event: any) => {
+      const eventDate = tz.zonedTimeToUtc(parseISO(event.date), "Europe/Berlin");
+      return eventDate >= start && eventDate <= end;
     });
 
     setFilteredEvents(filtered);
@@ -38,54 +38,56 @@ export default function ExtractEvents() {
     const blob = new Blob([JSON.stringify(filteredEvents, null, 2)], {
       type: "application/json",
     });
-
     const now = new Date();
     const y = now.getFullYear();
     const m = String(now.getMonth() + 1).padStart(2, "0");
     const d = String(now.getDate()).padStart(2, "0");
-
-    const filename = `${y}-${m}-cologne-${d}-extract.json`;
+    const filename = `${y}-${m}-cologne-${d}-extracted.json`;
     saveAs(blob, filename);
   };
 
   return (
     <div className="space-y-6">
-      <h2 className="text-xl font-bold">Extract Events</h2>
-      <p className="text-gray-700">
-        Download filtered Cologne Raves JSON by date range.
-      </p>
+      <h2 className="text-xl font-bold">Extract Events by Date</h2>
+      <p className="text-gray-700">Filter events by date range and download as JSON</p>
 
-      <div className="flex flex-col gap-4">
-        <Input
-          type="date"
-          value={startDate}
-          onChange={(e) => setStartDate(e.target.value)}
-          placeholder="Start Date"
-        />
-        <Input
-          type="date"
-          value={endDate}
-          onChange={(e) => setEndDate(e.target.value)}
-          placeholder="End Date"
-        />
-        <Button onClick={handleExtract}>Extract JSON</Button>
+      <div className="flex flex-col md:flex-row gap-4">
+        <div>
+          <label className="block text-sm font-medium">Start Date</label>
+          <Input
+            type="date"
+            value={startDate}
+            onChange={(e) => setStartDate(e.target.value)}
+          />
+        </div>
+        <div>
+          <label className="block text-sm font-medium">End Date</label>
+          <Input
+            type="date"
+            value={endDate}
+            onChange={(e) => setEndDate(e.target.value)}
+          />
+        </div>
       </div>
 
-      {filteredEvents.length > 0 && (
-        <>
-          <div className="pt-4 flex gap-4 flex-wrap">
-            <Button onClick={downloadJson}>Download JSON</Button>
-            <Button variant="outline" onClick={() => setShowJson((p) => !p)}>
+      <div className="flex gap-4 pt-2 flex-wrap">
+        <Button onClick={handleExtract}>Extract JSON</Button>
+        {filteredEvents.length > 0 && (
+          <>
+            <Button variant="outline" onClick={downloadJson}>
+              Download JSON
+            </Button>
+            <Button variant="outline" onClick={() => setShowJson(!showJson)}>
               {showJson ? "Hide JSON" : "Show JSON"}
             </Button>
-          </div>
+          </>
+        )}
+      </div>
 
-          {showJson && (
-            <pre className="mt-4 p-4 bg-gray-100 text-sm overflow-x-auto max-h-[500px]">
-              {JSON.stringify(filteredEvents, null, 2)}
-            </pre>
-          )}
-        </>
+      {showJson && filteredEvents.length > 0 && (
+        <pre className="mt-4 p-4 bg-gray-100 text-sm overflow-x-auto">
+          {JSON.stringify(filteredEvents, null, 2)}
+        </pre>
       )}
     </div>
   );
