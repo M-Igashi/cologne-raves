@@ -1,5 +1,4 @@
 [
-
   {
     "id": "e3e203cf",
     "venue": "Bootshaus",
@@ -10,12 +9,13 @@
       "OMAKS",
       "HOEHENANGST",
       "Leonard Palm",
-      "Tzaar"],
+      "Tzaar"
+    ],
     "startTime": "23:00",
     "url": "https://bootshaus-club.ticket.io/0mckscju/?fbclid=PAZXh0bgNhZW0CMTEAAachtSEwbiVUVh3obv4o3GHh8DRx7a4JoIZYB1fjm9JIU-k5Ju8WVC9QUBBETw_aem_Fh1s1TXt239nbwpvHgMqCw"
   },
-
-  { "venue": "Helios 37",
+  {
+    "venue": "Helios 37",
     "date": "2025-04-26",
     "title": "NURBÖSE – 26.04.2025 – Tag der Lesbischen Sichtbarkeit",
     "artists": [
@@ -25,23 +25,29 @@
       "Sadicca"
     ],
     "startTime": "23:00",
-    "url": "https://t.rausgegangen.de/tickets/nurbose-26042025"
+    "url": "https://t.rausgegangen.de/tickets/nurbose-26042025",
+    "id": "b478b63f"
   },
-  { "venue": "Helios 37",
+  {
+    "venue": "Helios 37",
     "date": "2025-05-24",
     "title": "NURBÖSE",
     "artists": [],
-    "startTime": "23:00"
+    "startTime": "23:00",
+    "id": "92b82559"
   },
-
-  { "venue": "Club Zimmermanns",
+  {
+    "venue": "Club Zimmermanns",
     "date": "2025-05-17",
     "title": "Kinky Techno & Friends ",
-    "artists": ["Moekli",
+    "artists": [
+      "Moekli",
       "Hill",
       "Gerrit X",
-      "Deniz (LJ)"],
+      "Deniz (LJ)"
+    ],
     "startTime": "22:00",
-    "url": "https://www.instagram.com/p/DGDR6fANkiA/"
+    "url": "https://www.instagram.com/p/DGDR6fANkiA/",
+    "id": "b3a698bc"
   }
 ]
