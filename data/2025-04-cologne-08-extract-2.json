@@ -29,15 +29,9 @@
   },
   { "venue": "Helios 37",
     "date": "2025-05-24",
-    "title": "NURBÖSE – 26.04.2025 – Tag der Lesbischen Sichtbarkeit",
-    "artists": [
-      "Métaraph",
-      "Døpair",
-      "Nina Sativa",
-      "Sadicca"
-    ],
-    "startTime": "23:00",
-    "url": "https://t.rausgegangen.de/tickets/nurbose-26042025"
+    "title": "NURBÖSE",
+    "artists": [],
+    "startTime": "23:00"
   },
 
   { "venue": "Club Zimmermanns",
