@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import fileSaver from "file-saver";
 import { parseISO, format } from "date-fns";
-import { zonedTimeToUtc } from "date-fns-tz";
+import * as tz from "date-fns-tz";
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -22,11 +22,11 @@ export default function ExtractEvents() {
     const { getAllParties } = await import("@/lib/getAllParties");
     const all = await getAllParties();
 
-    const start = zonedTimeToUtc(parseISO(startDate), "Europe/Berlin");
-    const end = zonedTimeToUtc(parseISO(endDate), "Europe/Berlin");
+    const start = tz.zonedTimeToUtc(parseISO(startDate), "Europe/Berlin");
+    const end = tz.zonedTimeToUtc(parseISO(endDate), "Europe/Berlin");
 
     const filtered = all.filter((e: any) => {
-      const date = zonedTimeToUtc(parseISO(e.date), "Europe/Berlin");
+      const date = tz.zonedTimeToUtc(parseISO(e.date), "Europe/Berlin");
       return date >= start && date <= end;
     });
 
@@ -51,7 +51,9 @@ export default function ExtractEvents() {
   return (
     <div className="space-y-6">
       <h2 className="text-xl font-bold">Extract Events</h2>
-      <p className="text-gray-700">Download filtered Cologne Raves JSON by date range.</p>
+      <p className="text-gray-700">
+        Download filtered Cologne Raves JSON by date range.
+      </p>
 
       <div className="flex flex-col gap-4">
         <Input
