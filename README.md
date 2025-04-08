@@ -12,7 +12,6 @@ We use [Astro](https://astro.build/) to build and deploy the site statically, an
 - All events are published on the site:
   - **This Week**: Homepage shows this week's events (Mon–Sun, shown after Monday 13:00 CET)
   - **All Parties**: Full listing across all dates
-- Use the [Event JSON Generator](https://cologne-raves.pages.dev/form/) to easily create or update `.json` files
 
 ---
 
@@ -59,14 +58,17 @@ Each `.json` file must contain an **array of event objects** like this:
 - `url` (link to event page or ticket)
 - `id` (string – if omitted, it will be auto-generated)
 
+- We prepaired [Event JSON Generator](https://cologne-raves.pages.dev/form/) to easily create and/or update upto 4 events `.json` files.
+
 ---
 
 ## 🔢 Event ID & Updates
 
 - To **update an existing event**, include the **same `id`** as the one currently in use.
 - IDs are shown in the corner of each event card (e.g. `#be790c46`)
-- When using the form at [/form/](https://cologne-raves.pages.dev/form/), enter this ID **without the `#` symbol** (e.g. `be790c46`)
-- If no ID is specified, one will be generated automatically
+- Enter this ID **without the `#` symbol** (e.g. `be790c46`)
+- If no ID is specified, one will be generated automatically.
+- [Event JSON Generator](https://cologne-raves.pages.dev/form/) shows clear instruction for that.
 
 ---
 
@@ -74,7 +76,7 @@ Each `.json` file must contain an **array of event objects** like this:
 
 - All event data must be placed in `.json` files under the `/data/` directory
 - Each file should contain an **array of event objects**
-- Use one file per batch (e.g. 1–4 events max)
+- Use one file per batch (e.g. single event or 100 events)
 - Recommended naming convention:  
   `YYYY-MM-cologne-DD.json`  
   Example: `2025-04-cologne-08.json`
