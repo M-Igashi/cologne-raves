@@ -5,32 +5,35 @@ import Footer from '../components/Footer.astro';
 import PartyCard from '../components/PartyCard.astro';
 import { getAllParties } from '../lib/getAllParties';
 
-const parties = await getAllParties();
+// Europe/Berlin timezone における今週日曜の 00:00 を計算
+function getNextSundayStart() {
+  const now = new Date();
+  const berlinNow = new Date(now.toLocaleString("en-US", { timeZone: "Europe/Berlin" }));
+  const day = berlinNow.getDay();
+  const diff = (7 - day) % 7;
+  const sunday = new Date(berlinNow);
+  sunday.setDate(berlinNow.getDate() + diff);
+  sunday.setHours(0, 0, 0, 0);
+  return sunday;
+}
 
-// Get Sunday of this week (based on Monday-starting week)
-const now = new Date();
-const day = now.getDay(); // Sunday=0, Monday=1, ..., Saturday=6
-const diffToMonday = (day + 6) % 7;
-const monday = new Date(now);
-monday.setDate(now.getDate() - diffToMonday);
-const sundayThisWeek = new Date(monday);
-sundayThisWeek.setDate(monday.getDate() + 6);
-sundayThisWeek.setHours(0, 0, 0, 0);
+const allParties = await getAllParties();
+const cutoffDate = getNextSundayStart();
 
-// Filter events on or after this week's Sunday
-const upcomingParties = parties.filter(p => {
-  const date = new Date(p.date);
-  return date >= sundayThisWeek;
-});
+// フィルタリング
+const upcoming = allParties.filter(p => new Date(p.date) >= cutoffDate);
 
-// Group events by month
-const grouped = upcomingParties.reduce((acc, party) => {
+// 月別にグルーピング
+const grouped = upcoming.reduce((acc, party) => {
   const date = new Date(party.date);
-  const key = date.toLocaleString('en-US', { year: 'numeric', month: 'long' });
-  if (!acc[key]) acc[key] = [];
-  acc[key].push(party);
+  const monthKey = `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}`;
+  if (!acc[monthKey]) acc[monthKey] = [];
+  acc[monthKey].push(party);
   return acc;
-}, {});
+}, {} as Record<string, typeof allParties>);
+
+// 月の並び順のためにキーを取得
+const sortedMonthKeys = Object.keys(grouped).sort();
 ---
 
 <html lang="en">
@@ -42,13 +45,14 @@ const grouped = upcomingParties.reduce((acc, party) => {
       <a href="/parties" class="px-3 py-1 border rounded-full bg-black text-white text-sm">All Parties</a>
     </nav>
 
+    <h2 class="text-xl font-semibold mb-4">All Upcoming Parties</h2>
 
     {
-      Object.entries(grouped).map(([month, parties]) => (
+      sortedMonthKeys.map(month => (
         <section>
           <h3 class="text-lg font-medium mt-6 mb-2">{month}</h3>
           <ul class="space-y-4">
-            {parties.map(party => (
+            {grouped[month].map(party => (
               <li><PartyCard {...party} /></li>
             ))}
           </ul>

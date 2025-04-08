@@ -1,62 +1,54 @@
-import { getAllParties, Party } from './getAllParties';
+import { getAllParties } from './getAllParties';
 
+/**
+ * Europe/Berlin タイムゾーンでの現在時刻を返す
+ */
 function getBerlinNow(): Date {
+  const berlinOffsetMs = 60 * 60 * 1000; // CET は UTC+1（ただし夏時間には非対応）
   const now = new Date();
-  const berlinOffset = new Intl.DateTimeFormat('en-US', {
-      timeZone: 'Europe/Berlin',
-      hour12: false,
-      hour: '2-digit',
-      minute: '2-digit',
-      second: '2-digit',
-      year: 'numeric',
-      month: '2-digit',
-      day: '2-digit',
-    }).formatToParts(now).reduce((acc: any, part) => {
-      if (part.type !== 'literal') acc[part.type] = part.value;
-      return acc;
-    }, {});
-    return new Date(`${berlinOffset.year}-${berlinOffset.month}-${berlinOffset.day}T${berlinOffset.hour}:${berlinOffset.minute}:${berlinOffset.second}+01:00`);
-  }
+  const utc = now.getTime() + now.getTimezoneOffset() * 60000;
+  return new Date(utc + berlinOffsetMs);
+}
 
-  function getFeaturedDateRange(): { start: Date; end: Date } {
-    const now = getBerlinNow();
-    const day = now.getDay();
+/**
+ * 「今週のイベント」表示対象となる範囲を返す
+ * - 月曜13時以前 → 前週金曜〜今週木曜
+ * - 月曜13時以降 → 今週金曜〜来週木曜
+ */
+function getFeaturedDateRange(now: Date): { from: Date; to: Date } {
+  const day = now.getDay(); // 0 (Sun) - 6 (Sat)
+  const date = new Date(now);
+  const hour = date.getHours();
 
-    const monday = new Date(now);
-    monday.setDate(now.getDate() - day + 1);
-    monday.setHours(0, 0, 0, 0);
+  // 月曜13時以降を基準とする
+  const isAfterMonday13 = day > 1 || (day === 1 && hour >= 13);
+  const base = new Date(date);
+  base.setHours(0, 0, 0, 0);
 
-    const sunday = new Date(monday);
-    sunday.setDate(monday.getDate() + 6);
-    sunday.setHours(23, 59, 59, 999);
+  const from = new Date(base);
+  from.setDate(from.getDate() + (isAfterMonday13 ? (5 - day) : (day <= 5 ? -2 - day : 5 - day - 7))); // Friday
 
-    const monday13 = new Date(monday);
-    monday13.setHours(13, 0, 0, 0);
+  const to = new Date(from);
+  to.setDate(from.getDate() + 6); // Thursday
 
-    if (now >= monday13) {
-      return { start: monday, end: sunday };
-    } else {
-      const lastFriday = new Date(monday);
-      lastFriday.setDate(monday.getDate() - 3);
-      lastFriday.setHours(0, 0, 0, 0);
+  return { from, to };
+}
 
-      const lastSunday = new Date(monday);
-      lastSunday.setDate(monday.getDate() - 1);
-      lastSunday.setHours(23, 59, 59, 999);
+/**
+ * 今週の注目イベントを返す
+ * - Europe/Berlin 時刻での現在時刻を基準に判断
+ * - getAllParties() の出力をフィルタ・ソートして返す
+ */
+export async function getFeaturedParties() {
+  const all = await getAllParties();
 
-      return { start: lastFriday, end: lastSunday };
-    }
-  }
+  const now = getBerlinNow();
+  const { from, to } = getFeaturedDateRange(now);
 
-  export async function getFeaturedParties(): Promise<Party[]> {
-    const allParties = await getAllParties();
-    const { start, end } = getFeaturedDateRange();
-
-    return allParties
-      .filter(p => {
-        const date = new Date(p.date);
-        return date >= start && date <= end;
-      })
-      .sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
-  }
-  
+  return all
+    .filter(p => {
+      const d = new Date(p.date);
+      return d >= from && d <= to;
+    })
+    .sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
+}

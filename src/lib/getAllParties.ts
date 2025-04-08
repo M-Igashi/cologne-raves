@@ -1,6 +1,5 @@
 import fs from 'fs';
 import path from 'path';
-import slugify from 'slugify';
 import crypto from 'crypto';
 
 export interface Party {
@@ -14,8 +13,9 @@ export interface Party {
   sourceFile?: string;
 }
 
+const dataDir = path.resolve('./data');
+
 function generateStableId(party: Omit<Party, 'id'>): string {
-  if (party.id) return party.id;
   const hash = crypto
     .createHash('md5')
     .update(JSON.stringify([party.title, party.date, party.venue]))
@@ -24,30 +24,26 @@ function generateStableId(party: Omit<Party, 'id'>): string {
 }
 
 export async function getAllParties(): Promise<Party[]> {
-  const dir = path.resolve('./data');
-  const files = fs.readdirSync(dir).filter(file => file.endsWith('.json'));
-
-  const all: Party[] = [];
+  const files = fs.readdirSync(dataDir).filter((f) => f.endsWith('.json'));
+  const partyMap = new Map<string, Party>();
 
   for (const file of files) {
-    const fullPath = path.join(dir, file);
+    const fullPath = path.join(dataDir, file);
     const content = fs.readFileSync(fullPath, 'utf-8');
-    const entries: Omit<Party, 'id'>[] = JSON.parse(content);
+    let json: Party[];
 
-    for (const entry of entries) {
-      const id = generateStableId(entry);
-      all.push({ ...entry, id, sourceFile: file });
+    try {
+      json = JSON.parse(content);
+    } catch (err) {
+      console.warn(`Invalid JSON in ${file}`);
+      continue;
+    }
+
+    for (const party of json) {
+      const id = party.id || generateStableId(party);
+      partyMap.set(id, { ...party, id, sourceFile: file });
     }
   }
 
-  // 重複排除（最後に読み込まれたものを優先）
-  const uniqueMap = new Map<string, Party>();
-  for (const party of all) {
-    uniqueMap.set(party.id, party);
-  }
-
-  const deduplicated = Array.from(uniqueMap.values());
-
-  // 日付順にソート
-  return deduplicated.sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
+  return Array.from(partyMap.values()).sort((a, b) => a.date.localeCompare(b.date));
 }
