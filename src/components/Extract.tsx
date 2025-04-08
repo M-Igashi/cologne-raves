@@ -2,8 +2,8 @@
 
 import React, { useState } from "react";
 import fileSaver from "file-saver";
-import * as tz from "date-fns-tz";
 import { parseISO } from "date-fns";
+import { zonedTimeToUtc } from "date-fns-tz";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 
@@ -18,15 +18,14 @@ export default function ExtractEvents() {
   const handleExtract = async () => {
     if (!startDate || !endDate) return;
 
-    const start = tz.zonedTimeToUtc(parseISO(startDate), "Europe/Berlin");
-    const end = tz.zonedTimeToUtc(parseISO(endDate), "Europe/Berlin");
+    const start = zonedTimeToUtc(parseISO(startDate), "Europe/Berlin");
+    const end = zonedTimeToUtc(parseISO(endDate), "Europe/Berlin");
 
-    // getAllParties はサーバーサイド用なので dynamic import
     const { getAllParties } = await import("@/lib/getAllParties");
     const allEvents = await getAllParties();
 
     const filtered = allEvents.filter((event: any) => {
-      const eventDate = tz.zonedTimeToUtc(parseISO(event.date), "Europe/Berlin");
+      const eventDate = zonedTimeToUtc(parseISO(event.date), "Europe/Berlin");
       return eventDate >= start && eventDate <= end;
     });
 
