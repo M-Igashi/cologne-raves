@@ -5,6 +5,8 @@ import * as fileSaver from "file-saver";
 import * as tz from "date-fns-tz";
 import { getAllParties } from "@/lib/getAllParties";
 import { parseISO, format } from "date-fns";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 
 export default function ExtractEvents() {
   const [startDate, setStartDate] = useState("");
@@ -15,71 +17,50 @@ export default function ExtractEvents() {
   const handleExtract = async () => {
     if (!startDate || !endDate) return;
 
-    const start = parseISO(startDate);
-    const end = parseISO(endDate);
-    const allParties = await getAllParties();
+    const allEvents = await getAllParties();
+    const berlinTZ = "Europe/Berlin";
 
-    const filtered = allParties.filter((event) => {
-      const eventDate = parseISO(event.date);
+    const start = tz.zonedTimeToUtc(parseISO(startDate), berlinTZ);
+    const end = tz.zonedTimeToUtc(parseISO(endDate), berlinTZ);
+
+    const filtered = allEvents.filter((event: any) => {
+      const eventDate = tz.zonedTimeToUtc(parseISO(event.date), berlinTZ);
       return eventDate >= start && eventDate <= end;
     });
 
     setFilteredEvents(filtered);
     setShowJson(true);
-  };
 
-  const handleDownload = () => {
-    const berlinNow = tz.utcToZonedTime(new Date(), "Europe/Berlin");
-    const filename = format(berlinNow, "yyyy-MM") + "-cologne-extract.json";
-    const blob = new Blob([JSON.stringify(filteredEvents, null, 2)], {
-      type: "application/json",
-    });
+    const json = JSON.stringify(filtered, null, 2);
+    const blob = new Blob([json], { type: "application/json" });
+    const filename = `events-${format(start, "yyyyMMdd")}-${format(end, "yyyyMMdd")}.json`;
     fileSaver.saveAs(blob, filename);
   };
 
   return (
-    <div className="max-w-2xl mx-auto p-4">
-      <h1 className="text-xl font-bold mb-4">Extract Events</h1>
+    <div className="space-y-6">
+      <h2 className="text-xl font-bold">Extract Events</h2>
+      <p className="text-gray-700">Download Cologne Raves events as JSON by date range</p>
+
       <div className="flex gap-4 mb-4">
         <div className="flex flex-col">
           <label className="text-sm">Start Date</label>
-          <input
-            type="date"
-            className="border rounded px-2 py-1"
-            value={startDate}
-            onChange={(e) => setStartDate(e.target.value)}
-          />
+          <Input type="date" value={startDate} onChange={(e) => setStartDate(e.target.value)} />
         </div>
         <div className="flex flex-col">
           <label className="text-sm">End Date</label>
-          <input
-            type="date"
-            className="border rounded px-2 py-1"
-            value={endDate}
-            onChange={(e) => setEndDate(e.target.value)}
-          />
+          <Input type="date" value={endDate} onChange={(e) => setEndDate(e.target.value)} />
         </div>
       </div>
-      <button
-        onClick={handleExtract}
-        className="bg-black text-white px-4 py-2 rounded hover:bg-neutral-800"
-      >
+
+      <Button className="bg-black text-white px-4 py-2 rounded hover:bg-neutral-800" onClick={handleExtract}>
         Extract JSON
-      </button>
+      </Button>
 
       {showJson && (
-        <div className="mt-6">
-          <h2 className="text-lg font-semibold mb-2">Result</h2>
-          <pre className="bg-gray-100 p-2 rounded max-h-80 overflow-auto text-sm">
-            {JSON.stringify(filteredEvents, null, 2)}
-          </pre>
-          <button
-            onClick={handleDownload}
-            className="mt-4 bg-black text-white px-4 py-2 rounded hover:bg-neutral-800"
-          >
-            Download
-          </button>
-        </div>
+        <pre className="mt-4 p-4 bg-gray-100 text-sm overflow-x-auto">
+          {JSON.stringify(filteredEvents, null, 2)}
+        </pre>
       )}
     </div>
   );
