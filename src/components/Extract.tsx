@@ -1,8 +1,8 @@
 "use client";
 
 import React, { useState } from "react";
-import * as fileSaver from "file-saver";
-import * as tz from "date-fns-tz"; // ← ESM対応：named import を使わず全体インポート
+import fileSaver from "file-saver";
+import * as tz from "date-fns-tz";
 import { getAllParties } from "@/lib/getAllParties";
 import { parseISO } from "date-fns";
 import { Button } from "@/components/ui/button";
@@ -13,82 +13,43 @@ const { saveAs } = fileSaver;
 export default function ExtractEvents() {
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
-  const [filteredEvents, setFilteredEvents] = useState<any[]>([]);
-  const [showJson, setShowJson] = useState(false);
 
   const handleExtract = async () => {
     if (!startDate || !endDate) return;
 
-    const start = zonedTimeToUtc(parseISO(startDate), "Europe/Berlin");
-    const end = zonedTimeToUtc(parseISO(endDate), "Europe/Berlin");
+    const allParties = await getAllParties();
 
-    const { getAllParties } = await import("@/lib/getAllParties");
-    const allEvents = await getAllParties();
+    const berlinStart = tz.utcToZonedTime(parseISO(startDate), "Europe/Berlin");
+    const berlinEnd = tz.utcToZonedTime(parseISO(endDate), "Europe/Berlin");
 
-    const filtered = allEvents.filter((event: any) => {
-      const eventDate = zonedTimeToUtc(parseISO(event.date), "Europe/Berlin");
-      return eventDate >= start && eventDate <= end;
+    const filtered = allParties.filter((p) => {
+      const partyDate = parseISO(p.date);
+      return partyDate >= berlinStart && partyDate <= berlinEnd;
     });
 
-    setFilteredEvents(filtered);
-    setShowJson(true);
-  };
-
-  const downloadJson = () => {
-    const blob = new Blob([JSON.stringify(filteredEvents, null, 2)], {
-      type: "application/json",
-    });
-    const now = new Date();
-    const y = now.getFullYear();
-    const m = String(now.getMonth() + 1).padStart(2, "0");
-    const d = String(now.getDate()).padStart(2, "0");
-    const filename = `${y}-${m}-cologne-${d}-extracted.json`;
+    const json = JSON.stringify(filtered, null, 2);
+    const blob = new Blob([json], { type: "application/json" });
+    const filename = `events-${startDate}-to-${endDate}.json`;
     saveAs(blob, filename);
   };
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       <h2 className="text-xl font-bold">Extract Events by Date</h2>
       <p className="text-gray-700">Filter events by date range and download as JSON</p>
-
-      <div className="flex flex-col md:flex-row gap-4">
+      <div className="flex flex-col gap-4 sm:flex-row">
         <div>
-          <label className="block text-sm font-medium">Start Date</label>
-          <Input
-            type="date"
-            value={startDate}
-            onChange={(e) => setStartDate(e.target.value)}
-          />
+          <label className="text-sm block font-medium">Start Date</label>
+          <Input type="date" value={startDate} onChange={(e) => setStartDate(e.target.value)} />
         </div>
         <div>
-          <label className="block text-sm font-medium">End Date</label>
-          <Input
-            type="date"
-            value={endDate}
-            onChange={(e) => setEndDate(e.target.value)}
-          />
+          <label className="text-sm block font-medium">End Date</label>
+          <Input type="date" value={endDate} onChange={(e) => setEndDate(e.target.value)} />
         </div>
       </div>
-
-      <div className="flex gap-4 pt-2 flex-wrap">
-        <Button onClick={handleExtract}>Extract JSON</Button>
-        {filteredEvents.length > 0 && (
-          <>
-            <Button variant="outline" onClick={downloadJson}>
-              Download JSON
-            </Button>
-            <Button variant="outline" onClick={() => setShowJson(!showJson)}>
-              {showJson ? "Hide JSON" : "Show JSON"}
-            </Button>
-          </>
-        )}
-      </div>
-
-      {showJson && filteredEvents.length > 0 && (
-        <pre className="mt-4 p-4 bg-gray-100 text-sm overflow-x-auto">
-          {JSON.stringify(filteredEvents, null, 2)}
-        </pre>
-      )}
+      <Button className="w-full sm:w-auto" onClick={handleExtract}>
+        Extract JSON
+      </Button>
     </div>
   );
 }
