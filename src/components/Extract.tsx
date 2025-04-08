@@ -3,10 +3,11 @@
 import React, { useState } from "react";
 import fileSaver from "file-saver";
 const { saveAs } = fileSaver;
-
 import { getAllParties } from "@/lib/getAllParties";
 import { parseISO, format } from "date-fns";
-import { utcToZonedTime } from "date-fns-tz";
+import dfnsTz from "date-fns-tz";
+const { utcToZonedTime } = dfnsTz;
+
 
 export default function ExtractEvents() {
   const [startDate, setStartDate] = useState("");
