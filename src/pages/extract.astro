@@ -1,16 +1,14 @@
 ---
-import ExtractEvents from "../components/Extract";
-import BaseHead from "../components/BaseHead.astro";
+import ExtractEvents from "@/components/Extract";
 ---
 
 <html lang="en">
   <head>
-    <BaseHead title="Extract Events" />
+    <title>Extract Events | Cologne Raves</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   </head>
-  <body class="bg-white text-black min-h-screen p-4">
-    <main class="max-w-2xl mx-auto">
-      <h1 class="text-2xl font-bold mb-4">Extract Cologne Events JSON</h1>
-      <ExtractEvents />
-    </main>
+  <body class="p-8 max-w-3xl mx-auto">
+    <ExtractEvents />
   </body>
 </html>

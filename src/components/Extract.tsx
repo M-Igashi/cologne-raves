@@ -1,9 +1,12 @@
+"use client";
+
 import React, { useState } from "react";
 import fileSaver from "file-saver";
 const { saveAs } = fileSaver;
+
 import { getAllParties } from "@/lib/getAllParties";
 import { parseISO, format } from "date-fns";
-import { zonedTimeToUtc, utcToZonedTime } from "date-fns-tz";
+import { utcToZonedTime } from "date-fns-tz";
 
 export default function ExtractEvents() {
   const [startDate, setStartDate] = useState("");
@@ -17,12 +20,13 @@ export default function ExtractEvents() {
     const allEvents = await getAllParties();
     const tz = "Europe/Berlin";
 
-    const start = zonedTimeToUtc(parseISO(startDate), tz);
-    const end = zonedTimeToUtc(parseISO(endDate), tz);
+    const start = parseISO(startDate);
+    const end = parseISO(endDate);
 
     const filtered = allEvents.filter((event) => {
-      const eventDate = zonedTimeToUtc(parseISO(event.date), tz);
-      return eventDate >= start && eventDate <= end;
+      const eventDate = parseISO(event.date);
+      const zonedEventDate = utcToZonedTime(eventDate, tz);
+      return zonedEventDate >= start && zonedEventDate <= end;
     });
 
     setFilteredEvents(filtered);
