@@ -23,6 +23,10 @@ const {
   sourceFile
 } = Astro.props;
 
+const githubEditUrl = sourceFile
+  ? `https://github.com/M-Igashi/cologne-raves/edit/edit-branch/data/${sourceFile}`
+  : null;
+
 const eventDate = new Date(date);
 const formattedDate = eventDate.toLocaleDateString("en-GB", {
   weekday: "short",
@@ -30,15 +34,10 @@ const formattedDate = eventDate.toLocaleDateString("en-GB", {
   month: "short",
   day: "numeric"
 });
-
-const githubEditUrl = sourceFile
-  ? `https://github.com/M-Igashi/cologne-raves/edit/edit-branch/data/${sourceFile}`
-  : null;
 ---
 
 <article class="rounded-xl border p-4 mb-4 relative">
   <div class="absolute top-2 right-4 text-xs text-muted-foreground">#{id}</div>
-
   <h2 class="font-semibold">{title} @ {venue}</h2>
 
   <p class="flex items-center gap-1 mt-1 text-sm text-muted-foreground">

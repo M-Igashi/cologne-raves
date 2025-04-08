@@ -28,6 +28,7 @@ const grouped = parties.reduce((acc, party) => {
       <a href="/parties" class="px-3 py-1 border rounded-full text-sm">All Parties</a>
     </nav>
 
+    <h2 class="text-xl font-semibold mb-4">This Week</h2>
 
     {
       daysOfWeek.map(day => (
@@ -36,17 +37,7 @@ const grouped = parties.reduce((acc, party) => {
             <h3 class="text-lg font-medium mt-6 mb-2">{day}</h3>
             <ul class="space-y-4">
               {grouped[day].map(party => (
-                <li>
-                  <PartyCard
-                    id={party.id}
-                    date={party.date}
-                    venue={party.venue}
-                    title={party.title}
-                    url={party.url}
-                    artists={party.artists}
-                    startTime={party.startTime}
-                  />
-                </li>
+                <li><PartyCard {...party} /></li>
               ))}
             </ul>
           </section>
