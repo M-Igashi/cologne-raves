@@ -1,7 +1,12 @@
 // backfill-id.js
-const fs = require('fs');
-const path = require('path');
-const crypto = require('crypto');
+import fs from 'fs';
+import path from 'path';
+import { fileURLToPath } from 'url';
+import crypto from 'crypto';
+
+// __dirname の代替（ESM環境用）
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const dataDir = path.join(__dirname, 'data');
 
