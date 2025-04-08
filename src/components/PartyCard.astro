@@ -1,22 +1,32 @@
 ---
-export interface Props {
+interface Props {
   id?: string;
+  title: string;
   venue: string;
   date: string;
-  title: string;
-  artists?: string[];
   startTime: string;
+  artists?: string[];
   url?: string;
 }
 
-const { id, venue, date, title, artists, startTime, url } = Astro.props;
+const {
+  id,
+  title,
+  venue,
+  date,
+  startTime,
+  artists = [],
+  url,
+} = Astro.props;
 
-const formattedDate = new Date(date).toLocaleDateString('en-GB', {
-  weekday: 'short',
-  day: 'numeric',
-  month: 'short',
-  year: 'numeric'
-});
+// 日付整形（YYYY-MM-DD → April 8, 2025 等）
+import { format, parseISO } from "date-fns";
+const formattedDate = format(parseISO(date), "MMMM d, yyyy");
+
+// GitHub 編集リンク
+const GITHUB_BASE_EDIT_URL = "https://github.com/M-Igashi/cologne-raves/edit/main/data";
+const jsonFilename = `${date.slice(0, 7)}-cologne-${date.slice(8, 10)}.json`;
+const githubEditUrl = id ? `${GITHUB_BASE_EDIT_URL}/${jsonFilename}` : null;
 ---
 
 <article style="border: 1px solid #ccc; padding: 1rem; border-radius: 8px; margin-bottom: 1rem; position: relative;">
@@ -27,10 +37,13 @@ const formattedDate = new Date(date).toLocaleDateString('en-GB', {
   )}
   <h3 style="margin: 0 0 0.5rem 0;">{title} @ {venue}</h3>
   <p style="margin: 0 0 0.25rem 0;">📅 {formattedDate} – 🕗 {startTime}</p>
-  {artists && artists.length > 0 && (
+  {artists.length > 0 && (
     <p style="margin: 0 0 0.25rem 0;">🎧 {artists.join(', ')}</p>
   )}
   {url && (
-    <p style="margin: 0;"><a href={url} target="_blank" rel="noopener">More Info</a></p>
+    <p style="margin: 0 0 0.25rem 0;"><a href={url} target="_blank" rel="noopener">More Info</a></p>
+  )}
+  {githubEditUrl && (
+    <p style="margin: 0;"><a href={githubEditUrl} target="_blank" rel="noopener">🛠 Edit on GitHub</a></p>
   )}
 </article>
