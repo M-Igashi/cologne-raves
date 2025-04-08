@@ -6,6 +6,31 @@ import PartyCard from '../components/PartyCard.astro';
 import { getAllParties } from '../lib/getAllParties';
 
 const parties = await getAllParties();
+
+// Get Sunday of this week (based on Monday-starting week)
+const now = new Date();
+const day = now.getDay(); // Sunday=0, Monday=1, ..., Saturday=6
+const diffToMonday = (day + 6) % 7;
+const monday = new Date(now);
+monday.setDate(now.getDate() - diffToMonday);
+const sundayThisWeek = new Date(monday);
+sundayThisWeek.setDate(monday.getDate() + 6);
+sundayThisWeek.setHours(0, 0, 0, 0);
+
+// Filter events on or after this week's Sunday
+const upcomingParties = parties.filter(p => {
+  const date = new Date(p.date);
+  return date >= sundayThisWeek;
+});
+
+// Group events by month
+const grouped = upcomingParties.reduce((acc, party) => {
+  const date = new Date(party.date);
+  const key = date.toLocaleString('en-US', { year: 'numeric', month: 'long' });
+  if (!acc[key]) acc[key] = [];
+  acc[key].push(party);
+  return acc;
+}, {});
 ---
 
 <html lang="en">
@@ -19,21 +44,18 @@ const parties = await getAllParties();
 
     <h2 class="text-xl font-semibold mb-4">All Parties</h2>
 
-    <ul class="space-y-4">
-      {parties.map(party => (
-        <li>
-          <PartyCard
-            id={party.id}
-            date={party.date}
-            venue={party.venue}
-            title={party.title}
-            url={party.url}
-            artists={party.artists}
-            startTime={party.startTime}
-            sourceFile={party.sourceFile} />
-        </li>
-      ))}
-    </ul>
+    {
+      Object.entries(grouped).map(([month, parties]) => (
+        <section>
+          <h3 class="text-lg font-medium mt-6 mb-2">{month}</h3>
+          <ul class="space-y-4">
+            {parties.map(party => (
+              <li><PartyCard {...party} /></li>
+            ))}
+          </ul>
+        </section>
+      ))
+    }
 
     <Footer />
   </body>
