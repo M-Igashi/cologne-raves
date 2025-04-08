@@ -1,44 +1,43 @@
-import fs from 'fs';
-import path from 'path';
-import crypto from 'crypto';
+import fs from "fs";
+import path from "path";
+import { z } from "zod";
+import eventSchema from "../../event.schema.json";
 
-export interface Party {
-  id?: string;
-  venue: string;
-  date: string;
-  title: string;
-  artists?: string[];
-  startTime: string;
-  url?: string;
-}
+const Event = z.object({
+  id: z.string(),
+  date: z.string(),
+  venue: z.string(),
+  title: z.string(),
+  url: z.string().optional(),
+  startTime: z.string().optional(),
+  artists: z.array(z.string()).optional(),
+});
 
-function generateStableId(party: Party): string {
-  const input = `${party.venue || ''}-${party.date || ''}-${party.title || ''}`;
-  const hash = crypto.createHash('sha1').update(input).digest('hex');
-  return hash.slice(0, 8);
-}
+export type Party = z.infer<typeof Event> & {
+  sourceFile?: string;
+};
 
 export async function getAllParties(): Promise<Party[]> {
-  const dataDir = path.resolve('./data');
+  const dataDir = path.resolve("data");
   const files = fs.readdirSync(dataDir);
-  const partyMap: Map<string, Party> = new Map();
+
+  const parties: Party[] = [];
 
   for (const file of files) {
-    if (!file.endsWith('.json')) continue;
+    if (!file.endsWith(".json")) continue;
 
-    const content = fs.readFileSync(path.join(dataDir, file), 'utf-8');
-    const events: Party[] = JSON.parse(content);
+    const filePath = path.join(dataDir, file);
+    const json = JSON.parse(fs.readFileSync(filePath, "utf-8"));
 
-    for (const event of events) {
-      if (!event.id) {
-        event.id = generateStableId(event);
+    if (!Array.isArray(json)) continue;
+
+    for (const event of json) {
+      const result = Event.safeParse(event);
+      if (result.success) {
+        parties.push({ ...result.data, sourceFile: file });
       }
-      // ID重複時は新しいイベント（後のファイル）で上書き
-      partyMap.set(event.id, event);
     }
   }
 
-  return Array.from(partyMap.values()).sort(
-    (a, b) => new Date(a.date).getTime() - new Date(b.date).getTime()
-  );
+  return parties.sort((a, b) => a.date.localeCompare(b.date));
 }

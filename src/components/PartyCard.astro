@@ -1,49 +1,49 @@
 ---
-interface Props {
-  id?: string;
-  title: string;
-  venue: string;
-  date: string;
-  startTime: string;
-  artists?: string[];
-  url?: string;
-}
+import type { Party } from "@/lib/getAllParties";
+import { format } from "date-fns";
+import { CalendarDays, Clock, MapPin, GitBranch } from "lucide-react";
 
-const {
-  id,
-  title,
-  venue,
-  date,
-  startTime,
-  artists = [],
-  url,
-} = Astro.props;
-
-// 日付整形（YYYY-MM-DD → April 8, 2025 等）
-import { format, parseISO } from "date-fns";
-const formattedDate = format(parseISO(date), "MMMM d, yyyy");
-
-// GitHub 編集リンク
-const GITHUB_BASE_EDIT_URL = "https://github.com/M-Igashi/cologne-raves/edit/main/data";
-const jsonFilename = `${date.slice(0, 7)}-cologne-${date.slice(8, 10)}.json`;
-const githubEditUrl = id ? `${GITHUB_BASE_EDIT_URL}/${jsonFilename}` : null;
+const { title, date, venue, startTime, artists, url, id, sourceFile } = Astro.props;
+const dateObj = new Date(date);
+const formattedDate = format(dateObj, "EEE, d MMM yyyy");
 ---
 
-<article style="border: 1px solid #ccc; padding: 1rem; border-radius: 8px; margin-bottom: 1rem; position: relative;">
-  {id && (
-    <div style="position: absolute; top: 0.5rem; right: 0.5rem; font-size: 0.7rem; color: #999;">
-      #{id}
-    </div>
+<article class="rounded-xl border p-4 mb-4">
+  <h2 class="font-semibold">{title} @ {venue}</h2>
+  <p class="flex items-center gap-1 mt-1 text-sm text-muted-foreground">
+    <CalendarDays class="size-4" />
+    {formattedDate}
+    {startTime && (
+      <>
+        {" – "}
+        <Clock class="size-4 inline-block ml-1" />
+        {startTime}
+      </>
+    )}
+  </p>
+  {artists && artists.length > 0 && (
+    <p class="flex items-center gap-1 mt-1 text-sm text-muted-foreground">
+      <MapPin class="size-4" />
+      {artists.join(", ")}
+    </p>
   )}
-  <h3 style="margin: 0 0 0.5rem 0;">{title} @ {venue}</h3>
-  <p style="margin: 0 0 0.25rem 0;">📅 {formattedDate} – 🕗 {startTime}</p>
-  {artists.length > 0 && (
-    <p style="margin: 0 0 0.25rem 0;">🎧 {artists.join(', ')}</p>
-  )}
-  {url && (
-    <p style="margin: 0 0 0.25rem 0;"><a href={url} target="_blank" rel="noopener">More Info</a></p>
-  )}
-  {githubEditUrl && (
-    <p style="margin: 0;"><a href={githubEditUrl} target="_blank" rel="noopener">🛠 Edit on GitHub</a></p>
+  <p class="mt-2 text-sm">
+    {url && (
+      <a href={url} class="underline underline-offset-2" target="_blank" rel="noopener noreferrer">
+        More Info
+      </a>
+    )}
+  </p>
+  {sourceFile && (
+    <p class="mt-2 text-xs text-muted-foreground flex items-center gap-1">
+      <GitBranch class="size-4" />
+      <a
+        href={`https://github.com/M-Igashi/cologne-raves/edit/main/data/${sourceFile}`}
+        class="underline"
+        target="_blank" rel="noopener noreferrer"
+      >
+        Edit on GitHub
+      </a>
+    </p>
   )}
 </article>
