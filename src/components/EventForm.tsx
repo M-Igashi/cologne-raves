@@ -10,12 +10,11 @@ import { Button } from "@/components/ui/button";
 import {
   Dialog,
   DialogContent,
-  DialogTrigger,
+  DialogDescription,
   DialogHeader,
   DialogTitle,
-  DialogDescription
+  DialogTrigger,
 } from "@/components/ui/dialog";
-import Image from "next/image";
 
 const { saveAs } = fileSaver;
 
@@ -36,7 +35,7 @@ const generateDefaultEvent = (): EventData => ({
   date: "",
   startTime: "",
   artists: [],
-  url: ""
+  url: "",
 });
 
 export default function EventForm() {
@@ -67,7 +66,7 @@ export default function EventForm() {
   const generateJson = () => {
     return events.map((event) => ({
       ...event,
-      id: event.id.trim() === "" ? uuidv4().slice(0, 8) : event.id.trim()
+      id: event.id.trim() === "" ? uuidv4().slice(0, 8) : event.id.trim(),
     }));
   };
 
@@ -77,7 +76,7 @@ export default function EventForm() {
     const m = String(now.getMonth() + 1).padStart(2, "0");
     const d = String(now.getDate()).padStart(2, "0");
     const suffix = filenameSuffix.trim().replace(/[^a-zA-Z0-9_-]/g, "-");
-    return `${y}-${m}-cologne-${d}${suffix ? '-' + suffix : ''}.json`;
+    return `${y}-${m}-cologne-${d}${suffix ? "-" + suffix : ""}.json`;
   };
 
   const downloadJson = () => {
@@ -85,6 +84,8 @@ export default function EventForm() {
     const blob = new Blob([json], { type: "application/json" });
     saveAs(blob, getFilename());
   };
+
+  const isValidTime = (time: string) => /^\d{2}:\d{2}$/.test(time);
 
   return (
     <div className="space-y-6">
@@ -102,65 +103,90 @@ export default function EventForm() {
         />
       </div>
 
-      {events.map((event, i) => {
-        const isStartTimeValid = /^\d{2}:\d{2}$/.test(event.startTime);
-        return (
-          <Card key={i} className="p-4 space-y-3 border border-gray-300">
-            <h3 className="font-semibold">Event {i + 1}</h3>
+      {events.map((event, i) => (
+        <Card key={i} className="p-4 space-y-3 border border-gray-300">
+          <h3 className="font-semibold">Event {i + 1}</h3>
+
+          <div className="flex items-center gap-2">
             <Input
-              placeholder="ID (optional)"
+              placeholder="Custom ID (optional)"
               value={event.id}
               onChange={(e) => updateEvent(i, "id", e.target.value)}
             />
-            <Input
-              required
-              className="border-l-4 border-red-500"
-              placeholder="Title (required)"
-              value={event.title}
-              onChange={(e) => updateEvent(i, "title", e.target.value)}
-            />
-            <Input
-              required
-              className="border-l-4 border-red-500"
-              placeholder="Venue (required)"
-              value={event.venue}
-              onChange={(e) => updateEvent(i, "venue", e.target.value)}
-            />
-            <Input
-              required
-              className="border-l-4 border-red-500"
-              type="date"
-              placeholder="Date (required)"
-              value={event.date}
-              onChange={(e) => updateEvent(i, "date", e.target.value)}
-            />
-            <Input
-              required
-              className={`border-l-4 ${isStartTimeValid ? "border-green-500" : "border-red-500"}`}
-              placeholder="Start Time (e.g. 23:00)"
-              value={event.startTime}
-              onChange={(e) => updateEvent(i, "startTime", e.target.value)}
-            />
-            <Input
-              className="border-l-4 border-gray-300"
-              placeholder="Artists (optional, comma separated)"
-              value={event.artists?.join(", ") || ""}
-              onChange={(e) => updateEvent(i, "artists", e.target.value)}
-            />
-            <Textarea
-              className="border-l-4 border-gray-300"
-              placeholder="URL (optional)"
-              value={event.url || ""}
-              onChange={(e) => updateEvent(i, "url", e.target.value)}
-            />
-            {events.length > 1 && (
-              <Button variant="destructive" onClick={() => removeEvent(i)}>
-                Remove
-              </Button>
-            )}
-          </Card>
-        );
-      })}
+            <Dialog>
+              <DialogTrigger asChild>
+                <Button variant="outline" size="sm">Info</Button>
+              </DialogTrigger>
+              <DialogContent className="max-w-xl">
+                <DialogHeader>
+                  <DialogTitle>ID Override Info</DialogTitle>
+                  <DialogDescription className="pt-2">
+                    To overwrite an existing event, enter its ID exactly
+                    <br />
+                    <strong>without the leading <code>#</code></strong>.
+                    <br />
+                    For example, use <code>be790c46</code> instead of <code>#be790c46</code>.
+                  </DialogDescription>
+                </DialogHeader>
+                <img
+                  src="/id-override.png"
+                  alt="ID override example"
+                  className="rounded shadow mt-4 max-w-full"
+                />
+              </DialogContent>
+            </Dialog>
+          </div>
+
+          <Input
+            required
+            className="border-l-4 border-red-500"
+            placeholder="Title (required)"
+            value={event.title}
+            onChange={(e) => updateEvent(i, "title", e.target.value)}
+          />
+          <Input
+            required
+            className="border-l-4 border-red-500"
+            placeholder="Venue (required)"
+            value={event.venue}
+            onChange={(e) => updateEvent(i, "venue", e.target.value)}
+          />
+          <Input
+            required
+            className="border-l-4 border-red-500"
+            type="date"
+            placeholder="Date (required, YYYY-MM-DD)"
+            value={event.date}
+            onChange={(e) => updateEvent(i, "date", e.target.value)}
+          />
+          <Input
+            required
+            className={`border-l-4 ${
+              isValidTime(event.startTime) ? "border-red-500" : "border-yellow-400"
+            }`}
+            placeholder="Start Time (e.g. 23:00)"
+            value={event.startTime}
+            onChange={(e) => updateEvent(i, "startTime", e.target.value)}
+          />
+          <Input
+            className="border-l-4 border-gray-300"
+            placeholder="Artists (optional, comma separated)"
+            value={event.artists?.join(", ") || ""}
+            onChange={(e) => updateEvent(i, "artists", e.target.value)}
+          />
+          <Textarea
+            className="border-l-4 border-gray-300"
+            placeholder="Event URL (optional)"
+            value={event.url || ""}
+            onChange={(e) => updateEvent(i, "url", e.target.value)}
+          />
+          {events.length > 1 && (
+            <Button variant="destructive" onClick={() => removeEvent(i)}>
+              Remove
+            </Button>
+          )}
+        </Card>
+      ))}
 
       {events.length < 4 && (
         <Button onClick={addEvent}>+ Add Event</Button>
@@ -168,26 +194,9 @@ export default function EventForm() {
 
       <div className="flex flex-wrap gap-4 pt-4">
         <Button onClick={downloadJson}>Generate JSON</Button>
-        <Dialog>
-          <DialogTrigger asChild>
-            <Button variant="outline">Info</Button>
-          </DialogTrigger>
-          <DialogContent className="max-w-lg">
-            <DialogHeader>
-              <DialogTitle>Custom ID Override</DialogTitle>
-              <DialogDescription>
-                If you want to overwrite an existing event, enter its ID without the <code>#</code>.
-              </DialogDescription>
-            </DialogHeader>
-            <Image
-              src="/id-override.png"
-              width={600}
-              height={350}
-              alt="ID override example"
-              className="rounded border shadow"
-            />
-          </DialogContent>
-        </Dialog>
+        <Button variant="outline" onClick={() => setShowJson(!showJson)}>
+          {showJson ? "Hide JSON" : "Show JSON"}
+        </Button>
       </div>
 
       {showJson && (
