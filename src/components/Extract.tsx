@@ -1,13 +1,10 @@
 "use client";
 
 import React, { useState } from "react";
-import fileSaver from "file-saver";
-const { saveAs } = fileSaver;
+import * as fileSaver from "file-saver";
+import * as tz from "date-fns-tz";
 import { getAllParties } from "@/lib/getAllParties";
 import { parseISO, format } from "date-fns";
-import { utcToZonedTime } from "date-fns-tz";
-
-
 
 export default function ExtractEvents() {
   const [startDate, setStartDate] = useState("");
@@ -19,14 +16,14 @@ export default function ExtractEvents() {
     if (!startDate || !endDate) return;
 
     const allEvents = await getAllParties();
-    const tz = "Europe/Berlin";
+    const tzName = "Europe/Berlin";
 
     const start = parseISO(startDate);
     const end = parseISO(endDate);
 
     const filtered = allEvents.filter((event) => {
       const eventDate = parseISO(event.date);
-      const zonedEventDate = utcToZonedTime(eventDate, tz);
+      const zonedEventDate = tz.utcToZonedTime(eventDate, tzName);
       return zonedEventDate >= start && zonedEventDate <= end;
     });
 
@@ -44,7 +41,7 @@ export default function ExtractEvents() {
     const blob = new Blob([JSON.stringify(filteredEvents, null, 2)], {
       type: "application/json",
     });
-    saveAs(blob, filename);
+    fileSaver.saveAs(blob, filename);
   };
 
   return (
@@ -54,10 +51,20 @@ export default function ExtractEvents() {
 
       <div className="space-y-2">
         <label className="block font-medium">Start Date</label>
-        <input type="date" value={startDate} onChange={(e) => setStartDate(e.target.value)} className="border rounded px-2 py-1" />
+        <input
+          type="date"
+          value={startDate}
+          onChange={(e) => setStartDate(e.target.value)}
+          className="border rounded px-2 py-1"
+        />
 
         <label className="block font-medium">End Date</label>
-        <input type="date" value={endDate} onChange={(e) => setEndDate(e.target.value)} className="border rounded px-2 py-1" />
+        <input
+          type="date"
+          value={endDate}
+          onChange={(e) => setEndDate(e.target.value)}
+          className="border rounded px-2 py-1"
+        />
       </div>
 
       <div className="flex flex-wrap gap-4 pt-4">
