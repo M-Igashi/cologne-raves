@@ -5,8 +5,8 @@ import fileSaver from "file-saver";
 const { saveAs } = fileSaver;
 import { getAllParties } from "@/lib/getAllParties";
 import { parseISO, format } from "date-fns";
-import dfnsTz from "date-fns-tz";
-const { utcToZonedTime } = dfnsTz;
+import { utcToZonedTime } from "date-fns-tz";
+
 
 
 export default function ExtractEvents() {
