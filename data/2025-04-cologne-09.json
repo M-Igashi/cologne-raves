@@ -1,0 +1,39 @@
+[
+  {
+    "id": "b79b7b16",
+    "title": "Single Night",
+    "venue": "Cage",
+    "date": "2025-05-23",
+    "startTime": "20:30",
+    "artists": [],
+    "url": "https://www.joyclub.com/en/event/1634292.single_night_thecage_koeln.html"
+  },
+  {
+    "id": "da06aa3d",
+    "title": "Unicorn Cologne Geburtshag",
+    "venue": "Klub Domhof",
+    "date": "2025-05-16",
+    "startTime": "22:00",
+    "artists": [
+      "Nico Held",
+      "Kathi Liz",
+      "Bensonius",
+      "Mira Falkenstein",
+      "Dilaval",
+      "Hendrik Milan",
+      "Lou.key"
+    ],
+    "url": "https://www.holidayevents.net/unicorncologne"
+  },
+  {
+    "id": "8439a5a9",
+    "title": "The New Cologne After-Work",
+    "venue": "die kunstbar",
+    "date": "2025-05-08",
+    "startTime": "18:00",
+    "artists": [
+      "Oliver Hess"
+    ],
+    "url": "https://rausgegangen.de/en/events/the-new-cologne-after-work-5/"
+  }
+]
