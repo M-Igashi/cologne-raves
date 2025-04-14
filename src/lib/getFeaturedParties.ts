@@ -1,47 +1,43 @@
 import { getAllParties } from './getAllParties';
 
-/**
- * Europe/Berlin タイムゾーンでの現在時刻を返す
- */
 function getBerlinNow(): Date {
-  const berlinOffsetMs = 60 * 60 * 1000; // CET は UTC+1（夏時間未対応）
   const now = new Date();
-  const utc = now.getTime() + now.getTimezoneOffset() * 60000;
-  return new Date(utc + berlinOffsetMs);
+  const berlinOffset = -new Date().getTimezoneOffset() + 60; // CET = UTC+1, DST = UTC+2
+  return new Date(now.getTime() + berlinOffset * 60 * 1000);
 }
 
-function getMonday(date: Date): Date {
-  const d = new Date(date);
-  const day = d.getDay();
-  const diff = (day + 6) % 7; // Monday = 0
-  d.setDate(d.getDate() - diff);
-  d.setHours(0, 0, 0, 0);
-  return d;
-}
+function getFeaturedDateRange(): { start: Date; end: Date } {
+  const now = getBerlinNow();
+  const day = now.getDay(); // Sun = 0, Mon = 1, ..., Sat = 6
+  const hour = now.getHours();
 
-function getSunday(date: Date): Date {
-  const monday = getMonday(date);
-  const sunday = new Date(monday);
-  sunday.setDate(monday.getDate() + 6);
-  sunday.setHours(23, 59, 59, 999);
-  return sunday;
-}
+  const isAfterMonday13 = day === 1 && hour >= 13 || day > 1;
 
-function getFeaturedDateRange(now: Date): { start: Date; end: Date } {
-  const monday = getMonday(now);
-  const afterMonday13 = now.getDay() === 1 && now.getHours() >= 13;
+  const currentMonday = new Date(now);
+  currentMonday.setDate(now.getDate() - ((now.getDay() + 6) % 7)); // Monday of this week
+  currentMonday.setHours(0, 0, 0, 0);
 
-  const rangeStart = afterMonday13 ? monday : new Date(monday.setDate(monday.getDate() - 7));
-  const rangeEnd = getSunday(rangeStart);
-  return { start: rangeStart, end: rangeEnd };
+  const nextSunday = new Date(currentMonday);
+  nextSunday.setDate(currentMonday.getDate() + 6);
+  nextSunday.setHours(23, 59, 59, 999);
+
+  const previousMonday = new Date(currentMonday);
+  previousMonday.setDate(currentMonday.getDate() - 7);
+
+  const previousSunday = new Date(currentMonday);
+  previousSunday.setDate(currentMonday.getDate() - 1);
+  previousSunday.setHours(23, 59, 59, 999);
+
+  return isAfterMonday13
+    ? { start: currentMonday, end: nextSunday }
+    : { start: previousMonday, end: previousSunday };
 }
 
 export async function getFeaturedParties() {
-  const parties = await getAllParties();
-  const now = getBerlinNow();
-  const { start, end } = getFeaturedDateRange(now);
+  const allParties = await getAllParties();
+  const { start, end } = getFeaturedDateRange();
 
-  return parties
+  return allParties
     .filter((party) => {
       const date = new Date(party.date);
       return date >= start && date <= end;
