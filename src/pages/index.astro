@@ -9,42 +9,35 @@ const parties = await getFeaturedParties();
 
 // Group parties by weekday
 const daysOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-
-const grouped = parties.reduce((acc, party) => {
-  const date = new Date(party.date);
-  const weekday = daysOfWeek[date.getDay()];
-  if (!acc[weekday]) acc[weekday] = [];
-  acc[weekday].push(party);
+const partiesByDay = daysOfWeek.reduce((acc, day) => {
+  acc[day] = [];
   return acc;
-}, {});
+}, {} as Record<string, typeof parties>);
+
+for (const party of parties) {
+  const dayName = daysOfWeek[new Date(party.date).getDay()];
+  partiesByDay[dayName].push(party);
+}
 ---
 
-<html lang="en">
-  <BaseHead title="This Week | Cologne Raves" />
-  <body class="bg-white text-gray-900 font-sans max-w-3xl mx-auto px-4 py-6 sm:px-6 lg:px-8">
-    <Header />
-    <nav class="flex flex-wrap gap-2 mb-6 text-sm">
-      <a href="/" class="px-3 py-1 border rounded-full bg-black text-white text-sm">This Week</a>
-      <a href="/parties" class="px-3 py-1 border rounded-full text-sm">All Parties</a>
-    </nav>
+<BaseHead />
+<Header />
 
-    <h2 class="text-xl font-semibold mb-4">This Week</h2>
+<main class="max-w-3xl mx-auto px-4">
+  <h1 class="text-2xl font-bold mb-4">This Week</h1>
 
-    {
-      daysOfWeek.map(day => (
-        grouped[day] && grouped[day].length > 0 ? (
-          <section>
-            <h3 class="text-lg font-medium mt-6 mb-2">{day}</h3>
-            <ul class="space-y-4">
-              {grouped[day].map(party => (
-                <li><PartyCard {...party} /></li>
-              ))}
-            </ul>
-          </section>
-        ) : null
-      ))
-    }
+  {daysOfWeek.map((day) => (
+    <>
+      {partiesByDay[day].length > 0 && (
+        <>
+          <h2 class="text-lg font-semibold mt-6 mb-2">{day}</h2>
+          {partiesByDay[day].map((party) => (
+            <PartyCard {...party} />
+          ))}
+        </>
+      )}
+    </>
+  ))}
+</main>
 
-    <Footer />
-  </body>
-</html>
+<Footer />
