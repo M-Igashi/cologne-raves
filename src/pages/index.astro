@@ -7,37 +7,44 @@ import { getFeaturedParties } from '../lib/getFeaturedParties';
 
 const parties = await getFeaturedParties();
 
-// Group parties by weekday
-const daysOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-const partiesByDay = daysOfWeek.reduce((acc, day) => {
-  acc[day] = [];
-  return acc;
-}, {} as Record<string, typeof parties>);
+// Group by weekday
+const weekdays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+const partiesByDay: Record<string, typeof parties> = {};
 
 for (const party of parties) {
-  const dayName = daysOfWeek[new Date(party.date).getDay()];
-  partiesByDay[dayName].push(party);
+  const date = new Date(party.date);
+  const weekday = weekdays[date.getDay()];
+  if (!partiesByDay[weekday]) {
+    partiesByDay[weekday] = [];
+  }
+  partiesByDay[weekday].push(party);
 }
 ---
 
-<BaseHead />
-<Header />
+<html lang="en">
+  <head>
+    <BaseHead title="This Week | Cologne Raves" />
+  </head>
+  <body class="min-h-screen flex flex-col">
+    <Header active="this-week" />
+    <main class="max-w-3xl mx-auto p-4 flex-1">
+      <h1 class="text-2xl font-semibold mb-4">This Week</h1>
 
-<main class="max-w-3xl mx-auto px-4">
-  <h1 class="text-2xl font-bold mb-4">This Week</h1>
-
-  {daysOfWeek.map((day) => (
-    <>
-      {partiesByDay[day].length > 0 && (
-        <>
-          <h2 class="text-lg font-semibold mt-6 mb-2">{day}</h2>
-          {partiesByDay[day].map((party) => (
-            <PartyCard {...party} />
-          ))}
-        </>
-      )}
-    </>
-  ))}
-</main>
-
-<Footer />
+      {
+        ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'].map((day) => (
+          partiesByDay[day]?.length > 0 && (
+            <section>
+              <h2 class="text-xl font-semibold mt-6 mb-2">{day}</h2>
+              {
+                partiesByDay[day].map((party) => (
+                  <PartyCard {...party} />
+                ))
+              }
+            </section>
+          )
+        ))
+      }
+    </main>
+    <Footer />
+  </body>
+</html>
