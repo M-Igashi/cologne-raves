@@ -27,23 +27,25 @@ for (const party of parties) {
   </head>
   <body class="min-h-screen flex flex-col">
     <Header active="this-week" />
-    <main class="max-w-3xl mx-auto p-4 flex-1">
-      <h1 class="text-2xl font-semibold mb-4">This Week</h1>
+    <main class="flex-1">
+      <div class="max-w-3xl mx-auto p-4">
+        <h1 class="text-2xl font-semibold mb-4">This Week</h1>
 
-      {
-        ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'].map((day) => (
-          partiesByDay[day]?.length > 0 && (
-            <section>
-              <h2 class="text-xl font-semibold mt-6 mb-2">{day}</h2>
-              {
-                partiesByDay[day].map((party) => (
-                  <PartyCard {...party} />
-                ))
-              }
-            </section>
-          )
-        ))
-      }
+        {
+          ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'].map((day) => (
+            partiesByDay[day]?.length > 0 && (
+              <section>
+                <h2 class="text-xl font-semibold mt-6 mb-2">{day}</h2>
+                {
+                  partiesByDay[day].map((party) => (
+                    <PartyCard {...party} />
+                  ))
+                }
+              </section>
+            )
+          ))
+        }
+      </div>
     </main>
     <Footer />
   </body>
