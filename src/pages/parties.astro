@@ -54,7 +54,7 @@ const sortedMonthKeys = Object.keys(grouped).sort();
           <h3 class="text-lg font-medium mt-6 mb-2">{month}</h3>
           <ul class="space-y-4">
             {grouped[month].map(party => (
-              <li><PartyCard {...party} /></li>
+              <li><PartyCard {...party} showEditLink={false} /></li>
             ))}
           </ul>
         </section>
