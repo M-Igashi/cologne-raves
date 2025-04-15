@@ -22,6 +22,7 @@ const {
   startTime,
   sourceFile
 } = Astro.props;
+const { showEditLink = true } = Astro.props;
 
 const githubEditUrl = sourceFile
   ? `https://github.com/M-Igashi/cologne-raves/edit/edit-branch/data/${sourceFile}`
@@ -67,7 +68,7 @@ const formattedDate = eventDate.toLocaleDateString("en-GB", {
     </p>
   )}
 
-  {githubEditUrl && (
+  {githubEditUrl && showEditLink && (
     <p class="mt-2 text-xs text-muted-foreground flex items-center gap-1">
       <GitBranch class="size-4" />
       <a class="underline underline-offset-2" href={githubEditUrl} target="_blank" rel="noopener noreferrer">
