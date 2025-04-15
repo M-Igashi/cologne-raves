@@ -17,15 +17,15 @@ function getNextSundayStart() {
   return sunday;
 }
 
-// Filter to only include parties from April 1, 2025 onwards
-const allParties = (await getAllParties()).filter(p => new Date(p.date) >= new Date('2025-04-01'));
-const cutoffDate = getNextSundayStart();
+// Europe/Berlin timezone で今月の1日を取得
+const berlinNow = new Date(new Date().toLocaleString("en-US", { timeZone: "Europe/Berlin" }));
+const startOfMonth = new Date(berlinNow.getFullYear(), berlinNow.getMonth(), 1);
 
-// フィルタリング
-const upcoming = allParties.filter(p => new Date(p.date) >= cutoffDate);
+// 今月1日以降のパーティーのみ取得
+const allParties = (await getAllParties()).filter(p => new Date(p.date) >= startOfMonth);
 
 // 月別にグルーピング
-const grouped = upcoming.reduce((acc, party) => {
+const grouped = allParties.reduce((acc, party) => {
   const date = new Date(party.date);
   const monthKey = `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}`;
   if (!acc[monthKey]) acc[monthKey] = [];
