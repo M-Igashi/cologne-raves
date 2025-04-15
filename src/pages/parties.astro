@@ -17,7 +17,8 @@ function getNextSundayStart() {
   return sunday;
 }
 
-const allParties = await getAllParties();
+// Filter to only include parties from April 1, 2025 onwards
+const allParties = (await getAllParties()).filter(p => new Date(p.date) >= new Date('2025-04-01'));
 const cutoffDate = getNextSundayStart();
 
 // フィルタリング
