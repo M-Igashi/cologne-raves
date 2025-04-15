@@ -10,6 +10,7 @@ export interface Props {
   artists?: string[];
   startTime?: string;
   sourceFile?: string;
+  showEditLink?: boolean;
 }
 
 const {
@@ -20,9 +21,9 @@ const {
   url,
   artists,
   startTime,
-  sourceFile
+  sourceFile,
+  showEditLink = true
 } = Astro.props;
-const { showEditLink = true } = Astro.props;
 
 const githubEditUrl = sourceFile
   ? `https://github.com/M-Igashi/cologne-raves/edit/edit-branch/data/${sourceFile}`
