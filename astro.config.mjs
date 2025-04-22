@@ -6,7 +6,7 @@ import sitemap from "@astrojs/sitemap";
 import tailwind from "@astrojs/tailwind";
 
 export default defineConfig({
-  site: "https://example.com",
+  site: "https://cologne-raves.pages.dev",
   integrations: [react(), mdx(), sitemap(), tailwind()],
   output: "static",
 });
