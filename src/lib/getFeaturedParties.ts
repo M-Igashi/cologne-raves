@@ -1,12 +1,12 @@
 import { generateStableId } from './generateStableId';
 import { getAllParties } from './getAllParties';
 import { eachDayOfInterval, endOfWeek, startOfWeek, subWeeks, startOfDay } from 'date-fns';
-import { utcToZonedTime } from 'date-fns-tz';
+import { toZonedTime } from 'date-fns-tz';
 
 const berlinTimeZone = 'Europe/Berlin';
 
 function getBerlinNow() {
-  return utcToZonedTime(new Date(), berlinTimeZone);
+  return toZonedTime(new Date(), berlinTimeZone);
 }
 
 function getFeaturedDateRange() {
@@ -43,7 +43,7 @@ export async function getFeaturedParties() {
 
   const featured = allParties
     .filter((party) => {
-      const partyDate = utcToZonedTime(new Date(party.date), berlinTimeZone);
+      const partyDate =  toZonedTime(new Date(party.date), berlinTimeZone);
       return days.some(
         (day) =>
           partyDate.getFullYear() === day.getFullYear() &&
