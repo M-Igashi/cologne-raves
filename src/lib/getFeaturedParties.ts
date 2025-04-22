@@ -1,46 +1,61 @@
+import { generateStableId } from './generateStableId';
 import { getAllParties } from './getAllParties';
+import { eachDayOfInterval, endOfWeek, startOfWeek, subWeeks, startOfDay } from 'date-fns-tz';
+import { utcToZonedTime } from 'date-fns-tz';
 
-function getBerlinNow(): Date {
-  const now = new Date();
-  const berlinOffset = -new Date().getTimezoneOffset() + 60; // CET = UTC+1, DST = UTC+2
-  return new Date(now.getTime() + berlinOffset * 60 * 1000);
+const berlinTimeZone = 'Europe/Berlin';
+
+function getBerlinNow() {
+  return utcToZonedTime(new Date(), berlinTimeZone);
 }
 
-function getFeaturedDateRange(): { start: Date; end: Date } {
+function getFeaturedDateRange() {
   const now = getBerlinNow();
-  const day = now.getDay(); // Sun = 0, Mon = 1, ..., Sat = 6
-  const hour = now.getHours();
 
-  const isAfterMonday13 = day === 1 && hour >= 13 || day > 1;
+  const mondayThisWeek = startOfWeek(now, { weekStartsOn: 1 });
+  const isAfterMonday1PM =
+    now.getDay() === 1 &&
+    (now.getHours() > 13 || (now.getHours() === 13 && now.getMinutes() >= 0));
 
-  const currentMonday = new Date(now);
-  currentMonday.setDate(now.getDate() - ((now.getDay() + 6) % 7)); // Monday of this week
-  currentMonday.setHours(0, 0, 0, 0);
+  if (!isAfterMonday1PM) {
+    // まだ月曜13時前なので先週を表示
+    const lastMonday = subWeeks(mondayThisWeek, 1);
+    const lastSunday = endOfWeek(lastMonday, { weekStartsOn: 1 });
+    return {
+      start: startOfDay(lastMonday),
+      end: startOfDay(lastSunday),
+    };
+  }
 
-  const nextSunday = new Date(currentMonday);
-  nextSunday.setDate(currentMonday.getDate() + 6);
-  nextSunday.setHours(23, 59, 59, 999);
-
-  const previousMonday = new Date(currentMonday);
-  previousMonday.setDate(currentMonday.getDate() - 7);
-
-  const previousSunday = new Date(currentMonday);
-  previousSunday.setDate(currentMonday.getDate() - 1);
-  previousSunday.setHours(23, 59, 59, 999);
-
-  return isAfterMonday13
-    ? { start: currentMonday, end: nextSunday }
-    : { start: previousMonday, end: previousSunday };
+  // 月曜13時以降なので今週を表示
+  const sundayThisWeek = endOfWeek(mondayThisWeek, { weekStartsOn: 1 });
+  return {
+    start: startOfDay(mondayThisWeek),
+    end: startOfDay(sundayThisWeek),
+  };
 }
 
 export async function getFeaturedParties() {
   const allParties = await getAllParties();
   const { start, end } = getFeaturedDateRange();
 
-  return allParties
+  const days = eachDayOfInterval({ start, end });
+
+  const featured = allParties
     .filter((party) => {
-      const date = new Date(party.date);
-      return date >= start && date <= end;
+      const partyDate = utcToZonedTime(new Date(party.date), berlinTimeZone);
+      return days.some(
+        (day) =>
+          partyDate.getFullYear() === day.getFullYear() &&
+          partyDate.getMonth() === day.getMonth() &&
+          partyDate.getDate() === day.getDate()
+      );
     })
-    .sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
+    .sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime())
+    .map((party) => ({
+      ...party,
+      id: party.id || generateStableId(party),
+    }));
+
+  return featured;
 }
