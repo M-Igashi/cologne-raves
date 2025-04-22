@@ -1,6 +1,6 @@
 import { generateStableId } from './generateStableId';
 import { getAllParties } from './getAllParties';
-import { eachDayOfInterval, endOfWeek, startOfWeek, subWeeks, startOfDay } from 'date-fns-tz';
+import { eachDayOfInterval, endOfWeek, startOfWeek, subWeeks, startOfDay } from 'date-fns';
 import { utcToZonedTime } from 'date-fns-tz';
 
 const berlinTimeZone = 'Europe/Berlin';
