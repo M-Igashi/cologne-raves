@@ -152,3 +152,25 @@ hr {
   /* added line to stop words getting smushed together (as they go onto separate lines and some screen readers do not understand line feeds as a space */
   white-space: nowrap;
 }
+@media (prefers-color-scheme: dark) {
+  :root {
+    color-scheme: dark;
+  }
+}
+
+body {
+  background-color: #0e0e0e;
+  color: #ffffff;
+}
+
+a {
+  color: #90cdf4;
+}
+
+a:hover {
+  color: #63b3ed;
+}
+
+.text-muted-foreground {
+  color: #a0aec0;
+}

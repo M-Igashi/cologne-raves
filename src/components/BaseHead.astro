@@ -1,39 +1,29 @@
 ---
-export interface Props {
-  title?: string;
-  description?: string;
-  image?: string;
-  url?: string;
-}
-
-const {
-  title = "Cologne Raves",
-  description = "Your weekly guide to Cologne's electronic music scene",
-  image = "/og-cover.png",
-  url = "https://cologne-raves.pages.dev",
-} = Astro.props;
+const { title = 'Cologne Raves' } = Astro.props;
 ---
 
-<title>{title}</title>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<meta name="description" content={description} />
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{title}</title>
+  <meta name="description" content="Your weekly guide to Cologne's electronic music scene" />
 
-<!-- Canonical -->
-<link rel="canonical" href={url} />
+  <!-- Canonical -->
+  <link rel="canonical" href="https://cologne-raves.pages.dev" />
 
-<!-- Open Graph -->
-<meta property="og:title" content={title} />
-<meta property="og:description" content={description} />
-<meta property="og:type" content="website" />
-<meta property="og:url" content={url} />
-<meta property="og:image" content={image} />
+  <!-- Open Graph -->
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content="Your weekly guide to Cologne's electronic music scene" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://cologne-raves.pages.dev" />
+  <meta property="og:image" content="/og-cover.png" />
 
-<!-- Twitter Card -->
-<meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content={title} />
-<meta name="twitter:description" content={description} />
-<meta name="twitter:image" content={image} />
-<!-- Optional: <meta name="twitter:site" content="@your_account" /> -->
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content={title} />
+  <meta name="twitter:description" content="Your weekly guide to Cologne's electronic music scene" />
+  <meta name="twitter:image" content="/og-cover.png" />
 
-<link rel="icon" href="/favicon.svg" />
+  <link rel="icon" href="/favicon.svg" />
+  <meta name="theme-color" content="#000000" />
+</head>
