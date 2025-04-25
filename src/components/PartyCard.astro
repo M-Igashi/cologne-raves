@@ -1,80 +1,97 @@
 ---
 import { CalendarDays, Clock, MapPin, GitBranch } from 'lucide-react';
 
-export interface Props {
+interface Props {
   id: string;
-  date: string;
-  venue: string;
   title: string;
+  date: string;
+  time?: string;
+  location?: string;
+  artists?: string;
   url?: string;
-  artists?: string[];
-  startTime?: string;
-  sourceFile?: string;
-  showEditLink?: boolean;
 }
 
 const {
   id,
-  date,
-  venue,
   title,
-  url,
+  date,
+  time,
+  location,
   artists,
-  startTime,
-  sourceFile,
-  showEditLink = true
+  url
 } = Astro.props;
 
-const githubEditUrl = sourceFile
-  ? `https://github.com/M-Igashi/cologne-raves/edit/edit-branch/data/${sourceFile}`
-  : null;
-
-const eventDate = new Date(date);
-const formattedDate = eventDate.toLocaleDateString("en-GB", {
-  weekday: "short",
-  year: "numeric",
-  month: "short",
-  day: "numeric"
-});
+const shortId = id.startsWith('#') ? id : `#${id.slice(0, 8)}`;
+const isoDateTime = new Date(date + (time ? `T${time}` : '')).toISOString();
 ---
 
 <article class="rounded-xl border p-4 mb-4 relative">
-  <div class="absolute top-2 right-4 text-xs text-muted-foreground">#{id}</div>
-  <h2 class="font-semibold">{title} @ {venue}</h2>
+  <div class="absolute top-2 right-4 text-xs text-muted-foreground">{shortId}</div>
+  <h2 class="font-semibold">{title}</h2>
 
   <p class="flex items-center gap-1 mt-1 text-sm text-muted-foreground">
     <CalendarDays class="size-4" />
-    {formattedDate}
-    {startTime && (
+    {new Date(date).toLocaleDateString('en-US', {
+      weekday: 'short',
+      day: 'numeric',
+      month: 'short',
+      year: 'numeric'
+    })}
+    {time && (
       <>
-        {" – "}
-        <Clock class="size-4 inline-block ml-1" />
-        {startTime}
+        {' '}
+        – <Clock class="size-4" /> {time}
       </>
     )}
   </p>
 
-  {artists && artists.length > 0 && (
+  {artists && (
     <p class="flex items-center gap-1 mt-1 text-sm text-muted-foreground">
-      <MapPin class="size-4" />
-      {artists.join(", ")}
+      <MapPin class="size-4" /> {artists}
+    </p>
+  )}
+
+  {location && (
+    <p class="flex items-center gap-1 mt-1 text-sm text-muted-foreground">
+      <GitBranch class="size-4" /> {location}
     </p>
   )}
 
   {url && (
     <p class="mt-2 text-sm">
-      <a href={url} class="underline underline-offset-2" target="_blank" rel="noopener noreferrer">
+      <a
+        href={url}
+        class="underline underline-offset-2"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
         More Info
       </a>
     </p>
   )}
 
-  {githubEditUrl && showEditLink && (
-    <p class="mt-2 text-xs text-muted-foreground flex items-center gap-1">
-      <GitBranch class="size-4" />
-      <a class="underline underline-offset-2" href={githubEditUrl} target="_blank" rel="noopener noreferrer">
-        Edit on GitHub
-      </a>
-    </p>
-  )}
+  <!-- 構造化データ (JSON-LD) -->
+  <script type="application/ld+json">
+    {JSON.stringify({
+      '@context': 'https://schema.org',
+      '@type': 'Event',
+      name: title,
+      startDate: isoDateTime,
+      eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode',
+      eventStatus: 'https://schema.org/EventScheduled',
+      location: location
+        ? {
+            '@type': 'Place',
+            name: location
+          }
+        : undefined,
+      performer: artists
+        ? artists.split(',').map(name => ({
+            '@type': 'PerformingGroup',
+            name: name.trim()
+          }))
+        : undefined,
+      url: url || undefined
+    })}
+  </script>
 </article>
