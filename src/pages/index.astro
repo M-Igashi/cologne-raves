@@ -22,30 +22,33 @@ for (const party of parties) {
 ---
 
 <html lang="en" class="dark">
- <BaseHead title="This Week | Cologne Raves" />
-   <body class="bg-white text-gray-900 font-sans max-w-3xl mx-auto px-4 py-6 sm:px-6 lg:px-8">
-    <Header />
-     <nav class="flex flex-wrap gap-2 mb-6 text-sm">
-       <a href="/" class="px-3 py-1 border rounded-full bg-black text-white text-sm">This Week</a>
-       <a href="/parties" class="px-3 py-1 border rounded-full text-sm">All Parties</a>
-     </nav>
-        <h2 class="text-xl font-semibold mb-4">This Week</h2>
+  <head>
+    <BaseHead title="This Week | Cologne Raves" />
+  </head>
+  <body class="min-h-screen bg-black text-white font-sans max-w-3xl mx-auto px-4 py-6 sm:px-6 lg:px-8 flex flex-col">
+    <Header active="this-week" />
+    <main class="flex-1">
+      <nav class="flex flex-wrap gap-2 mb-6 text-sm">
+        <a href="/" class="px-3 py-1 border rounded-full bg-white text-black text-sm">This Week</a>
+        <a href="/parties" class="px-3 py-1 border rounded-full text-white border-white text-sm">All Parties</a>
+      </nav>
 
-        {
-          ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'].map((day) => (
-            partiesByDay[day]?.length > 0 && (
-              <section>
-                <h2 class="text-xl font-semibold mt-6 mb-2">{day}</h2>
-                {
-                  partiesByDay[day].map((party) => (
-                    <PartyCard {...party} showEditLink={false} />
-                  ))
-                }
-              </section>
-            )
-          ))
-        }
-      </div>
+      <h2 class="text-2xl font-semibold mb-4">This Week</h2>
+
+      {
+        ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'].map((day) => (
+          partiesByDay[day]?.length > 0 && (
+            <section>
+              <h3 class="text-xl font-semibold mt-6 mb-2">{day}</h3>
+              {
+                partiesByDay[day].map((party) => (
+                  <PartyCard {...party} />
+                ))
+              }
+            </section>
+          )
+        ))
+      }
     </main>
     <Footer />
   </body>
