@@ -1,33 +1,24 @@
 ---
 import { CalendarDays, Clock, MapPin, GitBranch } from 'lucide-react';
-
-interface Props {
-  id: string;
-  title: string;
-  date: string;
-  time?: string;
-  location?: string;
-  artists?: string;
-  url?: string;
-}
-
 const {
   id,
   title,
+  venue,
   date,
-  time,
-  location,
+  startTime,
   artists,
-  url
+  url,
+  sourceFile
 } = Astro.props;
-
-const shortId = id.startsWith('#') ? id : `#${id.slice(0, 8)}`;
-const isoDateTime = new Date(date + (time ? `T${time}` : '')).toISOString();
+const isoDateTime = `${date}T${startTime ?? '23:00'}`;
 ---
 
 <article class="rounded-xl border p-4 mb-4 relative">
-  <div class="absolute top-2 right-4 text-xs text-muted-foreground">{shortId}</div>
-  <h2 class="font-semibold">{title}</h2>
+  <div class="absolute top-2 right-4 text-xs text-muted-foreground">#{id}</div>
+
+  <h2 class="font-semibold">
+    {title}{venue && ` @ ${venue}`}
+  </h2>
 
   <p class="flex items-center gap-1 mt-1 text-sm text-muted-foreground">
     <CalendarDays class="size-4" />
@@ -37,23 +28,18 @@ const isoDateTime = new Date(date + (time ? `T${time}` : '')).toISOString();
       month: 'short',
       year: 'numeric'
     })}
-    {time && (
+    {startTime && (
       <>
-        {' '}
-        – <Clock class="size-4" /> {time}
+        <span class="inline-block w-1" />–<Clock class="size-4" />
+        {startTime}
       </>
     )}
   </p>
 
-  {artists && (
+  {artists?.length > 0 && (
     <p class="flex items-center gap-1 mt-1 text-sm text-muted-foreground">
-      <MapPin class="size-4" /> {artists}
-    </p>
-  )}
-
-  {location && (
-    <p class="flex items-center gap-1 mt-1 text-sm text-muted-foreground">
-      <GitBranch class="size-4" /> {location}
+      <MapPin class="size-4" />
+      {artists.join(', ')}
     </p>
   )}
 
@@ -70,28 +56,44 @@ const isoDateTime = new Date(date + (time ? `T${time}` : '')).toISOString();
     </p>
   )}
 
-  <!-- 構造化データ (JSON-LD) -->
+  {sourceFile && (
+    <p class="mt-2 text-sm flex items-center gap-1 text-muted-foreground">
+      <GitBranch class="size-4" />
+      <a
+        href={`https://github.com/M-Igashi/cologne-raves/edit/main/data/${sourceFile}`}
+        class="underline underline-offset-2"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Edit on GitHub
+      </a>
+    </p>
+  )}
+
+  <!-- JSON-LD Structured Data -->
   <script type="application/ld+json">
-    {JSON.stringify({
-      '@context': 'https://schema.org',
-      '@type': 'Event',
-      name: title,
-      startDate: isoDateTime,
-      eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode',
-      eventStatus: 'https://schema.org/EventScheduled',
-      location: location
-        ? {
-            '@type': 'Place',
-            name: location
-          }
-        : undefined,
-      performer: artists
-        ? artists.split(',').map(name => ({
-            '@type': 'PerformingGroup',
-            name: name.trim()
-          }))
-        : undefined,
-      url: url || undefined
-    })}
+    {
+      "description": {title},
+      "@context": "https://schema.org",
+      "@type": "Event",
+      "name": {JSON.stringify(title)},
+      "startDate": {JSON.stringify(isoDateTime)},
+      "location": {
+        "@type": "Place",
+        "name": {JSON.stringify(venue)},
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Cologne",
+          "addressCountry": "DE"
+        }
+      },
+      "performer": {artists?.length > 0 ? JSON.stringify(artists.map(name => ({
+        "@type": "Person",
+        "name": name
+      }))) : '[]'},
+      "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+      "eventStatus": "https://schema.org/EventScheduled",
+      "url": {JSON.stringify(url)}
+    }
   </script>
 </article>
