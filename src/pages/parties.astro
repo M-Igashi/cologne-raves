@@ -4,63 +4,55 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import PartyCard from '../components/PartyCard.astro';
 import { getAllParties } from '../lib/getAllParties';
+import { toZonedTime } from 'date-fns-tz';
+import { startOfWeek } from 'date-fns';
 
-// Europe/Berlin timezone における今週日曜の 00:00 を計算
-function getNextSundayStart() {
-  const now = new Date();
-  const berlinNow = new Date(now.toLocaleString("en-US", { timeZone: "Europe/Berlin" }));
-  const day = berlinNow.getDay();
-  const diff = (7 - day) % 7;
-  const sunday = new Date(berlinNow);
-  sunday.setDate(berlinNow.getDate() + diff);
-  sunday.setHours(0, 0, 0, 0);
-  return sunday;
-}
+const parties = await getAllParties();
 
-// Europe/Berlin timezone で今月の1日を取得
-const berlinNow = new Date(new Date().toLocaleString("en-US", { timeZone: "Europe/Berlin" }));
-const startOfMonth = new Date(berlinNow.getFullYear(), berlinNow.getMonth(), 1);
+// フィルタ: 今週の月曜 00:00 (Europe/Berlin) 以降のイベントのみ
+const berlinNow = toZonedTime(new Date(), 'Europe/Berlin');
+const weekStart = startOfWeek(berlinNow, { weekStartsOn: 1 }); // 月曜
 
-// 今月1日以降のパーティーのみ取得
-const allParties = (await getAllParties()).filter(p => new Date(p.date) >= startOfMonth);
+const upcomingParties = parties.filter((party) => {
+  const partyDate = new Date(party.date);
+  return partyDate >= weekStart;
+});
 
-// 月別にグルーピング
-const grouped = allParties.reduce((acc, party) => {
+// グループ化: 月単位
+const partiesByMonth: Record<string, typeof upcomingParties> = {};
+
+for (const party of upcomingParties) {
   const date = new Date(party.date);
-  const monthKey = `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}`;
-  if (!acc[monthKey]) acc[monthKey] = [];
-  acc[monthKey].push(party);
-  return acc;
-}, {} as Record<string, typeof allParties>);
-
-// 月の並び順のためにキーを取得
-const sortedMonthKeys = Object.keys(grouped).sort();
+  const yearMonth = `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}`;
+  if (!partiesByMonth[yearMonth]) {
+    partiesByMonth[yearMonth] = [];
+  }
+  partiesByMonth[yearMonth].push(party);
+}
 ---
 
 <html lang="en">
-  <BaseHead title="All Parties | Cologne Raves" />
-  <body class="bg-white text-gray-900 font-sans max-w-3xl mx-auto px-4 py-6 sm:px-6 lg:px-8">
-    <Header />
-    <nav class="flex flex-wrap gap-2 mb-6 text-sm">
-      <a href="/" class="px-3 py-1 border rounded-full text-sm">This Week</a>
-      <a href="/parties" class="px-3 py-1 border rounded-full bg-black text-white text-sm">All Parties</a>
-    </nav>
+  <head>
+    <BaseHead title="All Parties | Cologne Raves" />
+  </head>
+  <body class="min-h-screen flex flex-col">
+    <Header active="all-parties" />
+    <main class="max-w-3xl mx-auto p-4 flex-1">
+      <h1 class="text-2xl font-semibold mb-4">All Parties</h1>
 
-    <h2 class="text-xl font-semibold mb-4">All Upcoming Parties</h2>
-
-    {
-      sortedMonthKeys.map(month => (
-        <section>
-          <h3 class="text-lg font-medium mt-6 mb-2">{month}</h3>
-          <ul class="space-y-4">
-            {grouped[month].map(party => (
-              <li><PartyCard {...party} /></li>
-            ))}
-          </ul>
-        </section>
-      ))
-    }
-
+      {
+        Object.keys(partiesByMonth).sort().map((month) => (
+          <section>
+            <h2 class="text-xl font-semibold mt-6 mb-2">{month}</h2>
+            {
+              partiesByMonth[month].map((party) => (
+                <PartyCard {...party} />
+              ))
+            }
+          </section>
+        ))
+      }
+    </main>
     <Footer />
   </body>
 </html>
