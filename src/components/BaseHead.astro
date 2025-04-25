@@ -1,26 +1,39 @@
 ---
-// src/components/BaseHead.astro
-const { title, description = 'Weekly updated club events in Cologne', url = 'https://berghain.pages.dev', image = '/og-cover.png' } = Astro.props;
+export interface Props {
+  title?: string;
+  description?: string;
+  image?: string;
+  url?: string;
+}
+
+const {
+  title = "Cologne Raves",
+  description = "Your weekly guide to Cologne's electronic music scene",
+  image = "/og-cover.png",
+  url = "https://cologne-raves.pages.dev",
+} = Astro.props;
 ---
 
-<head>
-  <title>{title}</title>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content={description} />
+<title>{title}</title>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="description" content={description} />
 
-  <!-- Open Graph -->
-  <meta property="og:title" content={title} />
-  <meta property="og:description" content={description} />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content={url} />
-  <meta property="og:image" content={image} />
+<!-- Canonical -->
+<link rel="canonical" href={url} />
 
-  <!-- Twitter Card -->
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content={title} />
-  <meta name="twitter:description" content={description} />
-  <meta name="twitter:image" content={image} />
+<!-- Open Graph -->
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:type" content="website" />
+<meta property="og:url" content={url} />
+<meta property="og:image" content={image} />
 
-  <link rel="icon" href="/favicon.svg" />
-</head>
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={image} />
+<!-- Optional: <meta name="twitter:site" content="@your_account" /> -->
+
+<link rel="icon" href="/favicon.svg" />
