@@ -33,27 +33,31 @@ const sortedMonthKeys = Object.keys(partiesByMonth).sort();
 ---
 
 <html lang="en" class="dark">
-  <BaseHead title="All Parties | Cologne Raves" />
-  <body class="bg-white text-gray-900 font-sans max-w-3xl mx-auto px-4 py-6 sm:px-6 lg:px-8">
-    <Header />
-    <nav class="flex flex-wrap gap-2 mb-6 text-sm">
-      <a href="/" class="px-3 py-1 border rounded-full text-sm">This Week</a>
-      <a href="/parties" class="px-3 py-1 border rounded-full bg-black text-white text-sm">All Parties</a>
-    </nav>
+  <head>
+    <BaseHead title="All Parties | Cologne Raves" />
+  </head>
+  <body class="min-h-screen bg-black text-white font-sans max-w-3xl mx-auto px-4 py-6 sm:px-6 lg:px-8 flex flex-col">
+    <Header active="all-parties" />
+    <main class="flex-1">
+      <nav class="flex flex-wrap gap-2 mb-6 text-sm">
+        <a href="/" class="px-3 py-1 border rounded-full text-white border-white text-sm">This Week</a>
+        <a href="/parties" class="px-3 py-1 border rounded-full bg-white text-black text-sm">All Parties</a>
+      </nav>
 
-    <h2 class="text-xl font-semibold mb-4">All Upcoming Parties</h2>
+      <h2 class="text-2xl font-semibold mb-4">All Upcoming Parties</h2>
 
-    {
-      sortedMonthKeys.map(month => (
-        <section>
-          <h3 class="text-lg font-medium mt-8 mb-4">{month}</h3>
-          {
-            partiesByMonth[month].map(party => (
-              <PartyCard {...party} />
-            ))
-          }
-        </section>
-      ))
-    }
+      {
+        sortedMonthKeys.map(month => (
+          <section>
+            <h3 class="text-xl font-semibold mt-8 mb-4">{month}</h3>
+            {
+              partiesByMonth[month].map(party => (
+                <PartyCard {...party} />
+              ))
+            }
+          </section>
+        ))
+      }
+    </main>
   </body>
 </html>
