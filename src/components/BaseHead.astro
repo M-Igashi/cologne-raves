@@ -1,29 +1,30 @@
 ---
-const { title = 'Cologne Raves' } = Astro.props;
+const { title } = Astro.props;
 ---
 
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>{title}</title>
-  <meta name="description" content="Your weekly guide to Cologne's electronic music scene" />
+<html lang="en" class="dark">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
 
-  <!-- Canonical -->
-  <link rel="canonical" href="https://cologne-raves.pages.dev" />
+    <!-- Canonical -->
+    <link rel="canonical" href="https://cologne-raves.pages.dev" />
 
-  <!-- Open Graph -->
-  <meta property="og:title" content={title} />
-  <meta property="og:description" content="Your weekly guide to Cologne's electronic music scene" />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://cologne-raves.pages.dev" />
-  <meta property="og:image" content="/og-cover.png" />
+    <!-- Open Graph -->
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content="Your weekly guide to Cologne's electronic music scene" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://cologne-raves.pages.dev" />
+    <meta property="og:image" content="/og-cover.png" />
 
-  <!-- Twitter Card -->
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content={title} />
-  <meta name="twitter:description" content="Your weekly guide to Cologne's electronic music scene" />
-  <meta name="twitter:image" content="/og-cover.png" />
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content="Your weekly guide to Cologne's electronic music scene" />
+    <meta name="twitter:image" content="/og-cover.png" />
 
-  <link rel="icon" href="/favicon.svg" />
-  <meta name="theme-color" content="#000000" />
-</head>
+    <link rel="icon" href="/favicon.svg" />
+    <meta name="theme-color" content="#000000" />
+  </head>
+</html>
