@@ -1,5 +1,5 @@
 ---
-import { CalendarDays, Clock, MapPin, GitBranch } from 'lucide-react';
+import { CalendarDays, Clock, Headphones, GitBranch } from 'lucide-react';
 const {
   id,
   title,
@@ -39,7 +39,7 @@ const isoDateTime = `${date}T${startTime ?? '23:00'}`;
 
   {artists?.length > 0 && (
     <p class="flex items-center gap-1 mt-1 text-sm text-muted-foreground">
-      <MapPin class="size-4" />
+      <Headphones class="size-4" />
       {artists.join(', ')}
     </p>
   )}
