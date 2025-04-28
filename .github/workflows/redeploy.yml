@@ -1,0 +1,14 @@
+name: Scheduled Redeploy to Cloudflare Pages
+
+on:
+  schedule:
+    - cron: '5 11 * * 1' # 毎週月曜日13:05 (Europe/Berlin)、UTCだと11:05
+  workflow_dispatch: # 手動実行も可能
+
+jobs:
+  redeploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger Cloudflare Pages Deploy Hook
+        run: |
+          curl -X POST "${{ secrets.CLOUDFLARE_PAGES_DEPLOY_HOOK_URL }}"
