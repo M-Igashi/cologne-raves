@@ -19,11 +19,20 @@ for (const party of parties) {
   }
   partiesByDay[weekday].push(party);
 }
+
+// SEO関連の変数
+const title = "This Week | Cologne Raves";
+const description = "Discover the best techno and electronic music events happening this week in Cologne. Find dates, venues, lineups and ticket information for the hottest parties.";
+const canonicalURL = new URL(Astro.url.pathname, Astro.site || "https://cologne-raves.pages.dev").href;
 ---
 
 <html lang="en" class="dark">
   <head>
-    <BaseHead title="This Week | Cologne Raves" />
+    <BaseHead
+      title={title}
+      description={description}
+      canonicalURL={canonicalURL}
+    />
   </head>
   <body class="min-h-screen bg-black text-white font-sans max-w-3xl mx-auto px-4 py-6 sm:px-6 lg:px-8 flex flex-col">
     <Header active="this-week" />
