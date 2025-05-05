@@ -36,11 +36,15 @@
     "url": "https://bootshaus.tv/events/inurfase-gpf-pres-the-sweatbox"
   },
   {
-    "id": "b8944025",
+    "id": "d016ea76",
     "venue": "Bootshaus",
     "date": "2025-05-10",
     "title": "Biscits pres. by TechHouseGermany!",
-    "artists": [],
+    "artists": ["Biscits",
+      "Elternhouse b2b Gidibangbang",
+      "Vin Vega",
+      "Finiq b2b Vince Versa",
+      "Mersy"],
     "startTime": "22:00",
     "url": "https://bootshaus.tv/events/biscits-pres-by-techhousegermany"
   },
