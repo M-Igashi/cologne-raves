@@ -1,35 +1,38 @@
 ---
 export interface Props {
- title: string;
- description?: string;
- canonicalURL?: string;
- ogImage?: string;
+  title: string;
+  description?: string;
+  canonicalURL?: string;
+  ogImage?: string;
 }
 
 const {
- title,
- description = "Your weekly guide to Cologne's electronic music scene",
- canonicalURL = "https://cologne-raves.pages.dev",
- ogImage = "/og-cover.png"
+  title,
+  description = "Discover the best techno and electronic music events happening this week in Cologne. Find dates, venues, lineups and ticket information for the hottest parties.",
+  canonicalURL = "https://cologne-raves.pages.dev",
+  ogImage = "/og-cover.png"
 } = Astro.props;
 ---
-<title>{title}</title>
+<title>Cologne Raves | {title}</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content={description} />
+<meta name="application-name" content="Cologne Raves">
+<meta name="apple-mobile-web-app-title" content="Cologne Raves">
 
 <!-- Canonical -->
 <link rel="canonical" href={canonicalURL} />
 
 <!-- Open Graph -->
-<meta property="og:title" content={title} />
+<meta property="og:title" content="Cologne Raves | {title}" />
 <meta property="og:description" content={description} />
 <meta property="og:type" content="website" />
 <meta property="og:url" content={canonicalURL} />
 <meta property="og:image" content={ogImage} />
+<meta property="og:site_name" content="Cologne Raves" />
 
 <!-- Twitter Card -->
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content={title} />
+<meta name="twitter:title" content="Cologne Raves | {title}" />
 <meta name="twitter:description" content={description} />
 <meta name="twitter:image" content={ogImage} />
 
@@ -40,33 +43,35 @@ const {
 <!-- JSON-LD Structured Data -->
 <script type="application/ld+json">
 {
- "@context": "https://schema.org",
- "@type": "WebSite",
- "name": "Cologne Raves",
- "description": "Cologne Raves is a weekly guide to the electronic music scene in Cologne, maintained by a volunteer-run WhatsApp raver community. Discover upcoming techno parties and events with this lightweight, cookie-free platform. Contribute by promoting your own events or adding information through our GitHub repository. Simple, ad-free, and community-driven.",
- "url": "https://cologne-raves.pages.dev/",
- "potentialAction": {
-   "@type": "SearchAction",
-   "target": "https://cologne-raves.pages.dev/parties?search={search_term_string}",
-   "query-input": "required name=search_term_string"
- },
- "author": {
-   "@type": "Organization",
-   "name": "Cologne Ravers WhatsApp Community",
-   "url": "https://cologne-raves.pages.dev/"
- },
- "offers": {
-   "@type": "Offer",
-   "price": "0",
-   "priceCurrency": "EUR"
- },
- "audience": {
-   "@type": "Audience",
-   "audienceType": "Electronic music enthusiasts",
-   "geographicArea": {
-     "@type": "AdministrativeArea",
-     "name": "Cologne"
-   }
- }
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "Cologne Raves",
+  "headline": "Cologne Raves | This Week",
+  "alternateName": "Cologne Electronic Music Events",
+  "description": "Cologne Raves is a weekly guide to the electronic music scene in Cologne, maintained by a volunteer-run WhatsApp raver community. Discover upcoming techno parties and events with this lightweight, cookie-free platform. Contribute by promoting your own events or adding information through our GitHub repository. Simple, ad-free, and community-driven.",
+  "url": "https://cologne-raves.pages.dev/",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "https://cologne-raves.pages.dev/parties?search={search_term_string}",
+    "query-input": "required name=search_term_string"
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "Cologne Ravers WhatsApp Community",
+    "url": "https://cologne-raves.pages.dev/"
+  },
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "EUR"
+  },
+  "audience": {
+    "@type": "Audience",
+    "audienceType": "Electronic music enthusiasts",
+    "geographicArea": {
+      "@type": "AdministrativeArea",
+      "name": "Cologne"
+    }
+  }
 }
 </script>
