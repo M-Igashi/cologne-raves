@@ -12,8 +12,12 @@ const {
   canonicalURL = "https://cologne-raves.pages.dev",
   ogImage = "/og-cover.png"
 } = Astro.props;
+
+// タイトルの処理 - 変数が直接表示されるのを防ぐ
+const safeTitle = title || "This Week";
+const fullTitle = `Cologne Raves | ${safeTitle}`;
 ---
-<title>Cologne Raves | {title}</title>
+<title>{fullTitle}</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content={description} />
 <meta name="application-name" content="Cologne Raves">
@@ -23,7 +27,7 @@ const {
 <link rel="canonical" href={canonicalURL} />
 
 <!-- Open Graph -->
-<meta property="og:title" content="Cologne Raves | {title}" />
+<meta property="og:title" content={fullTitle} />
 <meta property="og:description" content={description} />
 <meta property="og:type" content="website" />
 <meta property="og:url" content={canonicalURL} />
@@ -32,7 +36,7 @@ const {
 
 <!-- Twitter Card -->
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="Cologne Raves | {title}" />
+<meta name="twitter:title" content={fullTitle} />
 <meta name="twitter:description" content={description} />
 <meta name="twitter:image" content={ogImage} />
 
