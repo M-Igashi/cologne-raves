@@ -11,10 +11,11 @@
       "Tzaar"
     ],
     "startTime": "23:00",
-    "url": "https://bootshaus-club.ticket.io/0mckscju/?fbclid=PAZXh0bgNhZW0CMTEAAachtSEwbiVUVh3obv4o3GHh8DRx7a4JoIZYB1fjm9JIU-k5Ju8WVC9QUBBETw_aem_Fh1s1TXt239nbwpvHgMqCw"
+    "url": "https://bootshaus-club.ticket.io/0mckscju/?fbclid=PAZXh0bgNhZW0CMTEAAachtSEwbiVUVh3obv4o3GHh8DRx7a4JoIZYB1fjm9JIU-k5Ju8WVC9QUBBETw_aem_Fh1s1TXt239nbwpvHgMqCw",
+    "id": "e3e203cf"
   },
   {
-    "id": "e18da909",
+    "id": "b478b63f",
     "venue": "Helios 37",
     "date": "2025-04-26",
     "title": "NURBÖSE – 26.04.2025 – Tag der Lesbischen Sichtbarkeit",
@@ -25,10 +26,10 @@
       "Sadicca"
     ],
     "startTime": "23:00",
-    "url": "https://t.rausgegangen.de/tickets/nurbose-26042025",
-    "id": "b478b63f"
+    "url": "https://t.rausgegangen.de/tickets/nurbose-26042025"
   },
-  { "id": "92b82559",
+  {
+    "id": "92b82559",
     "venue": "Helios 37",
     "date": "2025-05-24",
     "title": "NURBÖSE",
@@ -39,8 +40,7 @@
       "Entropy"
     ],
     "startTime": "23:00",
-    "url" : "https://t.rausgegangen.de/tickets/nurbose-24052025",
-    "id": "92b82559"
+    "url": "https://t.rausgegangen.de/tickets/nurbose-24052025"
   },
   {
     "venue": "Club Zimmermanns",
