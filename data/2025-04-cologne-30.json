@@ -1,6 +1,5 @@
 [
   {
-    "id": "e3e203cf",
     "venue": "Bootshaus",
     "date": "2025-05-23",
     "title": "CHROME COLOGNE W. JAZZY, OMAKS, SECRET GUEST & MORE",
@@ -15,6 +14,7 @@
     "url": "https://bootshaus-club.ticket.io/0mckscju/?fbclid=PAZXh0bgNhZW0CMTEAAachtSEwbiVUVh3obv4o3GHh8DRx7a4JoIZYB1fjm9JIU-k5Ju8WVC9QUBBETw_aem_Fh1s1TXt239nbwpvHgMqCw"
   },
   {
+    "id": "e18da909",
     "venue": "Helios 37",
     "date": "2025-04-26",
     "title": "NURBÖSE – 26.04.2025 – Tag der Lesbischen Sichtbarkeit",
@@ -28,12 +28,18 @@
     "url": "https://t.rausgegangen.de/tickets/nurbose-26042025",
     "id": "b478b63f"
   },
-  {
+  { "id": "92b82559",
     "venue": "Helios 37",
     "date": "2025-05-24",
     "title": "NURBÖSE",
-    "artists": [],
+    "artists": [
+      "DØPAIR",
+      "GHOOL",
+      "Patrick Schumm",
+      "Entropy"
+    ],
     "startTime": "23:00",
+    "url" : "https://t.rausgegangen.de/tickets/nurbose-24052025",
     "id": "92b82559"
   },
   {
