@@ -1167,9 +1167,16 @@
     "venue": "Kunstwerk",
     "date": "2025-05-23",
     "title": "Rave51 - Psychedelic Experience",
-    "artists": [],
+    "artists": [
+      "FINJA",
+      "ROCKSTEADY",
+      "PSYCHEDELIKA",
+      "JANOS",
+      "DABRAXAS",
+      "YNEVS"
+    ],
     "startTime": "22:00",
-    "url": "https://ra.co/events/2137951"
+    "url": "https://rausgegangen.de/en/events/rave51-psychedelic-experience-0/"
   },
   {
     "id": "75438e0f",
