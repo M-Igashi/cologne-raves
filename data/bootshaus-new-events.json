@@ -80,7 +80,15 @@
     "venue": "Bootshaus",
     "date": "2025-05-28",
     "title": "BLACKLIST pres. INFEKT / NIMDA and more!",
-    "artists": [],
+    "artists": [
+      "INFEKT",
+"NIMDA",
+"Elle Rich",
+"Autodrive",
+    "Yussi",
+"MINIRO",
+"CHOPPAZ",
+"Déjà-Vu"],
     "startTime": "23:00",
     "url": "https://bootshaus.tv/events/blacklist-pres-infekt-nimda-and-more"
   },
@@ -89,7 +97,11 @@
     "venue": "Bootshaus",
     "date": "2025-05-31",
     "title": "SA * 31.05.2025 | KitKatClub",
-    "artists": [],
+    "artists": [
+      "Clark Kent",
+"Jam El Mar",
+"Marc Lange"
+    ],
     "startTime": "22:00",
     "url": "https://bootshaus.tv/events/sa-31-05-2025-kitkatclub"
   },
