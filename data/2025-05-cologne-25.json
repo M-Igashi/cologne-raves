@@ -32,9 +32,35 @@
     "date": "2025-06-21",
     "startTime": "22:00",
     "artists": [
-      "TBD"
+      "SKADI",
+      "Alejandro Alvarez"
     ],
     "url": "https://www.joyclub.com/en/event/1710295.schwarz_21_06_25_die_halle_tor_2_koeln.html"
+  },
+    {
+    "id": "a413a339",
+    "title": "NURBÖSE x SYMBIOTIKKA",
+    "venue": "Schrotty",
+    "date": "2025-06-28",
+    "startTime": "23:00",
+    "artists": [
+      "WANTON",
+      "DØPAIR",
+      "STUCKEYRELLA",
+      "MILLIE FORSBERG"
+    ],
+    "url": "https://t.rausgegangen.de/tickets/nurbose-x-symbiotikka"
+  },
+    {
+    "id": "541b2437",
+    "title": "Kinky Circus",
+    "venue": "Club Bahnhof Ehrenfeld",
+    "date": "2025-06-28",
+    "startTime": "22:00",
+    "artists": [
+      "TBD"
+    ],
+    "url": "https://www.kinkycircus.de/tickets-koeln-cbe/"
   },
   {
     "id": "2acfa74a",
