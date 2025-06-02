@@ -277,15 +277,6 @@
     "id": "98ae15ae"
   },
   {
-    "title": "ZAPRAVKA 3H SET // RHEINAUDIO //",
-    "venue": "Bootshaus",
-    "date": "2025-06-06",
-    "startTime": "23:00",
-    "artists": [],
-    "url": "",
-    "id": "e5e41ff2"
-  },
-  {
     "title": "FIEBERTRAUM",
     "venue": "Helios37",
     "date": "2025-06-06",
@@ -409,14 +400,14 @@
     "id": "6984319f"
   },
   {
-    "title": "Bootshaus ON A SHIP W. BENNETT / DJ Dali AND MORE",
+    "title": "Bootshaus ON A SHIP W. BENNETT / WILL SPARKS PRES",
     "venue": "KD Anleger 1",
     "date": "2025-06-08",
     "startTime": "14:00",
     "artists": [
       "DJ Dali"
     ],
-    "url": "",
+    "url": "https://bootshaus.tv/events/will-sparks-pres-by-bootshaus",
     "id": "99e90f53"
   },
   {
@@ -563,17 +554,7 @@
     "url": "",
     "id": "3c0e3f4a"
   },
-  {
-    "title": "Techno Dampfer Köln with Mija",
-    "venue": "TBA - Am Leystapel auf der Höhe des Schokoladenmuseums, Köln",
-    "date": "2025-06-07",
-    "startTime": "17:00",
-    "artists": [
-      "Mija"
-    ],
-    "url": "",
-    "id": "b295852b"
-  },
+
   {
     "title": "VINYL ROASTERS by COSO DAKT / 16-22 Freitag",
     "venue": "TBA - Gallery 4 / Lindenstraße 73, 50674 Köln",
@@ -649,17 +630,7 @@
     "url": "",
     "id": "6984319f"
   },
-  {
-    "title": "Bootshaus ON A SHIP W. BENNETT / DJ Dali AND MORE",
-    "venue": "KD Anleger 1",
-    "date": "2025-06-08",
-    "startTime": "14:00",
-    "artists": [
-      "DJ Dali"
-    ],
-    "url": "",
-    "id": "99e90f53"
-  },
+
   {
     "title": "Akte with .VRIL, Deano & Philipp Stoffel",
     "venue": "Gewölbe",
@@ -688,15 +659,7 @@
     "url": "",
     "id": "414f3733"
   },
-  {
-    "title": "WILL SPARKS PRES. BY Bootshaus",
-    "venue": "Bootshaus",
-    "date": "2025-06-13",
-    "startTime": "23:00",
-    "artists": [],
-    "url": "",
-    "id": "45354403"
-  },
+
   {
     "title": "King Kong Kicks + Rave is King • Indie Pop & Hypes • Helios 37 • Köln",
     "venue": "Helios37",
