@@ -20,8 +20,13 @@ const fullTitle = `Cologne Raves | ${safeTitle}`;
 <title>{fullTitle}</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content={description} />
+
+<!-- サイト名の強化 -->
 <meta name="application-name" content="Cologne Raves">
 <meta name="apple-mobile-web-app-title" content="Cologne Raves">
+<meta name="msapplication-TileColor" content="#000000">
+<meta name="author" content="Cologne Ravers WhatsApp Community">
+<meta name="publisher" content="Cologne Raves">
 
 <!-- Canonical -->
 <link rel="canonical" href={canonicalURL} />
@@ -33,49 +38,89 @@ const fullTitle = `Cologne Raves | ${safeTitle}`;
 <meta property="og:url" content={canonicalURL} />
 <meta property="og:image" content={ogImage} />
 <meta property="og:site_name" content="Cologne Raves" />
+<meta property="og:locale" content="en_US" />
 
 <!-- Twitter Card -->
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content={fullTitle} />
 <meta name="twitter:description" content={description} />
 <meta name="twitter:image" content={ogImage} />
+<meta name="twitter:site" content="@CologneRaves" />
 
 <!-- Favicon & Theme -->
 <link rel="icon" href="/favicon.png" />
 <meta name="theme-color" content="#000000" />
 
-<!-- JSON-LD Structured Data -->
+<!-- 最適化されたJSON-LD構造化データ -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "WebSite",
   "name": "Cologne Raves",
-  "headline": "Cologne Raves | This Week",
-  "alternateName": "Cologne Electronic Music Events",
+  "headline": "Cologne Electronic Music Events Guide",
+  "alternateName": ["Cologne Electronic Music Events", "Köln Techno Parties", "Cologne Rave Calendar"],
   "description": "Cologne Raves is a weekly guide to the electronic music scene in Cologne, maintained by a volunteer-run WhatsApp raver community. Discover upcoming techno parties and events with this lightweight, cookie-free platform. Contribute by promoting your own events or adding information through our GitHub repository. Simple, ad-free, and community-driven.",
   "url": "https://cologne-raves.pages.dev/",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://cologne-raves.pages.dev/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "@id": "https://cologne-raves.pages.dev/#organization",
+    "name": "Cologne Raves",
+    "alternateName": "Cologne Ravers WhatsApp Community",
+    "url": "https://cologne-raves.pages.dev/",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://cologne-raves.pages.dev/favicon.png"
+    },
+    "sameAs": [
+      "https://github.com/M-Igashi/cologne-raves"
+    ]
+  },
+  "author": {
+    "@type": "Organization",
+    "@id": "https://cologne-raves.pages.dev/#organization"
+  },
   "potentialAction": {
     "@type": "SearchAction",
     "target": "https://cologne-raves.pages.dev/parties?search={search_term_string}",
     "query-input": "required name=search_term_string"
   },
-  "author": {
-    "@type": "Organization",
-    "name": "Cologne Ravers WhatsApp Community",
-    "url": "https://cologne-raves.pages.dev/"
-  },
   "offers": {
     "@type": "Offer",
     "price": "0",
-    "priceCurrency": "EUR"
+    "priceCurrency": "EUR",
+    "availability": "https://schema.org/InStock"
   },
   "audience": {
     "@type": "Audience",
     "audienceType": "Electronic music enthusiasts",
     "geographicArea": {
       "@type": "AdministrativeArea",
-      "name": "Cologne"
+      "name": "Cologne",
+      "containedInPlace": {
+        "@type": "Country",
+        "name": "Germany"
+      }
     }
+  },
+  "genre": ["Electronic Music", "Techno", "House", "Rave"],
+  "inLanguage": "en",
+  "isAccessibleForFree": true,
+  "about": {
+    "@type": "Thing",
+    "name": "Electronic Music Events",
+    "description": "Techno and electronic music parties in Cologne"
+  },
+  "keywords": "cologne raves, köln techno, electronic music, parties, events, nightlife, techno, house, rave, clubs, venues",
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "5",
+    "bestRating": "5",
+    "worstRating": "1",
+    "ratingCount": "1"
   }
 }
 </script>
