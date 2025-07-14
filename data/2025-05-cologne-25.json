@@ -37,7 +37,7 @@
     ],
     "url": "https://www.instagram.com/p/DKZ2yH0o8VY/"
   },
-    {
+  {
     "id": "a413a339",
     "title": "NURBÖSE x SYMBIOTIKKA",
     "venue": "Schrotty",
@@ -51,7 +51,7 @@
     ],
     "url": "https://t.rausgegangen.de/tickets/nurbose-x-symbiotikka"
   },
-    {
+  {
     "id": "541b2437",
     "title": "Kinky Circus",
     "venue": "Club Bahnhof Ehrenfeld",
@@ -74,17 +74,17 @@
     ],
     "url": "https://www.kinky-one.com"
   },
-      {
-    "id": "",
+  {
+    "id": "2b1b2d73",
     "title": "NURBÖSE",
     "venue": "Helios 37",
     "date": "2025-08-09",
     "startTime": "23:00",
     "artists": [
-"MÈTARAPH",
-"NANA YAA",
-"GLUCOSE",
-"DØPAIR"
+      "MÈTARAPH",
+      "NANA YAA",
+      "GLUCOSE",
+      "DØPAIR"
     ],
     "url": "https://rausgegangen.de/en/events/nurbose-09-august-2025-0/"
   }
