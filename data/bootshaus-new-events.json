@@ -40,11 +40,13 @@
     "venue": "Bootshaus",
     "date": "2025-05-10",
     "title": "Biscits pres. by TechHouseGermany!",
-    "artists": ["Biscits",
+    "artists": [
+      "Biscits",
       "Elternhouse b2b Gidibangbang",
       "Vin Vega",
       "Finiq b2b Vince Versa",
-      "Mersy"],
+      "Mersy"
+    ],
     "startTime": "22:00",
     "url": "https://bootshaus.tv/events/biscits-pres-by-techhousegermany"
   },
@@ -82,13 +84,14 @@
     "title": "BLACKLIST pres. INFEKT / NIMDA and more!",
     "artists": [
       "INFEKT",
-"NIMDA",
-"Elle Rich",
-"Autodrive",
-    "Yussi",
-"MINIRO",
-"CHOPPAZ",
-"Déjà-Vu"],
+      "NIMDA",
+      "Elle Rich",
+      "Autodrive",
+      "Yussi",
+      "MINIRO",
+      "CHOPPAZ",
+      "Déjà-Vu"
+    ],
     "startTime": "23:00",
     "url": "https://bootshaus.tv/events/blacklist-pres-infekt-nimda-and-more"
   },
@@ -99,8 +102,8 @@
     "title": "SA * 31.05.2025 | KitKatClub",
     "artists": [
       "Clark Kent",
-"Jam El Mar",
-"Marc Lange"
+      "Jam El Mar",
+      "Marc Lange"
     ],
     "startTime": "22:00",
     "url": "https://bootshaus.tv/events/sa-31-05-2025-kitkatclub"
@@ -119,7 +122,9 @@
     "venue": "Bootshaus",
     "date": "2025-06-08",
     "title": "Bootshaus on a Ship w. BENNETT / DJ DALI and more!",
-    "artists": ["DJ DALI"],
+    "artists": [
+      "DJ DALI"
+    ],
     "startTime": "14:00",
     "url": "https://bootshaus.tv/events/bootshaus-on-a-ship-w-bennett-dj-dali-and-more"
   },
@@ -132,7 +137,6 @@
     "startTime": "22:00",
     "url": "https://bootshaus.tv/events/bootshaus-sommerfest-auf-4-floors-2025"
   },
-
   {
     "id": "3079f42e",
     "venue": "Bootshaus",
@@ -142,12 +146,16 @@
     "startTime": "12:00",
     "url": "https://bootshaus.tv/events/nibirii-festival-2025"
   },
-    {
-    "id": "",
+  {
+    "id": "9a89675a",
     "venue": "Bootshaus",
     "date": "2025-08-30",
     "title": "KITKATCLUB Tour",
-    "artists": ["Clark Kent","Lucien Foort","Monty"],
+    "artists": [
+      "Clark Kent",
+      "Lucien Foort",
+      "Monty"
+    ],
     "startTime": "22:00",
     "url": "https://bootshaus.tv/events/nibirii-festival-2025"
   },
