@@ -142,6 +142,15 @@
     "startTime": "12:00",
     "url": "https://bootshaus.tv/events/nibirii-festival-2025"
   },
+    {
+    "id": "",
+    "venue": "Bootshaus",
+    "date": "2025-08-30",
+    "title": "KITKATCLUB Tour",
+    "artists": ["Clark Kent","Lucien Foort","Monty"],
+    "startTime": "22:00",
+    "url": "https://bootshaus.tv/events/nibirii-festival-2025"
+  },
   {
     "id": "f712bab7",
     "venue": "Bootshaus",
