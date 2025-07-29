@@ -21,8 +21,26 @@ jobs:
     - name: Install dependencies
       run: npm ci
 
+    - name: Verify files
+      run: |
+        echo "Checking for wrangler.jsonc:"
+        ls -la wrangler.jsonc || echo "wrangler.jsonc not found"
+        echo "Content of wrangler.jsonc:"
+        cat wrangler.jsonc || echo "Cannot read wrangler.jsonc"
+        echo "Checking dist directory after build:"
+
     - name: Build
       run: npm run build
+
+    - name: Check build output
+      run: |
+        echo "Contents of dist directory:"
+        ls -la dist/ || echo "dist directory not found"
+
+    - name: Test Wrangler auth
+      run: |
+        echo "Testing Wrangler authentication:"
+        npx wrangler whoami || echo "Wrangler auth failed"
 
     - name: Deploy to Cloudflare Workers
       uses: cloudflare/wrangler-action@v3
