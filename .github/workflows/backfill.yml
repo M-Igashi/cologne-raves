@@ -12,14 +12,15 @@ jobs:
 
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           persist-credentials: false  # ←★ 必須（これがないとデフォルトトークンが使われる）
 
       - name: Set up Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: 18
+          cache: 'npm'
 
       - name: Install dependencies
         run: npm ci
@@ -34,3 +35,11 @@ jobs:
           git add data/*.json
           git commit -m "chore: backfill missing IDs" || echo "No changes to commit"
           git push https://x-access-token:${{ secrets.GH_PAT }}@github.com/${{ github.repository }}.git HEAD:main
+
+      - name: Deploy to Cloudflare Workers (if changes were made)
+        uses: cloudflare/wrangler-action@v3
+        if: success()
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: deploy
