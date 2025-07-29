@@ -29,18 +29,14 @@ jobs:
         run: node backfill-id.js
 
       - name: Commit & Push changes
-        id: commit
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add data/*.json
-          git commit -m "chore: backfill missing IDs" || echo "No changes to commit"
-          git push https://x-access-token:${{ secrets.GH_PAT }}@github.com/${{ github.repository }}.git HEAD:main
-
-      - name: Deploy to Cloudflare Workers (if changes were made)
-        uses: cloudflare/wrangler-action@v3
-        if: success() && steps.commit.outcome == 'success'
-        with:
-          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          command: deploy
+          if git diff --staged --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "chore: backfill missing IDs"
+            git push https://x-access-token:${{ secrets.GH_PAT }}@github.com/${{ github.repository }}.git HEAD:main
+            echo "Changes pushed - main deploy workflow will handle deployment"
+          fi
