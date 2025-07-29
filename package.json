@@ -39,13 +39,14 @@
   },
   "devDependencies": {
     "@cloudflare/workers-types": "^4.20250204.0",
-    "wrangler": "3.107.3"
+    "wrangler": "^4.0.0"
   },
   "scripts": {
     "astro": "astro",
     "build": "astro build",
     "check": "astro build && tsc && wrangler deploy --dry-run",
     "deploy": "astro build && wrangler deploy",
+    "deploy:dry-run": "astro build && wrangler deploy --dry-run",
     "dev": "astro dev",
     "preview": "astro build && wrangler dev",
     "types": "wrangler types"

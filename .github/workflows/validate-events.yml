@@ -10,12 +10,16 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Set up Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: 20
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
 
       - name: Install ajv-cli
         run: npm install -g ajv-cli
@@ -26,3 +30,13 @@ jobs:
             echo "Validating $file"
             ajv validate -s event.schema.json -d "$file" --strict=false
           done
+
+      - name: Build (to ensure deployment will work)
+        run: npm run build
+
+      - name: Test deploy (dry run)
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: deploy --dry-run
