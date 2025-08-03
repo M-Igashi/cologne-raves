@@ -30,11 +30,14 @@ for (const party of futureParties) {
 }
 
 const sortedMonthKeys = Object.keys(partiesByMonth).sort();
+
+// SEO関連の変数  
+const canonicalURL = new URL(Astro.url.pathname, Astro.site || "https://cologne.ravers.workers.dev").href;
 ---
 
 <html lang="en" class="dark">
   <head>
-    <BaseHead title="All Parties | Cologne Raves" />
+    <BaseHead title="All Parties | Cologne Raves" canonicalURL={canonicalURL} />
   </head>
   <body class="min-h-screen bg-black text-white font-sans max-w-3xl mx-auto px-4 py-6 sm:px-6 lg:px-8 flex flex-col">
     <Header active="all-parties" />
