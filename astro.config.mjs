@@ -7,6 +7,14 @@ import tailwind from "@astrojs/tailwind";
 
 export default defineConfig({
   site: "https://cologne.ravers.workers.dev",
-  integrations: [react(), mdx(), sitemap(), tailwind()],
+  integrations: [
+    react(), 
+    mdx(), 
+    sitemap({
+      customPages: [],
+      entryLimit: 10000,
+    }), 
+    tailwind()
+  ],
   output: "static",
 });
