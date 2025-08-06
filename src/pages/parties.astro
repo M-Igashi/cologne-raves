@@ -32,7 +32,7 @@ for (const party of futureParties) {
 const sortedMonthKeys = Object.keys(partiesByMonth).sort();
 
 // SEO関連の変数  
-const canonicalURL = new URL(Astro.url.pathname, Astro.site || "https://cologne.ravers.workers.dev").href;
+const canonicalURL = new URL(Astro.url.pathname, "https://cologne.ravers.workers.dev").href;
 ---
 
 <html lang="en" class="dark">
