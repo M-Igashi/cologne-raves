@@ -1,15 +1,19 @@
 ---
+import BaseHead from '../components/BaseHead.astro';
 import ExtractEvents from "@/components/Extract";
 import { getAllParties } from "@/lib/getAllParties";
 
 const allParties = await getAllParties();
+const canonicalURL = "https://cologne.ravers.workers.dev/extract/";
 ---
 
 <html lang="en" class="dark">
   <head>
-    <title>Extract Events | Cologne Raves</title>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <BaseHead 
+      title="Extract Events | Cologne Raves" 
+      description="Extract and analyze electronic music events data for Cologne. Data processing tools for event information."
+      canonicalURL={canonicalURL}
+    />
   </head>
   <body class="p-8 max-w-3xl mx-auto bg-white text-black min-h-screen">
     <ExtractEvents client:load allParties={allParties} />
