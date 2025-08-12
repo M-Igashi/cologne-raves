@@ -1,0 +1,31 @@
+[
+  {
+    "id": "a736ad9d",
+    "title": "Kinky/One",
+    "venue": "Dillenburger Straße",
+    "date": "2025-09-13",
+    "startTime": "22:00",
+    "artists": [],
+    "url": "https://www.kinky-one.com"
+  },
+  {
+    "id": "4d15a036",
+    "title": "Kinky Circus",
+    "venue": "Club Bahnhof Ehrenfeld",
+    "date": "2025-09-27",
+    "startTime": "22:00",
+    "artists": [],
+    "url": "https://www.kinkycircus.de/tickets-koeln-cbe/"
+  },
+  {
+    "id": "56675cf4",
+    "title": "Bittersweet ",
+    "venue": "Hidden Club, Brabanter Str. 15",
+    "date": "2025-09-20",
+    "startTime": "20:00",
+    "artists": [
+      "TOBI SMIL3 aka HalfNaked"
+    ],
+    "url": "https://nightevents.ticket.io/mzzynwn3/?"
+  }
+]
