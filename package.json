@@ -14,6 +14,7 @@
     "dash": true
   },
   "dependencies": {
+    "@astrojs/cloudflare": "^12.6.3",
     "@astrojs/mdx": "4.0.3",
     "@astrojs/react": "^4.2.3",
     "@astrojs/rss": "4.0.11",

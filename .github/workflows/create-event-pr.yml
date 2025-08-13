@@ -1,0 +1,157 @@
+name: Create Event PR
+
+on:
+  workflow_dispatch:
+    inputs:
+      events_json:
+        description: 'JSON string of events data'
+        required: true
+        type: string
+      filename:
+        description: 'Filename for the JSON file'
+        required: true
+        type: string
+      submitter_email:
+        description: 'Email of the submitter (optional)'
+        required: false
+        type: string
+        default: 'anonymous'
+
+jobs:
+  create-pr:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+      
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20'
+
+    - name: Create branch name
+      id: branch
+      run: |
+        TIMESTAMP=$(date +%Y%m%d-%H%M%S)
+        BRANCH_NAME="event-submission-${TIMESTAMP}"
+        echo "name=${BRANCH_NAME}" >> $GITHUB_OUTPUT
+
+    - name: Create new branch
+      run: |
+        git config --global user.email "github-actions[bot]@users.noreply.github.com"
+        git config --global user.name "GitHub Actions Bot"
+        git checkout -b ${{ steps.branch.outputs.name }}
+
+    - name: Create event file
+      run: |
+        echo '${{ inputs.events_json }}' | jq '.' > data/${{ inputs.filename }}
+
+    - name: Validate JSON format
+      run: |
+        if ! jq empty data/${{ inputs.filename }}; then
+          echo "Invalid JSON format"
+          exit 1
+        fi
+
+    - name: Validate events
+      run: |
+        echo "Validating events..."
+        node -e "
+        const fs = require('fs');
+        const events = JSON.parse(fs.readFileSync('data/${{ inputs.filename }}', 'utf8'));
+        
+        // Basic validation
+        if (!Array.isArray(events)) {
+          console.error('Events must be an array');
+          process.exit(1);
+        }
+        
+        events.forEach((event, index) => {
+          // Check required fields
+          const required = ['id', 'title', 'venue', 'date', 'startTime'];
+          const missing = required.filter(field => !event[field]);
+          
+          if (missing.length > 0) {
+            console.error(\`Event \${index + 1} missing required fields: \${missing.join(', ')}\`);
+            process.exit(1);
+          }
+          
+          // Validate date format (YYYY-MM-DD)
+          if (!/^\d{4}-\d{2}-\d{2}$/.test(event.date)) {
+            console.error(\`Event \${index + 1} has invalid date format: \${event.date}\`);
+            process.exit(1);
+          }
+          
+          // Validate time format (HH:MM)
+          if (!/^\d{2}:\d{2}$/.test(event.startTime)) {
+            console.error(\`Event \${index + 1} has invalid time format: \${event.startTime}\`);
+            process.exit(1);
+          }
+          
+          // Validate artists array if present
+          if (event.artists && !Array.isArray(event.artists)) {
+            console.error(\`Event \${index + 1} artists must be an array\`);
+            process.exit(1);
+          }
+        });
+        
+        console.log('All events validated successfully!');
+        "
+
+    - name: Commit changes
+      run: |
+        git add data/${{ inputs.filename }}
+        git commit -m "Add events: ${{ inputs.filename }}
+        
+        Submitted by: ${{ inputs.submitter_email }}
+        Timestamp: $(date -u +%Y-%m-%d' '%H:%M:%S' UTC')"
+
+    - name: Push branch
+      run: |
+        git push origin ${{ steps.branch.outputs.name }}
+
+    - name: Create Pull Request
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: |
+        gh pr create \
+          --title "🎉 New Events: ${{ inputs.filename }}" \
+          --body "## New Event Submission
+          
+          **File:** \`data/${{ inputs.filename }}\`
+          **Submitted by:** ${{ inputs.submitter_email }}
+          **Timestamp:** $(date -u +%Y-%m-%d' '%H:%M:%S' UTC')
+          
+          ### Events Summary
+          This PR adds new events from the web form submission.
+          
+          <details>
+          <summary>📋 Event Data Preview</summary>
+          
+          \`\`\`json
+          ${{ inputs.events_json }}
+          \`\`\`
+          </details>
+          
+          ### Validation Status
+          - ✅ JSON format validated
+          - ✅ Required fields present
+          - ✅ Date/time formats correct
+          
+          ### Review Checklist
+          - [ ] Event information looks correct
+          - [ ] No duplicate events
+          - [ ] Venues are spelled correctly
+          - [ ] Dates are in the future
+          
+          ---
+          *This PR was automatically created from a form submission at https://cologne.ravers.workers.dev/form/*" \
+          --label "event-submission" \
+          --label "automated" \
+          --assignee "M-Igashi" \
+          --base main \
+          --head ${{ steps.branch.outputs.name }}
