@@ -15,6 +15,11 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
+import {
+  Alert,
+  AlertDescription,
+  AlertTitle,
+} from "@/components/ui/alert";
 
 const { saveAs } = fileSaver;
 
@@ -42,6 +47,12 @@ export default function EventForm() {
   const [events, setEvents] = useState<EventData[]>([generateDefaultEvent()]);
   const [filenameSuffix, setFilenameSuffix] = useState<string>("");
   const [showJson, setShowJson] = useState(false);
+  const [submitterEmail, setSubmitterEmail] = useState<string>("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<{
+    type: 'success' | 'error' | null;
+    message: string;
+  }>({ type: null, message: '' });
 
   const updateEvent = (index: number, field: keyof EventData, value: string) => {
     const updated = [...events];
@@ -87,10 +98,89 @@ export default function EventForm() {
 
   const isValidTime = (time: string) => /^\d{2}:\d{2}$/.test(time);
 
+  const validateEvents = (): boolean => {
+    for (const event of events) {
+      if (!event.title || !event.venue || !event.date || !event.startTime) {
+        setSubmitStatus({
+          type: 'error',
+          message: 'All events must have title, venue, date, and start time filled in.'
+        });
+        return false;
+      }
+      if (!isValidTime(event.startTime)) {
+        setSubmitStatus({
+          type: 'error',
+          message: 'All start times must be in HH:MM format (e.g., 23:00).'
+        });
+        return false;
+      }
+    }
+    return true;
+  };
+
+  const submitAsPullRequest = async () => {
+    if (!validateEvents()) {
+      return;
+    }
+
+    setIsSubmitting(true);
+    setSubmitStatus({ type: null, message: '' });
+
+    try {
+      const response = await fetch('/api/submit-event', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          events: generateJson(),
+          filename: getFilename(),
+          submitterEmail: submitterEmail || 'anonymous'
+        })
+      });
+
+      const result = await response.json();
+
+      if (response.ok) {
+        setSubmitStatus({
+          type: 'success',
+          message: result.message || 'Your events have been submitted successfully! A pull request will be created shortly.'
+        });
+        // Clear form after successful submission
+        setTimeout(() => {
+          setEvents([generateDefaultEvent()]);
+          setFilenameSuffix('');
+          setSubmitterEmail('');
+        }, 3000);
+      } else {
+        setSubmitStatus({
+          type: 'error',
+          message: result.error || 'Failed to submit events. Please try again.'
+        });
+      }
+    } catch (error) {
+      console.error('Submission error:', error);
+      setSubmitStatus({
+        type: 'error',
+        message: 'Network error. Please check your connection and try again.'
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
   return (
     <div className="space-y-6">
       <h2 className="text-xl font-bold">Create Event JSON</h2>
       <p className="text-gray-700">Create Your Cologne Raves Events JSON</p>
+
+      <Alert className="border-blue-500 bg-blue-50">
+        <AlertTitle>📤 Submit as Pull Request</AlertTitle>
+        <AlertDescription>
+          You can now submit your events directly as a pull request to the repository! 
+          Fill in the form below and click "Submit as Pull Request" to create a PR automatically.
+        </AlertDescription>
+      </Alert>
 
       <div>
         <label className="block font-medium">
@@ -100,6 +190,18 @@ export default function EventForm() {
           value={filenameSuffix}
           onChange={(e) => setFilenameSuffix(e.target.value)}
           placeholder="events-update"
+        />
+      </div>
+
+      <div>
+        <label className="block font-medium">
+          Your Email <span className="text-gray-500 text-sm">(optional, for attribution)</span>
+        </label>
+        <Input
+          type="email"
+          value={submitterEmail}
+          onChange={(e) => setSubmitterEmail(e.target.value)}
+          placeholder="your@email.com"
         />
       </div>
 
@@ -192,8 +294,22 @@ export default function EventForm() {
         <Button onClick={addEvent}>+ Add Event</Button>
       )}
 
+      {submitStatus.type && (
+        <Alert className={submitStatus.type === 'success' ? 'border-green-500 bg-green-50' : 'border-red-500 bg-red-50'}>
+          <AlertTitle>{submitStatus.type === 'success' ? '✅ Success' : '❌ Error'}</AlertTitle>
+          <AlertDescription>{submitStatus.message}</AlertDescription>
+        </Alert>
+      )}
+
       <div className="flex flex-wrap gap-4 pt-4">
-        <Button onClick={downloadJson}>Generate JSON</Button>
+        <Button onClick={downloadJson}>📥 Download JSON</Button>
+        <Button 
+          onClick={submitAsPullRequest}
+          disabled={isSubmitting}
+          className="bg-green-600 hover:bg-green-700"
+        >
+          {isSubmitting ? 'Submitting...' : '🚀 Submit as Pull Request'}
+        </Button>
         <Button variant="outline" onClick={() => setShowJson(!showJson)}>
           {showJson ? "Hide JSON" : "Show JSON"}
         </Button>
