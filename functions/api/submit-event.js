@@ -39,11 +39,29 @@ export async function onRequestPost(context) {
       }
     }
 
-    // Get GitHub token from environment
-    const githubToken = env.GITHUB_TOKEN;
+    // Get GitHub token from Secrets Store or environment variable
+    let githubToken;
+    
+    // Try to get from Secrets Store first
+    if (env.SECRETS) {
+      try {
+        githubToken = await env.SECRETS.get('GITHUB_TOKEN');
+      } catch (e) {
+        console.error('Failed to get token from Secrets Store:', e);
+      }
+    }
+    
+    // Fallback to environment variable
+    if (!githubToken && env.GITHUB_TOKEN) {
+      githubToken = env.GITHUB_TOKEN;
+    }
+    
     if (!githubToken) {
-      console.error('GITHUB_TOKEN not configured');
-      return new Response(JSON.stringify({ error: 'Server configuration error' }), {
+      console.error('GITHUB_TOKEN not configured in Secrets Store or environment');
+      return new Response(JSON.stringify({ 
+        error: 'Server configuration error',
+        details: 'GitHub authentication not configured' 
+      }), {
         status: 500,
         headers
       });
@@ -63,6 +81,7 @@ export async function onRequestPost(context) {
           'Accept': 'application/vnd.github.v3+json',
           'Authorization': `Bearer ${githubToken}`,
           'Content-Type': 'application/json',
+          'User-Agent': 'Cologne-Raves-Worker'
         },
         body: JSON.stringify({
           ref: 'main',
@@ -75,12 +94,35 @@ export async function onRequestPost(context) {
       }
     );
 
+    // GitHub API returns 204 No Content on success for workflow dispatch
+    if (workflowResponse.status === 204) {
+      return new Response(JSON.stringify({ 
+        success: true,
+        message: 'Pull request creation initiated! Check the repository for the new PR in a few moments.' 
+      }), {
+        status: 200,
+        headers
+      });
+    }
+
+    // Handle other responses
     if (!workflowResponse.ok) {
       const errorText = await workflowResponse.text();
-      console.error('GitHub API error:', errorText);
+      console.error('GitHub API error:', workflowResponse.status, errorText);
+      
+      // Provide more specific error messages
+      let errorMessage = 'Failed to create pull request';
+      if (workflowResponse.status === 404) {
+        errorMessage = 'Workflow not found. Please check the workflow file exists in the repository.';
+      } else if (workflowResponse.status === 401) {
+        errorMessage = 'Authentication failed. Please check the GitHub token permissions.';
+      } else if (workflowResponse.status === 403) {
+        errorMessage = 'Permission denied. The GitHub token may lack necessary permissions.';
+      }
+      
       return new Response(JSON.stringify({ 
-        error: 'Failed to create pull request',
-        details: errorText 
+        error: errorMessage,
+        details: errorText || `Status: ${workflowResponse.status}`
       }), {
         status: 500,
         headers
