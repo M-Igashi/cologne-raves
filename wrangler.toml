@@ -1,13 +1,12 @@
 name = "cologne"
 compatibility_date = "2025-06-05"
-main = "dist/_worker.js"
 
 [site]
 bucket = "./dist"
 
-# Secrets Store binding will be configured in the dashboard
-# [[secrets]]
-# binding = "SECRETS"
+# Environment variables can be set in the dashboard
+# [vars]
+# GITHUB_TOKEN = "your-token-here"  # DO NOT commit actual tokens
 
 # Routes are configured in the dashboard
 # route = "cologne.ravers.workers.dev/*"

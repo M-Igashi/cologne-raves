@@ -39,28 +39,14 @@ export async function onRequestPost(context) {
       }
     }
 
-    // Get GitHub token from Secrets Store or environment variable
-    let githubToken;
-    
-    // Try to get from Secrets Store first
-    if (env.SECRETS) {
-      try {
-        githubToken = await env.SECRETS.get('GITHUB_TOKEN');
-      } catch (e) {
-        console.error('Failed to get token from Secrets Store:', e);
-      }
-    }
-    
-    // Fallback to environment variable
-    if (!githubToken && env.GITHUB_TOKEN) {
-      githubToken = env.GITHUB_TOKEN;
-    }
+    // Get GitHub token from environment variable
+    const githubToken = env.GITHUB_TOKEN;
     
     if (!githubToken) {
-      console.error('GITHUB_TOKEN not configured in Secrets Store or environment');
+      console.error('GITHUB_TOKEN not configured');
       return new Response(JSON.stringify({ 
         error: 'Server configuration error',
-        details: 'GitHub authentication not configured' 
+        details: 'GitHub authentication not configured. Please contact the administrator.' 
       }), {
         status: 500,
         headers
@@ -71,6 +57,8 @@ export async function onRequestPost(context) {
     const GITHUB_OWNER = 'M-Igashi';
     const GITHUB_REPO = 'cologne-raves';
     const GITHUB_WORKFLOW_ID = 'create-event-pr.yml';
+
+    console.log('Triggering workflow dispatch...');
 
     // Trigger GitHub Actions workflow
     const workflowResponse = await fetch(
@@ -94,6 +82,8 @@ export async function onRequestPost(context) {
       }
     );
 
+    console.log('GitHub API response status:', workflowResponse.status);
+
     // GitHub API returns 204 No Content on success for workflow dispatch
     if (workflowResponse.status === 204) {
       return new Response(JSON.stringify({ 
@@ -115,9 +105,11 @@ export async function onRequestPost(context) {
       if (workflowResponse.status === 404) {
         errorMessage = 'Workflow not found. Please check the workflow file exists in the repository.';
       } else if (workflowResponse.status === 401) {
-        errorMessage = 'Authentication failed. Please check the GitHub token permissions.';
+        errorMessage = 'Authentication failed. Please check the GitHub token.';
       } else if (workflowResponse.status === 403) {
         errorMessage = 'Permission denied. The GitHub token may lack necessary permissions.';
+      } else if (workflowResponse.status === 422) {
+        errorMessage = 'Invalid request. Please check the workflow inputs.';
       }
       
       return new Response(JSON.stringify({ 
