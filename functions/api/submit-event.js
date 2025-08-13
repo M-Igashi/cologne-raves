@@ -56,13 +56,57 @@ export async function onRequestPost(context) {
     // GitHub API configuration
     const GITHUB_OWNER = 'M-Igashi';
     const GITHUB_REPO = 'cologne-raves';
-    const GITHUB_WORKFLOW_ID = 'create-event-pr.yml';
+    
+    // First, let's try to get the workflow ID
+    console.log('Fetching workflows list...');
+    
+    const workflowsResponse = await fetch(
+      `https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/actions/workflows`,
+      {
+        method: 'GET',
+        headers: {
+          'Accept': 'application/vnd.github.v3+json',
+          'Authorization': `Bearer ${githubToken}`,
+          'User-Agent': 'Cologne-Raves-Worker'
+        }
+      }
+    );
 
+    if (!workflowsResponse.ok) {
+      console.error('Failed to fetch workflows:', workflowsResponse.status);
+      const errorText = await workflowsResponse.text();
+      return new Response(JSON.stringify({ 
+        error: 'Failed to fetch workflows',
+        details: errorText 
+      }), {
+        status: 500,
+        headers
+      });
+    }
+
+    const workflowsData = await workflowsResponse.json();
+    console.log('Available workflows:', workflowsData.workflows.map(w => ({ name: w.name, path: w.path, id: w.id })));
+    
+    // Find our workflow
+    const workflow = workflowsData.workflows.find(w => w.path === '.github/workflows/create-event-pr.yml');
+    
+    if (!workflow) {
+      console.error('Workflow not found in repository');
+      return new Response(JSON.stringify({ 
+        error: 'Workflow configuration error',
+        details: 'create-event-pr.yml workflow not found in repository' 
+      }), {
+        status: 500,
+        headers
+      });
+    }
+
+    console.log('Found workflow:', workflow.name, 'ID:', workflow.id);
     console.log('Triggering workflow dispatch...');
 
-    // Trigger GitHub Actions workflow
+    // Trigger GitHub Actions workflow using the workflow ID
     const workflowResponse = await fetch(
-      `https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/actions/workflows/${GITHUB_WORKFLOW_ID}/dispatches`,
+      `https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/actions/workflows/${workflow.id}/dispatches`,
       {
         method: 'POST',
         headers: {
