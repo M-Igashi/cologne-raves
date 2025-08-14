@@ -41,6 +41,27 @@ const canonicalURL = new URL(Astro.url.pathname, "https://cologne.ravers.workers
   </head>
   <body class="min-h-screen bg-black text-white font-sans max-w-3xl mx-auto px-4 py-6 sm:px-6 lg:px-8 flex flex-col">
     <Header active="all-parties" />
+    
+    {/* Event Submission Banner */}
+    <div class="bg-gradient-to-r from-purple-600 to-pink-600 rounded-lg p-4 mb-6">
+      <div class="flex flex-col sm:flex-row items-center justify-between gap-3">
+        <div>
+          <h2 class="text-lg font-semibold text-white mb-1">Got an event coming up?</h2>
+          <p class="text-sm text-white/90">Submit your party or live show to our community calendar!</p>
+        </div>
+        <a 
+          href="https://cologne.ravers.workers.dev/form/" 
+          target="_blank"
+          class="inline-flex items-center px-4 py-2 bg-white text-black rounded-full hover:bg-gray-100 transition-colors font-medium text-sm whitespace-nowrap"
+        >
+          <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
+          </svg>
+          Submit Event
+        </a>
+      </div>
+    </div>
+    
     <main class="flex-1">
       <nav class="flex flex-wrap gap-2 mb-6 text-sm">
         <a href="/" class="px-3 py-1 border rounded-full text-white border-white text-sm">This Week</a>
