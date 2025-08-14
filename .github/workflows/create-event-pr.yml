@@ -28,6 +28,9 @@ jobs:
     steps:
     - name: Checkout repository
       uses: actions/checkout@v4
+      with:
+        # Use PAT if available, otherwise use default token
+        token: ${{ secrets.PAT_TOKEN || secrets.GITHUB_TOKEN }}
 
     - name: Setup Node.js
       uses: actions/setup-node@v4
@@ -117,7 +120,7 @@ jobs:
 
     - name: Create labels if they don't exist
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GH_TOKEN: ${{ secrets.PAT_TOKEN || secrets.GITHUB_TOKEN }}
       run: |
         # Create event-submission label if it doesn't exist
         gh label create "event-submission" \
@@ -131,12 +134,15 @@ jobs:
           --color "0052cc" \
           --force || echo "Label 'automated' already exists"
 
-    - name: Create PR body file
+    - name: Create Pull Request using API
+      env:
+        GH_TOKEN: ${{ secrets.PAT_TOKEN || secrets.GITHUB_TOKEN }}
       run: |
-        cat > pr_body.md << 'EOF'
-        ## New Event Submission
+        # Create PR using GitHub API directly
+        PR_TITLE="🎉 New Events: ${{ inputs.filename }}"
+        PR_BODY="## New Event Submission
         
-        **File:** `data/${{ inputs.filename }}`
+        **File:** \`data/${{ inputs.filename }}\`
         **Submitted by:** ${{ inputs.submitter_email }}
         **Timestamp:** $(date -u +%Y-%m-%d' '%H:%M:%S' UTC')
         
@@ -150,25 +156,28 @@ jobs:
         
         ### Review Checklist
         - [ ] Event information looks correct
-        - [ ] No duplicate events
+        - [ ] No duplicate events  
         - [ ] Venues are spelled correctly
         - [ ] Dates are in the future
         
         ### Event Data
-        Check the file `data/${{ inputs.filename }}` for the complete event data.
+        Check the file \`data/${{ inputs.filename }}\` for the complete event data.
         
         ---
-        *This PR was automatically created from a form submission at https://cologne.ravers.workers.dev/form/*
+        *This PR was automatically created from a form submission at https://cologne.ravers.workers.dev/form/*"
+        
+        # Create PR using API
+        curl -X POST \
+          -H "Accept: application/vnd.github.v3+json" \
+          -H "Authorization: Bearer ${GH_TOKEN}" \
+          https://api.github.com/repos/${{ github.repository }}/pulls \
+          -d @- << EOF
+        {
+          "title": "${PR_TITLE}",
+          "body": "${PR_BODY}",
+          "head": "${{ steps.branch.outputs.name }}",
+          "base": "main"
+        }
         EOF
-
-    - name: Create Pull Request
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      run: |
-        gh pr create \
-          --title "🎉 New Events: ${{ inputs.filename }}" \
-          --body-file pr_body.md \
-          --label "event-submission" \
-          --label "automated" \
-          --assignee "M-Igashi" \
-          --base main
+        
+        echo "Pull request created successfully!"
