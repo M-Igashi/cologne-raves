@@ -114,24 +114,17 @@ jobs:
       run: |
         git push origin ${{ steps.branch.outputs.name }}
 
-    - name: Create Pull Request
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    - name: Create PR body file
       run: |
-        # Create PR body content
-        PR_BODY="## New Event Submission
-
-        **File:** \`data/${{ inputs.filename }}\`
+        cat > pr_body.md << 'EOF'
+        ## New Event Submission
+        
+        **File:** `data/${{ inputs.filename }}`
         **Submitted by:** ${{ inputs.submitter_email }}
         **Timestamp:** $(date -u +%Y-%m-%d' '%H:%M:%S' UTC')
         
         ### Events Summary
         This PR adds new events from the web form submission.
-        
-        ### Event Data
-        \`\`\`json
-        ${{ inputs.events_json }}
-        \`\`\`
         
         ### Validation Status
         - ✅ JSON format validated
@@ -144,13 +137,20 @@ jobs:
         - [ ] Venues are spelled correctly
         - [ ] Dates are in the future
         
+        ### Event Data
+        Check the file `data/${{ inputs.filename }}` for the complete event data.
+        
         ---
-        *This PR was automatically created from a form submission at https://cologne.ravers.workers.dev/form/*"
+        *This PR was automatically created from a form submission at https://cologne.ravers.workers.dev/form/*
+        EOF
 
-        # Create the PR using GitHub CLI
-        echo "$PR_BODY" | gh pr create \
+    - name: Create Pull Request
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: |
+        gh pr create \
           --title "🎉 New Events: ${{ inputs.filename }}" \
-          --body-file - \
+          --body-file pr_body.md \
           --label "event-submission" \
           --label "automated" \
           --assignee "M-Igashi" \
