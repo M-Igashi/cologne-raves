@@ -44,12 +44,12 @@
   },
   "scripts": {
     "astro": "astro",
-    "build": "astro build && node fix-sitemap.js",
-    "check": "astro build && node fix-sitemap.js && tsc && wrangler deploy --dry-run",
-    "deploy": "astro build && node fix-sitemap.js && wrangler deploy",
-    "deploy:dry-run": "astro build && node fix-sitemap.js && wrangler deploy --dry-run",
+    "build": "astro build && node fix-sitemap.js && node copy-worker.js",
+    "check": "astro build && node fix-sitemap.js && node copy-worker.js && tsc && wrangler deploy --dry-run",
+    "deploy": "astro build && node fix-sitemap.js && node copy-worker.js && wrangler deploy",
+    "deploy:dry-run": "astro build && node fix-sitemap.js && node copy-worker.js && wrangler deploy --dry-run",
     "dev": "astro dev",
-    "preview": "astro build && node fix-sitemap.js && wrangler dev",
+    "preview": "astro build && node fix-sitemap.js && node copy-worker.js && wrangler dev",
     "types": "wrangler types"
   },
   "type": "module"
