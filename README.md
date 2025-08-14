@@ -1,8 +1,8 @@
 # Cologne Raves 🕺🌃
 
-This is the repository behind [cologne-raves.pages.dev](https://cologne-raves.pages.dev) — a community-powered party calendar for the Cologne area.
+This is the repository behind [cologne.ravers.workers.dev](https://cologne.ravers.workers.dev) — a community-powered party calendar for the Cologne area.
 
-We use [Astro](https://astro.build/) to build and deploy the site statically, and GitHub Pull Requests to manage event data contributed by the community.
+We use [Astro](https://astro.build/) to build and deploy the site statically via Cloudflare Workers, and GitHub Pull Requests to manage event data contributed by the community.
 
 ---
 
@@ -17,13 +17,23 @@ We use [Astro](https://astro.build/) to build and deploy the site statically, an
 
 ## 🔄 How to Contribute Events
 
+### Option 1: Easy Form Submission (Recommended) ✨
+
+1. **Go to the [Event Submission Form](https://cologne.ravers.workers.dev/form/)**
+2. Fill out event details (up to 4 events at once)
+3. Click "Create Pull Request"
+4. The form will automatically create a GitHub Pull Request for you
+5. Once approved and merged, your events will appear on the site
+
+> 🎉 No GitHub experience needed! The form handles everything for you.
+
+### Option 2: Manual GitHub Workflow
+
 1. **Create a new branch** from `main` in this repository  
    (e.g. `add-2025-04-bootshaus`)
 2. Add or edit a `.json` file inside the `/data/` folder  
-   Each file should contain an array of party objects (see below)
+   Each file should contain an array of party objects (see format below)
 3. Open a **Pull Request** (PR) into `main` from your branch
-
-Once your PR is merged, the website will automatically rebuild and display your events.
 
 > ✅ You do not need to fork this repository — it's public, and branching is preferred.
 
@@ -58,7 +68,7 @@ Each `.json` file must contain an **array of event objects** like this:
 - `url` (link to event page or ticket)
 - `id` (string – if omitted, it will be auto-generated)
 
-- We prepaired [Event JSON Generator](https://cologne-raves.pages.dev/form/) to easily create and/or update upto 4 events `.json` files.
+
 
 ---
 
@@ -68,7 +78,7 @@ Each `.json` file must contain an **array of event objects** like this:
 - IDs are shown in the corner of each event card (e.g. `#be790c46`)
 - Enter this ID **without the `#` symbol** (e.g. `be790c46`)
 - If no ID is specified, one will be generated automatically.
-- [Event JSON Generator](https://cologne-raves.pages.dev/form/) shows clear instruction for that.
+- The [Event Submission Form](https://cologne.ravers.workers.dev/form/) provides clear instructions for updating events.
 
 ---
 
@@ -90,4 +100,4 @@ The site is automatically deployed to:
 
 👉 **[https://cologne.ravers.workers.dev](https://cologne.ravers.workers.dev)**
 
-via Cloudflare Pages after each PR merge into `main`.
+via Cloudflare Workers after each PR merge into `main`.
