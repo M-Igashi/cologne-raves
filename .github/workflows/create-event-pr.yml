@@ -75,8 +75,8 @@ jobs:
         }
         
         events.forEach((event, index) => {
-          // Check required fields
-          const required = ['id', 'title', 'venue', 'date', 'startTime'];
+          // Check required fields (ID is optional for new events)
+          const required = ['title', 'venue', 'date', 'startTime'];
           const missing = required.filter(field => !event[field]);
           
           if (missing.length > 0) {
