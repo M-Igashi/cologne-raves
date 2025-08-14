@@ -118,40 +118,40 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
-        gh pr create \
+        # Create PR body content
+        PR_BODY="## New Event Submission
+
+        **File:** \`data/${{ inputs.filename }}\`
+        **Submitted by:** ${{ inputs.submitter_email }}
+        **Timestamp:** $(date -u +%Y-%m-%d' '%H:%M:%S' UTC')
+        
+        ### Events Summary
+        This PR adds new events from the web form submission.
+        
+        ### Event Data
+        \`\`\`json
+        ${{ inputs.events_json }}
+        \`\`\`
+        
+        ### Validation Status
+        - ✅ JSON format validated
+        - ✅ Required fields present
+        - ✅ Date/time formats correct
+        
+        ### Review Checklist
+        - [ ] Event information looks correct
+        - [ ] No duplicate events
+        - [ ] Venues are spelled correctly
+        - [ ] Dates are in the future
+        
+        ---
+        *This PR was automatically created from a form submission at https://cologne.ravers.workers.dev/form/*"
+
+        # Create the PR using GitHub CLI
+        echo "$PR_BODY" | gh pr create \
           --title "🎉 New Events: ${{ inputs.filename }}" \
-          --body "## New Event Submission
-          
-          **File:** \`data/${{ inputs.filename }}\`
-          **Submitted by:** ${{ inputs.submitter_email }}
-          **Timestamp:** $(date -u +%Y-%m-%d' '%H:%M:%S' UTC')
-          
-          ### Events Summary
-          This PR adds new events from the web form submission.
-          
-          <details>
-          <summary>📋 Event Data Preview</summary>
-          
-          \`\`\`json
-          ${{ inputs.events_json }}
-          \`\`\`
-          </details>
-          
-          ### Validation Status
-          - ✅ JSON format validated
-          - ✅ Required fields present
-          - ✅ Date/time formats correct
-          
-          ### Review Checklist
-          - [ ] Event information looks correct
-          - [ ] No duplicate events
-          - [ ] Venues are spelled correctly
-          - [ ] Dates are in the future
-          
-          ---
-          *This PR was automatically created from a form submission at https://cologne.ravers.workers.dev/form/*" \
+          --body-file - \
           --label "event-submission" \
           --label "automated" \
           --assignee "M-Igashi" \
-          --base main \
-          --head ${{ steps.branch.outputs.name }}
+          --base main
