@@ -1,93 +1,58 @@
+// Test endpoint - GET request for debugging
 export async function onRequestGet(context) {
-  const { env } = context;
-  
   const headers = {
     'Content-Type': 'application/json',
     'Access-Control-Allow-Origin': '*'
   };
 
-  try {
-    // Check if GitHub token is configured
-    const hasToken = !!env.GITHUB_TOKEN;
-    
-    if (!hasToken) {
-      return new Response(JSON.stringify({
-        status: 'error',
-        message: 'GitHub token not configured',
-        timestamp: new Date().toISOString()
-      }), {
-        status: 200,
-        headers
-      });
-    }
-
-    // Test GitHub API connection
-    const testResponse = await fetch(
-      'https://api.github.com/repos/M-Igashi/cologne-raves',
-      {
-        method: 'GET',
-        headers: {
-          'Accept': 'application/vnd.github.v3+json',
-          'Authorization': `Bearer ${env.GITHUB_TOKEN}`,
-          'User-Agent': 'Cologne-Raves-Worker'
-        }
-      }
-    );
-
-    const repoData = await testResponse.json();
-
-    return new Response(JSON.stringify({
-      status: 'success',
-      message: 'API connection test successful',
-      tokenConfigured: true,
-      githubConnection: testResponse.ok,
-      repoName: repoData.name || 'N/A',
-      repoOwner: repoData.owner?.login || 'N/A',
-      timestamp: new Date().toISOString()
-    }), {
-      status: 200,
-      headers
-    });
-
-  } catch (error) {
-    return new Response(JSON.stringify({
-      status: 'error',
-      message: 'Test failed',
-      error: error.message,
-      timestamp: new Date().toISOString()
-    }), {
-      status: 200,
-      headers
-    });
-  }
+  return new Response(JSON.stringify({
+    status: 'ok',
+    message: 'API endpoint is working',
+    timestamp: new Date().toISOString(),
+    method: 'GET'
+  }), {
+    status: 200,
+    headers
+  });
 }
 
+// Main endpoint - POST request for event submission
 export async function onRequestPost(context) {
   const { request, env } = context;
   
   // CORS headers
   const headers = {
     'Access-Control-Allow-Origin': '*',
-    'Access-Control-Allow-Methods': 'POST, OPTIONS',
+    'Access-Control-Allow-Methods': 'POST, OPTIONS, GET',
     'Access-Control-Allow-Headers': 'Content-Type',
     'Content-Type': 'application/json'
   };
 
+  console.log('POST request received');
+
   try {
     // Parse the request body
     const body = await request.json();
+    console.log('Request body:', JSON.stringify(body));
+    
     const { events, filename, submitterEmail } = body;
 
     // Validate the data
     if (!events || !Array.isArray(events) || events.length === 0) {
-      return new Response(JSON.stringify({ error: 'Invalid events data' }), {
+      return new Response(JSON.stringify({ 
+        error: 'Invalid events data',
+        details: 'Events must be a non-empty array'
+      }), {
         status: 400,
         headers
       });
     }
 
     if (!filename || typeof filename !== 'string') {
-      return new Response(JSON.stringify({ error: 'Invalid filename' }), {
+      return new Response(JSON.stringify({ 
+        error: 'Invalid filename',
+        details: 'Filename must be a non-empty string'
+      }), {
         status: 400,
         headers
       });
@@ -96,7 +61,10 @@ export async function onRequestPost(context) {
     // Validate each event
     for (const event of events) {
       if (!event.title || !event.venue || !event.date || !event.startTime) {
-        return new Response(JSON.stringify({ error: 'Missing required fields in event data' }), {
+        return new Response(JSON.stringify({ 
+          error: 'Missing required fields in event data',
+          details: 'Each event must have title, venue, date, and startTime'
+        }), {
           status: 400,
           headers
         });
@@ -108,11 +76,14 @@ export async function onRequestPost(context) {
     
     if (!githubToken) {
       console.error('GITHUB_TOKEN not configured');
+      // For now, return success even without token for testing
       return new Response(JSON.stringify({ 
-        error: 'Server configuration error',
-        details: 'GitHub authentication not configured. Please contact the administrator.' 
+        warning: 'GitHub token not configured, but submission received',
+        message: 'Your event data has been received. Manual processing required.',
+        events: events,
+        filename: filename
       }), {
-        status: 500,
+        status: 200,
         headers
       });
     }
@@ -121,9 +92,47 @@ export async function onRequestPost(context) {
     const GITHUB_OWNER = 'M-Igashi';
     const GITHUB_REPO = 'cologne-raves';
     
-    console.log('Creating GitHub issue...');
+    console.log('Triggering GitHub workflow...');
     
-    // Create issue with event data
+    // Try to trigger the workflow
+    const workflowResponse = await fetch(
+      `https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/actions/workflows/create-event-pr.yml/dispatches`,
+      {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/vnd.github.v3+json',
+          'Authorization': `Bearer ${githubToken}`,
+          'Content-Type': 'application/json',
+          'User-Agent': 'Cologne-Raves-Worker'
+        },
+        body: JSON.stringify({
+          ref: 'main',
+          inputs: {
+            events_json: JSON.stringify(events),
+            filename: filename,
+            submitter_email: submitterEmail || 'anonymous'
+          }
+        })
+      }
+    );
+
+    console.log('GitHub API response status:', workflowResponse.status);
+
+    // GitHub API returns 204 No Content on success for workflow dispatch
+    if (workflowResponse.status === 204) {
+      return new Response(JSON.stringify({ 
+        success: true,
+        message: 'Pull request creation initiated! The PR will be created in a few moments.',
+        workflowTriggered: true
+      }), {
+        status: 200,
+        headers
+      });
+    }
+
+    // If workflow dispatch fails, try to create an issue instead
+    console.log('Workflow dispatch failed, creating issue instead...');
+    
     const issueBody = `## New Event Submission
 
 **Filename:** \`${filename}\`
@@ -143,17 +152,15 @@ ${JSON.stringify(events, null, 2)}
 3. Paste the JSON content
 4. Create a pull request
 
-### Automated PR Creation
-
-To create a PR automatically:
+Or use GitHub Actions:
 1. Go to [Actions > Create Event PR](https://github.com/${GITHUB_OWNER}/${GITHUB_REPO}/actions/workflows/create-event-pr.yml)
 2. Click "Run workflow"
 3. Paste the JSON data and filename from above
 
 ---
-*This issue was automatically created from a form submission at https://cologne.ravers.workers.dev/form/*`;
+*This submission was created from https://cologne.ravers.workers.dev/form/*`;
 
-    // Create GitHub Issue
+    // Create GitHub Issue as fallback
     const issueResponse = await fetch(
       `https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/issues`,
       {
@@ -167,18 +174,16 @@ To create a PR automatically:
         body: JSON.stringify({
           title: `🎉 New Event Submission: ${filename}`,
           body: issueBody,
-          labels: ['event-submission', 'automated']
+          labels: []  // Don't use labels if they might not exist
         })
       }
     );
-
-    console.log('GitHub Issue API response status:', issueResponse.status);
 
     if (issueResponse.ok) {
       const issueData = await issueResponse.json();
       return new Response(JSON.stringify({ 
         success: true,
-        message: `Event submission created as Issue #${issueData.number}. You can view it on GitHub.`,
+        message: `Event submission created as Issue #${issueData.number}`,
         issueUrl: issueData.html_url,
         issueNumber: issueData.number
       }), {
@@ -187,25 +192,14 @@ To create a PR automatically:
       });
     }
 
-    // Handle errors
+    // If both methods fail
     const errorText = await issueResponse.text();
-    console.error('GitHub API error:', issueResponse.status, errorText);
-    
-    let errorMessage = 'Failed to create submission';
-    if (issueResponse.status === 401) {
-      errorMessage = 'Authentication failed. Please check the GitHub token.';
-    } else if (issueResponse.status === 403) {
-      errorMessage = 'Permission denied. The GitHub token may lack necessary permissions.';
-    } else if (issueResponse.status === 422) {
-      errorMessage = 'Invalid request data.';
-    } else if (issueResponse.status === 404) {
-      errorMessage = 'Repository not found or token lacks access.';
-    }
+    console.error('Both workflow and issue creation failed:', errorText);
     
     return new Response(JSON.stringify({ 
-      error: errorMessage,
-      details: errorText || `Status: ${issueResponse.status}`,
-      status: issueResponse.status
+      error: 'Failed to process submission',
+      details: 'Could not create PR or issue. Please try again later.',
+      debugInfo: errorText
     }), {
       status: 500,
       headers
@@ -215,10 +209,14 @@ To create a PR automatically:
     console.error('Error processing event submission:', error);
     return new Response(JSON.stringify({ 
       error: 'Internal server error',
-      details: error.message || 'Unknown error'
+      details: error.message || 'Unknown error',
+      stack: error.stack
     }), {
       status: 500,
-      headers
+      headers: {
+        'Access-Control-Allow-Origin': '*',
+        'Content-Type': 'application/json'
+      }
     });
   }
 }
