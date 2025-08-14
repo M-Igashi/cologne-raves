@@ -88,6 +88,6 @@ Each `.json` file must contain an **array of event objects** like this:
 
 The site is automatically deployed to:
 
-👉 **[https://cologne-raves.pages.dev](https://cologne-raves.pages.dev)**
+👉 **[https://cologne.ravers.workers.dev](https://cologne.ravers.workers.dev)**
 
 via Cloudflare Pages after each PR merge into `main`.
