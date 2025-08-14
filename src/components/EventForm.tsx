@@ -52,6 +52,7 @@ export default function EventForm() {
   const [submitStatus, setSubmitStatus] = useState<{
     type: 'success' | 'error' | null;
     message: string;
+    issueUrl?: string;
   }>({ type: null, message: '' });
 
   const updateEvent = (index: number, field: keyof EventData, value: string) => {
@@ -144,14 +145,16 @@ export default function EventForm() {
       if (response.ok) {
         setSubmitStatus({
           type: 'success',
-          message: result.message || 'Your events have been submitted successfully! A pull request will be created shortly.'
+          message: result.message || 'Your events have been submitted successfully!',
+          issueUrl: result.issueUrl
         });
         // Clear form after successful submission
         setTimeout(() => {
           setEvents([generateDefaultEvent()]);
           setFilenameSuffix('');
           setSubmitterEmail('');
-        }, 3000);
+          setSubmitStatus({ type: null, message: '' });
+        }, 10000);
       } else {
         setSubmitStatus({
           type: 'error',
@@ -175,10 +178,10 @@ export default function EventForm() {
       <p className="text-gray-700">Create Your Cologne Raves Events JSON</p>
 
       <Alert className="border-blue-500 bg-blue-50">
-        <AlertTitle>📤 Submit as Pull Request</AlertTitle>
+        <AlertTitle>📤 Submit Events</AlertTitle>
         <AlertDescription>
-          You can now submit your events directly as a pull request to the repository! 
-          Fill in the form below and click "Submit as Pull Request" to create a PR automatically.
+          Submit your events directly to the repository! The system will try to create a pull request automatically, 
+          or create an issue for manual processing if needed.
         </AlertDescription>
       </Alert>
 
@@ -297,7 +300,21 @@ export default function EventForm() {
       {submitStatus.type && (
         <Alert className={submitStatus.type === 'success' ? 'border-green-500 bg-green-50' : 'border-red-500 bg-red-50'}>
           <AlertTitle>{submitStatus.type === 'success' ? '✅ Success' : '❌ Error'}</AlertTitle>
-          <AlertDescription>{submitStatus.message}</AlertDescription>
+          <AlertDescription>
+            {submitStatus.message}
+            {submitStatus.issueUrl && (
+              <div className="mt-2">
+                <a 
+                  href={submitStatus.issueUrl} 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="text-blue-600 hover:underline"
+                >
+                  View on GitHub →
+                </a>
+              </div>
+            )}
+          </AlertDescription>
         </Alert>
       )}
 
@@ -308,7 +325,7 @@ export default function EventForm() {
           disabled={isSubmitting}
           className="bg-green-600 hover:bg-green-700"
         >
-          {isSubmitting ? 'Submitting...' : '🚀 Submit as Pull Request'}
+          {isSubmitting ? 'Submitting...' : '🚀 Submit Events'}
         </Button>
         <Button variant="outline" onClick={() => setShowJson(!showJson)}>
           {showJson ? "Hide JSON" : "Show JSON"}
