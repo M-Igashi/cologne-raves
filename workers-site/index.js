@@ -1,26 +1,93 @@
-// Test endpoint - GET request for debugging
-export async function onRequestGet(context) {
-  const headers = {
-    'Content-Type': 'application/json',
-    'Access-Control-Allow-Origin': '*'
-  };
+import { getAssetFromKV } from '@cloudflare/kv-asset-handler';
 
-  return new Response(JSON.stringify({
-    status: 'ok',
-    message: 'API endpoint is working',
-    timestamp: new Date().toISOString(),
-    method: 'GET'
-  }), {
-    status: 200,
-    headers
-  });
+/**
+ * The DEBUG flag will do two things that help during development:
+ * 1. we will skip caching on the edge, which makes it easier to
+ *    debug.
+ * 2. we will return an error message on exception in your Response rather
+ *    than the default 404.html page.
+ */
+const DEBUG = false;
+
+addEventListener('fetch', (event) => {
+  event.respondWith(handleEvent(event));
+});
+
+async function handleEvent(event) {
+  const request = event.request;
+  const url = new URL(request.url);
+  
+  // Handle API routes
+  if (url.pathname === '/api/submit-event') {
+    return handleAPIRequest(request, event);
+  }
+
+  // Serve static assets
+  try {
+    if (DEBUG) {
+      // customize caching
+      return await getAssetFromKV(event, {});
+    }
+    const options = {};
+    return await getAssetFromKV(event, options);
+  } catch (e) {
+    // if an error is thrown try to serve the asset at 404.html
+    if (!DEBUG) {
+      try {
+        let notFoundResponse = await getAssetFromKV(event, {
+          mapRequestToAsset: (req) => new Request(`${new URL(req.url).origin}/404.html`, req),
+        });
+
+        return new Response(notFoundResponse.body, {
+          ...notFoundResponse,
+          status: 404,
+        });
+      } catch (e) {}
+    }
+
+    return new Response(e.message || e.toString(), { status: 500 });
+  }
 }
 
-// Main endpoint - POST request for event submission
-export async function onRequestPost(context) {
-  const { request, env } = context;
+async function handleAPIRequest(request, event) {
+  // Handle CORS preflight
+  if (request.method === 'OPTIONS') {
+    return new Response(null, {
+      status: 200,
+      headers: {
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
+        'Access-Control-Allow-Headers': 'Content-Type',
+      }
+    });
+  }
   
-  // CORS headers
+  // Handle GET request (for testing)
+  if (request.method === 'GET') {
+    return new Response(JSON.stringify({
+      status: 'ok',
+      message: 'API endpoint is working',
+      timestamp: new Date().toISOString(),
+      method: 'GET'
+    }), {
+      status: 200,
+      headers: {
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*'
+      }
+    });
+  }
+  
+  // Handle POST request
+  if (request.method === 'POST') {
+    return handleEventSubmission(request, event);
+  }
+  
+  // Method not allowed
+  return new Response('Method not allowed', { status: 405 });
+}
+
+async function handleEventSubmission(request, event) {
   const headers = {
     'Access-Control-Allow-Origin': '*',
     'Access-Control-Allow-Methods': 'POST, OPTIONS, GET',
@@ -28,13 +95,9 @@ export async function onRequestPost(context) {
     'Content-Type': 'application/json'
   };
 
-  console.log('POST request received');
-
   try {
     // Parse the request body
     const body = await request.json();
-    console.log('Request body:', JSON.stringify(body));
-    
     const { events, filename, submitterEmail } = body;
 
     // Validate the data
@@ -72,14 +135,13 @@ export async function onRequestPost(context) {
     }
 
     // Get GitHub token from environment variable
-    const githubToken = env.GITHUB_TOKEN;
+    const githubToken = typeof GITHUB_TOKEN !== 'undefined' ? GITHUB_TOKEN : null;
     
     if (!githubToken) {
       console.error('GITHUB_TOKEN not configured');
-      // For now, return success even without token for testing
       return new Response(JSON.stringify({ 
-        warning: 'GitHub token not configured, but submission received',
-        message: 'Your event data has been received. Manual processing required.',
+        warning: 'GitHub token not configured',
+        message: 'Your event data has been received but cannot be automatically processed. Please contact the administrator.',
         events: events,
         filename: filename
       }), {
@@ -122,7 +184,7 @@ export async function onRequestPost(context) {
     if (workflowResponse.status === 204) {
       return new Response(JSON.stringify({ 
         success: true,
-        message: 'Pull request creation initiated! The PR will be created in a few moments.',
+        message: 'Pull request creation initiated! Check the repository for the new PR in a few moments.',
         workflowTriggered: true
       }), {
         status: 200,
@@ -174,7 +236,7 @@ Or use GitHub Actions:
         body: JSON.stringify({
           title: `🎉 New Event Submission: ${filename}`,
           body: issueBody,
-          labels: []  // Don't use labels if they might not exist
+          labels: []
         })
       }
     );
@@ -183,7 +245,7 @@ Or use GitHub Actions:
       const issueData = await issueResponse.json();
       return new Response(JSON.stringify({ 
         success: true,
-        message: `Event submission created as Issue #${issueData.number}`,
+        message: `Event submission created as Issue #${issueData.number}. You can view it on GitHub.`,
         issueUrl: issueData.html_url,
         issueNumber: issueData.number
       }), {
@@ -209,8 +271,7 @@ Or use GitHub Actions:
     console.error('Error processing event submission:', error);
     return new Response(JSON.stringify({ 
       error: 'Internal server error',
-      details: error.message || 'Unknown error',
-      stack: error.stack
+      details: error.message || 'Unknown error'
     }), {
       status: 500,
       headers: {
@@ -219,16 +280,4 @@ Or use GitHub Actions:
       }
     });
   }
-}
-
-// Handle CORS preflight
-export async function onRequestOptions() {
-  return new Response(null, {
-    status: 200,
-    headers: {
-      'Access-Control-Allow-Origin': '*',
-      'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
-      'Access-Control-Allow-Headers': 'Content-Type',
-    }
-  });
 }
