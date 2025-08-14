@@ -78,7 +78,7 @@ export default function EventForm() {
   const generateJson = () => {
     return events.map((event) => ({
       ...event,
-      id: event.id.trim() === "" ? uuidv4().slice(0, 8) : event.id.trim(),
+      id: event.id.trim(), // Keep empty if no ID provided - GitHub Actions will generate it
     }));
   };
 
@@ -88,7 +88,8 @@ export default function EventForm() {
     const m = String(now.getMonth() + 1).padStart(2, "0");
     const d = String(now.getDate()).padStart(2, "0");
     const suffix = filenameSuffix.trim().replace(/[^a-zA-Z0-9_-]/g, "-");
-    return `${y}-${m}-cologne-${d}${suffix ? "-" + suffix : ""}.json`;
+    const hash = uuidv4().slice(0, 6); // Add unique hash to prevent conflicts
+    return `${y}-${m}-cologne-${d}${suffix ? "-" + suffix : ""}-${hash}.json`;
   };
 
   const downloadJson = () => {
@@ -174,14 +175,15 @@ export default function EventForm() {
 
   return (
     <div className="space-y-6">
-      <h2 className="text-xl font-bold">Create Event JSON</h2>
-      <p className="text-gray-700">Create Your Cologne Raves Events JSON</p>
+      <h2 className="text-xl font-bold">Submit Events to Cologne Raves</h2>
+      <p className="text-gray-700">Submit up to 4 events to the community calendar</p>
 
       <Alert className="border-blue-500 bg-blue-50">
-        <AlertTitle>📤 Submit Events</AlertTitle>
+        <AlertTitle>📤 How it works</AlertTitle>
         <AlertDescription>
-          Submit your events directly to the repository! The system will try to create a pull request automatically, 
-          or create an issue for manual processing if needed.
+          Fill out the event details below and click "Submit Events" to automatically create a GitHub Pull Request.
+          <br />
+          <strong>New events:</strong> Leave ID field empty | <strong>Update existing:</strong> Enter the event ID without #
         </AlertDescription>
       </Alert>
 
@@ -214,23 +216,36 @@ export default function EventForm() {
 
           <div className="flex items-center gap-2">
             <Input
-              placeholder="Custom ID (optional)"
+              placeholder="Event ID (leave empty for NEW events)"
               value={event.id}
               onChange={(e) => updateEvent(i, "id", e.target.value)}
+              className={event.id ? "border-orange-400" : ""}
             />
             <Dialog>
               <DialogTrigger asChild>
-                <Button variant="outline" size="sm">Info</Button>
+                <Button variant="outline" size="sm">❗ ID Info</Button>
               </DialogTrigger>
               <DialogContent className="max-w-xl">
                 <DialogHeader>
-                  <DialogTitle>ID Override Info</DialogTitle>
-                  <DialogDescription className="pt-2">
-                    To overwrite an existing event, enter its ID exactly
-                    <br />
-                    <strong>without the leading <code>#</code></strong>.
-                    <br />
-                    For example, use <code>be790c46</code> instead of <code>#be790c46</code>.
+                  <DialogTitle>⚠️ IMPORTANT: Event ID Instructions</DialogTitle>
+                  <DialogDescription className="pt-3 space-y-3">
+                    <div className="bg-green-50 p-3 rounded border border-green-300">
+                      <strong className="text-green-800">🆕 For NEW events:</strong>
+                      <br />
+                      <span className="text-green-700">Leave the ID field EMPTY - an ID will be automatically generated</span>
+                    </div>
+                    
+                    <div className="bg-orange-50 p-3 rounded border border-orange-300">
+                      <strong className="text-orange-800">✏️ For UPDATING existing events:</strong>
+                      <br />
+                      <span className="text-orange-700">
+                        1. Find the event ID in the top-right corner of the event card (e.g., <code>#be790c46</code>)
+                        <br />
+                        2. Remove the <code>#</code> symbol and enter only the ID (e.g., <code>be790c46</code>)
+                        <br />
+                        3. This will update the existing event instead of creating a duplicate
+                      </span>
+                    </div>
                   </DialogDescription>
                 </DialogHeader>
                 <img

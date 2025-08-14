@@ -74,11 +74,18 @@ Each `.json` file must contain an **array of event objects** like this:
 
 ## 🔢 Event ID & Updates
 
-- To **update an existing event**, include the **same `id`** as the one currently in use.
-- IDs are shown in the corner of each event card (e.g. `#be790c46`)
-- Enter this ID **without the `#` symbol** (e.g. `be790c46`)
-- If no ID is specified, one will be generated automatically.
-- The [Event Submission Form](https://cologne.ravers.workers.dev/form/) provides clear instructions for updating events.
+### ⚠️ **IMPORTANT: How to use Event IDs**
+
+#### **For NEW events:**
+- **Leave the ID field EMPTY** - an ID will be automatically generated
+- Do NOT create your own ID
+
+#### **For UPDATING existing events:**
+- Find the event ID in the top-right corner of the event card (e.g. `#be790c46`)
+- **Remove the `#` symbol** and enter only the ID (e.g. `be790c46`)
+- Using the correct ID will update the existing event instead of creating a duplicate
+
+> 💡 The [Event Submission Form](https://cologne.ravers.workers.dev/form/) has clear instructions and handles this automatically.
 
 ---
 
