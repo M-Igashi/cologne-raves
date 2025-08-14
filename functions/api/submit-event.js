@@ -1,3 +1,67 @@
+export async function onRequestGet(context) {
+  const { env } = context;
+  
+  const headers = {
+    'Content-Type': 'application/json',
+    'Access-Control-Allow-Origin': '*'
+  };
+
+  try {
+    // Check if GitHub token is configured
+    const hasToken = !!env.GITHUB_TOKEN;
+    
+    if (!hasToken) {
+      return new Response(JSON.stringify({
+        status: 'error',
+        message: 'GitHub token not configured',
+        timestamp: new Date().toISOString()
+      }), {
+        status: 200,
+        headers
+      });
+    }
+
+    // Test GitHub API connection
+    const testResponse = await fetch(
+      'https://api.github.com/repos/M-Igashi/cologne-raves',
+      {
+        method: 'GET',
+        headers: {
+          'Accept': 'application/vnd.github.v3+json',
+          'Authorization': `Bearer ${env.GITHUB_TOKEN}`,
+          'User-Agent': 'Cologne-Raves-Worker'
+        }
+      }
+    );
+
+    const repoData = await testResponse.json();
+
+    return new Response(JSON.stringify({
+      status: 'success',
+      message: 'API connection test successful',
+      tokenConfigured: true,
+      githubConnection: testResponse.ok,
+      repoName: repoData.name || 'N/A',
+      repoOwner: repoData.owner?.login || 'N/A',
+      timestamp: new Date().toISOString()
+    }), {
+      status: 200,
+      headers
+    });
+
+  } catch (error) {
+    return new Response(JSON.stringify({
+      status: 'error',
+      message: 'Test failed',
+      error: error.message,
+      timestamp: new Date().toISOString()
+    }), {
+      status: 200,
+      headers
+    });
+  }
+}
+
 export async function onRequestPost(context) {
   const { request, env } = context;
   
@@ -57,66 +121,10 @@ export async function onRequestPost(context) {
     const GITHUB_OWNER = 'M-Igashi';
     const GITHUB_REPO = 'cologne-raves';
     
-    // Try both methods: workflow dispatch and issue creation
-    let success = false;
-    let message = '';
-    let issueUrl = '';
-
-    // Method 1: Try workflow dispatch with the exact path
-    try {
-      console.log('Attempting workflow dispatch...');
-      
-      // Use the exact workflow file path
-      const workflowResponse = await fetch(
-        `https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/actions/workflows/create-event-pr.yml/dispatches`,
-        {
-          method: 'POST',
-          headers: {
-            'Accept': 'application/vnd.github.v3+json',
-            'Authorization': `Bearer ${githubToken}`,
-            'Content-Type': 'application/json',
-            'User-Agent': 'Cologne-Raves-Worker'
-          },
-          body: JSON.stringify({
-            ref: 'main',
-            inputs: {
-              events_json: JSON.stringify(events),
-              filename: filename,
-              submitter_email: submitterEmail || 'anonymous'
-            }
-          })
-        }
-      );
-
-      console.log('Workflow dispatch response status:', workflowResponse.status);
-
-      // GitHub API returns 204 No Content on success for workflow dispatch
-      if (workflowResponse.status === 204) {
-        success = true;
-        message = 'Pull request creation initiated! Check the repository for the new PR in a few moments.';
-      } else if (workflowResponse.status === 404 || workflowResponse.status === 422) {
-        // If workflow dispatch fails, fall back to creating an issue
-        console.log('Workflow dispatch failed, falling back to issue creation...');
-      } else if (workflowResponse.status === 401 || workflowResponse.status === 403) {
-        // Authentication/permission issues
-        const errorText = await workflowResponse.text();
-        return new Response(JSON.stringify({ 
-          error: 'GitHub authentication failed',
-          details: `Please check token permissions. Status: ${workflowResponse.status}`
-        }), {
-          status: 500,
-          headers
-        });
-      }
-    } catch (error) {
-      console.error('Workflow dispatch error:', error);
-    }
-
-    // Method 2: Fallback to creating an issue if workflow dispatch failed
-    if (!success) {
-      console.log('Creating GitHub issue as fallback...');
-      
-      const issueBody = `## New Event Submission
+    console.log('Creating GitHub issue...');
+    
+    // Create issue with event data
+    const issueBody = `## New Event Submission
 
 **Filename:** \`${filename}\`
 **Submitted by:** ${submitterEmail || 'anonymous'}
@@ -128,78 +136,80 @@ export async function onRequestPost(context) {
 ${JSON.stringify(events, null, 2)}
 \`\`\`
 
-### Manual Steps Required
-Since automated PR creation failed, please:
+### How to add this event:
+
 1. Copy the JSON content above
 2. Create a new file \`data/${filename}\`
 3. Paste the JSON content
 4. Create a pull request
 
-### Automated PR Command (for maintainers)
-You can trigger the automated PR workflow manually from GitHub Actions with these inputs:
-- **events_json:** (paste the JSON above)
-- **filename:** ${filename}
-- **submitter_email:** ${submitterEmail || 'anonymous'}
+### Automated PR Creation
+
+To create a PR automatically:
+1. Go to [Actions > Create Event PR](https://github.com/${GITHUB_OWNER}/${GITHUB_REPO}/actions/workflows/create-event-pr.yml)
+2. Click "Run workflow"
+3. Paste the JSON data and filename from above
 
 ---
 *This issue was automatically created from a form submission at https://cologne.ravers.workers.dev/form/*`;
 
-      // Create GitHub Issue
-      const issueResponse = await fetch(
-        `https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/issues`,
-        {
-          method: 'POST',
-          headers: {
-            'Accept': 'application/vnd.github.v3+json',
-            'Authorization': `Bearer ${githubToken}`,
-            'Content-Type': 'application/json',
-            'User-Agent': 'Cologne-Raves-Worker'
-          },
-          body: JSON.stringify({
-            title: `🎉 New Event Submission: ${filename}`,
-            body: issueBody,
-            labels: ['event-submission', 'automated']
-          })
-        }
-      );
-
-      if (issueResponse.ok) {
-        const issueData = await issueResponse.json();
-        success = true;
-        message = `Event submission created as Issue #${issueData.number}. A maintainer will create the PR.`;
-        issueUrl = issueData.html_url;
-      } else {
-        const errorText = await issueResponse.text();
-        console.error('Issue creation failed:', issueResponse.status, errorText);
-        
-        return new Response(JSON.stringify({ 
-          error: 'Failed to create submission',
-          details: errorText || `Status: ${issueResponse.status}`
-        }), {
-          status: 500,
-          headers
-        });
+    // Create GitHub Issue
+    const issueResponse = await fetch(
+      `https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/issues`,
+      {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/vnd.github.v3+json',
+          'Authorization': `Bearer ${githubToken}`,
+          'Content-Type': 'application/json',
+          'User-Agent': 'Cologne-Raves-Worker'
+        },
+        body: JSON.stringify({
+          title: `🎉 New Event Submission: ${filename}`,
+          body: issueBody,
+          labels: ['event-submission', 'automated']
+        })
       }
-    }
+    );
 
-    if (success) {
+    console.log('GitHub Issue API response status:', issueResponse.status);
+
+    if (issueResponse.ok) {
+      const issueData = await issueResponse.json();
       return new Response(JSON.stringify({ 
         success: true,
-        message: message,
-        issueUrl: issueUrl
+        message: `Event submission created as Issue #${issueData.number}. You can view it on GitHub.`,
+        issueUrl: issueData.html_url,
+        issueNumber: issueData.number
       }), {
         status: 200,
         headers
       });
-    } else {
-      return new Response(JSON.stringify({ 
-        error: 'Failed to process submission',
-        details: 'Both workflow dispatch and issue creation failed'
-      }), {
-        status: 500,
-        headers
-      });
     }
+
+    // Handle errors
+    const errorText = await issueResponse.text();
+    console.error('GitHub API error:', issueResponse.status, errorText);
+    
+    let errorMessage = 'Failed to create submission';
+    if (issueResponse.status === 401) {
+      errorMessage = 'Authentication failed. Please check the GitHub token.';
+    } else if (issueResponse.status === 403) {
+      errorMessage = 'Permission denied. The GitHub token may lack necessary permissions.';
+    } else if (issueResponse.status === 422) {
+      errorMessage = 'Invalid request data.';
+    } else if (issueResponse.status === 404) {
+      errorMessage = 'Repository not found or token lacks access.';
+    }
+    
+    return new Response(JSON.stringify({ 
+      error: errorMessage,
+      details: errorText || `Status: ${issueResponse.status}`,
+      status: issueResponse.status
+    }), {
+      status: 500,
+      headers
+    });
 
   } catch (error) {
     console.error('Error processing event submission:', error);
@@ -219,7 +229,7 @@ export async function onRequestOptions() {
     status: 200,
     headers: {
       'Access-Control-Allow-Origin': '*',
-      'Access-Control-Allow-Methods': 'POST, OPTIONS',
+      'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
       'Access-Control-Allow-Headers': 'Content-Type',
     }
   });
