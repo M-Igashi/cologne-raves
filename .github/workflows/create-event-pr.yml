@@ -23,6 +23,7 @@ jobs:
     permissions:
       contents: write
       pull-requests: write
+      issues: write
       
     steps:
     - name: Checkout repository
@@ -113,6 +114,22 @@ jobs:
     - name: Push branch
       run: |
         git push origin ${{ steps.branch.outputs.name }}
+
+    - name: Create labels if they don't exist
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: |
+        # Create event-submission label if it doesn't exist
+        gh label create "event-submission" \
+          --description "Event submission from web form" \
+          --color "0e8a16" \
+          --force || echo "Label 'event-submission' already exists"
+        
+        # Create automated label if it doesn't exist
+        gh label create "automated" \
+          --description "Automatically created" \
+          --color "0052cc" \
+          --force || echo "Label 'automated' already exists"
 
     - name: Create PR body file
       run: |
