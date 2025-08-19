@@ -4,32 +4,61 @@ export interface Props {
   description?: string;
   canonicalURL?: string;
   ogImage?: string;
+  keywords?: string;
+  noindex?: boolean;
 }
 
 const {
   title,
   description = "Discover the best techno and electronic music events happening this week in Cologne. Find dates, venues, lineups and ticket information for the hottest parties.",
   canonicalURL = "https://cologne.ravers.workers.dev",
-  ogImage = "/og-cover.png"
+  ogImage = "https://cologne.ravers.workers.dev/og-cover.png",
+  keywords = "cologne raves, köln techno, electronic music cologne, techno parties köln, house music cologne, rave events cologne, nightlife cologne, clubbing köln, underground techno cologne, weekend parties cologne",
+  noindex = false
 } = Astro.props;
 
 // タイトルの処理 - 変数が直接表示されるのを防ぐ
 const safeTitle = title || "This Week";
-const fullTitle = `Cologne Raves | ${safeTitle}`;
+const fullTitle = safeTitle.includes("Cologne Raves") ? safeTitle : `${safeTitle} | Cologne Raves`;
+
+// 現在の日付を取得（ドイツ時間）
+const currentDate = new Date().toLocaleDateString('en-US', { 
+  timeZone: 'Europe/Berlin',
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric'
+});
 ---
+<meta charset="UTF-8">
 <title>{fullTitle}</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
 <meta name="description" content={description} />
+<meta name="keywords" content={keywords} />
+
+{noindex && <meta name="robots" content="noindex, nofollow" />}
+{!noindex && <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:160, max-video-preview:-1" />}
 
 <!-- サイト名の強化 -->
 <meta name="application-name" content="Cologne Raves">
 <meta name="apple-mobile-web-app-title" content="Cologne Raves">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
 <meta name="msapplication-TileColor" content="#000000">
 <meta name="author" content="Cologne Ravers WhatsApp Community">
 <meta name="publisher" content="Cologne Raves">
+<meta name="copyright" content="Cologne Raves Community">
+<meta name="language" content="en">
+<meta name="geo.region" content="DE-NW">
+<meta name="geo.placename" content="Cologne">
+<meta name="geo.position" content="50.937531;6.960279">
+<meta name="ICBM" content="50.937531, 6.960279">
 
 <!-- Canonical -->
 <link rel="canonical" href={canonicalURL} />
+
+<!-- Alternative Languages -->
+<link rel="alternate" hreflang="en" href={canonicalURL} />
+<link rel="alternate" hreflang="x-default" href={canonicalURL} />
 
 <!-- Open Graph -->
 <meta property="og:title" content={fullTitle} />
@@ -37,90 +66,159 @@ const fullTitle = `Cologne Raves | ${safeTitle}`;
 <meta property="og:type" content="website" />
 <meta property="og:url" content={canonicalURL} />
 <meta property="og:image" content={ogImage} />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content="Cologne Raves - Electronic Music Events" />
 <meta property="og:site_name" content="Cologne Raves" />
 <meta property="og:locale" content="en_US" />
+<meta property="og:locale:alternate" content="de_DE" />
 
 <!-- Twitter Card -->
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content={fullTitle} />
 <meta name="twitter:description" content={description} />
 <meta name="twitter:image" content={ogImage} />
+<meta name="twitter:image:alt" content="Cologne Raves - Electronic Music Events" />
 <meta name="twitter:site" content="@CologneRaves" />
+<meta name="twitter:creator" content="@CologneRaves" />
 
 <!-- Favicon & Theme -->
-<link rel="icon" href="/favicon.png" />
+<link rel="icon" type="image/png" href="/favicon.png" />
+<link rel="apple-touch-icon" href="/favicon.png" />
+<link rel="shortcut icon" href="/favicon.png" />
 <meta name="theme-color" content="#000000" />
+<meta name="msapplication-navbutton-color" content="#000000">
+
+<!-- Preconnect to External Resources -->
+<link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+<link rel="dns-prefetch" href="https://fonts.googleapis.com">
 
 <!-- 最適化されたJSON-LD構造化データ -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "WebSite",
-  "name": "Cologne Raves",
-  "headline": "Cologne Electronic Music Events Guide",
-  "alternateName": ["Cologne Electronic Music Events", "Köln Techno Parties", "Cologne Rave Calendar"],
-  "description": "Cologne Raves is a weekly guide to the electronic music scene in Cologne, maintained by a volunteer-run WhatsApp raver community. Discover upcoming techno parties and events with this lightweight, cookie-free platform. Contribute by promoting your own events or adding information through our GitHub repository. Simple, ad-free, and community-driven.",
-  "url": "https://cologne.ravers.workers.dev/",
-  "mainEntityOfPage": {
-    "@type": "WebPage",
-    "@id": "https://cologne.ravers.workers.dev/"
-  },
-  "publisher": {
-    "@type": "Organization",
-    "@id": "https://cologne.ravers.workers.dev/#organization",
-    "name": "Cologne Raves",
-    "alternateName": "Cologne Ravers WhatsApp Community",
-    "url": "https://cologne.ravers.workers.dev/",
-    "logo": {
-      "@type": "ImageObject",
-      "url": "https://cologne.ravers.workers.dev/favicon.png"
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": "https://cologne.ravers.workers.dev/#website",
+      "name": "Cologne Raves",
+      "headline": "Cologne Electronic Music Events Guide",
+      "alternateName": ["Cologne Electronic Music Events", "Köln Techno Parties", "Cologne Rave Calendar"],
+      "description": "Cologne Raves is a weekly guide to the electronic music scene in Cologne, maintained by a volunteer-run WhatsApp raver community. Discover upcoming techno parties and events with this lightweight, cookie-free platform.",
+      "url": "https://cologne.ravers.workers.dev/",
+      "inLanguage": "en",
+      "publisher": {
+        "@id": "https://cologne.ravers.workers.dev/#organization"
+      },
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": {
+          "@type": "EntryPoint",
+          "urlTemplate": "https://cologne.ravers.workers.dev/parties?search={search_term_string}"
+        },
+        "query-input": "required name=search_term_string"
+      },
+      "isAccessibleForFree": true
     },
-    "sameAs": [
-      "https://github.com/M-Igashi/cologne-raves"
-    ]
-  },
-  "author": {
-    "@type": "Organization",
-    "@id": "https://cologne.ravers.workers.dev/#organization"
-  },
-  "potentialAction": {
-    "@type": "SearchAction",
-    "target": "https://cologne.ravers.workers.dev/parties?search={search_term_string}",
-    "query-input": "required name=search_term_string"
-  },
-  "offers": {
-    "@type": "Offer",
-    "price": "0",
-    "priceCurrency": "EUR",
-    "availability": "https://schema.org/InStock"
-  },
-  "audience": {
-    "@type": "Audience",
-    "audienceType": "Electronic music enthusiasts",
-    "geographicArea": {
-      "@type": "AdministrativeArea",
-      "name": "Cologne",
-      "containedInPlace": {
-        "@type": "Country",
-        "name": "Germany"
+    {
+      "@type": "Organization",
+      "@id": "https://cologne.ravers.workers.dev/#organization",
+      "name": "Cologne Raves",
+      "alternateName": "Cologne Ravers WhatsApp Community",
+      "url": "https://cologne.ravers.workers.dev/",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://cologne.ravers.workers.dev/favicon.png",
+        "width": 512,
+        "height": 512
+      },
+      "sameAs": [
+        "https://github.com/M-Igashi/cologne-raves"
+      ],
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "contactType": "Technical Support",
+        "url": "https://github.com/M-Igashi/cologne-raves/issues"
       }
+    },
+    {
+      "@type": "WebPage",
+      "@id": "{canonicalURL}#webpage",
+      "url": "{canonicalURL}",
+      "name": "{fullTitle}",
+      "isPartOf": {
+        "@id": "https://cologne.ravers.workers.dev/#website"
+      },
+      "primaryImageOfPage": {
+        "@type": "ImageObject",
+        "url": "{ogImage}"
+      },
+      "datePublished": "2024-01-01T00:00:00+01:00",
+      "dateModified": "{currentDate}",
+      "description": "{description}",
+      "breadcrumb": {
+        "@id": "{canonicalURL}#breadcrumb"
+      },
+      "inLanguage": "en",
+      "potentialAction": [{
+        "@type": "ReadAction",
+        "target": ["{canonicalURL}"]
+      }]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "{canonicalURL}#breadcrumb",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://cologne.ravers.workers.dev/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "{safeTitle}",
+          "item": "{canonicalURL}"
+        }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What is Cologne Raves?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Cologne Raves is a community-driven platform that provides a weekly guide to electronic music events in Cologne. It's maintained by a volunteer WhatsApp raver community and offers a simple, ad-free way to discover techno parties and events."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How can I submit my event to Cologne Raves?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "You can submit your party or live show to our community calendar using the submission form on the website. The platform is open for all electronic music events happening in Cologne."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is Cologne Raves free to use?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes, Cologne Raves is completely free to use. It's a community-driven platform with no ads, no cookies, and no commercial interests."
+          }
+        }
+      ]
     }
-  },
-  "genre": ["Electronic Music", "Techno", "House", "Rave"],
-  "inLanguage": "en",
-  "isAccessibleForFree": true,
-  "about": {
-    "@type": "Thing",
-    "name": "Electronic Music Events",
-    "description": "Techno and electronic music parties in Cologne"
-  },
-  "keywords": "cologne raves, köln techno, electronic music, parties, events, nightlife, techno, house, rave, clubs, venues",
-  "aggregateRating": {
-    "@type": "AggregateRating",
-    "ratingValue": "5",
-    "bestRating": "5",
-    "worstRating": "1",
-    "ratingCount": "1"
-  }
+  ]
 }
 </script>
+
+<!-- Preload Critical Resources -->
+<link rel="preload" href="/fonts/inter-var.woff2" as="font" type="font/woff2" crossorigin>
+
+<!-- Performance Hints -->
+<meta http-equiv="x-dns-prefetch-control" content="on">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
