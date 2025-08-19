@@ -31,13 +31,23 @@ for (const party of futureParties) {
 
 const sortedMonthKeys = Object.keys(partiesByMonth).sort();
 
-// SEO関連の変数  
+// SEO関連の変数
+const totalParties = futureParties.length;
+const monthCount = sortedMonthKeys.length;
+const title = `All Upcoming Parties (${totalParties} Events) - Cologne Electronic Music Calendar`;
+const description = `Browse ${totalParties} upcoming techno and electronic music events in Cologne across ${monthCount} months. Complete calendar of underground raves, club nights, and electronic music parties with venue details and DJ lineups.`;
+const keywords = "cologne electronic music calendar, all techno parties köln, upcoming raves cologne, electronic events calendar cologne, techno club nights köln, complete party guide cologne";
 const canonicalURL = new URL(Astro.url.pathname, "https://cologne.ravers.workers.dev").href;
 ---
 
 <html lang="en" class="dark">
   <head>
-    <BaseHead title="All Parties | Cologne Raves" canonicalURL={canonicalURL} />
+    <BaseHead 
+      title={title}
+      description={description}
+      keywords={keywords}
+      canonicalURL={canonicalURL} 
+    />
   </head>
   <body class="min-h-screen bg-black text-white font-sans max-w-3xl mx-auto px-4 py-6 sm:px-6 lg:px-8 flex flex-col">
     <Header active="all-parties" />

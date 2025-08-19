@@ -20,9 +20,21 @@ for (const party of parties) {
   partiesByDay[weekday].push(party);
 }
 
-// SEO関連の変数
-const title = "This Week | Cologne Raves";
-const description = "Discover the best techno and electronic music events happening this week in Cologne. Find dates, venues, lineups and ticket information for the hottest parties.";
+// SEO関連の変数 - 週の日付を含める
+const today = new Date();
+const weekStart = new Date(today);
+weekStart.setDate(today.getDate() - today.getDay());
+const weekEnd = new Date(weekStart);
+weekEnd.setDate(weekStart.getDate() + 6);
+
+const formatDate = (date: Date) => {
+  return date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+};
+
+const weekRange = `${formatDate(weekStart)} - ${formatDate(weekEnd)}`;
+const title = `This Week (${weekRange}) - Electronic Music Events in Cologne`;
+const description = `Discover the best techno and electronic music events happening this week (${weekRange}) in Cologne. Find ${parties.length} parties with dates, venues, DJs lineups and ticket information for underground raves and club nights.`;
+const keywords = "cologne techno this week, köln electronic music events, techno parties cologne weekend, house music cologne, rave events köln, underground techno cologne, club nights cologne";
 const canonicalURL = new URL(Astro.url.pathname, "https://cologne.ravers.workers.dev").href;
 ---
 
@@ -32,6 +44,7 @@ const canonicalURL = new URL(Astro.url.pathname, "https://cologne.ravers.workers
       title={title}
       description={description}
       canonicalURL={canonicalURL}
+      keywords={keywords}
     />
   </head>
   <body class="min-h-screen bg-black text-white font-sans max-w-3xl mx-auto px-4 py-6 sm:px-6 lg:px-8 flex flex-col">
@@ -45,13 +58,15 @@ const canonicalURL = new URL(Astro.url.pathname, "https://cologne.ravers.workers
       </div>
     </div>
     
-    <main class="flex-1">
-      <nav class="flex flex-wrap gap-2 mb-6 text-sm">
-        <a href="/" class="px-3 py-1 border rounded-full bg-white text-black text-sm">This Week</a>
+    <main class="flex-1" role="main" itemscope itemtype="https://schema.org/EventSeries">
+      <nav class="flex flex-wrap gap-2 mb-6 text-sm" aria-label="Event filters">
+        <a href="/" class="px-3 py-1 border rounded-full bg-white text-black text-sm" aria-current="page">This Week</a>
         <a href="/parties" class="px-3 py-1 border rounded-full text-white border-white text-sm">All Parties</a>
       </nav>
 
-      <h2 class="text-2xl font-semibold mb-4">This Week</h2>
+      <h1 class="text-2xl font-semibold mb-4" itemprop="name">Electronic Music Events This Week in Cologne</h1>
+      <meta itemprop="description" content={description} />
+      <meta itemprop="location" content="Cologne, Germany" />
 
       {
         ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'].map((day) => (

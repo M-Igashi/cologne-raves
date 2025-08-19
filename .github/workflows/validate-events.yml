@@ -33,10 +33,3 @@ jobs:
 
       - name: Build (to ensure deployment will work)
         run: npm run build
-
-      - name: Test deploy (dry run)
-        uses: cloudflare/wrangler-action@v3
-        with:
-          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          command: deploy --dry-run

@@ -1,3 +1,30 @@
+# Cologne Raves - Electronic Music Events in Cologne
+# https://cologne.ravers.workers.dev
+
 User-agent: *
 Allow: /
+Crawl-delay: 1
+
+# Sitemap
 Sitemap: https://cologne.ravers.workers.dev/sitemap.xml
+
+# Disallow crawling of admin/internal pages if any exist
+Disallow: /admin
+Disallow: /api/
+
+# Allow major search engine bots
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 0
+
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 0
+
+User-agent: Slurp
+Allow: /
+Crawl-delay: 0
+
+User-agent: DuckDuckBot
+Allow: /
+Crawl-delay: 0
