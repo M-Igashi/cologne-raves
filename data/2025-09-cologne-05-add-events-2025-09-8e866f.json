@@ -1,0 +1,57 @@
+[
+  {
+    "id": "",
+    "title": "Koelnisttechno",
+    "venue": "Helios37",
+    "date": "2025-09-05",
+    "startTime": "23:00",
+    "artists": [
+      "Franky-B",
+      "Per Pleks",
+      "DJ Werbung",
+      "Edna",
+      "FoxTune",
+      "Patrick Schumm",
+      "Super Dario"
+    ],
+    "url": "https://rausgegangen.de/en/events/koelnisttechno-w-per-pleks-franky-b-uvm-050925-at-helios-col-0/"
+  },
+  {
+    "id": "",
+    "title": "Simple present with Jascha Yousefi, Sedaction, Stranger",
+    "venue": "Gewölbe",
+    "date": "2025-09-05",
+    "startTime": "23:00",
+    "artists": [
+      "Jascha Yousefi",
+      "Sedaction",
+      "stranger"
+    ],
+    "url": "https://ra.co/events/2239067"
+  },
+  {
+    "id": "",
+    "title": "Artheater Summerclosing (For Free)",
+    "venue": "Artheater",
+    "date": "2025-09-05",
+    "startTime": "22:30",
+    "artists": [
+      "Moutevelidis b2b Gutkind",
+      "Eva Mo b2b Pileta",
+      "Tschatsching"
+    ],
+    "url": "https://ra.co/events/2251885"
+  },
+  {
+    "id": "",
+    "title": "fi x WINE OUT",
+    "venue": "fi",
+    "date": "2025-09-05",
+    "startTime": "23:00",
+    "artists": [
+      "Giselle Soundsystem",
+      "Wolfram"
+    ],
+    "url": "https://ra.co/events/2241798"
+  }
+]
