@@ -53,5 +53,107 @@
       "Wolfram"
     ],
     "url": "https://ra.co/events/2241798"
+  },
+  {
+    "id": "",
+    "venue": "Odonien",
+    "date": "2025-09-10",
+    "title": "Beats x Bass x Cologne #MittWochenende",
+    "artists": ["Selunia", "LELO", "LSG"],
+    "startTime": "23:00",
+    "url": "https://ra.co/events/2248366"
+  },
+  {
+    "id": "",
+    "venue": "Nachtigall",
+    "date": "2025-12-10",
+    "title": "Petrified Phoenix Showcase Ehrenfeld",
+    "artists": [
+      "Avocado", 
+      "Leon Licht", 
+      "Rallo", 
+      "Kathi Liz" 
+    ],
+    "startTime": "23:00",
+    "url": "https://ra.co/events/2246412"
+  },
+  {
+    "id": "",
+    "venue": "Gewölbe",
+    "date": "2025-12-10",
+    "title": "HOOVE",
+    "artists": [
+      "Eileen", 
+      "Julian Feierabend", 
+      "Matthias (1)", 
+      "Pascal Wagner" 
+    ],
+    "startTime": "23:00",
+    "url": "https://ra.co/events/2244590"
+  },
+  {
+    "id": "",
+    "venue": "Helios37",
+    "date": "2025-12-10",
+    "title": "240 KM/H pres. Serafina ALL NIGHT LONG",
+    "artists": [
+      "Serafina", 
+      "Anna Konda"
+    ],
+    "startTime": "23:00",
+    "url": "https://ra.co/events/2255994"
+  },
+  {
+    "id": "",
+    "venue": "Club Castell",
+    "date": "2025-12-10",
+    "title": "HYPERRAVE: FREE FIRE RAVE",
+    "artists": [
+      "DAESU", 
+      "Koelschetrance",
+      "Mischverhältnis",
+      "Elyante"
+    ],
+    "startTime": "23:00",
+    "url": "https://ra.co/events/2251545"
+  },
+  {
+    "id": "",
+    "venue": "Schrotty",
+    "date": "2025-13-10",
+    "title": "POLTERGST invites Moji by ARTOFURBANLIFE & ONLYRAVES",
+    "artists": [
+      "POLTERGST", 
+      "MOJI",
+      "Ventris x Pixs",
+      "Bishalbacht",
+      "LSG"
+    ],
+    "startTime": "23:00",
+    "url": "https://ra.co/events/2240025"
+  },
+  {
+    "id": "",
+    "venue": "Odonien",
+    "date": "2025-13-10",
+    "title": "BACK2BASICS",
+    "artists": [
+      "AKA AKA", 
+      "PAPPENHEIMER"
+    ],
+    "startTime": "23:00",
+    "url": "https://ra.co/events/2245953"
+  },
+  {
+    "id": "",
+    "venue": "Gewölbe",
+    "date": "2025-13-10",
+    "title": "Remember the Future",
+    "artists": [
+      "Perel", 
+      "Shumi"
+    ],
+    "startTime": "23:00",
+    "url": "https://ra.co/events/2242135"
   }
 ]
