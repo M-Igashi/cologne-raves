@@ -28,6 +28,7 @@
     "date-fns": "^4.1.0",
     "date-fns-tz": "^3.2.0",
     "file-saver": "^2.0.5",
+    "lucide-react": "^0.543.0",
     "nanoid": "^5.1.5",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
