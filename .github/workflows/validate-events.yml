@@ -31,5 +31,5 @@ jobs:
             ajv validate -s event.schema.json -d "$file" --strict=false
           done
 
-      - name: Build (to ensure deployment will work)
-        run: npm run build
+      # Build step removed - PR validation should only validate JSON files
+      # Deployment builds are handled by the main branch deploy workflow
