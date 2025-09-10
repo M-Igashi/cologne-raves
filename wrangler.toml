@@ -14,7 +14,4 @@ command = "npm run build"
 port = 8787
 local_protocol = "http"
 
-# Deployment settings
-[env.preview]
-# Disable preview deployments for PRs
-enabled = false
+

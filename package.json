@@ -1,23 +1,10 @@
 {
   "name": "cologne-raves",
-  "description": "Build a personal website, blog, or portfolio with Astro.",
-  "cloudflare": {
-    "label": "Astro Framework Starter",
-    "products": [
-      "Workers"
-    ],
-    "categories": [],
-    "icon_urls": [
-      "https://imagedelivery.net/wSMYJvS3Xw-n339CbDyDIA/5ca0ca32-e897-4699-d4c1-6b680512f000/public"
-    ],
-    "preview_image_url": "https://imagedelivery.net/wSMYJvS3Xw-n339CbDyDIA/33bbbf02-eda2-4d3f-b244-c27a280f3900/public",
-    "dash": true
-  },
+  "description": "Cologne Raves - Event tracking and management system for Cologne's music scene.",
+
   "dependencies": {
     "@astrojs/cloudflare": "^12.6.3",
-    "@astrojs/mdx": "4.0.3",
     "@astrojs/react": "^4.2.3",
-    "@astrojs/rss": "4.0.11",
     "@astrojs/sitemap": "^3.2.1",
     "@astrojs/tailwind": "^6.0.2",
     "@cloudflare/kv-asset-handler": "^0.4.0",
@@ -29,11 +16,8 @@
     "date-fns-tz": "^3.2.0",
     "file-saver": "^2.0.5",
     "lucide-react": "^0.543.0",
-    "nanoid": "^5.1.5",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
-    "slugify": "^1.6.6",
-    "tailwind-variants": "^1.0.0",
     "tailwindcss": "^3.4.17",
     "typescript": "5.7.2",
     "uuid": "^11.1.0"
