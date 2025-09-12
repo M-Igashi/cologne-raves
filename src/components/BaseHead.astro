@@ -94,8 +94,7 @@ const currentDate = new Date().toLocaleDateString('en-US', {
 <link rel="dns-prefetch" href="https://fonts.googleapis.com">
 
 <!-- 最適化されたJSON-LD構造化データ -->
-<script type="application/ld+json">
-{
+<script type="application/ld+json" set:html={JSON.stringify({
   "@context": "https://schema.org",
   "@graph": [
     {
@@ -143,44 +142,50 @@ const currentDate = new Date().toLocaleDateString('en-US', {
     },
     {
       "@type": "WebPage",
-      "@id": "{canonicalURL}#webpage",
-      "url": "{canonicalURL}",
-      "name": "{fullTitle}",
+      "@id": `${canonicalURL}#webpage`,
+      "url": canonicalURL,
+      "name": fullTitle,
       "isPartOf": {
         "@id": "https://cologne.ravers.workers.dev/#website"
       },
       "primaryImageOfPage": {
         "@type": "ImageObject",
-        "url": "{ogImage}"
+        "url": ogImage
       },
       "datePublished": "2024-01-01T00:00:00+01:00",
-      "dateModified": "{currentDate}",
-      "description": "{description}",
+      "dateModified": new Date().toISOString(),
+      "description": description,
       "breadcrumb": {
-        "@id": "{canonicalURL}#breadcrumb"
+        "@id": `${canonicalURL}#breadcrumb`
       },
       "inLanguage": "en",
       "potentialAction": [{
         "@type": "ReadAction",
-        "target": ["{canonicalURL}"]
+        "target": [canonicalURL]
       }]
     },
     {
       "@type": "BreadcrumbList",
-      "@id": "{canonicalURL}#breadcrumb",
+      "@id": `${canonicalURL}#breadcrumb`,
       "itemListElement": [
         {
           "@type": "ListItem",
           "position": 1,
           "name": "Home",
-          "item": "https://cologne.ravers.workers.dev/"
+          "item": {
+            "@type": "Thing",
+            "@id": "https://cologne.ravers.workers.dev/"
+          }
         },
-        {
+        ...(canonicalURL !== "https://cologne.ravers.workers.dev/" ? [{
           "@type": "ListItem",
           "position": 2,
-          "name": "{safeTitle}",
-          "item": "{canonicalURL}"
-        }
+          "name": safeTitle,
+          "item": {
+            "@type": "Thing",
+            "@id": canonicalURL
+          }
+        }] : [])
       ]
     },
     {
@@ -213,8 +218,7 @@ const currentDate = new Date().toLocaleDateString('en-US', {
       ]
     }
   ]
-}
-</script>
+})} />
 
 <!-- Preload Critical Resources -->
 <link rel="preload" href="/fonts/inter-var.woff2" as="font" type="font/woff2" crossorigin>
