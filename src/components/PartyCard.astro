@@ -72,29 +72,27 @@ const isoDateTime = `${date}T${startTime ?? '23:00'}`;
   )}
 
   <!-- JSON-LD Structured Data -->
-  <script type="application/ld+json">
-    {
-      "description": {title},
-      "@context": "https://schema.org",
-      "@type": "Event",
-      "name": {JSON.stringify(title)},
-      "startDate": {JSON.stringify(isoDateTime)},
-      "location": {
-        "@type": "Place",
-        "name": {JSON.stringify(venue)},
-        "address": {
-          "@type": "PostalAddress",
-          "addressLocality": "Cologne",
-          "addressCountry": "DE"
-        }
-      },
-      "performer": {artists?.length > 0 ? JSON.stringify(artists.map(name => ({
-        "@type": "Person",
-        "name": name
-      }))) : '[]'},
-      "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
-      "eventStatus": "https://schema.org/EventScheduled",
-      "url": {JSON.stringify(url)}
-    }
-  </script>
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "Event",
+    "name": title,
+    "description": `${title}${venue ? ` at ${venue}` : ''}`,
+    "startDate": isoDateTime,
+    "location": venue ? {
+      "@type": "Place",
+      "name": venue,
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Cologne",
+        "addressCountry": "DE"
+      }
+    } : undefined,
+    "performer": artists?.length > 0 ? artists.map(name => ({
+      "@type": "Person",
+      "name": name
+    })) : undefined,
+    "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+    "eventStatus": "https://schema.org/EventScheduled",
+    "url": url || undefined
+  })} />
 </article>
