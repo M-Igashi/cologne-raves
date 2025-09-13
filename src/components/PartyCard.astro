@@ -11,7 +11,17 @@ const {
   sourceFile,
   showEditLink = true
 } = Astro.props;
-const isoDateTime = `${date}T${startTime ?? '23:00'}`;
+
+// Create start and end date times
+const startDateTime = `${date}T${startTime ?? '23:00'}:00+01:00`;
+// Default end time to 3 hours after start time if not specified
+const endTime = startTime ? 
+  String(Math.floor((parseInt(startTime.split(':')[0]) + 3) % 24)).padStart(2, '0') + ':00' : 
+  '02:00';
+const endDateTime = `${date}T${endTime}:00+01:00`;
+
+// Default event image
+const defaultImage = "https://cologne.ravers.workers.dev/og-cover.png";
 ---
 
 <article class="rounded-xl border p-4 mb-4 relative">
@@ -76,23 +86,37 @@ const isoDateTime = `${date}T${startTime ?? '23:00'}`;
     "@context": "https://schema.org",
     "@type": "Event",
     "name": title,
-    "description": `${title}${venue ? ` at ${venue}` : ''}`,
-    "startDate": isoDateTime,
-    "location": venue ? {
+    "description": `${title}${venue ? ` at ${venue}` : ''} - Electronic music event in Cologne${artists?.length > 0 ? ` featuring ${artists.join(', ')}` : ''}`,
+    "startDate": startDateTime,
+    "endDate": endDateTime,
+    "eventStatus": "https://schema.org/EventScheduled",
+    "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+    "location": {
       "@type": "Place",
-      "name": venue,
+      "name": venue || "Cologne",
       "address": {
         "@type": "PostalAddress",
         "addressLocality": "Cologne",
+        "addressRegion": "North Rhine-Westphalia", 
         "addressCountry": "DE"
       }
-    } : undefined,
+    },
+    "image": defaultImage,
+    "organizer": {
+      "@type": "Organization",
+      "name": "Cologne Ravers",
+      "url": "https://cologne.ravers.workers.dev"
+    },
     "performer": artists?.length > 0 ? artists.map(name => ({
       "@type": "Person",
       "name": name
     })) : undefined,
-    "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
-    "eventStatus": "https://schema.org/EventScheduled",
-    "url": url || undefined
+    "offers": {
+      "@type": "Offer",
+      "url": url || `https://cologne.ravers.workers.dev/#event-${id}`,
+      "availability": "https://schema.org/InStock",
+      "validFrom": new Date().toISOString().split('T')[0] // Today's date
+    },
+    "url": url || `https://cologne.ravers.workers.dev/#event-${id}`
   })} />
 </article>
