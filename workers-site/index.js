@@ -70,6 +70,18 @@ async function handleEvent(event) {
     headers.set('X-XSS-Protection', '1; mode=block');
     headers.set('Referrer-Policy', 'strict-origin-when-cross-origin');
     
+    // Enable compression hints
+    if (pathname.match(/\.(css|js|html|svg|json)$/)) {
+      headers.set('Content-Encoding', 'br'); // Prefer Brotli
+      headers.set('Vary', 'Accept-Encoding, Accept');
+    }
+    
+    // Add performance hints for modern browsers
+    if (pathname.match(/\.(html|htm)$/)) {
+      headers.set('Link', '</fonts/atkinson-regular.woff>; rel=preload; as=font; type=font/woff; crossorigin, </fonts/atkinson-bold.woff>; rel=preload; as=font; type=font/woff; crossorigin');
+      headers.set('Early-Data', '1'); // Enable 0-RTT for repeat visitors
+    }
+    
     return new Response(response.body, {
       status: response.status,
       statusText: response.statusText,
