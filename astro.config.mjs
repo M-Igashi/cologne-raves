@@ -16,4 +16,20 @@ export default defineConfig({
     tailwind()
   ],
   output: "static",
+  build: {
+    // Force inline all CSS to eliminate render-blocking (17KB is still small)
+    inlineStylesheets: 'always',
+  },
+  vite: {
+    build: {
+      // Keep all CSS in one file for easier inlining
+      cssCodeSplit: false,
+      rollupOptions: {
+        output: {
+          // Consistent naming for assets
+          assetFileNames: 'assets/[name].[hash][extname]',
+        }
+      }
+    }
+  }
 });
