@@ -22,14 +22,60 @@ async function handleEvent(event) {
     return handleAPIRequest(request, event);
   }
 
-  // Serve static assets
+  // Serve static assets with optimized caching
   try {
+    let response;
+    
     if (DEBUG) {
-      // customize caching
-      return await getAssetFromKV(event, {});
+      // customize caching for debug mode
+      response = await getAssetFromKV(event, {});
+    } else {
+      const options = {
+        cacheControl: {
+          edgeTtl: 30 * 24 * 60 * 60, // 30 days
+          browserTtl: 24 * 60 * 60,    // 1 day
+        },
+      };
+      response = await getAssetFromKV(event, options);
     }
-    const options = {};
-    return await getAssetFromKV(event, options);
+
+    // Add performance and cache headers based on file type
+    const headers = new Headers(response.headers);
+    const pathname = url.pathname;
+    
+    // Cache headers for different asset types
+    if (pathname.match(/\.(css|js)$/)) {
+      // CSS and JS files - cache for 1 year since they have hashes
+      headers.set('Cache-Control', 'public, max-age=31536000, immutable');
+      headers.set('Vary', 'Accept-Encoding');
+    } else if (pathname.match(/\.(woff2?|ttf|otf|eot)$/)) {
+      // Font files - cache for 1 year
+      headers.set('Cache-Control', 'public, max-age=31536000, immutable');
+      headers.set('Access-Control-Allow-Origin', '*'); // CORS for fonts
+    } else if (pathname.match(/\.(png|jpg|jpeg|gif|svg|webp|ico)$/)) {
+      // Images - cache for 30 days
+      headers.set('Cache-Control', 'public, max-age=2592000');
+    } else if (pathname.match(/\.(html|htm)$/)) {
+      // HTML files - shorter cache for dynamic content
+      headers.set('Cache-Control', 'public, max-age=3600, must-revalidate'); // 1 hour
+      headers.set('Vary', 'Accept-Encoding');
+    } else {
+      // Default cache for other files
+      headers.set('Cache-Control', 'public, max-age=86400'); // 1 day
+    }
+    
+    // Performance headers
+    headers.set('X-Content-Type-Options', 'nosniff');
+    headers.set('X-Frame-Options', 'DENY');
+    headers.set('X-XSS-Protection', '1; mode=block');
+    headers.set('Referrer-Policy', 'strict-origin-when-cross-origin');
+    
+    return new Response(response.body, {
+      status: response.status,
+      statusText: response.statusText,
+      headers,
+    });
+    
   } catch (e) {
     // if an error is thrown try to serve the asset at 404.html
     if (!DEBUG) {
