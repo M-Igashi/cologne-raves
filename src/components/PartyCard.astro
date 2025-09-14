@@ -115,7 +115,9 @@ const defaultImage = "https://cologne.ravers.workers.dev/og-cover.png";
       "@type": "Offer",
       "url": url || `https://cologne.ravers.workers.dev/#event-${id}`,
       "availability": "https://schema.org/InStock",
-      "validFrom": new Date().toISOString().split('T')[0] // Today's date
+      "validFrom": new Date().toISOString().split('T')[0], // Today's date
+      "price": "Varies",
+      "priceCurrency": "EUR"
     },
     "url": url || `https://cologne.ravers.workers.dev/#event-${id}`
   })} />
