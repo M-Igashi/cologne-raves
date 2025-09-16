@@ -25,23 +25,36 @@ function generateStableId(party: Omit<Party, 'id'>): string {
 
 export async function getAllParties(): Promise<Party[]> {
   const files = fs.readdirSync(dataDir).filter((f) => f.endsWith('.json'));
+  
+  // Get file stats and sort by modification time (oldest first)
+  // This ensures newer files override older ones
+  const filesWithStats = files.map(file => ({
+    name: file,
+    path: path.join(dataDir, file),
+    mtime: fs.statSync(path.join(dataDir, file)).mtime
+  })).sort((a, b) => a.mtime.getTime() - b.mtime.getTime());
+  
   const partyMap = new Map<string, Party>();
 
-  for (const file of files) {
-    const fullPath = path.join(dataDir, file);
-    const content = fs.readFileSync(fullPath, 'utf-8');
+  for (const fileInfo of filesWithStats) {
+    const content = fs.readFileSync(fileInfo.path, 'utf-8');
     let json: Party[];
 
     try {
       json = JSON.parse(content);
     } catch (err) {
-      console.warn(`Invalid JSON in ${file}`);
+      console.warn(`Invalid JSON in ${fileInfo.name}`);
       continue;
     }
 
     for (const party of json) {
       const id = party.id || generateStableId(party);
-      partyMap.set(id, { ...party, id, sourceFile: file });
+      // Store with source file and timestamp for debugging
+      partyMap.set(id, { 
+        ...party, 
+        id, 
+        sourceFile: fileInfo.name
+      });
     }
   }
 
