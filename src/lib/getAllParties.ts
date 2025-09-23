@@ -23,38 +23,64 @@ function generateStableId(party: Omit<Party, 'id'>): string {
   return hash.slice(0, 8);
 }
 
+function isRAUrl(url?: string): boolean {
+  return url ? url.includes('ra.co/') : false;
+}
+
 export async function getAllParties(): Promise<Party[]> {
   const files = fs.readdirSync(dataDir).filter((f) => f.endsWith('.json'));
   
-  // Get file stats and sort by modification time (oldest first)
-  // This ensures newer files override older ones
-  const filesWithStats = files.map(file => ({
-    name: file,
-    path: path.join(dataDir, file),
-    mtime: fs.statSync(path.join(dataDir, file)).mtime
-  })).sort((a, b) => a.mtime.getTime() - b.mtime.getTime());
-  
   const partyMap = new Map<string, Party>();
 
-  for (const fileInfo of filesWithStats) {
-    const content = fs.readFileSync(fileInfo.path, 'utf-8');
+  // First pass: Load all events into the map
+  for (const file of files) {
+    const filePath = path.join(dataDir, file);
+    const content = fs.readFileSync(filePath, 'utf-8');
     let json: Party[];
 
     try {
       json = JSON.parse(content);
     } catch (err) {
-      console.warn(`Invalid JSON in ${fileInfo.name}`);
+      console.warn(`Invalid JSON in ${file}`);
       continue;
     }
 
     for (const party of json) {
       const id = party.id || generateStableId(party);
-      // Store with source file and timestamp for debugging
-      partyMap.set(id, { 
+      const newParty = { 
         ...party, 
         id, 
-        sourceFile: fileInfo.name
-      });
+        sourceFile: file
+      };
+
+      // Check if this ID already exists
+      const existingParty = partyMap.get(id);
+      
+      if (!existingParty) {
+        // No existing party, add it
+        partyMap.set(id, newParty);
+      } else {
+        // Deduplication logic: Non-RA.co events take precedence over RA.co events
+        const existingIsRA = isRAUrl(existingParty.url);
+        const newIsRA = isRAUrl(newParty.url);
+        
+        if (existingIsRA && !newIsRA) {
+          // Existing is RA, new is not RA - replace with non-RA version
+          console.log(`Replacing RA.co event ${id} with non-RA version from ${file}`);
+          partyMap.set(id, newParty);
+        } else if (!existingIsRA && newIsRA) {
+          // Existing is non-RA, new is RA - keep the non-RA version
+          console.log(`Keeping non-RA event ${id}, ignoring RA version from ${file}`);
+        } else {
+          // Both are RA or both are non-RA - use alphabetical order of filenames as tiebreaker
+          // Files with dates in their names (like 2025-09-cologne-16-7482f3.json) will naturally
+          // override generic files (like nx.json, nx9.json)
+          if (file > existingParty.sourceFile!) {
+            console.log(`Updating event ${id} from ${existingParty.sourceFile} with version from ${file}`);
+            partyMap.set(id, newParty);
+          }
+        }
+      }
     }
   }
 
