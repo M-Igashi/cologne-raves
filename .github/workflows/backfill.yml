@@ -20,6 +20,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           persist-credentials: false
+          fetch-depth: 0  # Fetch full history for Git timestamp-based processing
 
       - name: Set up Node.js
         uses: actions/setup-node@v4
