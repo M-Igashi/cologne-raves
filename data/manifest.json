@@ -1,0 +1,66 @@
+{
+  "priority": [
+    {
+      "comment": "Priority order for processing event files (higher number = higher priority)",
+      "comment2": "Non-RA.co events always override RA.co events regardless of priority"
+    }
+  ],
+  "files": {
+    "nx.json": {
+      "priority": 100,
+      "description": "RA.co event dump - baseline data",
+      "source": "ra.co"
+    },
+    "nx9.json": {
+      "priority": 100,
+      "description": "RA.co event dump - baseline data",
+      "source": "ra.co"
+    },
+    "bootshaus-new-events.json": {
+      "priority": 500,
+      "description": "Bootshaus specific events",
+      "source": "manual"
+    },
+    "2025-08-cologne-12.json": {
+      "priority": 1000,
+      "description": "August events batch 1",
+      "source": "mixed"
+    },
+    "2025-08-cologne-18-fi-update-aug-6d9c7b.json": {
+      "priority": 1100,
+      "description": "Fi venue updates for August",
+      "source": "eventbrite"
+    },
+    "2025-09-cologne-05-add-events-2025-09-8e866f.json": {
+      "priority": 1200,
+      "description": "September events batch 1",
+      "source": "mixed"
+    },
+    "2025-09-cologne-10.json": {
+      "priority": 1300,
+      "description": "September events batch 2",
+      "source": "mixed"
+    },
+    "2025-09-cologne-16-7482f3.json": {
+      "priority": 1400,
+      "description": "Fi venue updates including Omar S event",
+      "source": "eventbrite"
+    },
+    "2025-09-cologne-21-0c5bb7.json": {
+      "priority": 1500,
+      "description": "Late September updates",
+      "source": "mixed"
+    },
+    "2025-09-cologne-21-a5e61b.json": {
+      "priority": 1500,
+      "description": "Late September updates",
+      "source": "mixed"
+    }
+  },
+  "rules": [
+    "Non-RA.co URLs always take precedence over RA.co URLs",
+    "Higher priority files override lower priority files",
+    "Files not in manifest use priority 500 by default",
+    "When adding new files, assign appropriate priority"
+  ]
+}
