@@ -16,7 +16,7 @@
     "url": "https://www.eventbrite.com/e/fi-altshift5-w-courtesy-dubl-friends-tickets-1635085858819?aff=ebdsoporgprofile&keep_tld=1"
   },
   {
-    "id": "",
+    "id": "057a55c0",
     "title": "FATBOY SLIM x FI",
     "venue": "fi",
     "date": "2025-10-04",
@@ -26,7 +26,8 @@
       "SHUMI",
       "Mike Momburg",
       "Sedaction",
-      "Nikity", "Anna Cainelli",
+      "Nikity",
+      "Anna Cainelli",
       "Savannah"
     ],
     "url": "https://lastbeatstanding.ticket.io/a4bngqw6/"
@@ -39,16 +40,16 @@
     "startTime": "23:00",
     "artists": [
       "OMAR S",
-"PASCAL WAGNER B2B LEON HAGEN",
-"THALO SANTANA",
-"NINA YPSILON B2B KRACHIM",
-"NORO",
-"SOSO KLEIN"
+      "PASCAL WAGNER B2B LEON HAGEN",
+      "THALO SANTANA",
+      "NINA YPSILON B2B KRACHIM",
+      "NORO",
+      "SOSO KLEIN"
     ],
     "url": "https://www.eventbrite.com/e/fi-altshift5-w-omar-s-hoove-tiefgang-tickets-1652169636859?aff=ebdsoporgprofile&keep_tld=1"
   },
   {
-    "id": "",
+    "id": "c0555fc7",
     "title": "fi = altshift5 w/ Cormac & I'm In Love",
     "venue": "fi",
     "date": "2025-10-02",
@@ -62,8 +63,9 @@
       "Sandilé"
     ],
     "url": "https://www.eventbrite.com/e/fi-altshift5-w-cormac-im-in-love-tickets-1715918310859?aff=ebdsoporgprofile&keep_tld=1"
-  },  {
-    "id": "",
+  },
+  {
+    "id": "c99e350c",
     "title": "fi = altshift5 w/ Etage147 & Hoove & Mephis & Hyperlove Collective",
     "venue": "fi",
     "date": "2025-10-31",
@@ -78,8 +80,9 @@
       "SLAYMIRA"
     ],
     "url": "https://www.eventbrite.com/e/fi-altshift5-w-etage147-hoove-mephis-hyperlove-collective-tickets-1708582890419?aff=ebdsoporgprofile&keep_tld=1"
-  },  {
-    "id": "",
+  },
+  {
+    "id": "88e82f8a",
     "title": "fi = altshift5 w/ Dj Nobu & Das ist das Ja",
     "venue": "fi",
     "date": "2025-11-01",
