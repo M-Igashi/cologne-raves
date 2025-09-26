@@ -19,8 +19,23 @@ function generateId(party) {
 }
 
 function processFile(filePath) {
+  const filename = path.basename(filePath);
+  
+  // Skip manifest.json and other non-event files
+  if (filename === 'manifest.json') {
+    console.log(`⏩ Skipped ${filename} (configuration file)`);
+    return;
+  }
+  
   const raw = fs.readFileSync(filePath, 'utf-8');
   const data = JSON.parse(raw);
+  
+  // Check if data is an array (event data should be an array)
+  if (!Array.isArray(data)) {
+    console.log(`⏩ Skipped ${filename} (not an array)`);
+    return;
+  }
+  
   let changed = false;
 
   const updated = data.map((party) => {
@@ -33,9 +48,9 @@ function processFile(filePath) {
 
   if (changed) {
     fs.writeFileSync(filePath, JSON.stringify(updated, null, 2));
-    console.log(`✅ Updated ${path.basename(filePath)}`);
+    console.log(`✅ Updated ${filename}`);
   } else {
-    console.log(`⏩ Skipped ${path.basename(filePath)} (no changes)`);
+    console.log(`⏩ Skipped ${filename} (no changes)`);
   }
 }
 
