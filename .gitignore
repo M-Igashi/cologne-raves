@@ -31,3 +31,7 @@ pnpm-debug.log*
 # temporary files
 *.tmp
 *.bak
+-e 
+# Python cache
+__pycache__/
+*.pyc
