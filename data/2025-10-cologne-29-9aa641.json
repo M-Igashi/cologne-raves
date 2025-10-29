@@ -1,0 +1,30 @@
+[
+  {
+    "id": "",
+    "title": "Nurroxi",
+    "venue": "Artheater",
+    "date": "2025-12-20",
+    "startTime": "23:00",
+    "artists": [
+      "Neon Graveyard",
+      "Maxim",
+      "Sadicca B2B Maddycation",
+      "Hendrik Milan"
+    ],
+    "url": "https://rausgegangen.de/en/events/nurroxi-20122025-0/"
+  },
+  {
+    "id": "",
+    "title": "NURBÖSE Trance Special ",
+    "venue": "Herios 37",
+    "date": "2025-11-08",
+    "startTime": "23:00",
+    "artists": [
+      "Elon Bass",
+      "Kimmy",
+      "Selunja",
+      "Doppeltes Lottchen"
+    ],
+    "url": "https://rausgegangen.de/en/events/nurbose-trance-special-08112025-0/"
+  }
+]
