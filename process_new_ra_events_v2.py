@@ -51,11 +51,21 @@ def normalize_string(s):
 def normalize_title_for_matching(title):
     """タイトルをマッチング用に正規化（より緩い）"""
     normalized = normalize_string(title)
+    
+    # "with"以降のアーティスト名を除去（例: "ANTEA with Yanamaste, RUIZ..." -> "antea"）
+    if ' with ' in normalized:
+        normalized = normalized.split(' with ')[0].strip()
+    if ' w/ ' in normalized:
+        normalized = normalized.split(' w/ ')[0].strip()
+    if ' w ' in normalized:
+        normalized = normalized.split(' w ')[0].strip()
+    
     # "tour", "presents", "pres." などの一般的なサフィックスを除去
-    suffixes = [' tour', ' presents', ' pres.', ' pres']
+    suffixes = [' tour', ' presents', ' pres.', ' pres', ' feat.', ' feat', ' ft.', ' ft']
     for suffix in suffixes:
         if normalized.endswith(suffix):
             normalized = normalized[:-len(suffix)].strip()
+    
     return normalized
 
 def generate_event_hash(title, date, venue):
