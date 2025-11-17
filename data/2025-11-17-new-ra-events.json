@@ -1,0 +1,962 @@
+[
+  {
+    "id": "1b13fbad",
+    "venue": "Stadtgarten Konzertsaal / Cafe",
+    "date": "2025-11-11",
+    "title": "KARNEVAL!?! – Der Tanz auf der Membran",
+    "artists": [],
+    "startTime": "16:00",
+    "url": "https://ra.co/events/2263506"
+  },
+  {
+    "id": "",
+    "venue": "Artheater",
+    "date": "2025-11-14",
+    "title": "Wyldhearts x Artheater",
+    "artists": [
+      "Ferrand",
+      "Baumeister98",
+      "HugoBass303",
+      "BabaBass3000",
+      "SUITSIDE",
+      "Pueblo Gelb",
+      "Rundfunk",
+      "Bibi"
+    ],
+    "startTime": "23:00",
+    "url": "https://ra.co/events/2302955"
+  },
+  {
+    "id": "7ee7219a",
+    "venue": "Schrotty",
+    "date": "2025-11-14",
+    "title": "BergWacht x Römertanz im Schrotty with Oliver Huntemann, Alex Stein uvm",
+    "artists": [
+      "Oliver Huntemann",
+      "Alex Stein",
+      "EIK music",
+      "justUS",
+      "Liho"
+    ],
+    "startTime": "23:00",
+    "url": "https://ra.co/events/2263218"
+  },
+  {
+    "id": "655b63a5",
+    "venue": "Schrotty",
+    "date": "2025-11-15",
+    "title": "4 Years EhrenKlub Pt 1 with KRUELTY, SLVL, USH uvm",
+    "artists": [
+      "Chris El Greco",
+      "DEXTASY",
+      "KRUELTY",
+      "SLVL"
+    ],
+    "startTime": "23:00",
+    "url": "https://ra.co/events/2257149"
+  },
+  {
+    "id": "7ed299d6",
+    "venue": "Gewölbe",
+    "date": "2025-11-15",
+    "title": "Klubnacht with Andhim, Biggie Schoellz, Nic Lorenz",
+    "artists": [
+      "Andhim",
+      "Nic Lorenz"
+    ],
+    "startTime": "23:00",
+    "url": "https://ra.co/events/2282025"
+  },
+  {
+    "id": "",
+    "venue": "fi",
+    "date": "2025-11-15",
+    "title": "fi x Lange Nacht",
+    "artists": [
+      "Julian Bomm",
+      "Mariami",
+      "Memotech",
+      "Giorgi Pipia",
+      "Mike Momburg",
+      "Domenik Deckert",
+      "Trancesetters of Westphalia"
+    ],
+    "startTime": "23:00",
+    "url": "https://ra.co/events/2288631"
+  },
+  {
+    "id": "",
+    "venue": "Elektroküche",
+    "date": "2025-11-15",
+    "title": "Radioactive Black Sector with Neika, PALØ, JO3Y3t, Juul Exler",
+    "artists": [
+      "PALØ"
+    ],
+    "startTime": "23:00",
+    "url": "https://ra.co/events/2298971"
+  },
+  {
+    "id": "",
+    "venue": "Odonien",
+    "date": "2025-11-15",
+    "title": "ROBOdonien LEUCHTET Aftershowparty",
+    "artists": [
+      "Tim Pichet",
+      "Annemalie",
+      "Gianni"
+    ],
+    "startTime": "23:00",
+    "url": "https://ra.co/events/2304478"
+  },
+  {
+    "id": "",
+    "venue": "JAKI",
+    "date": "2025-11-15",
+    "title": "Tom-Tom Discotec presents Brazuca",
+    "artists": [
+      "Nadim"
+    ],
+    "startTime": "23:30",
+    "url": "https://ra.co/events/2289453"
+  },
+  {
+    "id": "",
+    "venue": "Nachtigall",
+    "date": "2025-11-15",
+    "title": "SONIC VISION",
+    "artists": [
+      "NVNDO"
+    ],
+    "startTime": "22:00",
+    "url": "https://ra.co/events/2293767"
+  },
+  {
+    "id": "",
+    "venue": "Helios37",
+    "date": "2025-11-15",
+    "title": "Wilde Herzen + Peinlo Pop Party • Helios 37• Köln",
+    "artists": [],
+    "startTime": "23:00",
+    "url": "https://ra.co/events/2217338"
+  },
+  {
+    "id": "",
+    "venue": "Garagen",
+    "date": "2025-11-19",
+    "title": "Technoliebe #AmMIttwoch",
+    "artists": [
+      "Niko Tesla"
+    ],
+    "startTime": "19:00",
+    "url": "https://ra.co/events/2304133"
+  },
+  {
+    "id": "",
+    "venue": "Schrotty",
+    "date": "2025-11-21",
+    "title": "Polyamor Showcase with Mika Heggemann, davyboi, Trancemaster Krause a.m",
+    "artists": [
+      "Mika Heggemann",
+      "davyboi"
+    ],
+    "startTime": "23:00",
+    "url": "https://ra.co/events/2275741"
+  },
+  {
+    "id": "",
+    "venue": "Odonien",
+    "date": "2025-11-21",
+    "title": "Nusha & Sylvie Miles & Katana in Odonien",
+    "artists": [
+      "Nusha",
+      "Sylvie Miles"
+    ],
+    "startTime": "23:00",
+    "url": "https://ra.co/events/2255505"
+  },
+  {
+    "id": "",
+    "venue": "Gewölbe",
+    "date": "2025-11-21",
+    "title": "Akte with Perfo, Philipp Stoffel, Philippa Pacho",
+    "artists": [
+      "Perfo",
+      "Philipp Stoffel",
+      "Philippa Pacho"
+    ],
+    "startTime": "23:00",
+    "url": "https://ra.co/events/2288472"
+  },
+  {
+    "id": "",
+    "venue": "fi",
+    "date": "2025-11-21",
+    "title": "Lastbeatstanding with Cinthie, GOME, DJ Frank, Måtyrer, lyzanne, Lingy",
+    "artists": [
+      "Cinthie",
+      "GOME",
+      "DJ Frank",
+      "lyzanne",
+      "Måtyrer",
+      "Lingy"
+    ],
+    "startTime": "23:00",
+    "url": "https://ra.co/events/2292373"
+  },
+  {
+    "id": "",
+    "venue": "Bootshaus",
+    "date": "2025-11-21",
+    "title": "Nibirii pres. NEELIX / Anna Reusch",
+    "artists": [
+      "Anna Reusch",
+      "Enaly",
+      "Gourski",
+      "LYNE",
+      "Voicians"
+    ],
+    "startTime": "23:00",
+    "url": "https://ra.co/events/2283211"
+  },
+  {
+    "id": "",
+    "venue": "fi",
+    "date": "2025-11-21",
+    "title": "fi x Last Beat Standing with Cinthie & GOME",
+    "artists": [
+      "Cinthie",
+      "GOME",
+      "Lingy",
+      "DJ Frank",
+      "lyzanne"
+    ],
+    "startTime": "23:00",
+    "url": "https://ra.co/events/2294064"
+  },
+  {
+    "id": "",
+    "venue": "Artheater",
+    "date": "2025-11-21",
+    "title": "Zwischenmiete x Petrified Phoenix – Berliner Nächte",
+    "artists": [
+      "Avocado",
+      "Maurice Mino",
+      "NUAH",
+      "JUSTICE (DE)",
+      "Rallo"
+    ],
+    "startTime": "23:00",
+    "url": "https://ra.co/events/2298371"
+  },
+  {
+    "id": "",
+    "venue": "Coco Schmitz",
+    "date": "2025-11-21",
+    "title": "RUIDORUIDO Ongoing Symptoms",
+    "artists": [],
+    "startTime": "21:00",
+    "url": "https://ra.co/events/2269096"
+  },
+  {
+    "id": "",
+    "venue": "Bootshaus",
+    "date": "2025-11-22",
+    "title": "Affenkäfig Rules xxx Bootshaus xxx Paracek & Friends",
+    "artists": [
+      "Cristobal Pesce",
+      "Tiefundton",
+      "Matthias Olck",
+      "sarah4K",
+      "DJ DRECKISCH",
+      "Carotin",
+      "ELOISA",
+      "CARGO (DE)",
+      "HOTBOI2300"
+    ],
+    "startTime": "23:00",
+    "url": "https://ra.co/events/2247122"
+  },
+  {
+    "id": "",
+    "venue": "Odonien",
+    "date": "2025-11-22",
+    "title": "ANTEA with Yanamaste, RUIZ OSC1, Gutkind, HWRD, K.Luisa, Shrff, Amilli, Tim Reineke, Tschatsching",
+    "artists": [
+      "Yanamaste",
+      "RUIZ OSC1",
+      "Gutkind",
+      "HWRD",
+      "K. Luisa",
+      "Shrff",
+      "Amilli"
+    ],
+    "startTime": "23:00",
+    "url": "https://ra.co/events/2275170"
+  },
+  {
+    "id": "",
+    "venue": "Kunstwerk",
+    "date": "2025-11-22",
+    "title": "Øhne Bedenken x 969 - Kollektiv Nacht",
+    "artists": [
+      "Kashinski"
+    ],
+    "startTime": "23:00",
+    "url": "https://ra.co/events/2299000"
+  },
+  {
+    "id": "",
+    "venue": "fi",
+    "date": "2025-11-22",
+    "title": "fi x Dominik Eulberg x Neue Wellen",
+    "artists": [
+      "Dominik Eulberg",
+      "Cosanne"
+    ],
+    "startTime": "23:00",
+    "url": "https://ra.co/events/2258951"
+  },
+  {
+    "id": "",
+    "venue": "Gewölbe",
+    "date": "2025-11-22",
+    "title": "Klubnacht with Michael Mayer",
+    "artists": [
+      "Michael Mayer"
+    ],
+    "startTime": "23:00",
+    "url": "https://ra.co/events/2289400"
+  },
+  {
+    "id": "",
+    "venue": "Artheater",
+    "date": "2025-11-22",
+    "title": "303 presents JAZZY, CHARLIE, DENZKO & EMMA LENA",
+    "artists": [],
+    "startTime": "23:00",
+    "url": "https://ra.co/events/2294383"
+  },
+  {
+    "id": "",
+    "venue": "Artheater",
+    "date": "2025-11-27",
+    "title": "WE ARE RED",
+    "artists": [],
+    "startTime": "23:00",
+    "url": "https://ra.co/events/2305084"
+  },
+  {
+    "id": "",
+    "venue": "Odonien",
+    "date": "2025-11-28",
+    "title": "4 Years EhrenKlub Pt 2",
+    "artists": [
+      "CRITICAL ERROR 404",
+      "EDNA",
+      "FUMI",
+      "KNTRLVRLST",
+      "LIEKS",
+      "Moryak",
+      "Sikhaya",
+      "SITTENLOS"
+    ],
+    "startTime": "23:00",
+    "url": "https://ra.co/events/2297316"
+  },
+  {
+    "id": "",
+    "venue": "Helios37",
+    "date": "2025-11-28",
+    "title": "2 Years Ascension with DJ WASSERFALL, DJ SODBRENNEN, Jenni Zimnol, Jester",
+    "artists": [
+      "DJ WASSERFALL",
+      "DJ SODBRENNEN",
+      "Bensonius"
+    ],
+    "startTime": "23:00",
+    "url": "https://ra.co/events/2290793"
+  },
+  {
+    "id": "",
+    "venue": "JAKI",
+    "date": "2025-11-28",
+    "title": "Hyperlove feat. Hanaby & DJ Queef",
+    "artists": [
+      "Hanaby",
+      "DJ ASS TITS"
+    ],
+    "startTime": "23:30",
+    "url": "https://ra.co/events/2292407"
+  },
+  {
+    "id": "",
+    "venue": "fi",
+    "date": "2025-11-28",
+    "title": "fi = altshift5 with Paranoid London & About Repetition",
+    "artists": [
+      "Paranoid London",
+      "Voltmar",
+      "BORGBORG",
+      "Hidonash",
+      "Ozip_402",
+      "Medea"
+    ],
+    "startTime": "23:00",
+    "url": "https://ra.co/events/2292651"
+  },
+  {
+    "id": "",
+    "venue": "Gewölbe",
+    "date": "2025-11-28",
+    "title": "Los fiere with Freddy, Nat Wendell, Yamour",
+    "artists": [
+      "Nat Wendell",
+      "Yamour"
+    ],
+    "startTime": "23:00",
+    "url": "https://ra.co/events/2296371"
+  },
+  {
+    "id": "",
+    "venue": "Reineke Fuchs",
+    "date": "2025-11-28",
+    "title": "The Shrimp House Club",
+    "artists": [
+      "Thalo Santana",
+      "Leon Hagen"
+    ],
+    "startTime": "22:00",
+    "url": "https://ra.co/events/2294811"
+  },
+  {
+    "id": "",
+    "venue": "Yuca Club",
+    "date": "2025-11-28",
+    "title": "studio rainbow #6: techno for queers and friends",
+    "artists": [
+      "AGNY",
+      "Vivi Wahnsinn"
+    ],
+    "startTime": "23:30",
+    "url": "https://ra.co/events/2288016"
+  },
+  {
+    "id": "",
+    "venue": "Subway",
+    "date": "2025-11-28",
+    "title": "Friendly Connections X Club Subway",
+    "artists": [],
+    "startTime": "23:00",
+    "url": "https://ra.co/events/2298395"
+  },
+  {
+    "id": "",
+    "venue": "Blue Shell",
+    "date": "2025-11-28",
+    "title": "Italo Galore - Italo Disco - 80´s",
+    "artists": [],
+    "startTime": "23:00",
+    "url": "https://ra.co/events/2300803"
+  },
+  {
+    "id": "",
+    "venue": "Carlswerk Victoria",
+    "date": "2025-11-29",
+    "title": "unreal pres. KUKO all night long (Residency Celebration)",
+    "artists": [
+      "KUKO"
+    ],
+    "startTime": "23:00",
+    "url": "https://ra.co/events/2134805"
+  },
+  {
+    "id": "",
+    "venue": "fi",
+    "date": "2025-11-29",
+    "title": "fi = altshift5 with Patrick Mason & Flinta*Tunes",
+    "artists": [
+      "Patrick Mason"
+    ],
+    "startTime": "23:00",
+    "url": "https://ra.co/events/2282204"
+  },
+  {
+    "id": "",
+    "venue": "Gewölbe",
+    "date": "2025-11-29",
+    "title": "CROWD with FJAAK, Introversion, Mariami",
+    "artists": [
+      "FJAAK",
+      "Introversion",
+      "Mariami"
+    ],
+    "startTime": "23:00",
+    "url": "https://ra.co/events/2297494"
+  },
+  {
+    "id": "",
+    "venue": "Helios37",
+    "date": "2025-11-29",
+    "title": "AESTHETIC 29.11 with vizionn, DJ Tallboy, ALLY, EMMA LENA, DANIEL NØAH, RØM, ARRAX",
+    "artists": [
+      "vizionn",
+      "DJ Tallboy",
+      "Ally (2)",
+      "Daniel Noah"
+    ],
+    "startTime": "23:00",
+    "url": "https://ra.co/events/2289656"
+  },
+  {
+    "id": "",
+    "venue": "Reineke Fuchs",
+    "date": "2025-11-29",
+    "title": "Rheinbass one Year Anniversary & Arado's Birthday-bash",
+    "artists": [
+      "Arado",
+      "IMEN",
+      "Gallya",
+      "Eva Lakritz",
+      "Fabio Broox & Violahaiti"
+    ],
+    "startTime": "23:00",
+    "url": "https://ra.co/events/2290256"
+  },
+  {
+    "id": "",
+    "venue": "JAKI",
+    "date": "2025-11-29",
+    "title": "Tom Tom Discotec presents THURSDAZE - 3 YEARS ANNIVERSARY with Blck Mamba",
+    "artists": [
+      "Blck Mamba"
+    ],
+    "startTime": "23:30",
+    "url": "https://ra.co/events/2299400"
+  },
+  {
+    "id": "",
+    "venue": "Artheater",
+    "date": "2025-11-29",
+    "title": "Fresh Fruits - A Celebration Of House Music",
+    "artists": [
+      "lyzanne"
+    ],
+    "startTime": "23:00",
+    "url": "https://ra.co/events/2298423"
+  },
+  {
+    "id": "",
+    "venue": "Schrotty",
+    "date": "2025-11-29",
+    "title": "SACHSENTRANCE with Andata, Raverpik, Sabu!",
+    "artists": [],
+    "startTime": "23:00",
+    "url": "https://ra.co/events/2288521"
+  },
+  {
+    "id": "",
+    "venue": "Club Bahnhof Ehrenfeld",
+    "date": "2025-11-29",
+    "title": "Chin Chin Köln - Walhalla",
+    "artists": [],
+    "startTime": "23:00",
+    "url": "https://ra.co/events/2224251"
+  },
+  {
+    "id": "",
+    "venue": "Nachtflug & Starz",
+    "date": "2025-11-30",
+    "title": "Naughty - St. Nicholas Festival Closing Party",
+    "artists": [
+      "Chris Bekker",
+      "Skippo"
+    ],
+    "startTime": "20:30",
+    "url": "https://ra.co/events/2227268"
+  },
+  {
+    "id": "",
+    "venue": "Arty Farty Gallery",
+    "date": "2025-11-30",
+    "title": "Another Thought feat. Avery (live), Valeria Oggioni (live)",
+    "artists": [],
+    "startTime": "17:00",
+    "url": "https://ra.co/events/2306285"
+  },
+  {
+    "id": "",
+    "venue": "Odonien",
+    "date": "2025-12-05",
+    "title": "Winter Rave in Odonien",
+    "artists": [
+      "Return Fall",
+      "Alchemiah",
+      "Juan Del Chambo"
+    ],
+    "startTime": "23:00",
+    "url": "https://ra.co/events/2285606"
+  },
+  {
+    "id": "",
+    "venue": "Live Music Hall",
+    "date": "2025-12-05",
+    "title": "Schrotthagen Nostalgie & Traurigkeit Tour",
+    "artists": [
+      "Schrotthagen"
+    ],
+    "startTime": "21:00",
+    "url": "https://ra.co/events/2121986"
+  },
+  {
+    "id": "",
+    "venue": "Bootshaus",
+    "date": "2025-12-05",
+    "title": "Above & Beyond pres by Bootshaus",
+    "artists": [
+      "Above & Beyond",
+      "Farius",
+      "Estiva"
+    ],
+    "startTime": "22:00",
+    "url": "https://ra.co/events/2262513"
+  },
+  {
+    "id": "",
+    "venue": "Gewölbe",
+    "date": "2025-12-05",
+    "title": "krakelee club with Clarisa Kimskii, Elisen, Stikdorn",
+    "artists": [
+      "Clarisa Kimskii",
+      "Elisen",
+      "Stikdorn"
+    ],
+    "startTime": "23:00",
+    "url": "https://ra.co/events/2298620"
+  },
+  {
+    "id": "",
+    "venue": "JAKI",
+    "date": "2025-12-05",
+    "title": "Das ist das Ja",
+    "artists": [],
+    "startTime": "23:30",
+    "url": "https://ra.co/events/2299409"
+  },
+  {
+    "id": "",
+    "venue": "Schrotty",
+    "date": "2025-12-05",
+    "title": "VOOV EXPERIENCE PARTY – COLOGNE with AVALON, RANJI, Z-CAT, SENSIFEEL",
+    "artists": [],
+    "startTime": "23:00",
+    "url": "https://ra.co/events/2280192"
+  },
+  {
+    "id": "",
+    "venue": "Helios37",
+    "date": "2025-12-06",
+    "title": "FIEBERTRAUM",
+    "artists": [],
+    "startTime": "23:00",
+    "url": "https://ra.co/events/2294103"
+  },
+  {
+    "id": "",
+    "venue": "Bootshaus",
+    "date": "2025-12-06",
+    "title": "HOLLER AT ME pres. Noel Holler / Karla Blum / oSwald",
+    "artists": [
+      "Noel Holler",
+      "Karla Blum",
+      "oSwald"
+    ],
+    "startTime": "22:00",
+    "url": "https://ra.co/events/2272207"
+  },
+  {
+    "id": "",
+    "venue": "Gewölbe",
+    "date": "2025-12-06",
+    "title": "Simple present with DCHM, Jascha Yousefi, SAM, Shanti Celeste",
+    "artists": [
+      "DCHM",
+      "Jascha Yousefi",
+      "SAM (9)",
+      "Shanti Celeste"
+    ],
+    "startTime": "23:00",
+    "url": "https://ra.co/events/2301839"
+  },
+  {
+    "id": "",
+    "venue": "JAKI",
+    "date": "2025-12-06",
+    "title": "Tom-Tom Discotec presents: Napoli Segreta",
+    "artists": [
+      "Napoli Segreta"
+    ],
+    "startTime": "23:30",
+    "url": "https://ra.co/events/2292428"
+  },
+  {
+    "id": "",
+    "venue": "Subway",
+    "date": "2025-12-06",
+    "title": "IMMERNOCH! Tanzen - Resident Night",
+    "artists": [
+      "Irwin Leschet"
+    ],
+    "startTime": "17:00",
+    "url": "https://ra.co/events/2295423"
+  },
+  {
+    "id": "",
+    "venue": "Bootshaus",
+    "date": "2025-12-06",
+    "title": "122 Back at Blckbx",
+    "artists": [
+      "Mcfly",
+      "IMEN",
+      "AMR",
+      "Nicole da Silva"
+    ],
+    "startTime": "22:30",
+    "url": "https://ra.co/events/2305443"
+  },
+  {
+    "id": "",
+    "venue": "Schrotty",
+    "date": "2025-12-06",
+    "title": "Desire pres. Mischluft All Night Long + Peterblue All Night Long",
+    "artists": [],
+    "startTime": "23:00",
+    "url": "https://ra.co/events/2300193"
+  },
+  {
+    "id": "",
+    "venue": "Live Music Hall",
+    "date": "2025-12-06",
+    "title": "Beer Pong Night XXL",
+    "artists": [],
+    "startTime": "15:00",
+    "url": "https://ra.co/events/2293583"
+  },
+  {
+    "id": "",
+    "venue": "Schrotty",
+    "date": "2025-12-12",
+    "title": "Lelantus presents Adam Beyer",
+    "artists": [
+      "Adam Beyer",
+      "Black Box",
+      "Human Rias",
+      "Min the Universe",
+      "Unseen."
+    ],
+    "startTime": "22:00",
+    "url": "https://ra.co/events/2279852"
+  },
+  {
+    "id": "",
+    "venue": "Elektroküche",
+    "date": "2025-12-12",
+    "title": "Techno Allianz Schranz Only Pres. ViperXXL Bday ",
+    "artists": [
+      "ViperXXL",
+      "Frank Kvitta",
+      "Ropemaker"
+    ],
+    "startTime": "23:00",
+    "url": "https://ra.co/events/2169368"
+  },
+  {
+    "id": "",
+    "venue": "Helios37",
+    "date": "2025-12-12",
+    "title": "GUTE NACHT! mit Chrissyjeey & Contec im Helios37",
+    "artists": [
+      "Contec"
+    ],
+    "startTime": "23:00",
+    "url": "https://ra.co/events/2289533"
+  },
+  {
+    "id": "",
+    "venue": "Odonien",
+    "date": "2025-12-12",
+    "title": "Kontur x Darkart w/Beste Hira",
+    "artists": [
+      "Beste Hira",
+      "AEKO",
+      "Deep Mind Direction",
+      "Kyohara",
+      "Scepticism",
+      "Haerox",
+      "Jan Trovato"
+    ],
+    "startTime": "23:00",
+    "url": "https://ra.co/events/2222628"
+  },
+  {
+    "id": "",
+    "venue": "Bootshaus",
+    "date": "2025-12-12",
+    "title": "elrow (Cologne, Germany)",
+    "artists": [
+      "Nic Lorenz",
+      "Latmun",
+      "Andrea Oliva",
+      "Tini Gessler",
+      "Kaufmann",
+      "Nicole da Silva",
+      "Unxpected",
+      "Tolstoi"
+    ],
+    "startTime": "23:00",
+    "url": "https://ra.co/events/2283972"
+  },
+  {
+    "id": "",
+    "venue": "Club Zimmermanns",
+    "date": "2025-12-12",
+    "title": "6 Jahre UnderDive - 16h Kollektiv XL Rave",
+    "artists": [
+      "Max Blumen",
+      "Roman Antonov",
+      "scheffka"
+    ],
+    "startTime": "22:00",
+    "url": "https://ra.co/events/2298392"
+  },
+  {
+    "id": "",
+    "venue": "Gewölbe",
+    "date": "2025-12-12",
+    "title": "SOUND SOUND 4 Year Anniversary with Domenik Deckert & Mike Momburg",
+    "artists": [
+      "Domenik Deckert",
+      "Mike Momburg"
+    ],
+    "startTime": "23:00",
+    "url": "https://ra.co/events/2303823"
+  },
+  {
+    "id": "",
+    "venue": "Artheater",
+    "date": "2025-12-12",
+    "title": "Aura with Deetron pres. Soulmate & Glaskin",
+    "artists": [
+      "Deetron",
+      "Glaskin",
+      "Gutkind",
+      "Szunflower"
+    ],
+    "startTime": "23:00",
+    "url": "https://ra.co/events/2306751"
+  },
+  {
+    "id": "",
+    "venue": "Bootshaus",
+    "date": "2025-12-13",
+    "title": "Kevin de Vries / Kölsch pres by ..,- & Bootshaus",
+    "artists": [
+      "Against All Ødds"
+    ],
+    "startTime": "22:00",
+    "url": "https://ra.co/events/2225990"
+  },
+  {
+    "id": "",
+    "venue": "Schrotty",
+    "date": "2025-12-13",
+    "title": "Nonchalance x Neongreen Market: 13.12. with SHOKI, BBetriebswirt, NEUF & MANY MORE",
+    "artists": [
+      "SHOKI287",
+      "Arninho",
+      "BBetriebswirt",
+      "DJ Pinky Promise",
+      "Flavius (2)",
+      "HiHat",
+      "Pavelo Promillo",
+      "Risotto Groupon"
+    ],
+    "startTime": "23:00",
+    "url": "https://ra.co/events/2296163"
+  },
+  {
+    "id": "",
+    "venue": "Odonien",
+    "date": "2025-12-13",
+    "title": "Lexy & K-Paul",
+    "artists": [
+      "Lexy & K-Paul"
+    ],
+    "startTime": "23:00",
+    "url": "https://ra.co/events/2267721"
+  },
+  {
+    "id": "",
+    "venue": "fi",
+    "date": "2025-12-13",
+    "title": "fi = altshift5 with Mad Miran & e.p.i.q. & AKT",
+    "artists": [
+      "AMSL",
+      "Anna Cainelli",
+      "Nikity",
+      "Savsannah",
+      "Sedaction",
+      "DJ ASS TITS",
+      "DJ Palga",
+      "paaradoxx",
+      "Ursula Erdmann"
+    ],
+    "startTime": "23:00",
+    "url": "https://ra.co/events/2296694"
+  },
+  {
+    "id": "",
+    "venue": "Yuca Club",
+    "date": "2025-12-13",
+    "title": "RÄIVE - Steve Clash Club Tour - Köln",
+    "artists": [
+      "Gourski",
+      "Steve Clash"
+    ],
+    "startTime": "23:00",
+    "url": "https://ra.co/events/2196420"
+  },
+  {
+    "id": "",
+    "venue": "Bootshaus",
+    "date": "2025-12-13",
+    "title": "Oliver Magenta and Friends",
+    "artists": [],
+    "startTime": "22:00",
+    "url": "https://ra.co/events/2262425"
+  },
+  {
+    "id": "",
+    "venue": "High.Studios",
+    "date": "2025-12-17",
+    "title": "KDG Morning Rave #4",
+    "artists": [],
+    "startTime": "06:30",
+    "url": "https://ra.co/events/2297597"
+  },
+  {
+    "id": "",
+    "venue": "fi",
+    "date": "2025-12-19",
+    "title": "fi = altshift5 with Dax J & Hoove",
+    "artists": [
+      "Dax J",
+      "Krackk",
+      "Robin Tasi",
+      "Daan Donk",
+      "Julian Feierabend",
+      "Thalo Santana"
+    ],
+    "startTime": "23:00",
+    "url": "https://ra.co/events/2278286"
+  }
+]
