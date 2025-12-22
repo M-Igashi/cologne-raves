@@ -13,6 +13,22 @@
     "url": "https://ra.co/events/2283195"
   },
   {
+    "id": "",
+    "venue": "Bootshaus",
+    "date": "2026-01-17",
+    "title": "NIBIRII PRES. ZEUZ - ALL NIGHT LONG",
+    "artists": [
+      "ZEUZ",
+      "KARA OKAY",
+      "DISCOSTOFF",
+      "RIKSO B2B ROMEK",
+      "BLONDE2BLONDE",
+      "PAMELA RAVE"
+    ],
+    "startTime": "22:00",
+    "url": "https://bootshaus.tv/events/17-01-26nibirii-pres-zeuz-all-night-long/"
+  },
+  {
     "id": "cda78fa5",
     "venue": "Nachtigall",
     "date": "2025-12-20",
@@ -247,9 +263,13 @@
     "venue": "Bootshaus",
     "date": "2025-12-27",
     "title": "KitKatClub",
-    "artists": [],
+    "artists": [
+      "Clark Kent",
+      "Jam El Mar",
+      "Travis"
+    ],
     "startTime": "22:00",
-    "url": "https://ra.co/events/2317610"
+    "url": "https://bootshaus.tv/events/sa-27-12-2025-kitkatclub-hedonistic-year-end-2025/"
   },
   {
     "id": "ce8746eb",
@@ -360,12 +380,21 @@
     "title": "Loonyland Silvester 2025",
     "artists": [
       "Younotus",
-      "RYX (1)",
+      "RYX",
       "MAHA",
-      "Tarkan"
+      "Tarkan",
+      "Niklas Dee",
+      "YouNotUs",
+      "BRANDON",
+      "OLIVER MAGENTA",
+      "DAVE REPLAY",
+      "Lunax",
+      "Dropixx",
+      "TESFY",
+      "DMNK"
     ],
     "startTime": "21:00",
-    "url": "https://ra.co/events/2249562"
+    "url": "https://bootshaus.tv/events/31-12-25loonyland-silvester-2025/"
   },
   {
     "id": "0140cf12",
@@ -410,7 +439,7 @@
       "Trancemaster Krause"
     ],
     "startTime": "11:00",
-    "url": "https://ra.co/events/2270149"
+    "url": "https://bootshaus.tv/events/01-01-26unreal-nyd-rave-x-cloudy-all-day-long-f2f-adrian-mills-kuko-serafina/"
   },
   {
     "id": "3529a460",
@@ -471,7 +500,7 @@
       "Vaneska"
     ],
     "startTime": "21:00",
-    "url": "https://ra.co/events/2328777"
+    "url": "https://bootshaus.tv/events/02-01-26bootshaus-dj-contest-2026/"
   },
   {
     "id": "81fa34b3",
@@ -488,10 +517,17 @@
     "date": "2026-01-03",
     "title": "HARDBRAKE pres. REBELION, WARFACE, DEVIN WILD b2b HARD DRIVER and many more",
     "artists": [
-      "CREST"
+      "CREST",
+      "REBELION",
+      "WARFACE",
+      "DEVIN WILD b2b HARD DRIVER",
+      "ANDEREX",
+      "TESFY",
+      "GALACTIXX",
+      "NUTKIX"
     ],
     "startTime": "22:00",
-    "url": "https://ra.co/events/2286330"
+    "url": "https://bootshaus.tv/events/03-01-26hardbrake-pres-rebelion-warface-devin-wild-b2b-hard-driver-and-many-more/"
   },
   {
     "id": "95e7f7d9",
@@ -520,7 +556,7 @@
       "Voicians"
     ],
     "startTime": "23:00",
-    "url": "https://ra.co/events/2314732"
+    "url": "https://bootshaus.tv/events/09-01-26hybrid-minds-delta-heavy-basslayerz-and-more-pres-by-connected/"
   },
   {
     "id": "97e0ce5a",
