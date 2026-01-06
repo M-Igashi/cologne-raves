@@ -33,7 +33,8 @@
       "venue": "Bootshaus",
       "source_file": "2025-12-22-new-ra-events.json"
     },
-    "reason": "exact_match_non_ra"
+    "reason": "exact_match_non_ra",
+    "id": "23a326a8"
   },
   {
     "ra_event": {
@@ -61,7 +62,8 @@
       "venue": "Bootshaus",
       "source_file": "2025-12-22-new-ra-events.json"
     },
-    "reason": "exact_match_non_ra"
+    "reason": "exact_match_non_ra",
+    "id": "23a326a8"
   },
   {
     "ra_event": {
@@ -83,7 +85,8 @@
       "venue": "Bootshaus",
       "source_file": "2025-12-22-new-ra-events.json"
     },
-    "reason": "exact_match_non_ra"
+    "reason": "exact_match_non_ra",
+    "id": "23a326a8"
   },
   {
     "ra_event": {
@@ -112,7 +115,8 @@
       "venue": "Bootshaus",
       "source_file": "2025-12-22-new-ra-events.json"
     },
-    "reason": "exact_match_non_ra"
+    "reason": "exact_match_non_ra",
+    "id": "23a326a8"
   },
   {
     "ra_event": {
@@ -135,6 +139,7 @@
       "venue": "Bootshaus",
       "source_file": "2025-12-22-new-ra-events.json"
     },
-    "reason": "exact_match_non_ra"
+    "reason": "exact_match_non_ra",
+    "id": "23a326a8"
   }
 ]
