@@ -1,0 +1,140 @@
+[
+  {
+    "ra_event": {
+      "id": "",
+      "venue": "Bootshaus",
+      "date": "2026-01-01",
+      "title": "UNREAL X Face2Face x Cloudy all day long",
+      "artists": [
+        "Cloudy",
+        "Adrian Mills",
+        "BYØRN",
+        "future.666",
+        "KUKO",
+        "Serafina",
+        "zwilling.",
+        "Vagabund",
+        "Alba Franch",
+        "t e s t p r e s s",
+        "Justin Tinderdate",
+        "Elotrance",
+        "Cara Elizabeth",
+        "Cleopard2000",
+        "Trancemaster Krause"
+      ],
+      "startTime": "11:00",
+      "url": "https://ra.co/events/2270149"
+    },
+    "existing_event": {
+      "id": "2ef942e8",
+      "url": "https://bootshaus.tv/events/01-01-26unreal-nyd-rave-x-cloudy-all-day-long-f2f-adrian-mills-kuko-serafina/",
+      "name": "UNREAL X Face2Face x Cloudy all day long",
+      "date": "2026-01-01",
+      "venue": "Bootshaus",
+      "source_file": "2025-12-22-new-ra-events.json"
+    },
+    "reason": "exact_match_non_ra"
+  },
+  {
+    "ra_event": {
+      "id": "",
+      "venue": "Bootshaus",
+      "date": "2026-01-02",
+      "title": "Bootshaus DJ Contest 2026",
+      "artists": [
+        "Loraw",
+        "MIXXR",
+        "SIUL (1)",
+        "Groove",
+        "C H A Y A",
+        "Kizu",
+        "Vaneska"
+      ],
+      "startTime": "21:00",
+      "url": "https://ra.co/events/2328777"
+    },
+    "existing_event": {
+      "id": "28b9f531",
+      "url": "https://bootshaus.tv/events/02-01-26bootshaus-dj-contest-2026/",
+      "name": "Bootshaus DJ Contest 2026",
+      "date": "2026-01-02",
+      "venue": "Bootshaus",
+      "source_file": "2025-12-22-new-ra-events.json"
+    },
+    "reason": "exact_match_non_ra"
+  },
+  {
+    "ra_event": {
+      "id": "",
+      "venue": "Bootshaus",
+      "date": "2026-01-03",
+      "title": "HARDBRAKE pres. REBELION, WARFACE, DEVIN WILD b2b HARD DRIVER and many more",
+      "artists": [
+        "CREST"
+      ],
+      "startTime": "22:00",
+      "url": "https://ra.co/events/2286330"
+    },
+    "existing_event": {
+      "id": "01e3b9b4",
+      "url": "https://bootshaus.tv/events/03-01-26hardbrake-pres-rebelion-warface-devin-wild-b2b-hard-driver-and-many-more/",
+      "name": "HARDBRAKE pres. REBELION, WARFACE, DEVIN WILD b2b HARD DRIVER and many more",
+      "date": "2026-01-03",
+      "venue": "Bootshaus",
+      "source_file": "2025-12-22-new-ra-events.json"
+    },
+    "reason": "exact_match_non_ra"
+  },
+  {
+    "ra_event": {
+      "id": "",
+      "venue": "Bootshaus",
+      "date": "2026-01-09",
+      "title": "Hybrid Minds / Delta Heavy / BassLayerz pres. by Connected",
+      "artists": [
+        "Hybrid Minds",
+        "Tempza",
+        "Delta Heavy",
+        "Daxta",
+        "Maze (FR)",
+        "BassLayerz",
+        "FORWARD (live duo)",
+        "Voicians"
+      ],
+      "startTime": "23:00",
+      "url": "https://ra.co/events/2314732"
+    },
+    "existing_event": {
+      "id": "3c0f5e13",
+      "url": "https://bootshaus.tv/events/09-01-26hybrid-minds-delta-heavy-basslayerz-and-more-pres-by-connected/",
+      "name": "Hybrid Minds / Delta Heavy / BassLayerz pres. by Connected",
+      "date": "2026-01-09",
+      "venue": "Bootshaus",
+      "source_file": "2025-12-22-new-ra-events.json"
+    },
+    "reason": "exact_match_non_ra"
+  },
+  {
+    "ra_event": {
+      "id": "",
+      "venue": "Bootshaus",
+      "date": "2026-01-17",
+      "title": "NIBIRII pres. ZEUZ - ALL NIGHT LONG",
+      "artists": [
+        "ZEUZ",
+        "Kara Okay"
+      ],
+      "startTime": "22:00",
+      "url": "https://ra.co/events/2283938"
+    },
+    "existing_event": {
+      "id": "",
+      "url": "https://bootshaus.tv/events/17-01-26nibirii-pres-zeuz-all-night-long/",
+      "name": "NIBIRII PRES. ZEUZ - ALL NIGHT LONG",
+      "date": "2026-01-17",
+      "venue": "Bootshaus",
+      "source_file": "2025-12-22-new-ra-events.json"
+    },
+    "reason": "exact_match_non_ra"
+  }
+]
