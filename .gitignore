@@ -35,3 +35,4 @@ pnpm-debug.log*
 # Python cache
 __pycache__/
 *.pyc
+*-skipped-events-report.json
