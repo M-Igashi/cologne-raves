@@ -1,7 +1,14 @@
-import { createHash } from 'crypto';
+import { createHash } from "crypto";
 
-export function generateStableId(party: { date: string; title: string }) {
-  const hash = createHash('sha256');
-  hash.update(`${party.date}-${party.title}`);
-  return hash.digest('hex').slice(0, 8);
+export interface PartyIdentity {
+  title: string;
+  date: string;
+  venue?: string;
+}
+
+export function generateStableId(party: PartyIdentity): string {
+  const hash = createHash("md5")
+    .update(JSON.stringify([party.title, party.date, party.venue || ""]))
+    .digest("hex");
+  return hash.slice(0, 8);
 }

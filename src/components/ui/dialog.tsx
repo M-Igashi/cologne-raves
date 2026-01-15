@@ -8,8 +8,8 @@ const Dialog = DialogPrimitive.Root;
 
 const DialogTrigger = DialogPrimitive.Trigger;
 
-const DialogPortal = ({ className, ...props }: DialogPrimitive.DialogPortalProps) => (
-  <DialogPrimitive.Portal {...props} className={cn(className)} />
+const DialogPortal = (props: DialogPrimitive.DialogPortalProps) => (
+  <DialogPrimitive.Portal {...props} />
 );
 DialogPortal.displayName = DialogPrimitive.Portal.displayName;
 
@@ -21,7 +21,7 @@ const DialogOverlay = React.forwardRef<
     ref={ref}
     className={cn(
       "fixed inset-0 z-50 bg-black/50 backdrop-blur-sm transition-opacity",
-      className
+      className,
     )}
     {...props}
   />
@@ -38,7 +38,7 @@ const DialogContent = React.forwardRef<
       ref={ref}
       className={cn(
         "fixed z-50 left-1/2 top-1/2 w-full max-w-lg -translate-x-1/2 -translate-y-1/2 bg-white p-6 shadow-lg rounded-lg border",
-        className
+        className,
       )}
       {...props}
     >
@@ -51,13 +51,23 @@ const DialogContent = React.forwardRef<
 ));
 DialogContent.displayName = DialogPrimitive.Content.displayName;
 
-const DialogHeader = ({ children, className }: { children: React.ReactNode; className?: string }) => (
+const DialogHeader = ({
+  children,
+  className,
+}: {
+  children: React.ReactNode;
+  className?: string;
+}) => (
   <div className={cn("text-lg font-semibold mb-2", className)}>{children}</div>
 );
 
-const DialogFooter = ({ children, className }: { children: React.ReactNode; className?: string }) => (
-  <div className={cn("mt-4 flex justify-end", className)}>{children}</div>
-);
+const DialogFooter = ({
+  children,
+  className,
+}: {
+  children: React.ReactNode;
+  className?: string;
+}) => <div className={cn("mt-4 flex justify-end", className)}>{children}</div>;
 
 const DialogTitle = React.forwardRef<
   React.ElementRef<typeof DialogPrimitive.Title>,
