@@ -1,0 +1,836 @@
+[
+  {
+    "id": "a253b06b",
+    "venue": "JAKI",
+    "date": "2026-01-23",
+    "title": "Best Foot Forward feat. Deniz Arslan, Gutta, Maxwell, mmara & Yung Müller",
+    "artists": [
+      "Deniz Arslan"
+    ],
+    "startTime": "23:30",
+    "url": "https://ra.co/events/2328039"
+  },
+  {
+    "id": "a16d7125",
+    "venue": "Nachtigall",
+    "date": "2026-01-23",
+    "title": "13 Jahre Nachtigall - Clubnacht x Römertanz w/ Matchy",
+    "artists": [
+      "Matchy",
+      "justUS",
+      "EIK music"
+    ],
+    "startTime": "23:00",
+    "url": "https://ra.co/events/2326762"
+  },
+  {
+    "id": "bbe88ddc",
+    "venue": "Club Zimmermanns",
+    "date": "2026-01-23",
+    "title": "EDM Revival Night",
+    "artists": [
+      "Nick Tribe"
+    ],
+    "startTime": "23:00",
+    "url": "https://ra.co/events/2333928"
+  },
+  {
+    "id": "cf91d4a5",
+    "venue": "fi",
+    "date": "2026-01-24",
+    "title": "fi = altshift5 with DJ Hell & Das Ist Das Ja",
+    "artists": [
+      "DJ Hell",
+      "Etane",
+      "Play Boy Joe"
+    ],
+    "startTime": "23:00",
+    "url": "https://ra.co/events/2326648"
+  },
+  {
+    "id": "0e9d3ce6",
+    "venue": "Essigfabrik",
+    "date": "2026-01-24",
+    "title": "MATTERMIND Weekender 3.0",
+    "artists": [
+      "AMBAM",
+      "Doruksen",
+      "Cenan Holland"
+    ],
+    "startTime": "22:30",
+    "url": "https://ra.co/events/2318615"
+  },
+  {
+    "id": "",
+    "venue": "Artheater",
+    "date": "2026-01-24",
+    "title": "connected @ Artheater",
+    "artists": [
+      "DJ SODBRENNEN",
+      "DJ Discostoff"
+    ],
+    "startTime": "23:00",
+    "url": "https://ra.co/events/2340897"
+  },
+  {
+    "id": "9be4ade2",
+    "venue": "H26",
+    "date": "2026-01-24",
+    "title": "Purple Vibrations with Alex Breitling, Nus, Felicia Bianco · H26 Köln",
+    "artists": [
+      "Alex Breitling",
+      "NUS MUSIC",
+      "Bensonius"
+    ],
+    "startTime": "22:00",
+    "url": "https://ra.co/events/2330868"
+  },
+  {
+    "id": "",
+    "venue": "Zum Scheuen Reh",
+    "date": "2026-01-24",
+    "title": "Galactic Boogie",
+    "artists": [
+      "Phonk D",
+      "Claus Casper"
+    ],
+    "startTime": "22:00",
+    "url": "https://ra.co/events/2350398"
+  },
+  {
+    "id": "6342cc48",
+    "venue": "Nachtigall",
+    "date": "2026-01-24",
+    "title": "IMPULSIVE COLOGNE with SHABI1, G2, HEISS, MARV, MAMA PETITE, STO:RNO, VINYA",
+    "artists": [],
+    "startTime": "22:30",
+    "url": "https://ra.co/events/2338920"
+  },
+  {
+    "id": "",
+    "venue": "Elektroküche",
+    "date": "2026-01-30",
+    "title": "Techno Allianz Schranz Only Pres Boris S",
+    "artists": [
+      "Boris S.",
+      "Loraw",
+      "Ropemaker"
+    ],
+    "startTime": "23:00",
+    "url": "https://ra.co/events/2290075"
+  },
+  {
+    "id": "",
+    "venue": "Helios37",
+    "date": "2026-01-30",
+    "title": "BZZBZZ TECHNO",
+    "artists": [
+      "Trancestrudel",
+      "SPEEDO (2)"
+    ],
+    "startTime": "23:00",
+    "url": "https://ra.co/events/2339231"
+  },
+  {
+    "id": "",
+    "venue": "Bootshaus",
+    "date": "2026-01-30",
+    "title": "Unreal Weekender Night I x Line Up TBA",
+    "artists": [],
+    "startTime": "22:30",
+    "url": "https://ra.co/events/2269885"
+  },
+  {
+    "id": "",
+    "venue": "JAKI",
+    "date": "2026-01-30",
+    "title": "Hyperlove & TIBA",
+    "artists": [
+      "DJ ASS TITS"
+    ],
+    "startTime": "23:30",
+    "url": "https://ra.co/events/2329975"
+  },
+  {
+    "id": "",
+    "venue": "Gewölbe",
+    "date": "2026-01-30",
+    "title": "Prude with DJ Frank, Doppelgang, Jenny Cara",
+    "artists": [
+      "DJ Frank",
+      "Doppelgang",
+      "Jenny Cara"
+    ],
+    "startTime": "23:00",
+    "url": "https://ra.co/events/2345635"
+  },
+  {
+    "id": "",
+    "venue": "Club Zimmermanns",
+    "date": "2026-01-30",
+    "title": "UnderDive with SILSAN (Subios Rec.), Klarabell, PHI Ф & Steffie Storno",
+    "artists": [
+      "SILSAN"
+    ],
+    "startTime": "23:00",
+    "url": "https://ra.co/events/2335404"
+  },
+  {
+    "id": "",
+    "venue": "Pure Space",
+    "date": "2026-01-30",
+    "title": "Yin & Ambient",
+    "artists": [
+      "Anna Konda",
+      "Ramón Zappa"
+    ],
+    "startTime": "17:30",
+    "url": "https://ra.co/events/2340155"
+  },
+  {
+    "id": "",
+    "venue": "Artheater",
+    "date": "2026-01-30",
+    "title": "Fresh Fruits - A Celebration Of House Music",
+    "artists": [
+      "Sedaction"
+    ],
+    "startTime": "23:00",
+    "url": "https://ra.co/events/2341751"
+  },
+  {
+    "id": "",
+    "venue": "Schrotty",
+    "date": "2026-01-30",
+    "title": "Promise loves Cologne",
+    "artists": [
+      "Aaro (3)",
+      "Redfocks",
+      "Ursula Erdmann"
+    ],
+    "startTime": "23:00",
+    "url": "https://ra.co/events/2335735"
+  },
+  {
+    "id": "",
+    "venue": "Garagen",
+    "date": "2026-01-30",
+    "title": "RUMORE #01",
+    "artists": [],
+    "startTime": "22:00",
+    "url": "https://ra.co/events/2345552"
+  },
+  {
+    "id": "",
+    "venue": "Reineke Fuchs",
+    "date": "2026-01-30",
+    "title": "Control the Bounce Night",
+    "artists": [],
+    "startTime": "23:00",
+    "url": "https://ra.co/events/2338149"
+  },
+  {
+    "id": "",
+    "venue": "Artheater",
+    "date": "2026-01-31",
+    "title": "Lichtblick XVI Anniversary",
+    "artists": [
+      "Alchemiah",
+      "Kos:mo",
+      "Mha iri",
+      "Auriga",
+      "Szunflower",
+      "Zeltak"
+    ],
+    "startTime": "23:00",
+    "url": "https://ra.co/events/2286832"
+  },
+  {
+    "id": "",
+    "venue": "Helios37",
+    "date": "2026-01-31",
+    "title": "Wyldhearts at Helios 37",
+    "artists": [
+      "Atzendent",
+      "CRITICAL ERROR 404",
+      "Den Solo",
+      "Ferrand",
+      "SUITSIDE",
+      "The Second I"
+    ],
+    "startTime": "23:00",
+    "url": "https://ra.co/events/2336499"
+  },
+  {
+    "id": "",
+    "venue": "Pure Space",
+    "date": "2026-01-31",
+    "title": "LISTEN TO *PILETA*",
+    "artists": [],
+    "startTime": "16:00",
+    "url": "https://ra.co/events/2340127"
+  },
+  {
+    "id": "",
+    "venue": "fi",
+    "date": "2026-01-31",
+    "title": "fi x Gerd Janson & Jonathan Kaspar & friendly Connections",
+    "artists": [
+      "Gerd Janson",
+      "Jonathan Kaspar"
+    ],
+    "startTime": "23:00",
+    "url": "https://ra.co/events/2321739"
+  },
+  {
+    "id": "",
+    "venue": "Bootshaus",
+    "date": "2026-01-31",
+    "title": "Unreal Weekender Night II x Line up TBA",
+    "artists": [],
+    "startTime": "22:30",
+    "url": "https://ra.co/events/2269889"
+  },
+  {
+    "id": "",
+    "venue": "Elektroküche",
+    "date": "2026-01-31",
+    "title": "Radioactive DANGERZONE with XRTN, LEX LEDU",
+    "artists": [
+      "XRTN",
+      "LEX LEDU"
+    ],
+    "startTime": "23:00",
+    "url": "https://ra.co/events/2332838"
+  },
+  {
+    "id": "",
+    "venue": "Gewölbe",
+    "date": "2026-01-31",
+    "title": "10 Years Hoove with Leon Hagen, Thalo Santana, Vera",
+    "artists": [
+      "Thalo Santana",
+      "Leon Hagen",
+      "Vera"
+    ],
+    "startTime": "23:00",
+    "url": "https://ra.co/events/2345637"
+  },
+  {
+    "id": "",
+    "venue": "Club Zimmermanns",
+    "date": "2026-01-31",
+    "title": "Early beats afterhour",
+    "artists": [
+      "ACA (YU)"
+    ],
+    "startTime": "08:00",
+    "url": "https://ra.co/events/2337201"
+  },
+  {
+    "id": "",
+    "venue": "Zimmermann's",
+    "date": "2026-01-31",
+    "title": "SETISFIED",
+    "artists": [
+      "Chris Di Perri"
+    ],
+    "startTime": "22:30",
+    "url": "https://ra.co/events/2342989"
+  },
+  {
+    "id": "",
+    "venue": "JAKI",
+    "date": "2026-01-31",
+    "title": "Tom-Tom Discotec & Stadtgarten present: „Soul Rabbi - Shine On'",
+    "artists": [],
+    "startTime": "23:30",
+    "url": "https://ra.co/events/2345452"
+  },
+  {
+    "id": "",
+    "venue": "Helios37",
+    "date": "2026-02-01",
+    "title": "Sober Rave No.2",
+    "artists": [
+      "Pardis"
+    ],
+    "startTime": "12:00",
+    "url": "https://ra.co/events/2349957"
+  },
+  {
+    "id": "",
+    "venue": "Bogen 2",
+    "date": "2026-02-06",
+    "title": "UNDRSCHZ",
+    "artists": [
+      "Buchecha",
+      "Alex TB",
+      "SlugoS",
+      "Nachtigaller",
+      "Luckes"
+    ],
+    "startTime": "23:00",
+    "url": "https://ra.co/events/2333500"
+  },
+  {
+    "id": "",
+    "venue": "Bootshaus",
+    "date": "2026-02-06",
+    "title": "GEORGE RADSPORT pres. by EUPHORIA",
+    "artists": [
+      "snoritz",
+      "Bounce MC",
+      "Fronsi"
+    ],
+    "startTime": "23:00",
+    "url": "https://ra.co/events/2314699"
+  },
+  {
+    "id": "",
+    "venue": "Gewölbe",
+    "date": "2026-02-06",
+    "title": "Perfect Timing with Fero, Joëlla Jackson, Nic Lorenz, SIMES",
+    "artists": [
+      "Fero Duman",
+      "Joëlla Jackson",
+      "Nic Lorenz",
+      "SIMES"
+    ],
+    "startTime": "23:00",
+    "url": "https://ra.co/events/2346890"
+  },
+  {
+    "id": "",
+    "venue": "Helios37",
+    "date": "2026-02-06",
+    "title": "AESTHETIC w. ARRAX, DANIEL NØAH, EDNA, JAES, RØM, SUSKA",
+    "artists": [
+      "EDNA",
+      "SUSKA",
+      "Daniel Noah"
+    ],
+    "startTime": "23:00",
+    "url": "https://ra.co/events/2346645"
+  },
+  {
+    "id": "",
+    "venue": "JAKI",
+    "date": "2026-02-06",
+    "title": "JAKI presents Bergen b2b Lichtenberg, Cueless Club",
+    "artists": [
+      "Bergen"
+    ],
+    "startTime": "23:30",
+    "url": "https://ra.co/events/2345718"
+  },
+  {
+    "id": "",
+    "venue": "Artheater",
+    "date": "2026-02-06",
+    "title": "Zwischenmiete Club Edition - Resident Night",
+    "artists": [],
+    "startTime": "23:00",
+    "url": "https://ra.co/events/2345532"
+  },
+  {
+    "id": "",
+    "venue": "Schrotty",
+    "date": "2026-02-07",
+    "title": "ONE:Z with HiTMiLØW, Noise Mafia, GIØ",
+    "artists": [
+      "HiTMiLØW",
+      "Noise Mafia"
+    ],
+    "startTime": "23:00",
+    "url": "https://ra.co/events/2326487"
+  },
+  {
+    "id": "",
+    "venue": "fi",
+    "date": "2026-02-07",
+    "title": "fi = altshift5 with Daria Kolosova & nonchalance & Vement",
+    "artists": [
+      "Vasen",
+      "Flavius (2)",
+      "VillA"
+    ],
+    "startTime": "23:00",
+    "url": "https://ra.co/events/2328230"
+  },
+  {
+    "id": "",
+    "venue": "Gewölbe",
+    "date": "2026-02-07",
+    "title": "CLR with Chris Liebing, Elisen",
+    "artists": [
+      "Chris Liebing",
+      "Elisen"
+    ],
+    "startTime": "23:00",
+    "url": "https://ra.co/events/2345640"
+  },
+  {
+    "id": "",
+    "venue": "Artheater",
+    "date": "2026-02-07",
+    "title": "KOMM RAVEN X Tarkno X Artheater",
+    "artists": [
+      "Tarkno",
+      "Ariel (DE)",
+      "Jan Trovato",
+      "L3OO"
+    ],
+    "startTime": "23:00",
+    "url": "https://ra.co/events/2349112"
+  },
+  {
+    "id": "",
+    "venue": "Odonien",
+    "date": "2026-02-07",
+    "title": "Odonien RE-OPENING 2026",
+    "artists": [],
+    "startTime": "23:59",
+    "url": "https://ra.co/events/2348024"
+  },
+  {
+    "id": "",
+    "venue": "Klub Domhof",
+    "date": "2026-02-07",
+    "title": "HARDFUSION - HARD & RAW",
+    "artists": [],
+    "startTime": "22:00",
+    "url": "https://ra.co/events/2349566"
+  },
+  {
+    "id": "",
+    "venue": "Subway",
+    "date": "2026-02-07",
+    "title": "IMMERNOCH! TANZEN",
+    "artists": [],
+    "startTime": "17:00",
+    "url": "https://ra.co/events/2334235"
+  },
+  {
+    "id": "",
+    "venue": "Bootshaus",
+    "date": "2026-02-07",
+    "title": "blu|white - karneval meets clubbing vol.8",
+    "artists": [],
+    "startTime": "20:00",
+    "url": "https://ra.co/events/2312759"
+  },
+  {
+    "id": "",
+    "venue": "Gewölbe",
+    "date": "2026-02-08",
+    "title": "Research with Dimon & lyzanne, mojo",
+    "artists": [
+      "lyzanne",
+      "mojo"
+    ],
+    "startTime": "14:00",
+    "url": "https://ra.co/events/2352302"
+  },
+  {
+    "id": "",
+    "venue": "Odonien",
+    "date": "2026-02-12",
+    "title": "Jeck Op Tek - Odonien Carnival Rave - Weiberfastnacht 2026",
+    "artists": [
+      "Bergen",
+      "Christian Zah",
+      "DCHM",
+      "EPHIE",
+      "Eszter",
+      "Freddy (2)",
+      "Leolo Lozone",
+      "Marcel Janovsky",
+      "Max Well"
+    ],
+    "startTime": "15:00",
+    "url": "https://ra.co/events/2337487"
+  },
+  {
+    "id": "",
+    "venue": "TBA - Off Location Wilhelm -Mauser Str.21 - 25. 50823 Köln ",
+    "date": "2026-02-12",
+    "title": "Warehouse Club Germany - In the Original Location for One Day WMS Cologne",
+    "artists": [
+      "DJ Rush",
+      "Miss Djax",
+      "Steve Mason",
+      "Criss Source",
+      "Frank Sonic",
+      "Irwin Leschet",
+      "Oliver Bondzio",
+      "Paytric",
+      "Roland Casper",
+      "Traffic"
+    ],
+    "startTime": "16:00",
+    "url": "https://ra.co/events/2338101"
+  },
+  {
+    "id": "",
+    "venue": "fi",
+    "date": "2026-02-12",
+    "title": "fi x Moyneval x Ketoga x Karneval",
+    "artists": [
+      "Konfusia",
+      "Pardis",
+      "Grace | غريس",
+      "Ghetto",
+      "Vivi Wahnsinn",
+      "Yonah"
+    ],
+    "startTime": "18:00",
+    "url": "https://ra.co/events/2341175"
+  },
+  {
+    "id": "",
+    "venue": "Gewölbe",
+    "date": "2026-02-12",
+    "title": "Phonovision Weiberfastnacht",
+    "artists": [
+      "DJ ASS TITS",
+      "DJ Palga",
+      "DJ PLUS PLUS",
+      "Arninho",
+      "HiHat"
+    ],
+    "startTime": "16:00",
+    "url": "https://ra.co/events/2345651"
+  },
+  {
+    "id": "",
+    "venue": "TBA",
+    "date": "2026-02-12",
+    "title": "Witches Coven X CGN DnB Carnival Indoor Special an Weiberfastnacht",
+    "artists": [],
+    "startTime": "14:00",
+    "url": "https://ra.co/events/2342793"
+  },
+  {
+    "id": "",
+    "venue": "Schrotty",
+    "date": "2026-02-13",
+    "title": "303 presents Karnevals Freitag im Schrotty / Kalte Liebe, KUKO, Johannes Schuster",
+    "artists": [
+      "KUKO",
+      "Johannes Schuster",
+      "Kalte Liebe",
+      "sixtimes8",
+      "Pacemaker",
+      "Ramona (2)"
+    ],
+    "startTime": "20:00",
+    "url": "https://ra.co/events/2330553"
+  },
+  {
+    "id": "",
+    "venue": "Stadtgarten Konzertsaal / Cafe",
+    "date": "2026-02-13",
+    "title": "Karneval!?! – Der Tanz auf der Membran",
+    "artists": [
+      "Gourski",
+      "LSG",
+      "MAURO"
+    ],
+    "startTime": "18:00",
+    "url": "https://ra.co/events/2323057"
+  },
+  {
+    "id": "",
+    "venue": "Gewölbe",
+    "date": "2026-02-13",
+    "title": "Klubnacht Karnevalsfreitag with Lars Eidinger, Shumi, Voltmar",
+    "artists": [
+      "Lars Eidinger",
+      "Shumi",
+      "Voltmar"
+    ],
+    "startTime": "22:00",
+    "url": "https://ra.co/events/2345654"
+  },
+  {
+    "id": "",
+    "venue": "Reineke Fuchs",
+    "date": "2026-02-13",
+    "title": "Rhyne&Rhaus",
+    "artists": [],
+    "startTime": "23:00",
+    "url": "https://ra.co/events/2350919"
+  },
+  {
+    "id": "",
+    "venue": "Parkcafe",
+    "date": "2026-02-14",
+    "title": "Lichtblick - Carnival d'electronique - Karnevals Samstag",
+    "artists": [
+      "Alchemiah",
+      "Kos:mo",
+      "Patrik Berg"
+    ],
+    "startTime": "23:00",
+    "url": "https://ra.co/events/2321742"
+  },
+  {
+    "id": "",
+    "venue": "Schrotty",
+    "date": "2026-02-14",
+    "title": "Desire with Mika Heggemann, DJ Hyperdrive, DJ Cringey, DJ Sportschuh invites am",
+    "artists": [
+      "Mika Heggemann",
+      "DJ Hyperdrive",
+      "DJ Cringey",
+      "Alba Franch",
+      "DJ Autobahn",
+      "DJ SPORTSCHUH",
+      "Vagabund",
+      "PONY",
+      "ZAHNATZIN"
+    ],
+    "startTime": "21:00",
+    "url": "https://ra.co/events/2338594"
+  },
+  {
+    "id": "",
+    "venue": "fi",
+    "date": "2026-02-14",
+    "title": "fi x Laut & Luise x Karneval",
+    "artists": [
+      "Gina Sabatini",
+      "Ida Daugaard",
+      "Madmotormiquel",
+      "Scrounger",
+      "Sinamin"
+    ],
+    "startTime": "18:00",
+    "url": "https://ra.co/events/2327398"
+  },
+  {
+    "id": "",
+    "venue": "Garagen",
+    "date": "2026-02-14",
+    "title": "CARNIVAL OF LOVE // Open Air + Indoor // Day & Night",
+    "artists": [
+      "Bounce MC",
+      "HOTBOI2300",
+      "Bass",
+      "Jaycut",
+      "Jon Void",
+      "Lora (2)",
+      "Sixten",
+      "Voicians",
+      "Miguelito"
+    ],
+    "startTime": "14:00",
+    "url": "https://ra.co/events/2349130"
+  },
+  {
+    "id": "",
+    "venue": "Odonien",
+    "date": "2026-02-14",
+    "title": "Odonien Karneval Rave",
+    "artists": [
+      "Cosmic Dance",
+      "Liho",
+      "Max Blumen",
+      "Pardis",
+      "scheffka"
+    ],
+    "startTime": "20:00",
+    "url": "https://ra.co/events/2344338"
+  },
+  {
+    "id": "",
+    "venue": "Artheater",
+    "date": "2026-02-14",
+    "title": "Artheater Invites - Carnival Special",
+    "artists": [
+      "alleira",
+      "Amilli",
+      "HWRD",
+      "DJ Palga",
+      "HiHat",
+      "Gutkind",
+      "Sandilé"
+    ],
+    "startTime": "23:00",
+    "url": "https://ra.co/events/2345483"
+  },
+  {
+    "id": "",
+    "venue": "Gebäude 9",
+    "date": "2026-02-14",
+    "title": "Pathfinder & Hanzom pres. CARNIVAL COLOGNE feat. MERIKAN (Blackout/Eatbrain -It)",
+    "artists": [
+      "Bass"
+    ],
+    "startTime": "22:00",
+    "url": "https://ra.co/events/2350418"
+  },
+  {
+    "id": "",
+    "venue": "TBA",
+    "date": "2026-02-14",
+    "title": "T b a",
+    "artists": [],
+    "startTime": "23:00",
+    "url": "https://ra.co/events/2321745"
+  },
+  {
+    "id": "",
+    "venue": "Odonien",
+    "date": "2026-02-15",
+    "title": "BEATS x BASS x CARNIVAL feat. Tausendnamen",
+    "artists": [
+      "Tallboy",
+      "DJ Discostoff",
+      "Blayde",
+      "Sasuma",
+      "I.D.A",
+      "Rosilicious",
+      "TBA",
+      "Gourski",
+      "Enaly"
+    ],
+    "startTime": "16:00",
+    "url": "https://ra.co/events/2340578"
+  },
+  {
+    "id": "",
+    "venue": "Gewölbe",
+    "date": "2026-02-15",
+    "title": "My Dear Karneval with Âme (DJ), Barbara Hofmann, Denis Stockhausen",
+    "artists": [
+      "Âme",
+      "Barbara Hofmann",
+      "Denis Stockhausen"
+    ],
+    "startTime": "22:00",
+    "url": "https://ra.co/events/2345661"
+  },
+  {
+    "id": "",
+    "venue": "Nachtflug & Starz",
+    "date": "2026-02-15",
+    "title": "Naughty - Carnival Festival Closing Party",
+    "artists": [
+      "Pagano",
+      "Skippo"
+    ],
+    "startTime": "20:30",
+    "url": "https://ra.co/events/2300806"
+  },
+  {
+    "id": "",
+    "venue": "Bootshaus",
+    "date": "2026-02-15",
+    "title": "KitKatClub",
+    "artists": [],
+    "startTime": "22:00",
+    "url": "https://ra.co/events/2351506"
+  }
+]
