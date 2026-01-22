@@ -23,6 +23,9 @@
   "devDependencies": {
     "@cloudflare/workers-types": "^4.20250204.0",
     "@types/file-saver": "^2.0.7",
+    "@types/react": "^19.2.9",
+    "@types/react-dom": "^19.2.3",
+    "@types/uuid": "^10.0.0",
     "wrangler": "^4.58.0"
   },
   "scripts": {
