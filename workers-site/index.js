@@ -25,6 +25,7 @@ async function handleEvent(event) {
   // Serve static assets with optimized caching
   try {
     let response;
+    const pathname = url.pathname;
 
     // Determine cache options based on request path
     const isHtmlRequest =
@@ -58,7 +59,6 @@ async function handleEvent(event) {
 
     // Add performance and cache headers based on file type
     const headers = new Headers(response.headers);
-    const pathname = url.pathname;
 
     // Cache headers for different asset types
     if (pathname.match(/\.(css|js)$/)) {
