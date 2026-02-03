@@ -1,4 +1,4 @@
-import { getAssetFromKV } from '@cloudflare/kv-asset-handler';
+import { getAssetFromKV } from "@cloudflare/kv-asset-handler";
 
 /**
  * The DEBUG flag will do two things that help during development:
@@ -9,31 +9,48 @@ import { getAssetFromKV } from '@cloudflare/kv-asset-handler';
  */
 const DEBUG = false;
 
-addEventListener('fetch', (event) => {
+addEventListener("fetch", (event) => {
   event.respondWith(handleEvent(event));
 });
 
 async function handleEvent(event) {
   const request = event.request;
   const url = new URL(request.url);
-  
+
   // Handle API routes
-  if (url.pathname === '/api/submit-event') {
+  if (url.pathname === "/api/submit-event") {
     return handleAPIRequest(request, event);
   }
 
   // Serve static assets with optimized caching
   try {
     let response;
-    
+
+    // Determine cache options based on request path
+    const isHtmlRequest =
+      pathname === "/" ||
+      pathname.endsWith(".html") ||
+      pathname.endsWith(".htm") ||
+      (!pathname.includes(".") && pathname !== "/api/submit-event");
+
     if (DEBUG) {
       // customize caching for debug mode
       response = await getAssetFromKV(event, {});
+    } else if (isHtmlRequest) {
+      // HTML pages: short edge TTL to ensure fresh content after deploys
+      const options = {
+        cacheControl: {
+          edgeTtl: 60 * 60, // 1 hour edge cache
+          browserTtl: 60 * 60, // 1 hour browser cache
+        },
+      };
+      response = await getAssetFromKV(event, options);
     } else {
+      // Static assets (CSS, JS, images, fonts): long cache with content hashes
       const options = {
         cacheControl: {
           edgeTtl: 30 * 24 * 60 * 60, // 30 days
-          browserTtl: 24 * 60 * 60,    // 1 day
+          browserTtl: 24 * 60 * 60, // 1 day
         },
       };
       response = await getAssetFromKV(event, options);
@@ -42,58 +59,61 @@ async function handleEvent(event) {
     // Add performance and cache headers based on file type
     const headers = new Headers(response.headers);
     const pathname = url.pathname;
-    
+
     // Cache headers for different asset types
     if (pathname.match(/\.(css|js)$/)) {
       // CSS and JS files - cache for 1 year since they have hashes
-      headers.set('Cache-Control', 'public, max-age=31536000, immutable');
-      headers.set('Vary', 'Accept-Encoding');
+      headers.set("Cache-Control", "public, max-age=31536000, immutable");
+      headers.set("Vary", "Accept-Encoding");
     } else if (pathname.match(/\.(woff2?|ttf|otf|eot)$/)) {
       // Font files - cache for 1 year
-      headers.set('Cache-Control', 'public, max-age=31536000, immutable');
-      headers.set('Access-Control-Allow-Origin', '*'); // CORS for fonts
+      headers.set("Cache-Control", "public, max-age=31536000, immutable");
+      headers.set("Access-Control-Allow-Origin", "*"); // CORS for fonts
     } else if (pathname.match(/\.(png|jpg|jpeg|gif|svg|webp|ico)$/)) {
       // Images - cache for 30 days
-      headers.set('Cache-Control', 'public, max-age=2592000');
+      headers.set("Cache-Control", "public, max-age=2592000");
     } else if (pathname.match(/\.(html|htm)$/)) {
       // HTML files - shorter cache for dynamic content
-      headers.set('Cache-Control', 'public, max-age=3600, must-revalidate'); // 1 hour
-      headers.set('Vary', 'Accept-Encoding');
+      headers.set("Cache-Control", "public, max-age=3600, must-revalidate"); // 1 hour
+      headers.set("Vary", "Accept-Encoding");
     } else {
       // Default cache for other files
-      headers.set('Cache-Control', 'public, max-age=86400'); // 1 day
+      headers.set("Cache-Control", "public, max-age=86400"); // 1 day
     }
-    
+
     // Performance headers
-    headers.set('X-Content-Type-Options', 'nosniff');
-    headers.set('X-Frame-Options', 'DENY');
-    headers.set('X-XSS-Protection', '1; mode=block');
-    headers.set('Referrer-Policy', 'strict-origin-when-cross-origin');
-    
+    headers.set("X-Content-Type-Options", "nosniff");
+    headers.set("X-Frame-Options", "DENY");
+    headers.set("X-XSS-Protection", "1; mode=block");
+    headers.set("Referrer-Policy", "strict-origin-when-cross-origin");
+
     // Enable compression hints
     if (pathname.match(/\.(css|js|html|svg|json)$/)) {
-      headers.set('Content-Encoding', 'br'); // Prefer Brotli
-      headers.set('Vary', 'Accept-Encoding, Accept');
+      headers.set("Content-Encoding", "br"); // Prefer Brotli
+      headers.set("Vary", "Accept-Encoding, Accept");
     }
-    
+
     // Add performance hints for modern browsers
     if (pathname.match(/\.(html|htm)$/)) {
-      headers.set('Link', '</fonts/atkinson-regular.woff>; rel=preload; as=font; type=font/woff; crossorigin, </fonts/atkinson-bold.woff>; rel=preload; as=font; type=font/woff; crossorigin');
-      headers.set('Early-Data', '1'); // Enable 0-RTT for repeat visitors
+      headers.set(
+        "Link",
+        "</fonts/atkinson-regular.woff>; rel=preload; as=font; type=font/woff; crossorigin, </fonts/atkinson-bold.woff>; rel=preload; as=font; type=font/woff; crossorigin",
+      );
+      headers.set("Early-Data", "1"); // Enable 0-RTT for repeat visitors
     }
-    
+
     return new Response(response.body, {
       status: response.status,
       statusText: response.statusText,
       headers,
     });
-    
   } catch (e) {
     // if an error is thrown try to serve the asset at 404.html
     if (!DEBUG) {
       try {
         let notFoundResponse = await getAssetFromKV(event, {
-          mapRequestToAsset: (req) => new Request(`${new URL(req.url).origin}/404.html`, req),
+          mapRequestToAsset: (req) =>
+            new Request(`${new URL(req.url).origin}/404.html`, req),
         });
 
         return new Response(notFoundResponse.body, {
@@ -109,48 +129,51 @@ async function handleEvent(event) {
 
 async function handleAPIRequest(request, event) {
   // Handle CORS preflight
-  if (request.method === 'OPTIONS') {
+  if (request.method === "OPTIONS") {
     return new Response(null, {
       status: 200,
       headers: {
-        'Access-Control-Allow-Origin': '*',
-        'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
-        'Access-Control-Allow-Headers': 'Content-Type',
-      }
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
+        "Access-Control-Allow-Headers": "Content-Type",
+      },
     });
   }
-  
+
   // Handle GET request (for testing)
-  if (request.method === 'GET') {
-    return new Response(JSON.stringify({
-      status: 'ok',
-      message: 'API endpoint is working',
-      timestamp: new Date().toISOString(),
-      method: 'GET'
-    }), {
-      status: 200,
-      headers: {
-        'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': '*'
-      }
-    });
+  if (request.method === "GET") {
+    return new Response(
+      JSON.stringify({
+        status: "ok",
+        message: "API endpoint is working",
+        timestamp: new Date().toISOString(),
+        method: "GET",
+      }),
+      {
+        status: 200,
+        headers: {
+          "Content-Type": "application/json",
+          "Access-Control-Allow-Origin": "*",
+        },
+      },
+    );
   }
-  
+
   // Handle POST request
-  if (request.method === 'POST') {
+  if (request.method === "POST") {
     return handleEventSubmission(request, event);
   }
-  
+
   // Method not allowed
-  return new Response('Method not allowed', { status: 405 });
+  return new Response("Method not allowed", { status: 405 });
 }
 
 async function handleEventSubmission(request, event) {
   const headers = {
-    'Access-Control-Allow-Origin': '*',
-    'Access-Control-Allow-Methods': 'POST, OPTIONS, GET',
-    'Access-Control-Allow-Headers': 'Content-Type',
-    'Content-Type': 'application/json'
+    "Access-Control-Allow-Origin": "*",
+    "Access-Control-Allow-Methods": "POST, OPTIONS, GET",
+    "Access-Control-Allow-Headers": "Content-Type",
+    "Content-Type": "application/json",
   };
 
   try {
@@ -160,103 +183,121 @@ async function handleEventSubmission(request, event) {
 
     // Validate the data
     if (!events || !Array.isArray(events) || events.length === 0) {
-      return new Response(JSON.stringify({ 
-        error: 'Invalid events data',
-        details: 'Events must be a non-empty array'
-      }), {
-        status: 400,
-        headers
-      });
+      return new Response(
+        JSON.stringify({
+          error: "Invalid events data",
+          details: "Events must be a non-empty array",
+        }),
+        {
+          status: 400,
+          headers,
+        },
+      );
     }
 
-    if (!filename || typeof filename !== 'string') {
-      return new Response(JSON.stringify({ 
-        error: 'Invalid filename',
-        details: 'Filename must be a non-empty string'
-      }), {
-        status: 400,
-        headers
-      });
+    if (!filename || typeof filename !== "string") {
+      return new Response(
+        JSON.stringify({
+          error: "Invalid filename",
+          details: "Filename must be a non-empty string",
+        }),
+        {
+          status: 400,
+          headers,
+        },
+      );
     }
 
     // Validate each event
     for (const event of events) {
       if (!event.title || !event.venue || !event.date || !event.startTime) {
-        return new Response(JSON.stringify({ 
-          error: 'Missing required fields in event data',
-          details: 'Each event must have title, venue, date, and startTime'
-        }), {
-          status: 400,
-          headers
-        });
+        return new Response(
+          JSON.stringify({
+            error: "Missing required fields in event data",
+            details: "Each event must have title, venue, date, and startTime",
+          }),
+          {
+            status: 400,
+            headers,
+          },
+        );
       }
     }
 
     // Get GitHub token from environment variable
-    const githubToken = typeof GITHUB_TOKEN !== 'undefined' ? GITHUB_TOKEN : null;
-    
+    const githubToken =
+      typeof GITHUB_TOKEN !== "undefined" ? GITHUB_TOKEN : null;
+
     if (!githubToken) {
-      console.error('GITHUB_TOKEN not configured');
-      return new Response(JSON.stringify({ 
-        warning: 'GitHub token not configured',
-        message: 'Your event data has been received but cannot be automatically processed. Please contact the administrator.',
-        events: events,
-        filename: filename
-      }), {
-        status: 200,
-        headers
-      });
+      console.error("GITHUB_TOKEN not configured");
+      return new Response(
+        JSON.stringify({
+          warning: "GitHub token not configured",
+          message:
+            "Your event data has been received but cannot be automatically processed. Please contact the administrator.",
+          events: events,
+          filename: filename,
+        }),
+        {
+          status: 200,
+          headers,
+        },
+      );
     }
 
     // GitHub API configuration
-    const GITHUB_OWNER = 'M-Igashi';
-    const GITHUB_REPO = 'cologne-raves';
-    
-    console.log('Triggering GitHub workflow...');
-    
+    const GITHUB_OWNER = "M-Igashi";
+    const GITHUB_REPO = "cologne-raves";
+
+    console.log("Triggering GitHub workflow...");
+
     // Try to trigger the workflow
     const workflowResponse = await fetch(
       `https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/actions/workflows/create-event-pr.yml/dispatches`,
       {
-        method: 'POST',
+        method: "POST",
         headers: {
-          'Accept': 'application/vnd.github.v3+json',
-          'Authorization': `Bearer ${githubToken}`,
-          'Content-Type': 'application/json',
-          'User-Agent': 'Cologne-Raves-Worker'
+          Accept: "application/vnd.github.v3+json",
+          Authorization: `Bearer ${githubToken}`,
+          "Content-Type": "application/json",
+          "User-Agent": "Cologne-Raves-Worker",
         },
         body: JSON.stringify({
-          ref: 'main',
+          ref: "main",
           inputs: {
             events_json: JSON.stringify(events),
             filename: filename,
-            submitter_email: submitterEmail || 'anonymous'
-          }
-        })
-      }
+            submitter_email: submitterEmail || "anonymous",
+          },
+        }),
+      },
     );
 
-    console.log('GitHub API response status:', workflowResponse.status);
+    console.log("GitHub API response status:", workflowResponse.status);
 
     // GitHub API returns 204 No Content on success for workflow dispatch
     if (workflowResponse.status === 204) {
-      return new Response(JSON.stringify({ 
-        success: true,
-        message: 'Pull request creation initiated! Check the repository for the new PR in a few moments.',
-        workflowTriggered: true
-      }), {
-        status: 200,
-        headers
-      });
+      return new Response(
+        JSON.stringify({
+          success: true,
+          message:
+            "Pull request creation initiated! Check the repository for the new PR in a few moments.",
+          workflowTriggered: true,
+        }),
+        {
+          status: 200,
+          headers,
+        },
+      );
     }
 
     // If workflow dispatch fails, try to create an issue instead
-    console.log('Workflow dispatch failed, creating issue instead...');
-    
+    console.log("Workflow dispatch failed, creating issue instead...");
+
     const issueBody = `## New Event Submission
 
 **Filename:** \`${filename}\`
-**Submitted by:** ${submitterEmail || 'anonymous'}
+**Submitted by:** ${submitterEmail || "anonymous"}
 **Timestamp:** ${new Date().toISOString()}
 
 ### Event Data
@@ -284,58 +325,66 @@ Or use GitHub Actions:
     const issueResponse = await fetch(
       `https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/issues`,
       {
-        method: 'POST',
+        method: "POST",
         headers: {
-          'Accept': 'application/vnd.github.v3+json',
-          'Authorization': `Bearer ${githubToken}`,
-          'Content-Type': 'application/json',
-          'User-Agent': 'Cologne-Raves-Worker'
+          Accept: "application/vnd.github.v3+json",
+          Authorization: `Bearer ${githubToken}`,
+          "Content-Type": "application/json",
+          "User-Agent": "Cologne-Raves-Worker",
         },
         body: JSON.stringify({
           title: `🎉 New Event Submission: ${filename}`,
           body: issueBody,
-          labels: []
-        })
-      }
+          labels: [],
+        }),
+      },
     );
 
     if (issueResponse.ok) {
       const issueData = await issueResponse.json();
-      return new Response(JSON.stringify({ 
-        success: true,
-        message: `Event submission created as Issue #${issueData.number}. You can view it on GitHub.`,
-        issueUrl: issueData.html_url,
-        issueNumber: issueData.number
-      }), {
-        status: 200,
-        headers
-      });
+      return new Response(
+        JSON.stringify({
+          success: true,
+          message: `Event submission created as Issue #${issueData.number}. You can view it on GitHub.`,
+          issueUrl: issueData.html_url,
+          issueNumber: issueData.number,
+        }),
+        {
+          status: 200,
+          headers,
+        },
+      );
     }
 
     // If both methods fail
     const errorText = await issueResponse.text();
-    console.error('Both workflow and issue creation failed:', errorText);
-    
-    return new Response(JSON.stringify({ 
-      error: 'Failed to process submission',
-      details: 'Could not create PR or issue. Please try again later.',
-      debugInfo: errorText
-    }), {
-      status: 500,
-      headers
-    });
+    console.error("Both workflow and issue creation failed:", errorText);
 
+    return new Response(
+      JSON.stringify({
+        error: "Failed to process submission",
+        details: "Could not create PR or issue. Please try again later.",
+        debugInfo: errorText,
+      }),
+      {
+        status: 500,
+        headers,
+      },
+    );
   } catch (error) {
-    console.error('Error processing event submission:', error);
-    return new Response(JSON.stringify({ 
-      error: 'Internal server error',
-      details: error.message || 'Unknown error'
-    }), {
-      status: 500,
-      headers: {
-        'Access-Control-Allow-Origin': '*',
-        'Content-Type': 'application/json'
-      }
-    });
+    console.error("Error processing event submission:", error);
+    return new Response(
+      JSON.stringify({
+        error: "Internal server error",
+        details: error.message || "Unknown error",
+      }),
+      {
+        status: 500,
+        headers: {
+          "Access-Control-Allow-Origin": "*",
+          "Content-Type": "application/json",
+        },
+      },
+    );
   }
 }
