@@ -37,5 +37,9 @@
     "preview": "astro build && node fix-sitemap.js && wrangler dev",
     "types": "wrangler types"
   },
+  "overrides": {
+    "undici": "^7.19.0",
+    "wrangler": "^4.60.0"
+  },
   "type": "module"
 }
