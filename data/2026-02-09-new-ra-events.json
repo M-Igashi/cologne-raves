@@ -448,9 +448,13 @@
     "venue": "Bootshaus",
     "date": "2026-02-15",
     "title": "KitKatClub",
-    "artists": [],
+    "artists": [
+      "Clark Kent",
+      "Micky Markowitz",
+      "Fran-Cee" 
+    ],
     "startTime": "22:00",
-    "url": "https://ra.co/events/2351506"
+    "url": "https://bootshaus.tv/events/so-15-02-2026-kitkatclub-carneball-bizarre/"
   },
   {
     "id": "84d9d469",
