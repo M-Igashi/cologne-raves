@@ -4,6 +4,8 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import PartyCard from '../components/PartyCard.astro';
 import { getFeaturedParties } from '../lib/getFeaturedParties';
+import { startOfWeek, endOfWeek } from 'date-fns';
+import { toZonedTime } from 'date-fns-tz';
 
 const parties = await getFeaturedParties();
 
@@ -20,12 +22,10 @@ for (const party of parties) {
   partiesByDay[weekday].push(party);
 }
 
-// SEO関連の変数 - 週の日付を含める
-const today = new Date();
-const weekStart = new Date(today);
-weekStart.setDate(today.getDate() - today.getDay());
-const weekEnd = new Date(weekStart);
-weekEnd.setDate(weekStart.getDate() + 6);
+// SEO関連の変数 - 週の日付を含める (getFeaturedPartiesと同じ月曜始まり+ベルリンTZ)
+const berlinNow = toZonedTime(new Date(), 'Europe/Berlin');
+const weekStart = startOfWeek(berlinNow, { weekStartsOn: 1 });
+const weekEnd = endOfWeek(berlinNow, { weekStartsOn: 1 });
 
 const formatDate = (date: Date) => {
   return date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
@@ -49,7 +49,7 @@ const canonicalURL = new URL(Astro.url.pathname, "https://cologne.ravers.workers
   </head>
   <body class="min-h-screen bg-black text-white font-sans max-w-3xl mx-auto px-4 py-6 sm:px-6 lg:px-8 flex flex-col">
     <Header active="this-week" />
-    
+
     {/* Event Submission Banner */}
     <div class="border border-gray-800 rounded-lg p-4 mb-6 bg-gray-950">
       <div>
@@ -57,7 +57,7 @@ const canonicalURL = new URL(Astro.url.pathname, "https://cologne.ravers.workers
         <p class="text-sm text-gray-400">Submit your party or live show to our community calendar using the button above!</p>
       </div>
     </div>
-    
+
     <main class="flex-1" role="main" itemscope itemtype="https://schema.org/EventSeries">
       <nav class="flex flex-wrap gap-2 mb-6 text-sm" aria-label="Event filters">
         <a href="/" class="px-3 py-1 border rounded-full bg-white text-black text-sm" aria-current="page">This Week</a>
