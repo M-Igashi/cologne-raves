@@ -31,10 +31,7 @@
     "venue": "Gewölbe",
     "date": "2026-02-08",
     "title": "Research with Dimon & lyzanne, mojo",
-    "artists": [
-      "lyzanne",
-      "mojo"
-    ],
+    "artists": ["lyzanne", "mojo"],
     "startTime": "14:00",
     "url": "https://ra.co/events/2352302"
   },
@@ -58,20 +55,29 @@
   },
   {
     "id": "dbacb277",
-    "venue": "TBA - Off Location Wilhelm -Mauser Str.21 - 25. 50823 Köln ",
+    "venue": "Off Location (Wilhelm-Mauser Str. 21-24, 50827 Köln Bickendorf)",
     "date": "2026-02-12",
     "title": "Warehouse Club Germany - In the Original Location for One Day WMS Cologne",
     "artists": [
       "DJ Rush",
       "Miss Djax",
+      "Rob Acid",
       "Steve Mason",
       "Criss Source",
+      "Da Marco",
+      "DJ Oki",
       "Frank Sonic",
-      "Irwin Leschet",
+      "Groovemaster K.",
+      "Hooligan",
+      "Irvin Leschet",
+      "Marc Vision",
+      "Massimo",
       "Oliver Bondzio",
+      "Oliver Hess",
       "Paytric",
       "Roland Casper",
-      "Traffic"
+      "Dirk Herzberg",
+      "Marotte Marotte"
     ],
     "startTime": "16:00",
     "url": "https://ra.co/events/2338101"
@@ -100,13 +106,7 @@
     "venue": "Gewölbe",
     "date": "2026-02-12",
     "title": "Phonovision Weiberfastnacht",
-    "artists": [
-      "DJ ASS TITS",
-      "DJ Palga",
-      "DJ PLUS PLUS",
-      "Arninho",
-      "HiHat"
-    ],
+    "artists": ["DJ ASS TITS", "DJ Palga", "DJ PLUS PLUS", "Arninho", "HiHat"],
     "startTime": "16:00",
     "url": "https://ra.co/events/2345651"
   },
@@ -131,10 +131,7 @@
     "venue": "Artheater",
     "date": "2026-02-12",
     "title": "FASTELOVEND em Artheater",
-    "artists": [
-      "Bensonius",
-      "Szunflower"
-    ],
+    "artists": ["Bensonius", "Szunflower"],
     "startTime": "17:00",
     "url": "https://ra.co/events/2356623"
   },
@@ -143,9 +140,7 @@
     "venue": "Club Zimmermanns",
     "date": "2026-02-12",
     "title": "WEIBERFASSNACHT with Römertanz X ZWISCHENMIETE",
-    "artists": [
-      "Sheriff"
-    ],
+    "artists": ["Sheriff"],
     "startTime": "17:00",
     "url": "https://ra.co/events/2354192"
   },
@@ -181,12 +176,7 @@
     "venue": "Helios37",
     "date": "2026-02-13",
     "title": "Kluengel Weekender Freitag",
-    "artists": [
-      "Marcel Fengler",
-      "Obscure Shape",
-      "Shrff",
-      "mae.ly"
-    ],
+    "artists": ["Marcel Fengler", "Obscure Shape", "Shrff", "mae.ly"],
     "startTime": "18:00",
     "url": "https://ra.co/events/2352700"
   },
@@ -211,11 +201,7 @@
     "venue": "Gewölbe",
     "date": "2026-02-13",
     "title": "Klubnacht Karnevalsfreitag with Lars Eidinger, Shumi, Voltmar",
-    "artists": [
-      "Lars Eidinger",
-      "Shumi",
-      "Voltmar"
-    ],
+    "artists": ["Lars Eidinger", "Shumi", "Voltmar"],
     "startTime": "22:00",
     "url": "https://ra.co/events/2345654"
   },
@@ -224,11 +210,7 @@
     "venue": "Stadtgarten Konzertsaal / Cafe",
     "date": "2026-02-13",
     "title": "Karneval!?! – Der Tanz auf der Membran",
-    "artists": [
-      "Gourski",
-      "LSG",
-      "MAURO"
-    ],
+    "artists": ["Gourski", "LSG", "MAURO"],
     "startTime": "18:00",
     "url": "https://ra.co/events/2323057"
   },
@@ -237,9 +219,7 @@
     "venue": "Club Zimmermanns",
     "date": "2026-02-13",
     "title": "Schiebt Und Günstig! Karnevals Rave",
-    "artists": [
-      "Pamela Rave"
-    ],
+    "artists": ["Pamela Rave"],
     "startTime": "22:30",
     "url": "https://ra.co/events/2357567"
   },
@@ -248,9 +228,7 @@
     "venue": "Trafic",
     "date": "2026-02-13",
     "title": "Gabber Riot - Operation Oldschool IV",
-    "artists": [
-      "SITTENLOS"
-    ],
+    "artists": ["SITTENLOS"],
     "startTime": "23:00",
     "url": "https://ra.co/events/2365642"
   },
@@ -268,11 +246,7 @@
     "venue": "Parkcafe",
     "date": "2026-02-14",
     "title": "Lichtblick - Karnevals Rave at Off Location",
-    "artists": [
-      "Alchemiah",
-      "Kos:mo",
-      "Patrik Berg"
-    ],
+    "artists": ["Alchemiah", "Kos:mo", "Patrik Berg"],
     "startTime": "23:00",
     "url": "https://ra.co/events/2321742"
   },
@@ -299,13 +273,7 @@
     "venue": "Garagen",
     "date": "2026-02-14",
     "title": "CARNIVAL OF LOVE // Day & Night // 2 Floors Open Air + Indoor //",
-    "artists": [
-      "Bounce MC",
-      "HOTBOI2300",
-      "Jaycut",
-      "Jon Void",
-      "Voicians"
-    ],
+    "artists": ["Bounce MC", "HOTBOI2300", "Jaycut", "Jon Void", "Voicians"],
     "startTime": "14:00",
     "url": "https://ra.co/events/2349130"
   },
@@ -314,13 +282,7 @@
     "venue": "Helios37",
     "date": "2026-02-14",
     "title": "Kluengel Weekender Samstag",
-    "artists": [
-      "Rosilicious",
-      "Vasen",
-      "CHUPA",
-      "ST.Techno",
-      "Delle"
-    ],
+    "artists": ["Rosilicious", "Vasen", "CHUPA", "ST.Techno", "Delle"],
     "startTime": "18:00",
     "url": "https://ra.co/events/2352709"
   },
@@ -348,13 +310,7 @@
     "venue": "Odonien",
     "date": "2026-02-14",
     "title": "Odonien Karneval Rave",
-    "artists": [
-      "Cosmic Dance",
-      "Liho",
-      "Max Blumen",
-      "Pardis",
-      "scheffka"
-    ],
+    "artists": ["Cosmic Dance", "Liho", "Max Blumen", "Pardis", "scheffka"],
     "startTime": "20:00",
     "url": "https://ra.co/events/2344338"
   },
@@ -380,10 +336,7 @@
     "venue": "N8Lounge",
     "date": "2026-02-14",
     "title": "Shakin´Vibes pres. Anja Schneider (SOUS), Frank Sonic (Cocoon rec.), Miss Ellavic",
-    "artists": [
-      "Anja Schneider",
-      "Frank Sonic"
-    ],
+    "artists": ["Anja Schneider", "Frank Sonic"],
     "startTime": "21:00",
     "url": "https://ra.co/events/2355858"
   },
@@ -392,9 +345,7 @@
     "venue": "Gebäude 9",
     "date": "2026-02-14",
     "title": "Pathfinder & Hanzom pres. CARNIVAL COLOGNE feat. MERIKAN (Blackout/Eatbrain -It)",
-    "artists": [
-      "Bass"
-    ],
+    "artists": ["Bass"],
     "startTime": "22:00",
     "url": "https://ra.co/events/2350418"
   },
@@ -423,11 +374,7 @@
     "venue": "Gewölbe",
     "date": "2026-02-15",
     "title": "My Dear Karneval with Âme (DJ), Barbara Hofmann, Denis Stockhausen",
-    "artists": [
-      "Âme",
-      "Barbara Hofmann",
-      "Denis Stockhausen"
-    ],
+    "artists": ["Âme", "Barbara Hofmann", "Denis Stockhausen"],
     "startTime": "22:00",
     "url": "https://ra.co/events/2345661"
   },
@@ -436,10 +383,7 @@
     "venue": "Nachtflug & Starz",
     "date": "2026-02-15",
     "title": "Naughty - Carnival Festival Closing Party",
-    "artists": [
-      "Pagano",
-      "Skippo"
-    ],
+    "artists": ["Pagano", "Skippo"],
     "startTime": "20:30",
     "url": "https://ra.co/events/2300806"
   },
@@ -448,11 +392,7 @@
     "venue": "Bootshaus",
     "date": "2026-02-15",
     "title": "KitKatClub",
-    "artists": [
-      "Clark Kent",
-      "Micky Markowitz",
-      "Fran-Cee" 
-    ],
+    "artists": ["Clark Kent", "Micky Markowitz", "Fran-Cee"],
     "startTime": "22:00",
     "url": "https://bootshaus.tv/events/so-15-02-2026-kitkatclub-carneball-bizarre/"
   },
@@ -478,10 +418,7 @@
     "venue": "Nachtigall",
     "date": "2026-02-16",
     "title": "JEFÖHL BY Paella Groove",
-    "artists": [
-      "SpaceWax",
-      "Sedaction"
-    ],
+    "artists": ["SpaceWax", "Sedaction"],
     "startTime": "15:00",
     "url": "https://ra.co/events/2358308"
   },
@@ -532,11 +469,7 @@
     "venue": "fi",
     "date": "2026-02-21",
     "title": "fi x Joyhauser & Neue Wellen",
-    "artists": [
-      "ananda priori",
-      "Joyhauser",
-      "Robin Flux"
-    ],
+    "artists": ["ananda priori", "Joyhauser", "Robin Flux"],
     "startTime": "23:00",
     "url": "https://ra.co/events/2351502"
   },
@@ -545,9 +478,7 @@
     "venue": "Gewölbe",
     "date": "2026-02-21",
     "title": "Klubnacht with Marcus Worgull",
-    "artists": [
-      "Marcus Worgull"
-    ],
+    "artists": ["Marcus Worgull"],
     "startTime": "23:00",
     "url": "https://ra.co/events/2350172"
   },
@@ -556,12 +487,7 @@
     "venue": "Bootshaus",
     "date": "2026-02-27",
     "title": "A Techno Ballet Odyssey ",
-    "artists": [
-      "Marko Nastic",
-      "Pauli Pocket",
-      "SUDO",
-      "Handmade"
-    ],
+    "artists": ["Marko Nastic", "Pauli Pocket", "SUDO", "Handmade"],
     "startTime": "20:00",
     "url": "https://ra.co/events/2258746"
   },
@@ -570,12 +496,7 @@
     "venue": "Odonien",
     "date": "2026-02-27",
     "title": "EhrenKlub in Odonien #26 / RE-OPENING mit BOTL, FLKN, Sikhaya uvm",
-    "artists": [
-      "EDNA",
-      "FLKN",
-      "Sikhaya",
-      "Zoe Zett"
-    ],
+    "artists": ["EDNA", "FLKN", "Sikhaya", "Zoe Zett"],
     "startTime": "23:00",
     "url": "https://ra.co/events/2348870"
   },
@@ -584,9 +505,7 @@
     "venue": "Artheater",
     "date": "2026-02-27",
     "title": "303 presents A.N.I. (extended set)",
-    "artists": [
-      "A.N.I."
-    ],
+    "artists": ["A.N.I."],
     "startTime": "23:00",
     "url": "https://ra.co/events/2330550"
   },
@@ -595,12 +514,7 @@
     "venue": "JAKI",
     "date": "2026-02-27",
     "title": "E.P.I.Q. Nights",
-    "artists": [
-      "Sedaction",
-      "Savsannah",
-      "Nikity",
-      "Anna Cainelli"
-    ],
+    "artists": ["Sedaction", "Savsannah", "Nikity", "Anna Cainelli"],
     "startTime": "23:30",
     "url": "https://ra.co/events/2345754"
   },
@@ -609,11 +523,7 @@
     "venue": "Helios37",
     "date": "2026-02-27",
     "title": "ESKEI83 Club Tour pres. by Gourski & Friends",
-    "artists": [
-      "ESKEI83",
-      "Murdock",
-      "Enaly"
-    ],
+    "artists": ["ESKEI83", "Murdock", "Enaly"],
     "startTime": "23:00",
     "url": "https://ra.co/events/2323052"
   },
@@ -622,11 +532,7 @@
     "venue": "Bootshaus",
     "date": "2026-02-27",
     "title": "A Techno Odyssey",
-    "artists": [
-      "Marko Nastic",
-      "Pauli Pocket",
-      "SUDO"
-    ],
+    "artists": ["Marko Nastic", "Pauli Pocket", "SUDO"],
     "startTime": "23:30",
     "url": "https://ra.co/events/2349869"
   },
@@ -644,12 +550,7 @@
     "venue": "Bootshaus",
     "date": "2026-02-28",
     "title": "A Techno Ballet Odyssey",
-    "artists": [
-      "Marko Nastic",
-      "Pauli Pocket",
-      "SUDO",
-      "Handmade"
-    ],
+    "artists": ["Marko Nastic", "Pauli Pocket", "SUDO", "Handmade"],
     "startTime": "20:00",
     "url": "https://ra.co/events/2258747"
   },
@@ -658,9 +559,7 @@
     "venue": "Elektroküche",
     "date": "2026-02-28",
     "title": "Schranz Only w/TAKKERKANE ",
-    "artists": [
-      "I.D.A"
-    ],
+    "artists": ["I.D.A"],
     "startTime": "23:00",
     "url": "https://ra.co/events/2342784"
   },
@@ -669,9 +568,7 @@
     "venue": "Artheater",
     "date": "2026-02-28",
     "title": "Felix Kröcher by ART OF URBAN LIFE",
-    "artists": [
-      "Felix Kröcher"
-    ],
+    "artists": ["Felix Kröcher"],
     "startTime": "23:00",
     "url": "https://ra.co/events/2338894"
   },
@@ -680,11 +577,7 @@
     "venue": "Bootshaus",
     "date": "2026-02-28",
     "title": "Berlin Techno Odyssey",
-    "artists": [
-      "Marko Nastic",
-      "Pauli Pocket",
-      "SUDO"
-    ],
+    "artists": ["Marko Nastic", "Pauli Pocket", "SUDO"],
     "startTime": "23:30",
     "url": "https://ra.co/events/2344509"
   },
@@ -693,9 +586,7 @@
     "venue": "TBA - Alte Funke Drucker (Gottstedter Landstraße 6, 99092 Erfurt)",
     "date": "2026-02-28",
     "title": "ERFURT: Fantasm All Night Long Warehouse Tour",
-    "artists": [
-      "Fantasm"
-    ],
+    "artists": ["Fantasm"],
     "startTime": "22:30",
     "url": "https://ra.co/events/2355634"
   },
@@ -704,13 +595,7 @@
     "venue": "fi",
     "date": "2026-02-28",
     "title": "fi x Efdemin & Instinkt Lab",
-    "artists": [
-      "Efdemin",
-      "Elisen",
-      "Separat",
-      "Kribs",
-      "Miles Pinkert"
-    ],
+    "artists": ["Efdemin", "Elisen", "Separat", "Kribs", "Miles Pinkert"],
     "startTime": "20:30",
     "url": "https://ra.co/events/2356861"
   },
@@ -719,11 +604,7 @@
     "venue": "Helios37",
     "date": "2026-02-28",
     "title": "Ascension with Stef de Haan, DJ SODBRENNEN, Rikso B2B Romek, Jester",
-    "artists": [
-      "Stef de Haan",
-      "DJ SODBRENNEN",
-      "Bensonius"
-    ],
+    "artists": ["Stef de Haan", "DJ SODBRENNEN", "Bensonius"],
     "startTime": "23:00",
     "url": "https://ra.co/events/2359114"
   },
@@ -732,11 +613,7 @@
     "venue": "Gewölbe",
     "date": "2026-02-28",
     "title": "rheinrhythmik with Eileen, Enzo Siragusa, Nils",
-    "artists": [
-      "Eileen",
-      "Enzo Siragusa",
-      "Nils Boshuesen"
-    ],
+    "artists": ["Eileen", "Enzo Siragusa", "Nils Boshuesen"],
     "startTime": "23:00",
     "url": "https://ra.co/events/2353426"
   },
