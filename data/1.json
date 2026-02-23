@@ -1,0 +1,1591 @@
+{
+  "data": {
+    "eventListings": {
+      "data": [
+        {
+          "id": "12376939",
+          "listingDate": "2026-02-25T00:00:00.000",
+          "event": {
+            "id": "2376939",
+            "date": "2026-02-25T00:00:00.000",
+            "startTime": "2026-02-25T20:00:00.000",
+            "endTime": "2026-02-26T04:00:00.000",
+            "title": "TECHNOLiEBE #AmMittwoch",
+            "contentUrl": "/events/2376939",
+            "flyerFront": null,
+            "isTicketed": false,
+            "interestedCount": 0,
+            "isSaved": false,
+            "isInterested": false,
+            "queueItEnabled": false,
+            "newEventForm": true,
+            "images": [
+              {
+                "id": "2479086",
+                "filename": "https://images.ra.co/44a95cc6b4cde6b1b99d202d83d65a539779d167.jpg",
+                "alt": null,
+                "type": "FLYERFRONT",
+                "crop": null,
+                "__typename": "EventImage"
+              },
+              {
+                "id": "2479087",
+                "filename": "https://images.ra.co/7b07439085490c6e58ad0b389eb839dfb04c5e44.jpg",
+                "alt": null,
+                "type": "FLYERBACK",
+                "crop": null,
+                "__typename": "EventImage"
+              }
+            ],
+            "pick": null,
+            "venue": {
+              "id": "277241",
+              "name": "Garagen",
+              "contentUrl": "/clubs/277241",
+              "live": true,
+              "__typename": "Venue"
+            },
+            "promoters": [
+              {
+                "id": "3611",
+                "__typename": "Promoter"
+              }
+            ],
+            "artists": [],
+            "tickets": [],
+            "__typename": "Event"
+          },
+          "__typename": "EventListing"
+        },
+        {
+          "id": "12258746",
+          "listingDate": "2026-02-27T00:00:00.000",
+          "event": {
+            "id": "2258746",
+            "date": "2026-02-27T00:00:00.000",
+            "startTime": "2026-02-27T20:00:00.000",
+            "endTime": "2026-02-28T06:00:00.000",
+            "title": "A Techno Ballet Odyssey ",
+            "contentUrl": "/events/2258746",
+            "flyerFront": null,
+            "isTicketed": true,
+            "interestedCount": 130,
+            "isSaved": false,
+            "isInterested": false,
+            "queueItEnabled": false,
+            "newEventForm": true,
+            "images": [
+              {
+                "id": "2320692",
+                "filename": "https://images.ra.co/30ad6cd42b6586fb1350c8faa445ea2878b07997.jpg",
+                "alt": "© Photo: Yan Revazov // Graphic: Lukas Zeilinger",
+                "type": "FLYERFRONT",
+                "crop": null,
+                "__typename": "EventImage"
+              }
+            ],
+            "pick": null,
+            "venue": {
+              "id": "11085",
+              "name": "Bootshaus",
+              "contentUrl": "/clubs/11085",
+              "live": true,
+              "__typename": "Venue"
+            },
+            "promoters": [
+              {
+                "id": "170735",
+                "__typename": "Promoter"
+              }
+            ],
+            "artists": [
+              {
+                "id": "1002",
+                "name": "Marko Nastic",
+                "__typename": "Artist"
+              },
+              {
+                "id": "34877",
+                "name": "Pauli Pocket",
+                "__typename": "Artist"
+              },
+              {
+                "id": "84940",
+                "name": "SUDO",
+                "__typename": "Artist"
+              },
+              {
+                "id": "5444",
+                "name": "Handmade",
+                "__typename": "Artist"
+              }
+            ],
+            "tickets": [
+              {
+                "validType": "SOLDOUT",
+                "onSaleFrom": "2025-09-13T20:30:00.000Z",
+                "onSaleUntil": "2026-02-27T00:30:00.000Z",
+                "__typename": "Ticket"
+              },
+              {
+                "validType": "VALID",
+                "onSaleFrom": "2025-09-13T20:30:00.000Z",
+                "onSaleUntil": "2026-02-27T00:30:00.000Z",
+                "__typename": "Ticket"
+              },
+              {
+                "validType": "VALID",
+                "onSaleFrom": "2025-09-13T20:30:00.000Z",
+                "onSaleUntil": "2026-02-27T00:30:00.000Z",
+                "__typename": "Ticket"
+              },
+              {
+                "validType": "VALID",
+                "onSaleFrom": "2025-09-13T20:30:00.000Z",
+                "onSaleUntil": "2026-02-27T00:30:00.000Z",
+                "__typename": "Ticket"
+              },
+              {
+                "validType": "VALID",
+                "onSaleFrom": "2025-09-13T20:30:00.000Z",
+                "onSaleUntil": "2026-02-26T11:00:00.000Z",
+                "__typename": "Ticket"
+              },
+              {
+                "validType": "VALID",
+                "onSaleFrom": "2025-09-13T20:30:00.000Z",
+                "onSaleUntil": "2026-02-27T05:00:00.000Z",
+                "__typename": "Ticket"
+              }
+            ],
+            "__typename": "Event"
+          },
+          "__typename": "EventListing"
+        },
+        {
+          "id": "12348870",
+          "listingDate": "2026-02-27T00:00:00.000",
+          "event": {
+            "id": "2348870",
+            "date": "2026-02-27T00:00:00.000",
+            "startTime": "2026-02-27T23:00:00.000",
+            "endTime": "2026-02-28T08:00:00.000",
+            "title": "EhrenKlub in Odonien #26 / RE-OPENING mit BOTL, FLKN, Sikhaya uvm",
+            "contentUrl": "/events/2348870",
+            "flyerFront": null,
+            "isTicketed": true,
+            "interestedCount": 35,
+            "isSaved": false,
+            "isInterested": false,
+            "queueItEnabled": false,
+            "newEventForm": true,
+            "images": [
+              {
+                "id": "2442129",
+                "filename": "https://images.ra.co/c3cbb53a47cbd5ccb65b8e03c362c7ecefaac1b2.png",
+                "alt": null,
+                "type": "FLYERFRONT",
+                "crop": null,
+                "__typename": "EventImage"
+              }
+            ],
+            "pick": null,
+            "venue": {
+              "id": "10929",
+              "name": "Odonien",
+              "contentUrl": "/clubs/10929",
+              "live": true,
+              "__typename": "Venue"
+            },
+            "promoters": [
+              {
+                "id": "21280",
+                "__typename": "Promoter"
+              }
+            ],
+            "artists": [
+              {
+                "id": "110747",
+                "name": "EDNA",
+                "__typename": "Artist"
+              },
+              {
+                "id": "145432",
+                "name": "FLKN",
+                "__typename": "Artist"
+              },
+              {
+                "id": "134786",
+                "name": "Sikhaya",
+                "__typename": "Artist"
+              },
+              {
+                "id": "110658",
+                "name": "Zoe Zett",
+                "__typename": "Artist"
+              }
+            ],
+            "tickets": [
+              {
+                "validType": "SOLDOUT",
+                "onSaleFrom": "2026-01-16T17:30:00.000Z",
+                "onSaleUntil": "2026-02-28T07:00:00.000Z",
+                "__typename": "Ticket"
+              },
+              {
+                "validType": "SOLDOUT",
+                "onSaleFrom": "2026-01-16T17:30:00.000Z",
+                "onSaleUntil": "2026-02-28T07:00:00.000Z",
+                "__typename": "Ticket"
+              },
+              {
+                "validType": "VALID",
+                "onSaleFrom": "2026-01-16T17:30:00.000Z",
+                "onSaleUntil": "2026-02-28T07:00:00.000Z",
+                "__typename": "Ticket"
+              }
+            ],
+            "__typename": "Event"
+          },
+          "__typename": "EventListing"
+        },
+        {
+          "id": "12330550",
+          "listingDate": "2026-02-27T00:00:00.000",
+          "event": {
+            "id": "2330550",
+            "date": "2026-02-27T00:00:00.000",
+            "startTime": "2026-02-27T23:00:00.000",
+            "endTime": "2026-02-28T06:00:00.000",
+            "title": "303 presents A.N.I. (extended set)",
+            "contentUrl": "/events/2330550",
+            "flyerFront": null,
+            "isTicketed": false,
+            "interestedCount": 35,
+            "isSaved": false,
+            "isInterested": false,
+            "queueItEnabled": false,
+            "newEventForm": true,
+            "images": [
+              {
+                "id": "2417857",
+                "filename": "https://images.ra.co/3ff207b52bfcee1172303c92e903604dbfee43fe.jpg",
+                "alt": null,
+                "type": "FLYERFRONT",
+                "crop": null,
+                "__typename": "EventImage"
+              }
+            ],
+            "pick": null,
+            "venue": {
+              "id": "6392",
+              "name": "Artheater",
+              "contentUrl": "/clubs/6392",
+              "live": true,
+              "__typename": "Venue"
+            },
+            "promoters": [
+              {
+                "id": "140886",
+                "__typename": "Promoter"
+              }
+            ],
+            "artists": [
+              {
+                "id": "113122",
+                "name": "A.N.I.",
+                "__typename": "Artist"
+              }
+            ],
+            "tickets": [],
+            "__typename": "Event"
+          },
+          "__typename": "EventListing"
+        },
+        {
+          "id": "12345754",
+          "listingDate": "2026-02-27T00:00:00.000",
+          "event": {
+            "id": "2345754",
+            "date": "2026-02-27T00:00:00.000",
+            "startTime": "2026-02-27T23:30:00.000",
+            "endTime": "2026-02-28T06:00:00.000",
+            "title": "E.P.I.Q. Nights",
+            "contentUrl": "/events/2345754",
+            "flyerFront": null,
+            "isTicketed": false,
+            "interestedCount": 3,
+            "isSaved": false,
+            "isInterested": false,
+            "queueItEnabled": false,
+            "newEventForm": true,
+            "images": [
+              {
+                "id": "2437945",
+                "filename": "https://images.ra.co/5c1a4be292e66197d0a0491e0bdcbc87918581e8.jpg",
+                "alt": null,
+                "type": "FLYERFRONT",
+                "crop": null,
+                "__typename": "EventImage"
+              }
+            ],
+            "pick": null,
+            "venue": {
+              "id": "175118",
+              "name": "JAKI",
+              "contentUrl": "/clubs/175118",
+              "live": true,
+              "__typename": "Venue"
+            },
+            "promoters": [],
+            "artists": [
+              {
+                "id": "112671",
+                "name": "Sedaction",
+                "__typename": "Artist"
+              },
+              {
+                "id": "110160",
+                "name": "Savsannah",
+                "__typename": "Artist"
+              },
+              {
+                "id": "150254",
+                "name": "Nikity",
+                "__typename": "Artist"
+              },
+              {
+                "id": "149733",
+                "name": "Anna Cainelli",
+                "__typename": "Artist"
+              }
+            ],
+            "tickets": [],
+            "__typename": "Event"
+          },
+          "__typename": "EventListing"
+        },
+        {
+          "id": "12323052",
+          "listingDate": "2026-02-27T00:00:00.000",
+          "event": {
+            "id": "2323052",
+            "date": "2026-02-27T00:00:00.000",
+            "startTime": "2026-02-27T23:00:00.000",
+            "endTime": "2026-02-28T06:00:00.000",
+            "title": "ESKEI83 Club Tour pres. by Gourski & Friends",
+            "contentUrl": "/events/2323052",
+            "flyerFront": null,
+            "isTicketed": false,
+            "interestedCount": 3,
+            "isSaved": false,
+            "isInterested": false,
+            "queueItEnabled": false,
+            "newEventForm": true,
+            "images": [
+              {
+                "id": "2407789",
+                "filename": "https://images.ra.co/9e97fe780ae9520e96ecb5304122efeaf8ba474f.jpg",
+                "alt": null,
+                "type": "FLYERFRONT",
+                "crop": null,
+                "__typename": "EventImage"
+              }
+            ],
+            "pick": null,
+            "venue": {
+              "id": "128986",
+              "name": "Helios37",
+              "contentUrl": "/clubs/128986",
+              "live": true,
+              "__typename": "Venue"
+            },
+            "promoters": [
+              {
+                "id": "174440",
+                "__typename": "Promoter"
+              },
+              {
+                "id": "177643",
+                "__typename": "Promoter"
+              }
+            ],
+            "artists": [
+              {
+                "id": "130000",
+                "name": "ESKEI83",
+                "__typename": "Artist"
+              },
+              {
+                "id": "40969",
+                "name": "Murdock",
+                "__typename": "Artist"
+              },
+              {
+                "id": "156129",
+                "name": "Enaly",
+                "__typename": "Artist"
+              }
+            ],
+            "tickets": [],
+            "__typename": "Event"
+          },
+          "__typename": "EventListing"
+        },
+        {
+          "id": "12349869",
+          "listingDate": "2026-02-27T00:00:00.000",
+          "event": {
+            "id": "2349869",
+            "date": "2026-02-27T00:00:00.000",
+            "startTime": "2026-02-27T23:30:00.000",
+            "endTime": "2026-02-28T06:00:00.000",
+            "title": "A Techno Odyssey",
+            "contentUrl": "/events/2349869",
+            "flyerFront": null,
+            "isTicketed": true,
+            "interestedCount": 1,
+            "isSaved": false,
+            "isInterested": false,
+            "queueItEnabled": false,
+            "newEventForm": true,
+            "images": [
+              {
+                "id": "2451916",
+                "filename": "https://images.ra.co/b148a6c91b984322cf67502ff61792e1be1c7e3f.jpg",
+                "alt": null,
+                "type": "FLYERFRONT",
+                "crop": null,
+                "__typename": "EventImage"
+              }
+            ],
+            "pick": null,
+            "venue": {
+              "id": "11085",
+              "name": "Bootshaus",
+              "contentUrl": "/clubs/11085",
+              "live": true,
+              "__typename": "Venue"
+            },
+            "promoters": [
+              {
+                "id": "170735",
+                "__typename": "Promoter"
+              }
+            ],
+            "artists": [
+              {
+                "id": "1002",
+                "name": "Marko Nastic",
+                "__typename": "Artist"
+              },
+              {
+                "id": "34877",
+                "name": "Pauli Pocket",
+                "__typename": "Artist"
+              },
+              {
+                "id": "84940",
+                "name": "SUDO",
+                "__typename": "Artist"
+              }
+            ],
+            "tickets": [
+              {
+                "validType": "VALID",
+                "onSaleFrom": "2026-01-19T11:00:00.000Z",
+                "onSaleUntil": "2026-02-27T15:00:00.000Z",
+                "__typename": "Ticket"
+              },
+              {
+                "validType": "NOTYETONSALE",
+                "onSaleFrom": "2026-02-27T15:00:00.000Z",
+                "onSaleUntil": "2026-02-28T01:00:00.000Z",
+                "__typename": "Ticket"
+              }
+            ],
+            "__typename": "Event"
+          },
+          "__typename": "EventListing"
+        },
+        {
+          "id": "12349041",
+          "listingDate": "2026-02-27T00:00:00.000",
+          "event": {
+            "id": "2349041",
+            "date": "2026-02-27T00:00:00.000",
+            "startTime": "2026-02-27T23:00:00.000",
+            "endTime": "2026-02-28T06:00:00.000",
+            "title": "Trauma Techno",
+            "contentUrl": "/events/2349041",
+            "flyerFront": null,
+            "isTicketed": false,
+            "interestedCount": 2,
+            "isSaved": false,
+            "isInterested": false,
+            "queueItEnabled": false,
+            "newEventForm": true,
+            "images": [
+              {
+                "id": "2442346",
+                "filename": "https://images.ra.co/95988b97d5e8b3ea4e897f0331875854ab6ec161.jpg",
+                "alt": null,
+                "type": "FLYERFRONT",
+                "crop": null,
+                "__typename": "EventImage"
+              }
+            ],
+            "pick": null,
+            "venue": {
+              "id": "283470",
+              "name": "TBA - NOX Aachen",
+              "contentUrl": null,
+              "live": false,
+              "__typename": "Venue"
+            },
+            "promoters": [
+              {
+                "id": "179463",
+                "__typename": "Promoter"
+              }
+            ],
+            "artists": [],
+            "tickets": [],
+            "__typename": "Event"
+          },
+          "__typename": "EventListing"
+        },
+        {
+          "id": "12258747",
+          "listingDate": "2026-02-28T00:00:00.000",
+          "event": {
+            "id": "2258747",
+            "date": "2026-02-28T00:00:00.000",
+            "startTime": "2026-02-28T20:00:00.000",
+            "endTime": "2026-03-01T06:00:00.000",
+            "title": "A Techno Ballet Odyssey",
+            "contentUrl": "/events/2258747",
+            "flyerFront": null,
+            "isTicketed": true,
+            "interestedCount": 160,
+            "isSaved": false,
+            "isInterested": false,
+            "queueItEnabled": false,
+            "newEventForm": true,
+            "images": [
+              {
+                "id": "2320694",
+                "filename": "https://images.ra.co/30ad6cd42b6586fb1350c8faa445ea2878b07997.jpg",
+                "alt": "© Photo: Yan Revazov // Graphic: Lukas Zeilinger",
+                "type": "FLYERFRONT",
+                "crop": null,
+                "__typename": "EventImage"
+              }
+            ],
+            "pick": null,
+            "venue": {
+              "id": "11085",
+              "name": "Bootshaus",
+              "contentUrl": "/clubs/11085",
+              "live": true,
+              "__typename": "Venue"
+            },
+            "promoters": [
+              {
+                "id": "170735",
+                "__typename": "Promoter"
+              }
+            ],
+            "artists": [
+              {
+                "id": "1002",
+                "name": "Marko Nastic",
+                "__typename": "Artist"
+              },
+              {
+                "id": "34877",
+                "name": "Pauli Pocket",
+                "__typename": "Artist"
+              },
+              {
+                "id": "84940",
+                "name": "SUDO",
+                "__typename": "Artist"
+              },
+              {
+                "id": "5444",
+                "name": "Handmade",
+                "__typename": "Artist"
+              }
+            ],
+            "tickets": [
+              {
+                "validType": "SOLDOUT",
+                "onSaleFrom": "2025-09-13T20:30:00.000Z",
+                "onSaleUntil": "2026-03-01T05:00:00.000Z",
+                "__typename": "Ticket"
+              },
+              {
+                "validType": "VALID",
+                "onSaleFrom": "2025-09-13T20:30:00.000Z",
+                "onSaleUntil": "2026-03-01T05:00:00.000Z",
+                "__typename": "Ticket"
+              },
+              {
+                "validType": "VALID",
+                "onSaleFrom": "2025-09-13T20:30:00.000Z",
+                "onSaleUntil": "2026-03-01T05:00:00.000Z",
+                "__typename": "Ticket"
+              },
+              {
+                "validType": "VALID",
+                "onSaleFrom": "2025-09-13T20:30:00.000Z",
+                "onSaleUntil": "2026-03-01T05:00:00.000Z",
+                "__typename": "Ticket"
+              },
+              {
+                "validType": "VALID",
+                "onSaleFrom": "2025-09-13T20:30:00.000Z",
+                "onSaleUntil": "2026-02-28T11:00:00.000Z",
+                "__typename": "Ticket"
+              },
+              {
+                "validType": "VALID",
+                "onSaleFrom": "2025-09-13T20:30:00.000Z",
+                "onSaleUntil": "2026-03-01T05:00:00.000Z",
+                "__typename": "Ticket"
+              }
+            ],
+            "__typename": "Event"
+          },
+          "__typename": "EventListing"
+        },
+        {
+          "id": "12342784",
+          "listingDate": "2026-02-28T00:00:00.000",
+          "event": {
+            "id": "2342784",
+            "date": "2026-02-28T00:00:00.000",
+            "startTime": "2026-02-28T23:00:00.000",
+            "endTime": "2026-03-01T07:00:00.000",
+            "title": "Schranz Only w/TEKKERKANE",
+            "contentUrl": "/events/2342784",
+            "flyerFront": null,
+            "isTicketed": true,
+            "interestedCount": 95,
+            "isSaved": false,
+            "isInterested": false,
+            "queueItEnabled": false,
+            "newEventForm": true,
+            "images": [
+              {
+                "id": "2472281",
+                "filename": "https://images.ra.co/e5ca7d9a6357522b50f45bf1509486fc00ac6fc2.jpg",
+                "alt": null,
+                "type": "FLYERFRONT",
+                "crop": null,
+                "__typename": "EventImage"
+              }
+            ],
+            "pick": null,
+            "venue": {
+              "id": "4904",
+              "name": "Elektroküche",
+              "contentUrl": "/clubs/4904",
+              "live": true,
+              "__typename": "Venue"
+            },
+            "promoters": [
+              {
+                "id": "97000",
+                "__typename": "Promoter"
+              }
+            ],
+            "artists": [
+              {
+                "id": "163178",
+                "name": "I.D.A",
+                "__typename": "Artist"
+              }
+            ],
+            "tickets": [
+              {
+                "validType": "SOLDOUT",
+                "onSaleFrom": "2026-01-09T11:00:00.000Z",
+                "onSaleUntil": "2026-03-01T06:00:00.000Z",
+                "__typename": "Ticket"
+              },
+              {
+                "validType": "SOLDOUT",
+                "onSaleFrom": "2026-01-09T11:00:00.000Z",
+                "onSaleUntil": "2026-03-01T06:00:00.000Z",
+                "__typename": "Ticket"
+              },
+              {
+                "validType": "SOLDOUT",
+                "onSaleFrom": "2026-01-09T11:00:00.000Z",
+                "onSaleUntil": "2026-03-01T06:00:00.000Z",
+                "__typename": "Ticket"
+              },
+              {
+                "validType": "SOLDOUT",
+                "onSaleFrom": "2026-01-09T11:00:00.000Z",
+                "onSaleUntil": "2026-03-01T06:00:00.000Z",
+                "__typename": "Ticket"
+              },
+              {
+                "validType": "VALID",
+                "onSaleFrom": "2026-01-09T11:00:00.000Z",
+                "onSaleUntil": "2026-03-01T06:00:00.000Z",
+                "__typename": "Ticket"
+              },
+              {
+                "validType": "VALID",
+                "onSaleFrom": "2026-01-09T11:00:00.000Z",
+                "onSaleUntil": "2026-03-01T06:00:00.000Z",
+                "__typename": "Ticket"
+              }
+            ],
+            "__typename": "Event"
+          },
+          "__typename": "EventListing"
+        },
+        {
+          "id": "12338894",
+          "listingDate": "2026-02-28T00:00:00.000",
+          "event": {
+            "id": "2338894",
+            "date": "2026-02-28T00:00:00.000",
+            "startTime": "2026-02-28T23:00:00.000",
+            "endTime": "2026-03-01T07:00:00.000",
+            "title": "Felix Kröcher by ART OF URBAN LIFE",
+            "contentUrl": "/events/2338894",
+            "flyerFront": null,
+            "isTicketed": true,
+            "interestedCount": 39,
+            "isSaved": false,
+            "isInterested": false,
+            "queueItEnabled": false,
+            "newEventForm": true,
+            "images": [
+              {
+                "id": "2428730",
+                "filename": "https://images.ra.co/72070a30c16c3bc22e2fd7aac68d985b73ae646d.png",
+                "alt": null,
+                "type": "FLYERFRONT",
+                "crop": null,
+                "__typename": "EventImage"
+              },
+              {
+                "id": "2428731",
+                "filename": "https://images.ra.co/e23ba15aa0b9b30d3f81f329575be6e2857ed36c.png",
+                "alt": null,
+                "type": "FLYERBACK",
+                "crop": null,
+                "__typename": "EventImage"
+              }
+            ],
+            "pick": null,
+            "venue": {
+              "id": "6392",
+              "name": "Artheater",
+              "contentUrl": "/clubs/6392",
+              "live": true,
+              "__typename": "Venue"
+            },
+            "promoters": [
+              {
+                "id": "156924",
+                "__typename": "Promoter"
+              }
+            ],
+            "artists": [
+              {
+                "id": "2317",
+                "name": "Felix Kröcher",
+                "__typename": "Artist"
+              }
+            ],
+            "tickets": [
+              {
+                "validType": "SOLDOUT",
+                "onSaleFrom": "2026-01-05T18:00:00.000Z",
+                "onSaleUntil": "2026-03-01T06:00:00.000Z",
+                "__typename": "Ticket"
+              },
+              {
+                "validType": "SOLDOUT",
+                "onSaleFrom": "2026-01-05T18:00:00.000Z",
+                "onSaleUntil": "2026-03-01T06:00:00.000Z",
+                "__typename": "Ticket"
+              },
+              {
+                "validType": "VALID",
+                "onSaleFrom": "2026-01-05T18:00:00.000Z",
+                "onSaleUntil": "2026-03-01T06:00:00.000Z",
+                "__typename": "Ticket"
+              },
+              {
+                "validType": "VALID",
+                "onSaleFrom": "2026-01-05T18:00:00.000Z",
+                "onSaleUntil": "2026-03-01T06:00:00.000Z",
+                "__typename": "Ticket"
+              }
+            ],
+            "__typename": "Event"
+          },
+          "__typename": "EventListing"
+        },
+        {
+          "id": "12344509",
+          "listingDate": "2026-02-28T00:00:00.000",
+          "event": {
+            "id": "2344509",
+            "date": "2026-02-28T00:00:00.000",
+            "startTime": "2026-02-28T23:30:00.000",
+            "endTime": "2026-03-01T06:00:00.000",
+            "title": "Berlin Techno Odyssey",
+            "contentUrl": "/events/2344509",
+            "flyerFront": null,
+            "isTicketed": true,
+            "interestedCount": 7,
+            "isSaved": false,
+            "isInterested": false,
+            "queueItEnabled": false,
+            "newEventForm": true,
+            "images": [
+              {
+                "id": "2451914",
+                "filename": "https://images.ra.co/8f9427d159f6ba0e4349e44e4a701da6bc70125e.jpg",
+                "alt": null,
+                "type": "FLYERFRONT",
+                "crop": null,
+                "__typename": "EventImage"
+              }
+            ],
+            "pick": null,
+            "venue": {
+              "id": "11085",
+              "name": "Bootshaus",
+              "contentUrl": "/clubs/11085",
+              "live": true,
+              "__typename": "Venue"
+            },
+            "promoters": [
+              {
+                "id": "170735",
+                "__typename": "Promoter"
+              }
+            ],
+            "artists": [
+              {
+                "id": "1002",
+                "name": "Marko Nastic",
+                "__typename": "Artist"
+              },
+              {
+                "id": "34877",
+                "name": "Pauli Pocket",
+                "__typename": "Artist"
+              },
+              {
+                "id": "84940",
+                "name": "SUDO",
+                "__typename": "Artist"
+              }
+            ],
+            "tickets": [
+              {
+                "validType": "VALID",
+                "onSaleFrom": "2026-01-12T14:30:00.000Z",
+                "onSaleUntil": "2026-02-28T15:00:00.000Z",
+                "__typename": "Ticket"
+              },
+              {
+                "validType": "NOTYETONSALE",
+                "onSaleFrom": "2026-02-28T15:00:00.000Z",
+                "onSaleUntil": "2026-03-01T01:00:00.000Z",
+                "__typename": "Ticket"
+              }
+            ],
+            "__typename": "Event"
+          },
+          "__typename": "EventListing"
+        },
+        {
+          "id": "12355634",
+          "listingDate": "2026-02-28T00:00:00.000",
+          "event": {
+            "id": "2355634",
+            "date": "2026-02-28T00:00:00.000",
+            "startTime": "2026-02-28T22:30:00.000",
+            "endTime": "2026-03-01T07:00:00.000",
+            "title": "ERFURT: Fantasm All Night Long Warehouse Tour",
+            "contentUrl": "/events/2355634",
+            "flyerFront": null,
+            "isTicketed": false,
+            "interestedCount": 15,
+            "isSaved": false,
+            "isInterested": false,
+            "queueItEnabled": false,
+            "newEventForm": true,
+            "images": [
+              {
+                "id": "2450885",
+                "filename": "https://images.ra.co/5d752edaa97601cb457149eda64f6801b0f0b89c.jpg",
+                "alt": null,
+                "type": "FLYERFRONT",
+                "crop": null,
+                "__typename": "EventImage"
+              }
+            ],
+            "pick": null,
+            "venue": {
+              "id": "284047",
+              "name": "TBA - Alte Funke Drucker (Gottstedter Landstraße 6, 99092 Erfurt)",
+              "contentUrl": null,
+              "live": false,
+              "__typename": "Venue"
+            },
+            "promoters": [
+              {
+                "id": "112664",
+                "__typename": "Promoter"
+              }
+            ],
+            "artists": [
+              {
+                "id": "156236",
+                "name": "Fantasm",
+                "__typename": "Artist"
+              }
+            ],
+            "tickets": [],
+            "__typename": "Event"
+          },
+          "__typename": "EventListing"
+        },
+        {
+          "id": "12356861",
+          "listingDate": "2026-02-28T00:00:00.000",
+          "event": {
+            "id": "2356861",
+            "date": "2026-02-28T00:00:00.000",
+            "startTime": "2026-02-28T20:30:00.000",
+            "endTime": "2026-03-01T06:00:00.000",
+            "title": "fi x Efdemin & Instinkt Lab",
+            "contentUrl": "/events/2356861",
+            "flyerFront": null,
+            "isTicketed": false,
+            "interestedCount": 12,
+            "isSaved": false,
+            "isInterested": false,
+            "queueItEnabled": false,
+            "newEventForm": true,
+            "images": [
+              {
+                "id": "2452522",
+                "filename": "https://images.ra.co/46938e88075a3d8817b52119cb154b0d6ea22a1f.jpg",
+                "alt": null,
+                "type": "FLYERFRONT",
+                "crop": null,
+                "__typename": "EventImage"
+              }
+            ],
+            "pick": null,
+            "venue": {
+              "id": "236937",
+              "name": "fi",
+              "contentUrl": "/clubs/236937",
+              "live": true,
+              "__typename": "Venue"
+            },
+            "promoters": [],
+            "artists": [
+              {
+                "id": "896",
+                "name": "Efdemin",
+                "__typename": "Artist"
+              },
+              {
+                "id": "138541",
+                "name": "Elisen",
+                "__typename": "Artist"
+              },
+              {
+                "id": "145436",
+                "name": "Separat",
+                "__typename": "Artist"
+              },
+              {
+                "id": "133035",
+                "name": "Kribs",
+                "__typename": "Artist"
+              },
+              {
+                "id": "119219",
+                "name": "Miles Pinkert",
+                "__typename": "Artist"
+              }
+            ],
+            "tickets": [],
+            "__typename": "Event"
+          },
+          "__typename": "EventListing"
+        },
+        {
+          "id": "12359114",
+          "listingDate": "2026-02-28T00:00:00.000",
+          "event": {
+            "id": "2359114",
+            "date": "2026-02-28T00:00:00.000",
+            "startTime": "2026-02-28T23:00:00.000",
+            "endTime": "2026-03-01T07:30:00.000",
+            "title": "Ascension with Stef de Haan, DJ SODBRENNEN, Rikso B2B Romek, Jester",
+            "contentUrl": "/events/2359114",
+            "flyerFront": null,
+            "isTicketed": false,
+            "interestedCount": 9,
+            "isSaved": false,
+            "isInterested": false,
+            "queueItEnabled": false,
+            "newEventForm": true,
+            "images": [
+              {
+                "id": "2467981",
+                "filename": "https://images.ra.co/ffdde104b51ae121276551808d506c953ba86a84.png",
+                "alt": null,
+                "type": "FLYERFRONT",
+                "crop": null,
+                "__typename": "EventImage"
+              }
+            ],
+            "pick": null,
+            "venue": {
+              "id": "128986",
+              "name": "Helios37",
+              "contentUrl": "/clubs/128986",
+              "live": true,
+              "__typename": "Venue"
+            },
+            "promoters": [
+              {
+                "id": "128078",
+                "__typename": "Promoter"
+              }
+            ],
+            "artists": [
+              {
+                "id": "137925",
+                "name": "Stef de Haan",
+                "__typename": "Artist"
+              },
+              {
+                "id": "164663",
+                "name": "DJ SODBRENNEN",
+                "__typename": "Artist"
+              },
+              {
+                "id": "158107",
+                "name": "Bensonius",
+                "__typename": "Artist"
+              }
+            ],
+            "tickets": [],
+            "__typename": "Event"
+          },
+          "__typename": "EventListing"
+        },
+        {
+          "id": "12353426",
+          "listingDate": "2026-02-28T00:00:00.000",
+          "event": {
+            "id": "2353426",
+            "date": "2026-02-28T00:00:00.000",
+            "startTime": "2026-02-28T23:00:00.000",
+            "endTime": "2026-03-01T06:00:00.000",
+            "title": "rheinrhythmik with Eileen, Enzo Siragusa, Nils",
+            "contentUrl": "/events/2353426",
+            "flyerFront": null,
+            "isTicketed": false,
+            "interestedCount": 3,
+            "isSaved": false,
+            "isInterested": false,
+            "queueItEnabled": false,
+            "newEventForm": true,
+            "images": [
+              {
+                "id": "2448153",
+                "filename": "https://images.ra.co/43509a5e0e3d1401d2b1052d82298d12c7d46c31.jpg",
+                "alt": null,
+                "type": "FLYERFRONT",
+                "crop": null,
+                "__typename": "EventImage"
+              }
+            ],
+            "pick": null,
+            "venue": {
+              "id": "6765",
+              "name": "Gewölbe",
+              "contentUrl": "/clubs/6765",
+              "live": true,
+              "__typename": "Venue"
+            },
+            "promoters": [],
+            "artists": [
+              {
+                "id": "122680",
+                "name": "Eileen",
+                "__typename": "Artist"
+              },
+              {
+                "id": "2089",
+                "name": "Enzo Siragusa",
+                "__typename": "Artist"
+              },
+              {
+                "id": "36829",
+                "name": "Nils Boshuesen",
+                "__typename": "Artist"
+              }
+            ],
+            "tickets": [],
+            "__typename": "Event"
+          },
+          "__typename": "EventListing"
+        },
+        {
+          "id": "12360994",
+          "listingDate": "2026-02-28T00:00:00.000",
+          "event": {
+            "id": "2360994",
+            "date": "2026-02-28T00:00:00.000",
+            "startTime": "2026-02-28T23:30:00.000",
+            "endTime": "2026-03-01T05:00:00.000",
+            "title": "Tom-Tom Discotec presents: THURSDAZE with BODEGA BASS",
+            "contentUrl": "/events/2360994",
+            "flyerFront": null,
+            "isTicketed": false,
+            "interestedCount": 2,
+            "isSaved": false,
+            "isInterested": false,
+            "queueItEnabled": false,
+            "newEventForm": true,
+            "images": [
+              {
+                "id": "2458008",
+                "filename": "https://images.ra.co/2d5e6485a86aa4a4eb561934f391fadb89e1f8a7.png",
+                "alt": null,
+                "type": "FLYERFRONT",
+                "crop": null,
+                "__typename": "EventImage"
+              }
+            ],
+            "pick": null,
+            "venue": {
+              "id": "175118",
+              "name": "JAKI",
+              "contentUrl": "/clubs/175118",
+              "live": true,
+              "__typename": "Venue"
+            },
+            "promoters": [],
+            "artists": [],
+            "tickets": [],
+            "__typename": "Event"
+          },
+          "__typename": "EventListing"
+        },
+        {
+          "id": "12374431",
+          "listingDate": "2026-02-28T00:00:00.000",
+          "event": {
+            "id": "2374431",
+            "date": "2026-02-28T00:00:00.000",
+            "startTime": "2026-02-28T23:00:00.000",
+            "endTime": "2026-03-01T06:00:00.000",
+            "title": "VOOV PARTY OMIKI-PHAXE-SENSIFEEL",
+            "contentUrl": "/events/2374431",
+            "flyerFront": null,
+            "isTicketed": false,
+            "interestedCount": 1,
+            "isSaved": false,
+            "isInterested": false,
+            "queueItEnabled": false,
+            "newEventForm": true,
+            "images": [
+              {
+                "id": "2475761",
+                "filename": "https://images.ra.co/68996ba52fbea1c97785538a03a844668f43b79c.jpg",
+                "alt": null,
+                "type": "FLYERFRONT",
+                "crop": null,
+                "__typename": "EventImage"
+              }
+            ],
+            "pick": null,
+            "venue": {
+              "id": "181751",
+              "name": "Schrotty",
+              "contentUrl": "/clubs/181751",
+              "live": true,
+              "__typename": "Venue"
+            },
+            "promoters": [
+              {
+                "id": "174101",
+                "__typename": "Promoter"
+              }
+            ],
+            "artists": [],
+            "tickets": [],
+            "__typename": "Event"
+          },
+          "__typename": "EventListing"
+        },
+        {
+          "id": "12321747",
+          "listingDate": "2026-03-06T00:00:00.000",
+          "event": {
+            "id": "2321747",
+            "date": "2026-03-06T00:00:00.000",
+            "startTime": "2026-03-06T23:00:00.000",
+            "endTime": "2026-03-07T06:00:00.000",
+            "title": "Lichtblick- Season opening 2026 in Odonien",
+            "contentUrl": "/events/2321747",
+            "flyerFront": null,
+            "isTicketed": true,
+            "interestedCount": 49,
+            "isSaved": false,
+            "isInterested": false,
+            "queueItEnabled": false,
+            "newEventForm": true,
+            "images": [
+              {
+                "id": "2464234",
+                "filename": "https://images.ra.co/8ff92e03fe13a82413f9f499f89c323bd74c5258.jpg",
+                "alt": null,
+                "type": "FLYERFRONT",
+                "crop": null,
+                "__typename": "EventImage"
+              },
+              {
+                "id": "2464235",
+                "filename": "https://images.ra.co/a22fbe4594d9c09263e95d4fc40aaccc16fe7e4c.jpg",
+                "alt": null,
+                "type": "FLYERBACK",
+                "crop": null,
+                "__typename": "EventImage"
+              }
+            ],
+            "pick": null,
+            "venue": {
+              "id": "10929",
+              "name": "Odonien",
+              "contentUrl": "/clubs/10929",
+              "live": true,
+              "__typename": "Venue"
+            },
+            "promoters": [
+              {
+                "id": "104025",
+                "__typename": "Promoter"
+              }
+            ],
+            "artists": [
+              {
+                "id": "110913",
+                "name": "Alchemiah",
+                "__typename": "Artist"
+              },
+              {
+                "id": "126491",
+                "name": "Brtinzz",
+                "__typename": "Artist"
+              },
+              {
+                "id": "173359",
+                "name": "Gilles Bock",
+                "__typename": "Artist"
+              },
+              {
+                "id": "101540",
+                "name": "Kos:mo",
+                "__typename": "Artist"
+              }
+            ],
+            "tickets": [
+              {
+                "validType": "SOLDOUT",
+                "onSaleFrom": "2025-12-18T21:30:00.000Z",
+                "onSaleUntil": "2026-03-07T05:00:00.000Z",
+                "__typename": "Ticket"
+              },
+              {
+                "validType": "VALID",
+                "onSaleFrom": "2025-12-18T21:30:00.000Z",
+                "onSaleUntil": "2026-03-07T05:00:00.000Z",
+                "__typename": "Ticket"
+              },
+              {
+                "validType": "VALID",
+                "onSaleFrom": "2025-12-18T21:30:00.000Z",
+                "onSaleUntil": "2026-03-07T05:00:00.000Z",
+                "__typename": "Ticket"
+              }
+            ],
+            "__typename": "Event"
+          },
+          "__typename": "EventListing"
+        },
+        {
+          "id": "12369523",
+          "listingDate": "2026-03-06T00:00:00.000",
+          "event": {
+            "id": "2369523",
+            "date": "2026-03-06T00:00:00.000",
+            "startTime": "2026-03-06T23:00:00.000",
+            "endTime": "2026-03-07T06:00:00.000",
+            "title": "EERIE X LOCAL BASS  with BUKEZ FINEZT, Roklem, Sebalo & many more",
+            "contentUrl": "/events/2369523",
+            "flyerFront": null,
+            "isTicketed": true,
+            "interestedCount": 22,
+            "isSaved": false,
+            "isInterested": false,
+            "queueItEnabled": false,
+            "newEventForm": true,
+            "images": [
+              {
+                "id": "2469192",
+                "filename": "https://images.ra.co/1b5c1dab7ffe4eb7eb241c81a7a22901402d4c7e.jpg",
+                "alt": null,
+                "type": "FLYERFRONT",
+                "crop": null,
+                "__typename": "EventImage"
+              }
+            ],
+            "pick": null,
+            "venue": {
+              "id": "104413",
+              "name": "Yuca Club",
+              "contentUrl": "/clubs/104413",
+              "live": true,
+              "__typename": "Venue"
+            },
+            "promoters": [
+              {
+                "id": "181105",
+                "__typename": "Promoter"
+              }
+            ],
+            "artists": [
+              {
+                "id": "173350",
+                "name": "BUKEZ FINEZT",
+                "__typename": "Artist"
+              },
+              {
+                "id": "108011",
+                "name": "Roklem",
+                "__typename": "Artist"
+              },
+              {
+                "id": "108012",
+                "name": "Sebalo",
+                "__typename": "Artist"
+              }
+            ],
+            "tickets": [
+              {
+                "validType": "VALID",
+                "onSaleFrom": "2026-02-11T18:30:00.000Z",
+                "onSaleUntil": "2026-03-07T05:00:00.000Z",
+                "__typename": "Ticket"
+              }
+            ],
+            "__typename": "Event"
+          },
+          "__typename": "EventListing"
+        }
+      ],
+      "filterOptions": {
+        "genre": [
+          {
+            "label": "Acid",
+            "value": "acid",
+            "count": 2,
+            "__typename": "GenreFilterOption"
+          },
+          {
+            "label": "Afrobeat",
+            "value": "afrobeat",
+            "count": 1,
+            "__typename": "GenreFilterOption"
+          },
+          {
+            "label": "Baile Funk",
+            "value": "bailefunk",
+            "count": 1,
+            "__typename": "GenreFilterOption"
+          },
+          {
+            "label": "Classical",
+            "value": "classical",
+            "count": 1,
+            "__typename": "GenreFilterOption"
+          },
+          {
+            "label": "Club",
+            "value": "club",
+            "count": 1,
+            "__typename": "GenreFilterOption"
+          },
+          {
+            "label": "Dancehall",
+            "value": "dancehall",
+            "count": 1,
+            "__typename": "GenreFilterOption"
+          },
+          {
+            "label": "Deep House",
+            "value": "deephouse",
+            "count": 1,
+            "__typename": "GenreFilterOption"
+          },
+          {
+            "label": "Disco",
+            "value": "disco",
+            "count": 1,
+            "__typename": "GenreFilterOption"
+          },
+          {
+            "label": "Drum & Bass",
+            "value": "drumandbass",
+            "count": 4,
+            "__typename": "GenreFilterOption"
+          },
+          {
+            "label": "Dub",
+            "value": "dub",
+            "count": 1,
+            "__typename": "GenreFilterOption"
+          },
+          {
+            "label": "Dubstep",
+            "value": "dubstep",
+            "count": 2,
+            "__typename": "GenreFilterOption"
+          },
+          {
+            "label": "EBM",
+            "value": "ebm",
+            "count": 1,
+            "__typename": "GenreFilterOption"
+          },
+          {
+            "label": "Electro",
+            "value": "electro",
+            "count": 2,
+            "__typename": "GenreFilterOption"
+          },
+          {
+            "label": "Electronica",
+            "value": "electronica",
+            "count": 1,
+            "__typename": "GenreFilterOption"
+          },
+          {
+            "label": "Experimental",
+            "value": "experimental",
+            "count": 1,
+            "__typename": "GenreFilterOption"
+          },
+          {
+            "label": "Funk / Soul",
+            "value": "funksoul",
+            "count": 1,
+            "__typename": "GenreFilterOption"
+          },
+          {
+            "label": "Gabber",
+            "value": "gabber",
+            "count": 1,
+            "__typename": "GenreFilterOption"
+          },
+          {
+            "label": "Hardcore",
+            "value": "hardcore",
+            "count": 1,
+            "__typename": "GenreFilterOption"
+          },
+          {
+            "label": "Hip-Hop",
+            "value": "hiphop",
+            "count": 2,
+            "__typename": "GenreFilterOption"
+          },
+          {
+            "label": "House",
+            "value": "house",
+            "count": 18,
+            "__typename": "GenreFilterOption"
+          },
+          {
+            "label": "Industrial",
+            "value": "industrial",
+            "count": 2,
+            "__typename": "GenreFilterOption"
+          },
+          {
+            "label": "Jungle",
+            "value": "jungle",
+            "count": 2,
+            "__typename": "GenreFilterOption"
+          },
+          {
+            "label": "Progressive House",
+            "value": "progressivehouse",
+            "count": 2,
+            "__typename": "GenreFilterOption"
+          },
+          {
+            "label": "Psytrance",
+            "value": "psytrance",
+            "count": 1,
+            "__typename": "GenreFilterOption"
+          },
+          {
+            "label": "Tech House",
+            "value": "techhouse",
+            "count": 2,
+            "__typename": "GenreFilterOption"
+          },
+          {
+            "label": "Techno",
+            "value": "techno",
+            "count": 56,
+            "__typename": "GenreFilterOption"
+          },
+          {
+            "label": "Trance",
+            "value": "trance",
+            "count": 17,
+            "__typename": "GenreFilterOption"
+          }
+        ],
+        "eventType": [
+          {
+            "value": 1,
+            "count": 47,
+            "__typename": "EventTypeFilterOption"
+          }
+        ],
+        "location": null,
+        "__typename": "FilterOptions"
+      },
+      "totalResults": 76,
+      "__typename": "EventListings"
+    }
+  }
+}

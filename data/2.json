@@ -1,0 +1,1187 @@
+{
+  "data": {
+    "eventListings": {
+      "data": [
+        {
+          "id": "12360225",
+          "listingDate": "2026-03-06T00:00:00.000",
+          "event": {
+            "id": "2360225",
+            "date": "2026-03-06T00:00:00.000",
+            "startTime": "2026-03-06T23:00:00.000",
+            "endTime": "2026-03-07T08:00:00.000",
+            "title": "BZZBZZ TECHNO X MILLIAMPERE",
+            "contentUrl": "/events/2360225",
+            "flyerFront": null,
+            "isTicketed": true,
+            "interestedCount": 12,
+            "isSaved": false,
+            "isInterested": false,
+            "queueItEnabled": false,
+            "newEventForm": true,
+            "images": [
+              {
+                "id": "2456949",
+                "filename": "https://images.ra.co/29c6a4c0833dc18d5d242397066a11b7cd0de8a0.png",
+                "alt": null,
+                "type": "FLYERFRONT",
+                "crop": null,
+                "__typename": "EventImage"
+              }
+            ],
+            "pick": null,
+            "venue": {
+              "id": "181751",
+              "name": "Schrotty",
+              "contentUrl": "/clubs/181751",
+              "live": true,
+              "__typename": "Venue"
+            },
+            "promoters": [
+              {
+                "id": "139939",
+                "__typename": "Promoter"
+              },
+              {
+                "id": "155848",
+                "__typename": "Promoter"
+              }
+            ],
+            "artists": [
+              {
+                "id": "105967",
+                "name": "Paralich",
+                "__typename": "Artist"
+              },
+              {
+                "id": "128167",
+                "name": "DJ HÖRDE",
+                "__typename": "Artist"
+              },
+              {
+                "id": "143291",
+                "name": "Eurodance2000",
+                "__typename": "Artist"
+              },
+              {
+                "id": "163893",
+                "name": "SPEEDO (2)",
+                "__typename": "Artist"
+              },
+              {
+                "id": "128538",
+                "name": "YËDM",
+                "__typename": "Artist"
+              },
+              {
+                "id": "138115",
+                "name": "Athina",
+                "__typename": "Artist"
+              },
+              {
+                "id": "144358",
+                "name": "Shemm",
+                "__typename": "Artist"
+              },
+              {
+                "id": "168872",
+                "name": "Pamela Rave",
+                "__typename": "Artist"
+              },
+              {
+                "id": "176949",
+                "name": "HENNESY",
+                "__typename": "Artist"
+              },
+              {
+                "id": "169497",
+                "name": "PANA (Ger)",
+                "__typename": "Artist"
+              }
+            ],
+            "tickets": [
+              {
+                "validType": "SOLDOUT",
+                "onSaleFrom": "2026-01-31T18:00:00.000Z",
+                "onSaleUntil": "2026-03-07T07:00:00.000Z",
+                "__typename": "Ticket"
+              },
+              {
+                "validType": "VALID",
+                "onSaleFrom": "2026-01-31T18:00:00.000Z",
+                "onSaleUntil": "2026-03-07T07:00:00.000Z",
+                "__typename": "Ticket"
+              }
+            ],
+            "__typename": "Event"
+          },
+          "__typename": "EventListing"
+        },
+        {
+          "id": "12330549",
+          "listingDate": "2026-03-06T00:00:00.000",
+          "event": {
+            "id": "2330549",
+            "date": "2026-03-06T00:00:00.000",
+            "startTime": "2026-03-06T23:00:00.000",
+            "endTime": "2026-03-07T06:00:00.000",
+            "title": "303 presents O.B.I. & Frederic. (All Night Long)",
+            "contentUrl": "/events/2330549",
+            "flyerFront": null,
+            "isTicketed": false,
+            "interestedCount": 17,
+            "isSaved": false,
+            "isInterested": false,
+            "queueItEnabled": false,
+            "newEventForm": true,
+            "images": [
+              {
+                "id": "2417855",
+                "filename": "https://images.ra.co/1b5cd8b3ea8206024f805fe7c6337d284d139523.jpg",
+                "alt": null,
+                "type": "FLYERFRONT",
+                "crop": null,
+                "__typename": "EventImage"
+              }
+            ],
+            "pick": null,
+            "venue": {
+              "id": "6392",
+              "name": "Artheater",
+              "contentUrl": "/clubs/6392",
+              "live": true,
+              "__typename": "Venue"
+            },
+            "promoters": [
+              {
+                "id": "140886",
+                "__typename": "Promoter"
+              }
+            ],
+            "artists": [
+              {
+                "id": "106409",
+                "name": "O.B.I. (DE)",
+                "__typename": "Artist"
+              },
+              {
+                "id": "74592",
+                "name": "Frederic.",
+                "__typename": "Artist"
+              },
+              {
+                "id": "85042",
+                "name": "LSG",
+                "__typename": "Artist"
+              },
+              {
+                "id": "177200",
+                "name": "Lianka",
+                "__typename": "Artist"
+              }
+            ],
+            "tickets": [],
+            "__typename": "Event"
+          },
+          "__typename": "EventListing"
+        },
+        {
+          "id": "12375480",
+          "listingDate": "2026-03-06T00:00:00.000",
+          "event": {
+            "id": "2375480",
+            "date": "2026-03-06T00:00:00.000",
+            "startTime": "2026-03-06T23:00:00.000",
+            "endTime": "2026-03-07T07:00:00.000",
+            "title": "BEATS x BASS x WEEKENDER hosted by BLOOMCAST",
+            "contentUrl": "/events/2375480",
+            "flyerFront": null,
+            "isTicketed": true,
+            "interestedCount": 2,
+            "isSaved": false,
+            "isInterested": false,
+            "queueItEnabled": false,
+            "newEventForm": true,
+            "images": [
+              {
+                "id": "2477157",
+                "filename": "https://images.ra.co/be672aa9f13eec971a1701c69eeb86e5202ebcaa.jpg",
+                "alt": null,
+                "type": "FLYERFRONT",
+                "crop": null,
+                "__typename": "EventImage"
+              },
+              {
+                "id": "2477158",
+                "filename": "https://images.ra.co/7b7680be302d191ffab3bd7ebd0510104cc32cc0.jpg",
+                "alt": null,
+                "type": "FLYERBACK",
+                "crop": null,
+                "__typename": "EventImage"
+              }
+            ],
+            "pick": null,
+            "venue": {
+              "id": "277241",
+              "name": "Garagen",
+              "contentUrl": "/clubs/277241",
+              "live": true,
+              "__typename": "Venue"
+            },
+            "promoters": [
+              {
+                "id": "67549",
+                "__typename": "Promoter"
+              },
+              {
+                "id": "156924",
+                "__typename": "Promoter"
+              }
+            ],
+            "artists": [
+              {
+                "id": "141403",
+                "name": "Rosilicious",
+                "__typename": "Artist"
+              },
+              {
+                "id": "174899",
+                "name": "Fae Morgana",
+                "__typename": "Artist"
+              }
+            ],
+            "tickets": [
+              {
+                "validType": "VALID",
+                "onSaleFrom": "2026-02-19T18:00:00.000Z",
+                "onSaleUntil": "2026-03-07T06:00:00.000Z",
+                "__typename": "Ticket"
+              }
+            ],
+            "__typename": "Event"
+          },
+          "__typename": "EventListing"
+        },
+        {
+          "id": "12349249",
+          "listingDate": "2026-03-06T00:00:00.000",
+          "event": {
+            "id": "2349249",
+            "date": "2026-03-06T00:00:00.000",
+            "startTime": "2026-03-06T23:00:00.000",
+            "endTime": "2026-03-07T08:00:00.000",
+            "title": "fi = altshift5 with Ellen Allien & Etage147",
+            "contentUrl": "/events/2349249",
+            "flyerFront": null,
+            "isTicketed": false,
+            "interestedCount": 12,
+            "isSaved": false,
+            "isInterested": false,
+            "queueItEnabled": false,
+            "newEventForm": true,
+            "images": [],
+            "pick": null,
+            "venue": {
+              "id": "236937",
+              "name": "fi",
+              "contentUrl": "/clubs/236937",
+              "live": true,
+              "__typename": "Venue"
+            },
+            "promoters": [],
+            "artists": [
+              {
+                "id": "62858",
+                "name": "Shaleen",
+                "__typename": "Artist"
+              }
+            ],
+            "tickets": [],
+            "__typename": "Event"
+          },
+          "__typename": "EventListing"
+        },
+        {
+          "id": "12361021",
+          "listingDate": "2026-03-06T00:00:00.000",
+          "event": {
+            "id": "2361021",
+            "date": "2026-03-06T00:00:00.000",
+            "startTime": "2026-03-06T23:00:00.000",
+            "endTime": "2026-03-07T06:00:00.000",
+            "title": "akt Party",
+            "contentUrl": "/events/2361021",
+            "flyerFront": null,
+            "isTicketed": false,
+            "interestedCount": 3,
+            "isSaved": false,
+            "isInterested": false,
+            "queueItEnabled": false,
+            "newEventForm": true,
+            "images": [
+              {
+                "id": "2457914",
+                "filename": "https://images.ra.co/c757e28b50b8bcddc694d66b63f6cf81efccf466.jpg",
+                "alt": null,
+                "type": "FLYERFRONT",
+                "crop": null,
+                "__typename": "EventImage"
+              }
+            ],
+            "pick": null,
+            "venue": {
+              "id": "128986",
+              "name": "Helios37",
+              "contentUrl": "/clubs/128986",
+              "live": true,
+              "__typename": "Venue"
+            },
+            "promoters": [
+              {
+                "id": "144207",
+                "__typename": "Promoter"
+              }
+            ],
+            "artists": [
+              {
+                "id": "133795",
+                "name": "KLARYOKO",
+                "__typename": "Artist"
+              },
+              {
+                "id": "151301",
+                "name": "alleira",
+                "__typename": "Artist"
+              }
+            ],
+            "tickets": [],
+            "__typename": "Event"
+          },
+          "__typename": "EventListing"
+        },
+        {
+          "id": "12373078",
+          "listingDate": "2026-03-06T00:00:00.000",
+          "event": {
+            "id": "2373078",
+            "date": "2026-03-06T00:00:00.000",
+            "startTime": "2026-03-06T23:30:00.000",
+            "endTime": "2026-03-07T05:00:00.000",
+            "title": "JAKI presents: All Night Long with Nadim b2b SPECIAL GUEST",
+            "contentUrl": "/events/2373078",
+            "flyerFront": null,
+            "isTicketed": false,
+            "interestedCount": 1,
+            "isSaved": false,
+            "isInterested": false,
+            "queueItEnabled": false,
+            "newEventForm": true,
+            "images": [
+              {
+                "id": "2473913",
+                "filename": "https://images.ra.co/9528a66a06474b87b596bce573541e8fde4968c6.jpg",
+                "alt": "Nadim © Artist",
+                "type": "FLYERFRONT",
+                "crop": null,
+                "__typename": "EventImage"
+              }
+            ],
+            "pick": null,
+            "venue": {
+              "id": "175118",
+              "name": "JAKI",
+              "contentUrl": "/clubs/175118",
+              "live": true,
+              "__typename": "Venue"
+            },
+            "promoters": [],
+            "artists": [
+              {
+                "id": "126635",
+                "name": "Nadim",
+                "__typename": "Artist"
+              }
+            ],
+            "tickets": [],
+            "__typename": "Event"
+          },
+          "__typename": "EventListing"
+        },
+        {
+          "id": "12361298",
+          "listingDate": "2026-03-06T00:00:00.000",
+          "event": {
+            "id": "2361298",
+            "date": "2026-03-06T00:00:00.000",
+            "startTime": "2026-03-06T23:00:00.000",
+            "endTime": "2026-03-07T05:00:00.000",
+            "title": "LUKE MADNESS ALL NIGHT LONG [360°]",
+            "contentUrl": "/events/2361298",
+            "flyerFront": null,
+            "isTicketed": false,
+            "interestedCount": 2,
+            "isSaved": false,
+            "isInterested": false,
+            "queueItEnabled": false,
+            "newEventForm": true,
+            "images": [
+              {
+                "id": "2458269",
+                "filename": "https://images.ra.co/95d048499f69b41c0ead9767526d47c161d02871.jpg",
+                "alt": null,
+                "type": "FLYERFRONT",
+                "crop": null,
+                "__typename": "EventImage"
+              }
+            ],
+            "pick": null,
+            "venue": {
+              "id": "11085",
+              "name": "Bootshaus",
+              "contentUrl": "/clubs/11085",
+              "live": true,
+              "__typename": "Venue"
+            },
+            "promoters": [],
+            "artists": [],
+            "tickets": [],
+            "__typename": "Event"
+          },
+          "__typename": "EventListing"
+        },
+        {
+          "id": "12365892",
+          "listingDate": "2026-03-07T00:00:00.000",
+          "event": {
+            "id": "2365892",
+            "date": "2026-03-07T00:00:00.000",
+            "startTime": "2026-03-07T23:00:00.000",
+            "endTime": "2026-03-08T06:00:00.000",
+            "title": "Øhne Bedenken x 969 - Kollektiv Nacht VOL. II",
+            "contentUrl": "/events/2365892",
+            "flyerFront": null,
+            "isTicketed": false,
+            "interestedCount": 28,
+            "isSaved": false,
+            "isInterested": false,
+            "queueItEnabled": false,
+            "newEventForm": true,
+            "images": [
+              {
+                "id": "2477871",
+                "filename": "https://images.ra.co/badd519cc6b7c694a0d728f3eaad120b30ba096c.png",
+                "alt": null,
+                "type": "FLYERFRONT",
+                "crop": null,
+                "__typename": "EventImage"
+              }
+            ],
+            "pick": null,
+            "venue": {
+              "id": "48479",
+              "name": "Kunstwerk",
+              "contentUrl": "/clubs/48479",
+              "live": true,
+              "__typename": "Venue"
+            },
+            "promoters": [],
+            "artists": [
+              {
+                "id": "126056",
+                "name": "Kashinski",
+                "__typename": "Artist"
+              },
+              {
+                "id": "173285",
+                "name": "PATEK!",
+                "__typename": "Artist"
+              },
+              {
+                "id": "173216",
+                "name": "andré wiese",
+                "__typename": "Artist"
+              },
+              {
+                "id": "177903",
+                "name": "bashii (2)",
+                "__typename": "Artist"
+              },
+              {
+                "id": "177731",
+                "name": "Dj Bowlz",
+                "__typename": "Artist"
+              }
+            ],
+            "tickets": [],
+            "__typename": "Event"
+          },
+          "__typename": "EventListing"
+        },
+        {
+          "id": "12344161",
+          "listingDate": "2026-03-07T00:00:00.000",
+          "event": {
+            "id": "2344161",
+            "date": "2026-03-07T00:00:00.000",
+            "startTime": "2026-03-07T22:00:00.000",
+            "endTime": "2026-03-08T06:00:00.000",
+            "title": "9 YEARS NIBIRII pres. VINI VICI / POLTERGST",
+            "contentUrl": "/events/2344161",
+            "flyerFront": null,
+            "isTicketed": false,
+            "interestedCount": 17,
+            "isSaved": false,
+            "isInterested": false,
+            "queueItEnabled": false,
+            "newEventForm": true,
+            "images": [
+              {
+                "id": "2435810",
+                "filename": "https://images.ra.co/6855f39fd7889ba9715c7a44a517d7e95af2428c.png",
+                "alt": null,
+                "type": "FLYERFRONT",
+                "crop": null,
+                "__typename": "EventImage"
+              }
+            ],
+            "pick": null,
+            "venue": {
+              "id": "11085",
+              "name": "Bootshaus",
+              "contentUrl": "/clubs/11085",
+              "live": true,
+              "__typename": "Venue"
+            },
+            "promoters": [],
+            "artists": [
+              {
+                "id": "56913",
+                "name": "Mr.Black (UK)",
+                "__typename": "Artist"
+              },
+              {
+                "id": "177066",
+                "name": "DELTA LABS",
+                "__typename": "Artist"
+              },
+              {
+                "id": "132561",
+                "name": "Paranormila",
+                "__typename": "Artist"
+              },
+              {
+                "id": "103",
+                "name": "Rui Da Silva",
+                "__typename": "Artist"
+              },
+              {
+                "id": "156129",
+                "name": "Enaly",
+                "__typename": "Artist"
+              },
+              {
+                "id": "144042",
+                "name": "Gourski",
+                "__typename": "Artist"
+              },
+              {
+                "id": "120417",
+                "name": "LYNE",
+                "__typename": "Artist"
+              }
+            ],
+            "tickets": [],
+            "__typename": "Event"
+          },
+          "__typename": "EventListing"
+        },
+        {
+          "id": "12353469",
+          "listingDate": "2026-03-07T00:00:00.000",
+          "event": {
+            "id": "2353469",
+            "date": "2026-03-07T00:00:00.000",
+            "startTime": "2026-03-07T23:00:00.000",
+            "endTime": "2026-03-08T07:00:00.000",
+            "title": "240KM/H pres. International Women's Day Charity",
+            "contentUrl": "/events/2353469",
+            "flyerFront": null,
+            "isTicketed": false,
+            "interestedCount": 13,
+            "isSaved": false,
+            "isInterested": false,
+            "queueItEnabled": false,
+            "newEventForm": true,
+            "images": [
+              {
+                "id": "2448208",
+                "filename": "https://images.ra.co/6c4086675b9e75b3d8bac6af72a64e802dc34c04.jpg",
+                "alt": null,
+                "type": "FLYERFRONT",
+                "crop": null,
+                "__typename": "EventImage"
+              }
+            ],
+            "pick": null,
+            "venue": {
+              "id": "128986",
+              "name": "Helios37",
+              "contentUrl": "/clubs/128986",
+              "live": true,
+              "__typename": "Venue"
+            },
+            "promoters": [
+              {
+                "id": "123738",
+                "__typename": "Promoter"
+              }
+            ],
+            "artists": [
+              {
+                "id": "145592",
+                "name": "Riana Holley",
+                "__typename": "Artist"
+              },
+              {
+                "id": "116692",
+                "name": "TANJA MIJU",
+                "__typename": "Artist"
+              }
+            ],
+            "tickets": [],
+            "__typename": "Event"
+          },
+          "__typename": "EventListing"
+        },
+        {
+          "id": "12349587",
+          "listingDate": "2026-03-07T00:00:00.000",
+          "event": {
+            "id": "2349587",
+            "date": "2026-03-07T00:00:00.000",
+            "startTime": "2026-03-07T23:00:00.000",
+            "endTime": "2026-03-08T08:00:00.000",
+            "title": "fi = altshift5 with 3000 Grad & Tiefgang",
+            "contentUrl": "/events/2349587",
+            "flyerFront": null,
+            "isTicketed": false,
+            "interestedCount": 6,
+            "isSaved": false,
+            "isInterested": false,
+            "queueItEnabled": false,
+            "newEventForm": true,
+            "images": [
+              {
+                "id": "2443116",
+                "filename": "https://images.ra.co/fd343c606e0847fa1ad752bda5828c3829252652.jpg",
+                "alt": null,
+                "type": "FLYERFRONT",
+                "crop": null,
+                "__typename": "EventImage"
+              }
+            ],
+            "pick": null,
+            "venue": {
+              "id": "236937",
+              "name": "fi",
+              "contentUrl": "/clubs/236937",
+              "live": true,
+              "__typename": "Venue"
+            },
+            "promoters": [],
+            "artists": [
+              {
+                "id": "113468",
+                "name": "Katzengold",
+                "__typename": "Artist"
+              },
+              {
+                "id": "12542",
+                "name": "Mollono.Bass",
+                "__typename": "Artist"
+              },
+              {
+                "id": "135212",
+                "name": "nøvae",
+                "__typename": "Artist"
+              },
+              {
+                "id": "127985",
+                "name": "J.WOCKENFUSS",
+                "__typename": "Artist"
+              },
+              {
+                "id": "119531",
+                "name": "NORO",
+                "__typename": "Artist"
+              },
+              {
+                "id": "162800",
+                "name": "ZHTA",
+                "__typename": "Artist"
+              }
+            ],
+            "tickets": [],
+            "__typename": "Event"
+          },
+          "__typename": "EventListing"
+        },
+        {
+          "id": "12349148",
+          "listingDate": "2026-03-07T00:00:00.000",
+          "event": {
+            "id": "2349148",
+            "date": "2026-03-07T00:00:00.000",
+            "startTime": "2026-03-07T23:00:00.000",
+            "endTime": "2026-03-08T06:00:00.000",
+            "title": "Anti Disco with Lars Eidinger (DJ-Set)",
+            "contentUrl": "/events/2349148",
+            "flyerFront": null,
+            "isTicketed": false,
+            "interestedCount": 4,
+            "isSaved": false,
+            "isInterested": false,
+            "queueItEnabled": false,
+            "newEventForm": true,
+            "images": [
+              {
+                "id": "2442629",
+                "filename": "https://images.ra.co/2a1c46da5777b57c2b7a7f7bcae571dcf2440633.jpg",
+                "alt": null,
+                "type": "FLYERFRONT",
+                "crop": null,
+                "__typename": "EventImage"
+              }
+            ],
+            "pick": null,
+            "venue": {
+              "id": "10929",
+              "name": "Odonien",
+              "contentUrl": "/clubs/10929",
+              "live": true,
+              "__typename": "Venue"
+            },
+            "promoters": [
+              {
+                "id": "174440",
+                "__typename": "Promoter"
+              }
+            ],
+            "artists": [
+              {
+                "id": "94357",
+                "name": "Lars Eidinger",
+                "__typename": "Artist"
+              }
+            ],
+            "tickets": [],
+            "__typename": "Event"
+          },
+          "__typename": "EventListing"
+        },
+        {
+          "id": "12375319",
+          "listingDate": "2026-03-07T00:00:00.000",
+          "event": {
+            "id": "2375319",
+            "date": "2026-03-07T00:00:00.000",
+            "startTime": "2026-03-07T23:00:00.000",
+            "endTime": "2026-03-08T06:00:00.000",
+            "title": "Im Fokus with Anna Konda & Krackk, DJ ASS TITS & Leonie Savalas, lyzanne & SAM",
+            "contentUrl": "/events/2375319",
+            "flyerFront": null,
+            "isTicketed": false,
+            "interestedCount": 2,
+            "isSaved": false,
+            "isInterested": false,
+            "queueItEnabled": false,
+            "newEventForm": true,
+            "images": [
+              {
+                "id": "2476921",
+                "filename": "https://images.ra.co/1a207311d7da6ee1e14fbe03360eb490553aa081.jpg",
+                "alt": null,
+                "type": "FLYERFRONT",
+                "crop": null,
+                "__typename": "EventImage"
+              }
+            ],
+            "pick": null,
+            "venue": {
+              "id": "6765",
+              "name": "Gewölbe",
+              "contentUrl": "/clubs/6765",
+              "live": true,
+              "__typename": "Venue"
+            },
+            "promoters": [],
+            "artists": [
+              {
+                "id": "119565",
+                "name": "Anna Konda",
+                "__typename": "Artist"
+              },
+              {
+                "id": "120242",
+                "name": "Krackk",
+                "__typename": "Artist"
+              },
+              {
+                "id": "140815",
+                "name": "DJ ASS TITS",
+                "__typename": "Artist"
+              },
+              {
+                "id": "134306",
+                "name": "lyzanne",
+                "__typename": "Artist"
+              },
+              {
+                "id": "115517",
+                "name": "SAM (9)",
+                "__typename": "Artist"
+              }
+            ],
+            "tickets": [],
+            "__typename": "Event"
+          },
+          "__typename": "EventListing"
+        },
+        {
+          "id": "12362506",
+          "listingDate": "2026-03-07T00:00:00.000",
+          "event": {
+            "id": "2362506",
+            "date": "2026-03-07T00:00:00.000",
+            "startTime": "2026-03-07T23:00:00.000",
+            "endTime": "2026-03-08T07:00:00.000",
+            "title": "jedermensch. with Caniche & Samantha Togni",
+            "contentUrl": "/events/2362506",
+            "flyerFront": null,
+            "isTicketed": false,
+            "interestedCount": 2,
+            "isSaved": false,
+            "isInterested": false,
+            "queueItEnabled": false,
+            "newEventForm": true,
+            "images": [
+              {
+                "id": "2459857",
+                "filename": "https://images.ra.co/50e3ee15841fd97448a71e1ee93daf3894367341.jpg",
+                "alt": null,
+                "type": "FLYERFRONT",
+                "crop": null,
+                "__typename": "EventImage"
+              }
+            ],
+            "pick": null,
+            "venue": {
+              "id": "6392",
+              "name": "Artheater",
+              "contentUrl": "/clubs/6392",
+              "live": true,
+              "__typename": "Venue"
+            },
+            "promoters": [
+              {
+                "id": "121873",
+                "__typename": "Promoter"
+              }
+            ],
+            "artists": [
+              {
+                "id": "115215",
+                "name": "Aaro (3)",
+                "__typename": "Artist"
+              },
+              {
+                "id": "106734",
+                "name": "Caniche",
+                "__typename": "Artist"
+              },
+              {
+                "id": "75389",
+                "name": "Samantha Togni",
+                "__typename": "Artist"
+              },
+              {
+                "id": "84080",
+                "name": "EPHIE",
+                "__typename": "Artist"
+              }
+            ],
+            "tickets": [],
+            "__typename": "Event"
+          },
+          "__typename": "EventListing"
+        },
+        {
+          "id": "12349454",
+          "listingDate": "2026-03-07T00:00:00.000",
+          "event": {
+            "id": "2349454",
+            "date": "2026-03-07T00:00:00.000",
+            "startTime": "2026-03-07T23:00:00.000",
+            "endTime": "2026-03-08T04:00:00.000",
+            "title": "Neon Paradise x Cassetter - Syntwave/Cyberpunk Party",
+            "contentUrl": "/events/2349454",
+            "flyerFront": null,
+            "isTicketed": false,
+            "interestedCount": 3,
+            "isSaved": false,
+            "isInterested": false,
+            "queueItEnabled": false,
+            "newEventForm": true,
+            "images": [
+              {
+                "id": "2442912",
+                "filename": "https://images.ra.co/9ec6d4ae9fa6f3bc0b4da200e373c5fa8c867d6e.jpg",
+                "alt": null,
+                "type": "FLYERFRONT",
+                "crop": null,
+                "__typename": "EventImage"
+              }
+            ],
+            "pick": null,
+            "venue": {
+              "id": "18827",
+              "name": "Blue Shell",
+              "contentUrl": "/clubs/18827",
+              "live": true,
+              "__typename": "Venue"
+            },
+            "promoters": [
+              {
+                "id": "146010",
+                "__typename": "Promoter"
+              }
+            ],
+            "artists": [],
+            "tickets": [],
+            "__typename": "Event"
+          },
+          "__typename": "EventListing"
+        },
+        {
+          "id": "12360953",
+          "listingDate": "2026-03-07T00:00:00.000",
+          "event": {
+            "id": "2360953",
+            "date": "2026-03-07T00:00:00.000",
+            "startTime": "2026-03-07T17:00:00.000",
+            "endTime": "2026-03-07T23:00:00.000",
+            "title": "IMMERNOCH! TANZEN",
+            "contentUrl": "/events/2360953",
+            "flyerFront": null,
+            "isTicketed": false,
+            "interestedCount": 2,
+            "isSaved": false,
+            "isInterested": false,
+            "queueItEnabled": false,
+            "newEventForm": true,
+            "images": [
+              {
+                "id": "2457824",
+                "filename": "https://images.ra.co/d7c9bf1e93f24c20764d5ed6f3d5ae4d792ecfe5.jpg",
+                "alt": null,
+                "type": "FLYERFRONT",
+                "crop": null,
+                "__typename": "EventImage"
+              }
+            ],
+            "pick": null,
+            "venue": {
+              "id": "6779",
+              "name": "Subway",
+              "contentUrl": "/clubs/6779",
+              "live": true,
+              "__typename": "Venue"
+            },
+            "promoters": [],
+            "artists": [],
+            "tickets": [],
+            "__typename": "Event"
+          },
+          "__typename": "EventListing"
+        }
+      ],
+      "filterOptions": {
+        "genre": [
+          {
+            "label": "Acid",
+            "value": "acid",
+            "count": 2,
+            "__typename": "GenreFilterOption"
+          },
+          {
+            "label": "Afrobeat",
+            "value": "afrobeat",
+            "count": 1,
+            "__typename": "GenreFilterOption"
+          },
+          {
+            "label": "Baile Funk",
+            "value": "bailefunk",
+            "count": 1,
+            "__typename": "GenreFilterOption"
+          },
+          {
+            "label": "Classical",
+            "value": "classical",
+            "count": 1,
+            "__typename": "GenreFilterOption"
+          },
+          {
+            "label": "Club",
+            "value": "club",
+            "count": 1,
+            "__typename": "GenreFilterOption"
+          },
+          {
+            "label": "Dancehall",
+            "value": "dancehall",
+            "count": 1,
+            "__typename": "GenreFilterOption"
+          },
+          {
+            "label": "Deep House",
+            "value": "deephouse",
+            "count": 1,
+            "__typename": "GenreFilterOption"
+          },
+          {
+            "label": "Disco",
+            "value": "disco",
+            "count": 1,
+            "__typename": "GenreFilterOption"
+          },
+          {
+            "label": "Drum & Bass",
+            "value": "drumandbass",
+            "count": 4,
+            "__typename": "GenreFilterOption"
+          },
+          {
+            "label": "Dub",
+            "value": "dub",
+            "count": 1,
+            "__typename": "GenreFilterOption"
+          },
+          {
+            "label": "Dubstep",
+            "value": "dubstep",
+            "count": 2,
+            "__typename": "GenreFilterOption"
+          },
+          {
+            "label": "EBM",
+            "value": "ebm",
+            "count": 1,
+            "__typename": "GenreFilterOption"
+          },
+          {
+            "label": "Electro",
+            "value": "electro",
+            "count": 2,
+            "__typename": "GenreFilterOption"
+          },
+          {
+            "label": "Electronica",
+            "value": "electronica",
+            "count": 1,
+            "__typename": "GenreFilterOption"
+          },
+          {
+            "label": "Experimental",
+            "value": "experimental",
+            "count": 1,
+            "__typename": "GenreFilterOption"
+          },
+          {
+            "label": "Funk / Soul",
+            "value": "funksoul",
+            "count": 1,
+            "__typename": "GenreFilterOption"
+          },
+          {
+            "label": "Gabber",
+            "value": "gabber",
+            "count": 1,
+            "__typename": "GenreFilterOption"
+          },
+          {
+            "label": "Hardcore",
+            "value": "hardcore",
+            "count": 1,
+            "__typename": "GenreFilterOption"
+          },
+          {
+            "label": "Hip-Hop",
+            "value": "hiphop",
+            "count": 2,
+            "__typename": "GenreFilterOption"
+          },
+          {
+            "label": "House",
+            "value": "house",
+            "count": 18,
+            "__typename": "GenreFilterOption"
+          },
+          {
+            "label": "Industrial",
+            "value": "industrial",
+            "count": 2,
+            "__typename": "GenreFilterOption"
+          },
+          {
+            "label": "Jungle",
+            "value": "jungle",
+            "count": 2,
+            "__typename": "GenreFilterOption"
+          },
+          {
+            "label": "Progressive House",
+            "value": "progressivehouse",
+            "count": 2,
+            "__typename": "GenreFilterOption"
+          },
+          {
+            "label": "Psytrance",
+            "value": "psytrance",
+            "count": 1,
+            "__typename": "GenreFilterOption"
+          },
+          {
+            "label": "Tech House",
+            "value": "techhouse",
+            "count": 2,
+            "__typename": "GenreFilterOption"
+          },
+          {
+            "label": "Techno",
+            "value": "techno",
+            "count": 56,
+            "__typename": "GenreFilterOption"
+          },
+          {
+            "label": "Trance",
+            "value": "trance",
+            "count": 17,
+            "__typename": "GenreFilterOption"
+          }
+        ],
+        "eventType": [
+          {
+            "value": 1,
+            "count": 47,
+            "__typename": "EventTypeFilterOption"
+          }
+        ],
+        "location": null,
+        "__typename": "FilterOptions"
+      },
+      "totalResults": 76,
+      "__typename": "EventListings"
+    }
+  }
+}
