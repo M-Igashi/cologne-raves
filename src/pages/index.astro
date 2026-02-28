@@ -47,24 +47,22 @@ const canonicalURL = new URL(Astro.url.pathname, "https://cologne.ravers.workers
       keywords={keywords}
     />
   </head>
-  <body class="min-h-screen bg-black text-white font-sans max-w-3xl mx-auto px-4 py-6 sm:px-6 lg:px-8 flex flex-col">
+  <body style="min-height: 100vh; background: #000000; color: #ffffff; max-width: 768px; margin: 0 auto; padding: 32px 24px; display: flex; flex-direction: column;">
     <Header active="this-week" />
 
     {/* Event Submission Banner */}
-    <div class="border border-gray-800 rounded-lg p-4 mb-6 bg-gray-950">
-      <div>
-        <h2 class="text-lg font-semibold text-white mb-1">Got an event coming up?</h2>
-        <p class="text-sm text-gray-400">Submit your party or live show to our community calendar using the button above!</p>
-      </div>
+    <div style="background: #111111; border: 1px solid #333333; padding: 20px; margin-bottom: 24px;">
+      <h2 style="font-size: 0.85rem; font-weight: 700; color: #ffffff; margin-bottom: 4px;">Got an event coming up?</h2>
+      <p style="font-size: 0.75rem; color: #888888; margin: 0;">Submit your party or live show to our community calendar using the button above!</p>
     </div>
 
-    <main class="flex-1" role="main" itemscope itemtype="https://schema.org/EventSeries">
-      <nav class="flex flex-wrap gap-2 mb-6 text-sm" aria-label="Event filters">
-        <a href="/" class="px-3 py-1 border rounded-full bg-white text-black text-sm" aria-current="page">This Week</a>
-        <a href="/parties" class="px-3 py-1 border rounded-full text-white border-white text-sm">All Parties</a>
+    <main style="flex: 1;" role="main" itemscope itemtype="https://schema.org/EventSeries">
+      <nav style="display: flex; gap: 12px; margin-bottom: 24px;" aria-label="Event filters">
+        <a href="/" style="padding: 10px 20px; background: #ffffff; color: #000000; text-decoration: none; font-weight: 700; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 2px; border: 1px solid #ffffff; font-family: 'JetBrains Mono', monospace;" aria-current="page">This Week</a>
+        <a href="/parties" style="padding: 10px 20px; background: transparent; color: #ffffff; text-decoration: none; font-weight: 700; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 2px; border: 1px solid #ffffff; font-family: 'JetBrains Mono', monospace;">All Parties</a>
       </nav>
 
-      <h1 class="text-2xl font-semibold mb-4" itemprop="name">Electronic Music Events This Week in Cologne</h1>
+      <h1 style="font-size: 1.25rem; font-weight: 700; margin-bottom: 24px; text-transform: uppercase; letter-spacing: 2px;" itemprop="name">Electronic Music Events This Week in Cologne</h1>
       <meta itemprop="description" content={description} />
       <meta itemprop="location" content="Cologne, Germany" />
 
@@ -72,7 +70,7 @@ const canonicalURL = new URL(Astro.url.pathname, "https://cologne.ravers.workers
         ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'].map((day) => (
           partiesByDay[day]?.length > 0 && (
             <section>
-              <h3 class="text-xl font-semibold mt-6 mb-2">{day}</h3>
+              <h3 style="font-size: 1rem; font-weight: 700; margin-top: 32px; margin-bottom: 16px; padding-bottom: 8px; border-bottom: 1px solid #333333; text-transform: uppercase; letter-spacing: 2px;">{day}</h3>
               {
                 partiesByDay[day].map((party) => (
                   <PartyCard {...party} showEditLink={false} />

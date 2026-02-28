@@ -3,8 +3,7 @@ export default {
   darkMode: 'class',
   content: ['./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}'],
   safelist: [
-    "bg-black", "text-white", "hover:bg-neutral-800",
-    "border", "border-input", "hover:bg-neutral-100"
+    "flex", "items-center", "gap-1", "mt-1", "inline-block", "w-1", "size-4"
   ],
   theme: {
     extend: {},

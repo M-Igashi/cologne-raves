@@ -15,8 +15,8 @@ const {
 // Create start and end date times
 const startDateTime = `${date}T${startTime ?? '23:00'}:00+01:00`;
 // Default end time to 3 hours after start time if not specified
-const endTime = startTime ? 
-  String(Math.floor((parseInt(startTime.split(':')[0]) + 3) % 24)).padStart(2, '0') + ':00' : 
+const endTime = startTime ?
+  String(Math.floor((parseInt(startTime.split(':')[0]) + 3) % 24)).padStart(2, '0') + ':00' :
   '02:00';
 const endDateTime = `${date}T${endTime}:00+01:00`;
 
@@ -24,14 +24,14 @@ const endDateTime = `${date}T${endTime}:00+01:00`;
 const defaultImage = "https://cologne.ravers.workers.dev/og-cover.png";
 ---
 
-<article class="rounded-xl border p-4 mb-4 relative">
-  <div class="absolute top-2 right-4 text-xs text-muted-foreground">#{id}</div>
+<article style="background: #111111; border: 1px solid #333333; padding: 20px; margin-bottom: 16px; position: relative;">
+  <div style="position: absolute; top: 12px; right: 16px; font-size: 0.7rem; color: #888888; text-transform: uppercase; letter-spacing: 1px;">#{id}</div>
 
-  <h2 class="font-semibold">
+  <h2 style="font-size: 0.9rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px;">
     {title}{venue && ` @ ${venue}`}
   </h2>
 
-  <p class="flex items-center gap-1 mt-1 text-sm text-muted-foreground">
+  <p class="flex items-center gap-1 mt-1" style="font-size: 0.8rem; color: #888888;">
     <CalendarDays class="size-4" />
     {new Date(date).toLocaleDateString('en-US', {
       weekday: 'short',
@@ -48,17 +48,17 @@ const defaultImage = "https://cologne.ravers.workers.dev/og-cover.png";
   </p>
 
   {artists?.length > 0 && (
-    <p class="flex items-center gap-1 mt-1 text-sm text-muted-foreground">
+    <p class="flex items-center gap-1 mt-1" style="font-size: 0.8rem; color: #888888;">
       <Headphones class="size-4" />
       {artists.join(', ')}
     </p>
   )}
 
   {url && (
-    <p class="mt-2 text-sm">
+    <p style="margin-top: 10px; font-size: 0.75rem;">
       <a
         href={url}
-        class="underline underline-offset-2"
+        style="color: #ffffff; text-decoration: none; text-transform: uppercase; letter-spacing: 1px; border-bottom: 1px solid #888888; padding-bottom: 2px;"
         target="_blank"
         rel="noopener noreferrer"
       >
@@ -68,11 +68,11 @@ const defaultImage = "https://cologne.ravers.workers.dev/og-cover.png";
   )}
 
   {showEditLink && sourceFile && (
-    <p class="mt-2 text-sm flex items-center gap-1 text-muted-foreground">
+    <p class="flex items-center gap-1" style="margin-top: 10px; font-size: 0.75rem; color: #888888;">
       <GitBranch class="size-4" />
       <a
         href={`https://github.com/M-Igashi/cologne-raves/edit/main/data/${sourceFile}`}
-        class="underline underline-offset-2"
+        style="color: #888888; text-decoration: none; text-transform: uppercase; letter-spacing: 1px; border-bottom: 1px solid #333333; padding-bottom: 2px;"
         target="_blank"
         rel="noopener noreferrer"
       >
@@ -97,7 +97,7 @@ const defaultImage = "https://cologne.ravers.workers.dev/og-cover.png";
       "address": {
         "@type": "PostalAddress",
         "addressLocality": "Cologne",
-        "addressRegion": "North Rhine-Westphalia", 
+        "addressRegion": "North Rhine-Westphalia",
         "addressCountry": "DE"
       }
     },
@@ -117,7 +117,7 @@ const defaultImage = "https://cologne.ravers.workers.dev/og-cover.png";
       "@type": "Offer",
       "url": url || `https://cologne.ravers.workers.dev/#event-${id}`,
       "availability": "https://schema.org/InStock",
-      "validFrom": new Date().toISOString().split('T')[0], // Today's date
+      "validFrom": new Date().toISOString().split('T')[0],
       "price": "0",
       "priceCurrency": "EUR",
       "description": "Prices may vary at the door. Check event link for details."

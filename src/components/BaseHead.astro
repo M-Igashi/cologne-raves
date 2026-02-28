@@ -17,12 +17,10 @@ const {
   noindex = false
 } = Astro.props;
 
-// タイトルの処理 - 変数が直接表示されるのを防ぐ
 const safeTitle = title || "This Week";
 const fullTitle = safeTitle.includes("Cologne Raves") ? safeTitle : `${safeTitle} | Cologne Raves`;
 
-// 現在の日付を取得（ドイツ時間）
-const currentDate = new Date().toLocaleDateString('en-US', { 
+const currentDate = new Date().toLocaleDateString('en-US', {
   timeZone: 'Europe/Berlin',
   year: 'numeric',
   month: 'long',
@@ -38,7 +36,6 @@ const currentDate = new Date().toLocaleDateString('en-US', {
 {noindex && <meta name="robots" content="noindex, nofollow" />}
 {!noindex && <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:160, max-video-preview:-1" />}
 
-<!-- サイト名の強化 -->
 <meta name="application-name" content="Cologne Raves">
 <meta name="apple-mobile-web-app-title" content="Cologne Raves">
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -53,14 +50,11 @@ const currentDate = new Date().toLocaleDateString('en-US', {
 <meta name="geo.position" content="50.937531;6.960279">
 <meta name="ICBM" content="50.937531, 6.960279">
 
-<!-- Canonical -->
 <link rel="canonical" href={canonicalURL} />
 
-<!-- Alternative Languages -->
 <link rel="alternate" hreflang="en" href={canonicalURL} />
 <link rel="alternate" hreflang="x-default" href={canonicalURL} />
 
-<!-- Open Graph -->
 <meta property="og:title" content={fullTitle} />
 <meta property="og:description" content={description} />
 <meta property="og:type" content="website" />
@@ -73,7 +67,6 @@ const currentDate = new Date().toLocaleDateString('en-US', {
 <meta property="og:locale" content="en_US" />
 <meta property="og:locale:alternate" content="de_DE" />
 
-<!-- Twitter Card -->
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content={fullTitle} />
 <meta name="twitter:description" content={description} />
@@ -82,54 +75,42 @@ const currentDate = new Date().toLocaleDateString('en-US', {
 <meta name="twitter:site" content="@CologneRaves" />
 <meta name="twitter:creator" content="@CologneRaves" />
 
-<!-- Favicon & Theme -->
 <link rel="icon" type="image/png" href="/favicon.png" />
 <link rel="apple-touch-icon" href="/favicon.png" />
 <link rel="shortcut icon" href="/favicon.png" />
 <meta name="theme-color" content="#000000" />
 <meta name="msapplication-navbutton-color" content="#000000">
 
-<!-- Preconnect to External Resources -->
-<link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
-<link rel="dns-prefetch" href="https://fonts.googleapis.com">
+<!-- JetBrains Mono from Google Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
 
 <!-- Critical CSS Inlined for Performance -->
 <style>
 :root {
-  --accent: #2337ff;
-  --accent-dark: #000d8a;
-  --black: 15, 18, 25;
-  --gray: 96, 115, 159;
-  --gray-light: 229, 233, 240;
-  --gray-dark: 34, 41, 57;
-  --gray-gradient: rgba(var(--gray-light), 50%), #fff;
-  --box-shadow: 0 2px 6px rgba(var(--gray), 25%), 0 8px 24px rgba(var(--gray), 33%), 0 16px 32px rgba(var(--gray), 33%);
+  --bg-primary: #000000;
+  --bg-secondary: #0a0a0a;
+  --bg-card: #111111;
+  --text-primary: #ffffff;
+  --text-secondary: #888888;
+  --border: #333333;
+  --border-strong: #ffffff;
+  --accent-green: #00cc66;
+  color-scheme: dark;
 }
-@font-face {
-  font-family: "Atkinson";
-  src: url("/fonts/atkinson-regular.woff") format("woff");
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: "Atkinson";
-  src: url("/fonts/atkinson-bold.woff") format("woff");
-  font-weight: 700;
-  font-style: normal;
-  font-display: swap;
-}
+* { box-sizing: border-box; }
 body {
-  font-family: "Atkinson", sans-serif;
+  font-family: 'JetBrains Mono', monospace;
   margin: 0;
   padding: 0;
   text-align: left;
   word-wrap: break-word;
   overflow-wrap: break-word;
-  font-size: 20px;
-  line-height: 1.7;
-  background-color: #0e0e0e;
-  color: #ffffff;
+  font-size: 16px;
+  line-height: 1.6;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
 }
 main {
   width: 720px;
@@ -139,24 +120,19 @@ main {
 }
 h1, h2, h3, h4, h5, h6 {
   margin: 0 0 0.5rem 0;
-  color: #ffffff;
+  color: var(--text-primary);
   line-height: 1.2;
+  text-transform: uppercase;
+  letter-spacing: 2px;
 }
-h1 { font-size: 3.052em; }
-h2 { font-size: 2.441em; }
-h3 { font-size: 1.953em; }
-a {
-  color: #90cdf4;
-}
-a:hover {
-  color: #63b3ed;
-}
-.text-muted-foreground {
-  color: #a0aec0;
-}
+h1 { font-size: 2rem; }
+h2 { font-size: 1.5rem; }
+h3 { font-size: 1.25rem; }
+a { color: var(--text-primary); }
+a:hover { color: var(--text-secondary); }
+.text-muted-foreground { color: var(--text-secondary); }
 </style>
 
-<!-- 最適化されたJSON-LD構造化データ -->
 <script type="application/ld+json" set:html={JSON.stringify({
   "@context": "https://schema.org",
   "@graph": [
@@ -283,39 +259,11 @@ a:hover {
   ]
 })} />
 
-<!-- Preload Critical Resources -->
-<link rel="preload" href="/fonts/atkinson-regular.woff" as="font" type="font/woff" crossorigin>
-<link rel="preload" href="/fonts/atkinson-bold.woff" as="font" type="font/woff" crossorigin>
-
 <!-- DNS Prefetch for External Resources -->
 <link rel="dns-prefetch" href="https://static.cloudflareinsights.com">
-<link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
 
 <!-- Preconnect for Critical Third-party Origins -->
 <link rel="preconnect" href="https://cloudflareinsights.com">
-
-<!-- Non-critical CSS loaded asynchronously -->
-<script>
-  // Load non-critical CSS asynchronously
-  const loadCSS = function(href) {
-    const link = document.createElement('link');
-    link.rel = 'stylesheet';
-    link.href = href;
-    document.head.appendChild(link);
-  };
-  
-  // Load after critical rendering
-  window.addEventListener('load', function() {
-    requestIdleCallback(function() {
-      // Load any remaining CSS that wasn't inlined
-      const additionalStyles = document.querySelectorAll('link[data-async-css]');
-      additionalStyles.forEach(link => {
-        link.rel = 'stylesheet';
-        link.removeAttribute('data-async-css');
-      });
-    });
-  });
-</script>
 
 <!-- Performance Hints -->
 <meta http-equiv="x-dns-prefetch-control" content="on">

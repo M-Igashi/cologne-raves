@@ -1,16 +1,19 @@
-<footer class="text-center mt-10">
+<footer style="text-align: center; margin-top: 60px; padding-top: 24px; border-top: 1px solid #333333;">
   <script type="module">
     function revealWhatsappLink() {
       const link = document.getElementById('whatsapp-link');
       if (link) {
-        link.innerHTML = '<a href="https://chat.whatsapp.com/BqdIbF808IJFhCPoDOeQeV" target="_blank" rel="noopener" class="text-green-600 underline">Join Cologne Ravers WhatsApp Group</a>';
+        link.innerHTML = '<a href="https://chat.whatsapp.com/BqdIbF808IJFhCPoDOeQeV" target="_blank" rel="noopener" style="color: #00cc66; text-decoration: none; text-transform: uppercase; letter-spacing: 1px; font-size: 0.75rem; border-bottom: 1px solid #00cc66; padding-bottom: 2px;">Join Cologne Ravers WhatsApp Group</a>';
       }
     }
     globalThis.revealWhatsappLink = revealWhatsappLink;
   </script>
 
-  <button onclick="revealWhatsappLink()" class="bg-green-500 hover:bg-green-600 text-white font-semibold py-2 px-4 rounded">
+  <button
+    onclick="revealWhatsappLink()"
+    style="display: inline-flex; align-items: center; gap: 8px; padding: 12px 24px; background: transparent; color: #00cc66; border: 1px solid #00cc66; font-weight: 700; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 2px; font-family: 'JetBrains Mono', monospace; cursor: pointer;"
+  >
     Reveal WhatsApp Group
   </button>
-  <div id="whatsapp-link" class="mt-2 text-sm text-gray-700"></div>
+  <div id="whatsapp-link" style="margin-top: 12px;"></div>
 </footer>
