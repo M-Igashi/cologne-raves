@@ -1,0 +1,38 @@
+[
+  {
+    "id": "",
+    "title": "Kinky Techno & Friends",
+    "venue": "Club Zimmermanns",
+    "date": "2026-03-07",
+    "startTime": "22:00",
+    "artists": [
+      "PHI Φ",
+      "Max & Jules",
+      ""
+    ],
+    "url": "https://www.instagram.com/kinky.techno/"
+  },
+  {
+    "id": "",
+    "title": "Unicorn Cologne",
+    "venue": "Klub Domhof",
+    "date": "2026-05-15",
+    "startTime": "22:00",
+    "artists": [
+      "Pamela Rave",
+      "Disostoff",
+      "Sodbrennen",
+      "Ademes"
+    ],
+    "url": "https://www.holidayevents.net/unicorncologne-leer"
+  },
+  {
+    "id": "",
+    "title": "SCHWARZ „downtown“",
+    "venue": "Das Quarter1 ",
+    "date": "2026-03-21",
+    "startTime": "21:00",
+    "artists": [],
+    "url": "https://www.schwarz-club.de/index.php/events/"
+  }
+]
