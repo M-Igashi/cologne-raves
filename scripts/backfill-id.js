@@ -5,7 +5,7 @@ import crypto from "crypto";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-const dataDir = path.join(__dirname, "data");
+const dataDir = path.join(__dirname, "..", "data");
 
 function generateId(party) {
   const hash = crypto

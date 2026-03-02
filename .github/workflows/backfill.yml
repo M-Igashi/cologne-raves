@@ -32,7 +32,7 @@ jobs:
         run: npm ci
 
       - name: Run backfill script
-        run: node backfill-id.js
+        run: node scripts/backfill-id.js
 
       - name: Commit & Push changes
         if: github.event_name == 'push' && github.ref == 'refs/heads/main'
