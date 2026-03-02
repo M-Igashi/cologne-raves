@@ -1,14 +1,5 @@
 [
   {
-    "id": "1b13fbad",
-    "venue": "Stadtgarten Konzertsaal / Cafe",
-    "date": "2025-11-11",
-    "title": "KARNEVAL!?! – Der Tanz auf der Membran",
-    "artists": [],
-    "startTime": "16:00",
-    "url": "https://ra.co/events/2263506"
-  },
-  {
     "id": "6877774f",
     "venue": "Artheater",
     "date": "2025-11-14",
@@ -25,47 +16,6 @@
     ],
     "startTime": "23:00",
     "url": "https://ra.co/events/2302955"
-  },
-  {
-    "id": "7ee7219a",
-    "venue": "Schrotty",
-    "date": "2025-11-14",
-    "title": "BergWacht x Römertanz im Schrotty with Oliver Huntemann, Alex Stein uvm",
-    "artists": [
-      "Oliver Huntemann",
-      "Alex Stein",
-      "EIK music",
-      "justUS",
-      "Liho"
-    ],
-    "startTime": "23:00",
-    "url": "https://ra.co/events/2263218"
-  },
-  {
-    "id": "655b63a5",
-    "venue": "Schrotty",
-    "date": "2025-11-15",
-    "title": "4 Years EhrenKlub Pt 1 with KRUELTY, SLVL, USH uvm",
-    "artists": [
-      "Chris El Greco",
-      "DEXTASY",
-      "KRUELTY",
-      "SLVL"
-    ],
-    "startTime": "23:00",
-    "url": "https://ra.co/events/2257149"
-  },
-  {
-    "id": "7ed299d6",
-    "venue": "Gewölbe",
-    "date": "2025-11-15",
-    "title": "Klubnacht with Andhim, Biggie Schoellz, Nic Lorenz",
-    "artists": [
-      "Andhim",
-      "Nic Lorenz"
-    ],
-    "startTime": "23:00",
-    "url": "https://ra.co/events/2282025"
   },
   {
     "id": "7e670c49",
@@ -218,7 +168,6 @@
     "startTime": "23:00",
     "url": "https://ra.co/events/2283211"
   },
-
   {
     "id": "4ef4deff",
     "venue": "Artheater",
@@ -263,7 +212,7 @@
     "url": "https://ra.co/events/2247122"
   },
   {
-    "id": "56913c45",
+    "id": "3d809bda",
     "venue": "Odonien",
     "date": "2025-11-22",
     "title": "ANTEA with Yanamaste, RUIZ OSC1, Gutkind, HWRD, K.Luisa, Shrff, Amilli, Tim Reineke, Tschatsching",
@@ -455,7 +404,6 @@
     "startTime": "23:00",
     "url": "https://ra.co/events/2134805"
   },
-
   {
     "id": "4880760f",
     "venue": "Gewölbe",

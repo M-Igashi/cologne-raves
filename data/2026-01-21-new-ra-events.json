@@ -1,66 +1,5 @@
 [
   {
-    "id": "a253b06b",
-    "venue": "JAKI",
-    "date": "2026-01-23",
-    "title": "Best Foot Forward feat. Deniz Arslan, Gutta, Maxwell, mmara & Yung Müller",
-    "artists": [
-      "Deniz Arslan"
-    ],
-    "startTime": "23:30",
-    "url": "https://ra.co/events/2328039"
-  },
-  {
-    "id": "a16d7125",
-    "venue": "Nachtigall",
-    "date": "2026-01-23",
-    "title": "13 Jahre Nachtigall - Clubnacht x Römertanz w/ Matchy",
-    "artists": [
-      "Matchy",
-      "justUS",
-      "EIK music"
-    ],
-    "startTime": "23:00",
-    "url": "https://ra.co/events/2326762"
-  },
-  {
-    "id": "bbe88ddc",
-    "venue": "Club Zimmermanns",
-    "date": "2026-01-23",
-    "title": "EDM Revival Night",
-    "artists": [
-      "Nick Tribe"
-    ],
-    "startTime": "23:00",
-    "url": "https://ra.co/events/2333928"
-  },
-  {
-    "id": "cf91d4a5",
-    "venue": "fi",
-    "date": "2026-01-24",
-    "title": "fi = altshift5 with DJ Hell & Das Ist Das Ja",
-    "artists": [
-      "DJ Hell",
-      "Etane",
-      "Play Boy Joe"
-    ],
-    "startTime": "23:00",
-    "url": "https://ra.co/events/2326648"
-  },
-  {
-    "id": "0e9d3ce6",
-    "venue": "Essigfabrik",
-    "date": "2026-01-24",
-    "title": "MATTERMIND Weekender 3.0",
-    "artists": [
-      "AMBAM",
-      "Doruksen",
-      "Cenan Holland"
-    ],
-    "startTime": "22:30",
-    "url": "https://ra.co/events/2318615"
-  },
-  {
     "id": "d56aa303",
     "venue": "Artheater",
     "date": "2026-01-24",
@@ -73,19 +12,6 @@
     "url": "https://ra.co/events/2340897"
   },
   {
-    "id": "9be4ade2",
-    "venue": "H26",
-    "date": "2026-01-24",
-    "title": "Purple Vibrations with Alex Breitling, Nus, Felicia Bianco · H26 Köln",
-    "artists": [
-      "Alex Breitling",
-      "NUS MUSIC",
-      "Bensonius"
-    ],
-    "startTime": "22:00",
-    "url": "https://ra.co/events/2330868"
-  },
-  {
     "id": "6ceffdcf",
     "venue": "Zum Scheuen Reh",
     "date": "2026-01-24",
@@ -96,15 +22,6 @@
     ],
     "startTime": "22:00",
     "url": "https://ra.co/events/2350398"
-  },
-  {
-    "id": "6342cc48",
-    "venue": "Nachtigall",
-    "date": "2026-01-24",
-    "title": "IMPULSIVE COLOGNE with SHABI1, G2, HEISS, MARV, MAMA PETITE, STO:RNO, VINYA",
-    "artists": [],
-    "startTime": "22:30",
-    "url": "https://ra.co/events/2338920"
   },
   {
     "id": "158a711d",
@@ -771,7 +688,6 @@
     "startTime": "22:00",
     "url": "https://ra.co/events/2350418"
   },
-
   {
     "id": "13ae53b2",
     "venue": "Odonien",

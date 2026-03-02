@@ -29,18 +29,6 @@
     "url": "https://bootshaus.tv/events/17-01-26nibirii-pres-zeuz-all-night-long/"
   },
   {
-    "id": "cda78fa5",
-    "venue": "Nachtigall",
-    "date": "2025-12-20",
-    "title": "CLUBNACHT with Aio, Pardis, Phi Φ, Juni, Bernau und Elias Paul",
-    "artists": [
-      "Aio",
-      "Pardis"
-    ],
-    "startTime": "23:00",
-    "url": "https://ra.co/events/2315134"
-  },
-  {
     "id": "e0434dc1",
     "venue": "JAKI",
     "date": "2025-12-20",
@@ -64,15 +52,6 @@
     "url": "https://ra.co/events/2325956"
   },
   {
-    "id": "716c7cbb",
-    "venue": "Bootshaus",
-    "date": "2025-12-20",
-    "title": "Blacklist pres. Midnight Tyrannosaurus",
-    "artists": [],
-    "startTime": "23:00",
-    "url": "https://ra.co/events/2308817"
-  },
-  {
     "id": "66661c41",
     "venue": "Reineke Fuchs",
     "date": "2025-12-13",
@@ -91,30 +70,6 @@
     "url": "https://ra.co/events/2325804"
   },
   {
-    "id": "4ab5371d",
-    "venue": "Gewölbe",
-    "date": "2025-12-21",
-    "title": "Research with evolpeeD, Sedaction, XDB",
-    "artists": [
-      "evolpeeD",
-      "Sedaction",
-      "XDB"
-    ],
-    "startTime": "14:00",
-    "url": "https://ra.co/events/2314024"
-  },
-  {
-    "id": "c208e547",
-    "venue": "OFF Bar",
-    "date": "2025-12-23",
-    "title": "THE GET DOWN",
-    "artists": [
-      "DJ Funky Fresh Mike"
-    ],
-    "startTime": "21:00",
-    "url": "https://ra.co/events/2305683"
-  },
-  {
     "id": "293dbb5b",
     "venue": "Heimathirsch",
     "date": "2025-12-23",
@@ -122,17 +77,6 @@
     "artists": [],
     "startTime": "19:00",
     "url": "https://ra.co/events/2327411"
-  },
-  {
-    "id": "fcf19230",
-    "venue": "Gewölbe",
-    "date": "2025-12-24",
-    "title": "Heiligabend with Shumi",
-    "artists": [
-      "Shumi"
-    ],
-    "startTime": "23:00",
-    "url": "https://ra.co/events/2307923"
   },
   {
     "id": "792d3146",
@@ -197,7 +141,7 @@
     "url": "https://ra.co/events/2285610"
   },
   {
-    "id": "4f43bace",
+    "id": "997db1fe",
     "venue": "Helios37",
     "date": "2025-12-27",
     "title": "Techno Allianz Last Rave of the Year 2025 w/ Sofie Sapuna - AMBAM - Zeltak ",
@@ -209,18 +153,6 @@
     ],
     "startTime": "23:00",
     "url": "https://ra.co/events/2291011"
-  },
-  {
-    "id": "19b0a4af",
-    "venue": "fi",
-    "date": "2025-12-27",
-    "title": "fi = altshift5 w / Pan Pot & Etage147",
-    "artists": [
-      "ananda priori",
-      "Pan-Pot"
-    ],
-    "startTime": "23:00",
-    "url": "https://ra.co/events/2287702"
   },
   {
     "id": "02cf9536",
@@ -288,23 +220,6 @@
     "artists": [],
     "startTime": "23:00",
     "url": "https://ra.co/events/2327653"
-  },
-  {
-    "id": "bf9343b3",
-    "venue": "Carlswerk Victoria",
-    "date": "2025-12-31",
-    "title": "unreal NYEve-Rave x CARV, KUKO, Somewhen,",
-    "artists": [
-      "CARV",
-      "OMAKS",
-      "Johannes Schuster",
-      "KUKO",
-      "Neon Graveyard",
-      "NYRA (DE)",
-      "Somewhen"
-    ],
-    "startTime": "22:00",
-    "url": "https://ra.co/events/2257581"
   },
   {
     "id": "c36cf1b3",

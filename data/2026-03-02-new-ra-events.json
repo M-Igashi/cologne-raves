@@ -1,76 +1,6 @@
 [
   {
-    "id": "beaba553",
-    "venue": "Schrotty",
-    "date": "2026-03-06",
-    "title": "BZZBZZ TECHNO X MILLIAMPERE",
-    "startTime": "23:00",
-    "artists": [
-      "Paralich",
-      "DJ HÖRDE",
-      "Eurodance2000",
-      "SPEEDO (2)",
-      "YËDM",
-      "Athina",
-      "Shemm",
-      "Pamela Rave",
-      "HENNESY",
-      "PANA (Ger)"
-    ],
-    "url": "https://ra.co/events/2360225"
-  },
-  {
-    "id": "68667e6e",
-    "venue": "Artheater",
-    "date": "2026-03-06",
-    "title": "303 presents O.B.I. & Frederic. (All Night Long)",
-    "startTime": "23:00",
-    "artists": [
-      "O.B.I. (DE)",
-      "Frederic.",
-      "LSG",
-      "Lianka"
-    ],
-    "url": "https://ra.co/events/2330549"
-  },
-  {
-    "id": "9ed28cd0",
-    "venue": "Garagen",
-    "date": "2026-03-06",
-    "title": "BEATS x BASS x WEEKENDER hosted by BLOOMCAST",
-    "startTime": "23:00",
-    "artists": [
-      "Rosilicious",
-      "fae morgana"
-    ],
-    "url": "https://ra.co/events/2375480"
-  },
-  {
-    "id": "a08682c8",
-    "venue": "fi",
-    "date": "2026-03-06",
-    "title": "fi = altshift5 with Ellen Allien & Etage147",
-    "startTime": "23:00",
-    "artists": [
-      "Shaleen"
-    ],
-    "url": "https://ra.co/events/2349249"
-  },
-  {
-    "id": "9da207da",
-    "venue": "Helios37",
-    "date": "2026-03-06",
-    "title": "akt Party",
-    "startTime": "23:00",
-    "artists": [
-      "KLARYOKO",
-      "sellycious",
-      "alleira"
-    ],
-    "url": "https://ra.co/events/2361021"
-  },
-  {
-    "id": "3a82fadb",
+    "id": "74136a7b",
     "venue": "Nachtigall",
     "date": "2026-03-06",
     "title": "FAMM nox - Klubnacht",
@@ -81,127 +11,7 @@
     "url": "https://ra.co/events/2377387"
   },
   {
-    "id": "651a889f",
-    "venue": "Bootshaus",
-    "date": "2026-03-06",
-    "title": "LUKE MADNESS ALL NIGHT LONG [360°]",
-    "startTime": "23:00",
-    "url": "https://ra.co/events/2361298"
-  },
-  {
-    "id": "cb949d80",
-    "venue": "JAKI",
-    "date": "2026-03-06",
-    "title": "JAKI presents: All Night Long with Nadim b2b SPECIAL GUEST",
-    "startTime": "23:30",
-    "artists": [
-      "Nadim"
-    ],
-    "url": "https://ra.co/events/2373078"
-  },
-  {
-    "id": "08eccb73",
-    "venue": "Subway",
-    "date": "2026-03-07",
-    "title": "IMMERNOCH! TANZEN",
-    "startTime": "17:00",
-    "url": "https://ra.co/events/2360953"
-  },
-  {
-    "id": "b471af7e",
-    "venue": "Bootshaus",
-    "date": "2026-03-07",
-    "title": "9 YEARS NIBIRII pres. VINI VICI / POLTERGST",
-    "startTime": "22:00",
-    "artists": [
-      "Mr.Black (UK)",
-      "DELTA LABS",
-      "Paranormila",
-      "Rui Da Silva",
-      "Enaly",
-      "Gourski",
-      "LYNE"
-    ],
-    "url": "https://ra.co/events/2344161"
-  },
-  {
-    "id": "9aabba7a",
-    "venue": "Kunstwerk",
-    "date": "2026-03-07",
-    "title": "Øhne Bedenken x 969 - Kollektiv Nacht VOL. II",
-    "startTime": "23:00",
-    "artists": [
-      "Kashinski",
-      "PATEK!",
-      "andré wiese",
-      "bashii (2)",
-      "Dj Bowlz"
-    ],
-    "url": "https://ra.co/events/2365892"
-  },
-  {
-    "id": "46556214",
-    "venue": "Helios37",
-    "date": "2026-03-07",
-    "title": "240KM/H pres. International Women's Day Charity",
-    "startTime": "23:00",
-    "artists": [
-      "Riana Holley",
-      "TANJA MIJU"
-    ],
-    "url": "https://ra.co/events/2353469"
-  },
-  {
-    "id": "487516e9",
-    "venue": "fi",
-    "date": "2026-03-07",
-    "title": "fi = altshift5 with 3000 Grad & Tiefgang",
-    "startTime": "23:00",
-    "artists": [
-      "Katzengold",
-      "Mollono.Bass",
-      "nøvae",
-      "J.WOCKENFUSS",
-      "NORO",
-      "ZHTA"
-    ],
-    "url": "https://ra.co/events/2349587"
-  },
-  {
-    "id": "0288c161",
-    "venue": "Odonien",
-    "date": "2026-03-07",
-    "title": "Anti Disco with Lars Eidinger (DJ-Set)",
-    "startTime": "23:00",
-    "artists": [
-      "Lars Eidinger"
-    ],
-    "url": "https://ra.co/events/2349148"
-  },
-  {
-    "id": "fa6d8bc4",
-    "venue": "Artheater",
-    "date": "2026-03-07",
-    "title": "jedermensch. with Caniche & Samantha Togni",
-    "startTime": "23:00",
-    "artists": [
-      "Aaro (3)",
-      "Caniche",
-      "Samantha Togni",
-      "EPHIE"
-    ],
-    "url": "https://ra.co/events/2362506"
-  },
-  {
-    "id": "7724bfa6",
-    "venue": "Blue Shell",
-    "date": "2026-03-07",
-    "title": "Neon Paradise x Cassetter - Syntwave/Cyberpunk Party",
-    "startTime": "23:00",
-    "url": "https://ra.co/events/2349454"
-  },
-  {
-    "id": "1af5d076",
+    "id": "99a1d502",
     "venue": "Bootshaus",
     "date": "2026-03-12",
     "title": "oSwald - BISSCHEN MEHR TOUR 2026",
@@ -212,7 +22,7 @@
     "url": "https://ra.co/events/2340619"
   },
   {
-    "id": "1adcd578",
+    "id": "157c8bdc",
     "venue": "Hotel Europa",
     "date": "2026-03-13",
     "title": "FLUID",
@@ -220,7 +30,7 @@
     "url": "https://ra.co/events/2355269"
   },
   {
-    "id": "9b18fa8f",
+    "id": "4e479667",
     "venue": "Bootshaus",
     "date": "2026-03-13",
     "title": "INURFASE MASSIVE: The Hollow Horizon",
@@ -235,7 +45,7 @@
     "url": "https://ra.co/events/2326985"
   },
   {
-    "id": "8edbccaa",
+    "id": "4d91ba06",
     "venue": "Elektroküche",
     "date": "2026-03-13",
     "title": "Schranz Only  w/ Malke & Schnoxine",
@@ -248,7 +58,7 @@
     "url": "https://ra.co/events/2349144"
   },
   {
-    "id": "9e49ed45",
+    "id": "e8de172b",
     "venue": "Schrotty",
     "date": "2026-03-13",
     "title": "EhrenKlub im Schrotty #11 mit AZDAT, FUMI, IKKHI, MR. POLSKA, NATTE VISSTICK, THE SMILER uvm",
@@ -262,7 +72,7 @@
     "url": "https://ra.co/events/2348497"
   },
   {
-    "id": "ea9e2fa7",
+    "id": "9fd4ec95",
     "venue": "Artheater",
     "date": "2026-03-13",
     "title": "N8SCHICHT X Nitro Madrid",
@@ -278,7 +88,7 @@
     "url": "https://ra.co/events/2362503"
   },
   {
-    "id": "44ef480a",
+    "id": "55e3cfdc",
     "venue": "Odonien",
     "date": "2026-03-13",
     "title": "Klanglos x Odonien",
@@ -289,7 +99,7 @@
     "url": "https://ra.co/events/2349537"
   },
   {
-    "id": "eb963918",
+    "id": "97234be2",
     "venue": "fi",
     "date": "2026-03-13",
     "title": "fi x Anfisa Letyago & Answer Code Request & Hoove",
@@ -303,7 +113,7 @@
     "url": "https://ra.co/events/2358041"
   },
   {
-    "id": "212dfb16",
+    "id": "6605a647",
     "venue": "Garagen",
     "date": "2026-03-13",
     "title": "Gourski & Friends – Back2Back NIGHT x LSG Invites",
@@ -325,7 +135,7 @@
     "url": "https://ra.co/events/2381566"
   },
   {
-    "id": "ce0b9402",
+    "id": "7265a95b",
     "venue": "JAKI",
     "date": "2026-03-13",
     "title": "JAKI presents Annemalie & HiHat",
@@ -337,7 +147,7 @@
     "url": "https://ra.co/events/2373074"
   },
   {
-    "id": "868ab06c",
+    "id": "9d748be6",
     "venue": "Live Music Hall",
     "date": "2026-03-14",
     "title": "MALUGI - Hardcore Happiness Tour",
@@ -348,7 +158,7 @@
     "url": "https://ra.co/events/2297261"
   },
   {
-    "id": "bde0b8a4",
+    "id": "8ae16f3f",
     "venue": "Friesenbar Cologne",
     "date": "2026-03-14",
     "title": "The Light Clubbing",
@@ -356,7 +166,7 @@
     "url": "https://ra.co/events/2358613"
   },
   {
-    "id": "6e6e2ae9",
+    "id": "600b408f",
     "venue": "Bootshaus",
     "date": "2026-03-14",
     "title": "Maddix presents Extatic",
@@ -369,7 +179,7 @@
     "url": "https://ra.co/events/2353089"
   },
   {
-    "id": "435cf93e",
+    "id": "ce1789a8",
     "venue": "Helios37",
     "date": "2026-03-14",
     "title": "FIEBERTRAUM",
@@ -377,7 +187,7 @@
     "url": "https://ra.co/events/2376025"
   },
   {
-    "id": "b1c29068",
+    "id": "660363e4",
     "venue": "fi",
     "date": "2026-03-14",
     "title": "fi = altshift5 with Rødhad & BFF",
@@ -390,7 +200,7 @@
     "url": "https://ra.co/events/2352445"
   },
   {
-    "id": "98b58c20",
+    "id": "580c2f18",
     "venue": "Artheater",
     "date": "2026-03-14",
     "title": "Toolboxxx PRESENTS - Ignez & Inox Traxx",
@@ -406,7 +216,7 @@
     "url": "https://ra.co/events/2376173"
   },
   {
-    "id": "b3ae2b0a",
+    "id": "829119ba",
     "venue": "Die Kunstbar",
     "date": "2026-03-14",
     "title": "Disko Dynamite Vol. III: Diskoheinz & Friends",
@@ -414,7 +224,7 @@
     "url": "https://ra.co/events/2316584"
   },
   {
-    "id": "44986a4c",
+    "id": "ab7c599a",
     "venue": "JAKI",
     "date": "2026-03-14",
     "title": "Tom-Tom Discotec presents: HEAVY FEELINGS with Silvan Strauss & D'Monk",
@@ -425,7 +235,7 @@
     "url": "https://ra.co/events/2377167"
   },
   {
-    "id": "93015ec7",
+    "id": "698f4aad",
     "venue": "Live Music Hall",
     "date": "2026-03-20",
     "title": "CLUBY2K X DENNIS DIES DAS",
@@ -433,7 +243,7 @@
     "url": "https://ra.co/events/2377227"
   },
   {
-    "id": "d4c0a8ea",
+    "id": "66d464db",
     "venue": "fi",
     "date": "2026-03-20",
     "title": "fi x DJ BORING & afin",
@@ -448,7 +258,7 @@
     "url": "https://ra.co/events/2359065"
   },
   {
-    "id": "5b194b38",
+    "id": "17d7f397",
     "venue": "Schrotty",
     "date": "2026-03-20",
     "title": "Feel Festival x Nonchalance",
@@ -464,7 +274,7 @@
     "url": "https://ra.co/events/2377652"
   },
   {
-    "id": "5b017b09",
+    "id": "258c8ffc",
     "venue": "JAKI",
     "date": "2026-03-20",
     "title": "Hyperlove with Dominicxn Papi & Shadysnack",
@@ -475,7 +285,7 @@
     "url": "https://ra.co/events/2373034"
   },
   {
-    "id": "c0492657",
+    "id": "6ddb1e61",
     "venue": "King Georg",
     "date": "2026-03-21",
     "title": "Rhythmus im Blut mit Daniel Wang",
@@ -487,7 +297,7 @@
     "url": "https://ra.co/events/2342053"
   },
   {
-    "id": "8ad2dbc1",
+    "id": "5f9b1b7f",
     "venue": "Club Zimmermanns",
     "date": "2026-03-21",
     "title": "Bunteskulturamt",
@@ -500,7 +310,7 @@
     "url": "https://ra.co/events/2349079"
   },
   {
-    "id": "c5a67288",
+    "id": "d0783d4d",
     "venue": "Bootshaus",
     "date": "2026-03-21",
     "title": "Bootshaus pres. Aaron Hibell",
@@ -511,7 +321,7 @@
     "url": "https://ra.co/events/2369048"
   },
   {
-    "id": "a8eca364",
+    "id": "a2e4b0d4",
     "venue": "TBA - N8schicht Bonn",
     "date": "2026-03-21",
     "title": "Rheinpulse Clubnight",
@@ -519,7 +329,7 @@
     "url": "https://ra.co/events/2378900"
   },
   {
-    "id": "82eae47b",
+    "id": "514f750a",
     "venue": "Odonien",
     "date": "2026-03-21",
     "title": "Kontur II Release Event w/Any Mello, Arthur Robert, GEISTFREI, LUAR",
@@ -535,7 +345,7 @@
     "url": "https://ra.co/events/2291051"
   },
   {
-    "id": "efd4807a",
+    "id": "3d494018",
     "venue": "fi",
     "date": "2026-03-21",
     "title": "fi x Ben UFO & Jonathan Kaspar & Club Breton",
@@ -547,7 +357,7 @@
     "url": "https://ra.co/events/2353644"
   },
   {
-    "id": "9c1cc47f",
+    "id": "9947c82b",
     "venue": "Bootshaus",
     "date": "2026-03-21",
     "title": "122 pres. Kitty Amor / Mcfly",
@@ -560,7 +370,7 @@
     "url": "https://ra.co/events/2367815"
   },
   {
-    "id": "df8faa3e",
+    "id": "808a9fd4",
     "venue": "JAKI",
     "date": "2026-03-21",
     "title": "Tom-Tom Discotec presents Disco Allianz Köln",
@@ -568,7 +378,7 @@
     "url": "https://ra.co/events/2377162"
   },
   {
-    "id": "c2c37a52",
+    "id": "5dcebe14",
     "venue": "Odonien",
     "date": "2026-03-27",
     "title": "Klaudia Gawlas + High Voltage Showcase pres. by ONLYRAVES",
@@ -579,7 +389,7 @@
     "url": "https://ra.co/events/2364368"
   },
   {
-    "id": "20167ae9",
+    "id": "a7c22bf7",
     "venue": "fi",
     "date": "2026-03-27",
     "title": "Kompakt präsentiert: So weit wie noch fi",
@@ -595,7 +405,7 @@
     "url": "https://ra.co/events/2378242"
   },
   {
-    "id": "5836504a",
+    "id": "2765a8ff",
     "venue": "Artheater",
     "date": "2026-03-27",
     "title": "BergWacht with Jan Taubmann",
@@ -606,7 +416,7 @@
     "url": "https://ra.co/events/2365390"
   },
   {
-    "id": "0a385c10",
+    "id": "ef770a4c",
     "venue": "Nachtigall",
     "date": "2026-03-27",
     "title": "CLUBNACHT x Römertanz with Pascale Voltaire",
@@ -620,7 +430,7 @@
     "url": "https://ra.co/events/2382920"
   },
   {
-    "id": "77212093",
+    "id": "c53c0f71",
     "venue": "Club Zimmermanns",
     "date": "2026-03-27",
     "title": "studio rainbow #7: techno for queers and friends",
@@ -631,7 +441,7 @@
     "url": "https://ra.co/events/2377779"
   },
   {
-    "id": "339112eb",
+    "id": "5220fae4",
     "venue": "Bootshaus",
     "date": "2026-03-27",
     "title": "HBz pres. by Bootshaus",
@@ -639,7 +449,7 @@
     "url": "https://ra.co/events/2319184"
   },
   {
-    "id": "3aba6557",
+    "id": "2f0bdcd2",
     "venue": "JAKI",
     "date": "2026-03-27",
     "title": "Das ist das Ja",
@@ -647,7 +457,7 @@
     "url": "https://ra.co/events/2373032"
   },
   {
-    "id": "4daaacd3",
+    "id": "8f703f61",
     "venue": "Parkcafe",
     "date": "2026-03-28",
     "title": "Ritter Butzke SHOWCASE at PARKCAFÉ KÖLN",
@@ -661,7 +471,7 @@
     "url": "https://ra.co/events/2348587"
   },
   {
-    "id": "ec23fb4f",
+    "id": "16b56c56",
     "venue": "Carlswerk Victoria",
     "date": "2026-03-28",
     "title": "UNREAL Groove Edition x Yanamaste All Night Long",
@@ -672,7 +482,7 @@
     "url": "https://ra.co/events/2347908"
   },
   {
-    "id": "071d42ec",
+    "id": "5bf00f73",
     "venue": "fi",
     "date": "2026-03-28",
     "title": "Toy Tonics Jam w/ fiMIANI, Stump Valley, lyzanne, Freddy Deckert, Nada Formosa",
@@ -685,7 +495,7 @@
     "url": "https://ra.co/events/2368021"
   },
   {
-    "id": "f76ae7da",
+    "id": "33827fa8",
     "venue": "Odonien",
     "date": "2026-03-28",
     "title": "Ehrenfeld XL",

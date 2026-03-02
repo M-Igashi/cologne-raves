@@ -25,17 +25,19 @@
     "@types/file-saver": "^2.0.7",
     "@types/react": "^19.2.9",
     "@types/react-dom": "^19.2.3",
-    "@types/uuid": "^10.0.0"
+    "@types/uuid": "^10.0.0",
+    "tsx": "^4.21.0"
   },
   "scripts": {
     "astro": "astro",
     "build": "astro build && node scripts/fix-sitemap.js",
-    "check": "astro build && node scripts/fix-sitemap.js && tsc && wrangler deploy --dry-run",
+    "check": "tsx scripts/validate-events.ts && astro build && node scripts/fix-sitemap.js && tsc && wrangler deploy --dry-run",
     "deploy": "astro build && node scripts/fix-sitemap.js && wrangler deploy",
     "deploy:dry-run": "astro build && node scripts/fix-sitemap.js && wrangler deploy --dry-run",
     "dev": "astro dev",
     "preview": "astro build && node scripts/fix-sitemap.js && wrangler dev",
-    "types": "wrangler types"
+    "types": "wrangler types",
+    "validate": "tsx scripts/validate-events.ts"
   },
   "overrides": {
     "undici": "^7.19.0",
