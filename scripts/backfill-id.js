@@ -1,10 +1,9 @@
+import crypto from "crypto";
 import fs from "fs";
 import path from "path";
 import { fileURLToPath } from "url";
-import crypto from "crypto";
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const dataDir = path.join(__dirname, "..", "data");
 
 function generateId(party) {
@@ -32,16 +31,15 @@ function processFile(filePath) {
   }
 
   let changed = false;
-  const updated = data.map(function (party) {
+  for (const party of data) {
     if (!party.id) {
       party.id = generateId(party);
       changed = true;
     }
-    return party;
-  });
+  }
 
   if (changed) {
-    fs.writeFileSync(filePath, JSON.stringify(updated, null, 2));
+    fs.writeFileSync(filePath, JSON.stringify(data, null, 2));
     console.log(`Updated ${filename}`);
   } else {
     console.log(`Skipped ${filename} (no changes)`);
@@ -52,6 +50,6 @@ const jsonFiles = fs.readdirSync(dataDir).filter(function (f) {
   return f.endsWith(".json");
 });
 
-jsonFiles.forEach(function (f) {
+for (const f of jsonFiles) {
   processFile(path.join(dataDir, f));
-});
+}
