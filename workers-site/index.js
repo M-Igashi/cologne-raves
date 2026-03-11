@@ -1,105 +1,93 @@
 import { getAssetFromKV } from "@cloudflare/kv-asset-handler";
+import manifestJSON from "__STATIC_CONTENT_MANIFEST";
 
-/**
- * The DEBUG flag will do two things that help during development:
- * 1. we will skip caching on the edge, which makes it easier to
- *    debug.
- * 2. we will return an error message on exception in your Response rather
- *    than the default 404.html page.
- */
-const DEBUG = false;
+const assetManifest = JSON.parse(manifestJSON);
 
-addEventListener("fetch", (event) => {
-  event.respondWith(handleEvent(event));
-});
+const ALLOWED_ORIGIN = "https://cologne.ravers.workers.dev";
 
-async function handleEvent(event) {
-  const request = event.request;
-  const url = new URL(request.url);
+function corsHeaders(origin) {
+  const allowedOrigin =
+    origin === ALLOWED_ORIGIN ? ALLOWED_ORIGIN : ALLOWED_ORIGIN;
+  return {
+    "Access-Control-Allow-Origin": allowedOrigin,
+    "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
+    "Access-Control-Allow-Headers": "Content-Type",
+    "Content-Type": "application/json",
+  };
+}
 
-  // Handle API routes
-  if (url.pathname === "/api/submit-event") {
-    return handleAPIRequest(request, event);
-  }
+export default {
+  async fetch(request, env, ctx) {
+    const url = new URL(request.url);
 
-  // Serve static assets with optimized caching
+    if (url.pathname === "/api/submit-event") {
+      return handleAPIRequest(request, env, ctx);
+    }
+
+    return handleStaticAssets(request, env, ctx, url);
+  },
+};
+
+async function handleStaticAssets(request, env, ctx, url) {
+  const kvArgs = {
+    request,
+    waitUntil(promise) {
+      return ctx.waitUntil(promise);
+    },
+  };
+  const kvOptions = {
+    ASSET_NAMESPACE: env.__STATIC_CONTENT,
+    ASSET_MANIFEST: assetManifest,
+  };
+
   try {
-    let response;
     const pathname = url.pathname;
-
-    // Determine cache options based on request path
     const isHtmlRequest =
       pathname === "/" ||
       pathname.endsWith(".html") ||
       pathname.endsWith(".htm") ||
       (!pathname.includes(".") && pathname !== "/api/submit-event");
 
-    if (DEBUG) {
-      // customize caching for debug mode
-      response = await getAssetFromKV(event, {});
-    } else if (isHtmlRequest) {
-      // HTML pages: short edge TTL to ensure fresh content after deploys
-      const options = {
-        cacheControl: {
-          edgeTtl: 60 * 60, // 1 hour edge cache
-          browserTtl: 60 * 60, // 1 hour browser cache
-        },
+    if (isHtmlRequest) {
+      kvOptions.cacheControl = {
+        edgeTtl: 60 * 60,
+        browserTtl: 60 * 60,
       };
-      response = await getAssetFromKV(event, options);
     } else {
-      // Static assets (CSS, JS, images, fonts): long cache with content hashes
-      const options = {
-        cacheControl: {
-          edgeTtl: 30 * 24 * 60 * 60, // 30 days
-          browserTtl: 24 * 60 * 60, // 1 day
-        },
+      kvOptions.cacheControl = {
+        edgeTtl: 30 * 24 * 60 * 60,
+        browserTtl: 24 * 60 * 60,
       };
-      response = await getAssetFromKV(event, options);
     }
 
-    // Add performance and cache headers based on file type
+    const response = await getAssetFromKV(kvArgs, kvOptions);
     const headers = new Headers(response.headers);
 
-    // Cache headers for different asset types
+    // Cache headers per asset type
     if (pathname.match(/\.(css|js)$/)) {
-      // CSS and JS files - cache for 1 year since they have hashes
       headers.set("Cache-Control", "public, max-age=31536000, immutable");
-      headers.set("Vary", "Accept-Encoding");
     } else if (pathname.match(/\.(woff2?|ttf|otf|eot)$/)) {
-      // Font files - cache for 1 year
       headers.set("Cache-Control", "public, max-age=31536000, immutable");
-      headers.set("Access-Control-Allow-Origin", "*"); // CORS for fonts
+      headers.set("Access-Control-Allow-Origin", "*");
     } else if (pathname.match(/\.(png|jpg|jpeg|gif|svg|webp|ico)$/)) {
-      // Images - cache for 30 days
       headers.set("Cache-Control", "public, max-age=2592000");
-    } else if (pathname.match(/\.(html|htm)$/)) {
-      // HTML files - shorter cache for dynamic content
-      headers.set("Cache-Control", "public, max-age=3600, must-revalidate"); // 1 hour
-      headers.set("Vary", "Accept-Encoding");
+    } else if (isHtmlRequest) {
+      headers.set("Cache-Control", "public, max-age=3600, must-revalidate");
     } else {
-      // Default cache for other files
-      headers.set("Cache-Control", "public, max-age=86400"); // 1 day
+      headers.set("Cache-Control", "public, max-age=86400");
     }
 
-    // Performance headers
+    // Security headers
     headers.set("X-Content-Type-Options", "nosniff");
     headers.set("X-Frame-Options", "DENY");
-    headers.set("X-XSS-Protection", "1; mode=block");
     headers.set("Referrer-Policy", "strict-origin-when-cross-origin");
 
-    // Enable compression hints
-    if (pathname.match(/\.(css|js|html|svg|json)$/)) {
-      headers.set("Content-Encoding", "br"); // Prefer Brotli
-      headers.set("Vary", "Accept-Encoding, Accept");
-    }
-
-    // Add performance hints for modern browsers
-    if (pathname.match(/\.(html|htm)$/)) {
+    // Font preload for HTML pages
+    if (isHtmlRequest) {
       headers.set(
         "Link",
         "</fonts/atkinson-regular.woff>; rel=preload; as=font; type=font/woff; crossorigin, </fonts/atkinson-bold.woff>; rel=preload; as=font; type=font/woff; crossorigin",
       );
-      headers.set("Early-Data", "1"); // Enable 0-RTT for repeat visitors
     }
 
     return new Response(response.body, {
@@ -108,90 +96,68 @@ async function handleEvent(event) {
       headers,
     });
   } catch (e) {
-    // if an error is thrown try to serve the asset at 404.html
-    if (!DEBUG) {
-      try {
-        let notFoundResponse = await getAssetFromKV(event, {
-          mapRequestToAsset: (req) =>
-            new Request(`${new URL(req.url).origin}/404.html`, req),
-        });
+    try {
+      const notFoundResponse = await getAssetFromKV(kvArgs, {
+        ...kvOptions,
+        mapRequestToAsset: (req) =>
+          new Request(`${new URL(req.url).origin}/404.html`, req),
+      });
 
-        return new Response(notFoundResponse.body, {
-          ...notFoundResponse,
-          status: 404,
-        });
-      } catch (e) {}
+      return new Response(notFoundResponse.body, {
+        ...notFoundResponse,
+        status: 404,
+      });
+    } catch {
+      // 404.html not found
     }
 
     return new Response(e.message || e.toString(), { status: 500 });
   }
 }
 
-async function handleAPIRequest(request, event) {
-  // Handle CORS preflight
+async function handleAPIRequest(request, env, ctx) {
   if (request.method === "OPTIONS") {
     return new Response(null, {
-      status: 200,
-      headers: {
-        "Access-Control-Allow-Origin": "*",
-        "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
-        "Access-Control-Allow-Headers": "Content-Type",
-      },
+      status: 204,
+      headers: corsHeaders(request.headers.get("Origin")),
     });
   }
 
-  // Handle GET request (for testing)
   if (request.method === "GET") {
     return new Response(
       JSON.stringify({
         status: "ok",
         message: "API endpoint is working",
         timestamp: new Date().toISOString(),
-        method: "GET",
       }),
       {
         status: 200,
-        headers: {
-          "Content-Type": "application/json",
-          "Access-Control-Allow-Origin": "*",
-        },
+        headers: corsHeaders(request.headers.get("Origin")),
       },
     );
   }
 
-  // Handle POST request
   if (request.method === "POST") {
-    return handleEventSubmission(request, event);
+    return handleEventSubmission(request, env, ctx);
   }
 
-  // Method not allowed
   return new Response("Method not allowed", { status: 405 });
 }
 
-async function handleEventSubmission(request, event) {
-  const headers = {
-    "Access-Control-Allow-Origin": "*",
-    "Access-Control-Allow-Methods": "POST, OPTIONS, GET",
-    "Access-Control-Allow-Headers": "Content-Type",
-    "Content-Type": "application/json",
-  };
+async function handleEventSubmission(request, env, ctx) {
+  const headers = corsHeaders(request.headers.get("Origin"));
 
   try {
-    // Parse the request body
     const body = await request.json();
     const { events, filename, submitterEmail } = body;
 
-    // Validate the data
     if (!events || !Array.isArray(events) || events.length === 0) {
       return new Response(
         JSON.stringify({
           error: "Invalid events data",
           details: "Events must be a non-empty array",
         }),
-        {
-          status: 400,
-          headers,
-        },
+        { status: 400, headers },
       );
     }
 
@@ -201,57 +167,43 @@ async function handleEventSubmission(request, event) {
           error: "Invalid filename",
           details: "Filename must be a non-empty string",
         }),
-        {
-          status: 400,
-          headers,
-        },
+        { status: 400, headers },
       );
     }
 
-    // Validate each event
-    for (const event of events) {
-      if (!event.title || !event.venue || !event.date || !event.startTime) {
+    for (const evt of events) {
+      if (!evt.title || !evt.venue || !evt.date || !evt.startTime) {
         return new Response(
           JSON.stringify({
             error: "Missing required fields in event data",
             details: "Each event must have title, venue, date, and startTime",
           }),
-          {
-            status: 400,
-            headers,
-          },
+          { status: 400, headers },
         );
       }
     }
 
-    // Get GitHub token from environment variable
-    const githubToken =
-      typeof GITHUB_TOKEN !== "undefined" ? GITHUB_TOKEN : null;
+    const githubToken = env.GITHUB_TOKEN;
 
     if (!githubToken) {
-      console.error("GITHUB_TOKEN not configured");
+      console.error(
+        JSON.stringify({ message: "GITHUB_TOKEN not configured" }),
+      );
       return new Response(
         JSON.stringify({
           warning: "GitHub token not configured",
           message:
             "Your event data has been received but cannot be automatically processed. Please contact the administrator.",
-          events: events,
-          filename: filename,
+          events,
+          filename,
         }),
-        {
-          status: 200,
-          headers,
-        },
+        { status: 200, headers },
       );
     }
 
-    // GitHub API configuration
     const GITHUB_OWNER = "M-Igashi";
     const GITHUB_REPO = "cologne-raves";
 
-    console.log("Triggering GitHub workflow...");
-
-    // Try to trigger the workflow
     const workflowResponse = await fetch(
       `https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/actions/workflows/create-event-pr.yml/dispatches`,
       {
@@ -273,9 +225,6 @@ async function handleEventSubmission(request, event) {
       },
     );
 
-    console.log("GitHub API response status:", workflowResponse.status);
-
-    // GitHub API returns 204 No Content on success for workflow dispatch
     if (workflowResponse.status === 204) {
       return new Response(
         JSON.stringify({
@@ -284,15 +233,16 @@ async function handleEventSubmission(request, event) {
             "Pull request creation initiated! Check the repository for the new PR in a few moments.",
           workflowTriggered: true,
         }),
-        {
-          status: 200,
-          headers,
-        },
+        { status: 200, headers },
       );
     }
 
-    // If workflow dispatch fails, try to create an issue instead
-    console.log("Workflow dispatch failed, creating issue instead...");
+    console.error(
+      JSON.stringify({
+        message: "Workflow dispatch failed, creating issue instead",
+        status: workflowResponse.status,
+      }),
+    );
 
     const issueBody = `## New Event Submission
 
@@ -321,7 +271,6 @@ Or use GitHub Actions:
 ---
 *This submission was created from https://cologne.ravers.workers.dev/form/*`;
 
-    // Create GitHub Issue as fallback
     const issueResponse = await fetch(
       `https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/issues`,
       {
@@ -333,7 +282,7 @@ Or use GitHub Actions:
           "User-Agent": "Cologne-Raves-Worker",
         },
         body: JSON.stringify({
-          title: `🎉 New Event Submission: ${filename}`,
+          title: `New Event Submission: ${filename}`,
           body: issueBody,
           labels: [],
         }),
@@ -349,42 +298,38 @@ Or use GitHub Actions:
           issueUrl: issueData.html_url,
           issueNumber: issueData.number,
         }),
-        {
-          status: 200,
-          headers,
-        },
+        { status: 200, headers },
       );
     }
 
-    // If both methods fail
     const errorText = await issueResponse.text();
-    console.error("Both workflow and issue creation failed:", errorText);
+    console.error(
+      JSON.stringify({
+        message: "Both workflow and issue creation failed",
+        error: errorText,
+      }),
+    );
 
     return new Response(
       JSON.stringify({
         error: "Failed to process submission",
         details: "Could not create PR or issue. Please try again later.",
-        debugInfo: errorText,
       }),
-      {
-        status: 500,
-        headers,
-      },
+      { status: 500, headers },
     );
   } catch (error) {
-    console.error("Error processing event submission:", error);
+    console.error(
+      JSON.stringify({
+        message: "Error processing event submission",
+        error: error.message || String(error),
+      }),
+    );
     return new Response(
       JSON.stringify({
         error: "Internal server error",
         details: error.message || "Unknown error",
       }),
-      {
-        status: 500,
-        headers: {
-          "Access-Control-Allow-Origin": "*",
-          "Content-Type": "application/json",
-        },
-      },
+      { status: 500, headers },
     );
   }
 }

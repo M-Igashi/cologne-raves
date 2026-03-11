@@ -1,0 +1,26 @@
+{
+  "name": "cologne",
+  "compatibility_date": "2025-06-05",
+  "compatibility_flags": ["nodejs_compat"],
+  "main": "workers-site/index.js",
+
+  "site": {
+    "bucket": "./dist"
+  },
+
+  "build": {
+    "command": "npm run build"
+  },
+
+  "dev": {
+    "port": 8787,
+    "local_protocol": "http"
+  },
+
+  "observability": {
+    "enabled": true,
+    "logs": {
+      "head_sampling_rate": 1
+    }
+  }
+}
