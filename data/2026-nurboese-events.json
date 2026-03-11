@@ -4,8 +4,18 @@
     "date": "2026-03-21",
     "title": "NURFLUID Köln",
     "startTime": "23:00",
-    "artists": ["Nur Jaber", "Nana Yaa", "Heepmann", "Døpair", "Bouncy Bitch", "Selunia", "B!B!", "Zuza"],
-    "url": "https://nurboese.de/events/nurfluid-koeln-21-03-2026/"
+    "artists": [
+      "Nur Jaber",
+      "Nana Yaa",
+      "Heepmann",
+      "Døpair",
+      "Bouncy Bitch",
+      "Selunia",
+      "B!B!",
+      "Zuza"
+    ],
+    "url": "https://nurboese.de/events/nurfluid-koeln-21-03-2026/",
+    "id": "bdab9d39"
   },
   {
     "venue": "Helios37",
@@ -13,7 +23,8 @@
     "title": "NURBÖSE Köln",
     "startTime": "23:00",
     "artists": [],
-    "url": "https://nurboese.de/events/nurboese-18-04-26/"
+    "url": "https://nurboese.de/events/nurboese-18-04-26/",
+    "id": "1aa040e2"
   },
   {
     "venue": "Helios37",
@@ -21,7 +32,8 @@
     "title": "NURBÖSE Köln",
     "startTime": "23:00",
     "artists": [],
-    "url": "https://nurboese.de/events/nurboese-16-05-26/"
+    "url": "https://nurboese.de/events/nurboese-16-05-26/",
+    "id": "9cd25a16"
   },
   {
     "venue": "Artheater",
@@ -29,6 +41,7 @@
     "title": "NURFLUID Köln",
     "startTime": "23:00",
     "artists": [],
-    "url": "https://nurboese.de/events/nurfluid-13-06/"
+    "url": "https://nurboese.de/events/nurfluid-13-06/",
+    "id": "af74310e"
   }
 ]
