@@ -1,0 +1,34 @@
+[
+  {
+    "venue": "Garagen Club",
+    "date": "2026-03-21",
+    "title": "NURFLUID Köln",
+    "startTime": "23:00",
+    "artists": ["Nur Jaber", "Nana Yaa", "Heepmann", "Døpair", "Bouncy Bitch", "Selunia", "B!B!", "Zuza"],
+    "url": "https://nurboese.de/events/nurfluid-koeln-21-03-2026/"
+  },
+  {
+    "venue": "Helios37",
+    "date": "2026-04-18",
+    "title": "NURBÖSE Köln",
+    "startTime": "23:00",
+    "artists": [],
+    "url": "https://nurboese.de/events/nurboese-18-04-26/"
+  },
+  {
+    "venue": "Helios37",
+    "date": "2026-05-16",
+    "title": "NURBÖSE Köln",
+    "startTime": "23:00",
+    "artists": [],
+    "url": "https://nurboese.de/events/nurboese-16-05-26/"
+  },
+  {
+    "venue": "Artheater",
+    "date": "2026-06-13",
+    "title": "NURFLUID Köln",
+    "startTime": "23:00",
+    "artists": [],
+    "url": "https://nurboese.de/events/nurfluid-13-06/"
+  }
+]
