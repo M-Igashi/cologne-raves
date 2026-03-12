@@ -24,6 +24,10 @@ export default {
       return handleAPIRequest(request, env, ctx);
     }
 
+    if (url.pathname === "/api/notify-event") {
+      return handleNotifyEvent(request, env, ctx);
+    }
+
     return handleStaticAssets(request, env, ctx, url);
   },
 };
@@ -46,7 +50,7 @@ async function handleStaticAssets(request, env, ctx, url) {
       pathname === "/" ||
       pathname.endsWith(".html") ||
       pathname.endsWith(".htm") ||
-      (!pathname.includes(".") && pathname !== "/api/submit-event");
+      (!pathname.includes(".") && pathname !== "/api/submit-event" && pathname !== "/api/notify-event");
 
     if (isHtmlRequest) {
       kvOptions.cacheControl = {
@@ -321,6 +325,129 @@ Or use GitHub Actions:
     console.error(
       JSON.stringify({
         message: "Error processing event submission",
+        error: error.message || String(error),
+      }),
+    );
+    return new Response(
+      JSON.stringify({
+        error: "Internal server error",
+        details: error.message || "Unknown error",
+      }),
+      { status: 500, headers },
+    );
+  }
+}
+
+async function handleNotifyEvent(request, env, ctx) {
+  if (request.method === "OPTIONS") {
+    return new Response(null, {
+      status: 204,
+      headers: corsHeaders(request.headers.get("Origin")),
+    });
+  }
+
+  if (request.method !== "POST") {
+    return new Response("Method not allowed", { status: 405 });
+  }
+
+  const headers = corsHeaders(request.headers.get("Origin"));
+
+  try {
+    const body = await request.json();
+    const { url, note, submitterEmail } = body;
+
+    if (!url || typeof url !== "string") {
+      return new Response(
+        JSON.stringify({
+          error: "Invalid URL",
+          details: "Event URL must be a non-empty string",
+        }),
+        { status: 400, headers },
+      );
+    }
+
+    const githubToken = env.GITHUB_TOKEN;
+
+    if (!githubToken) {
+      console.error(
+        JSON.stringify({ message: "GITHUB_TOKEN not configured" }),
+      );
+      return new Response(
+        JSON.stringify({
+          warning: "GitHub token not configured",
+          message:
+            "Your event link has been received but cannot be automatically processed.",
+        }),
+        { status: 200, headers },
+      );
+    }
+
+    const GITHUB_OWNER = "M-Igashi";
+    const GITHUB_REPO = "cologne-raves";
+
+    const issueBody = `## Event Link Submission
+
+**URL:** ${url}
+**Submitted by:** ${submitterEmail || "anonymous"}
+**Timestamp:** ${new Date().toISOString()}
+${note ? `\n**Note:** ${note}\n` : ""}
+### Next steps
+
+Use the \`crawl-events\` command to scrape this URL and add the event(s) to the calendar.
+
+---
+*Submitted from https://cologne.ravers.workers.dev/form/*`;
+
+    const issueResponse = await fetch(
+      `https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/issues`,
+      {
+        method: "POST",
+        headers: {
+          Accept: "application/vnd.github.v3+json",
+          Authorization: `Bearer ${githubToken}`,
+          "Content-Type": "application/json",
+          "User-Agent": "Cologne-Raves-Worker",
+        },
+        body: JSON.stringify({
+          title: `Event link: ${url}`,
+          body: issueBody,
+          labels: ["event-link"],
+        }),
+      },
+    );
+
+    if (issueResponse.ok) {
+      const issueData = await issueResponse.json();
+      return new Response(
+        JSON.stringify({
+          success: true,
+          message: `Thanks! Your event link has been submitted for review (Issue #${issueData.number}).`,
+          issueUrl: issueData.html_url,
+          issueNumber: issueData.number,
+        }),
+        { status: 200, headers },
+      );
+    }
+
+    const errorText = await issueResponse.text();
+    console.error(
+      JSON.stringify({
+        message: "Failed to create issue for event link",
+        error: errorText,
+      }),
+    );
+
+    return new Response(
+      JSON.stringify({
+        error: "Failed to submit event link",
+        details: "Could not create issue. Please try again later.",
+      }),
+      { status: 500, headers },
+    );
+  } catch (error) {
+    console.error(
+      JSON.stringify({
+        message: "Error processing event link notification",
         error: error.message || String(error),
       }),
     );
