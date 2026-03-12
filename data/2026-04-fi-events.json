@@ -14,7 +14,8 @@
       "MMARA",
       "PLOY"
     ],
-    "url": "https://rausgegangen.de/en/events/fi-x-narciss-phonovision-ploy-illusion-0/"
+    "url": "https://rausgegangen.de/en/events/fi-x-narciss-phonovision-ploy-illusion-0/",
+    "id": "6579eaf1"
   },
   {
     "title": "fi x Len Faki & Parakeet",
@@ -31,7 +32,8 @@
       "Omama",
       "Pelle"
     ],
-    "url": "https://rausgegangen.de/en/events/fi-x-len-faki-parakeet-0/"
+    "url": "https://rausgegangen.de/en/events/fi-x-len-faki-parakeet-0/",
+    "id": "35b05714"
   },
   {
     "title": "fi x Anthony Rother & Akt",
@@ -47,7 +49,8 @@
       "Sellycious",
       "Zahnatzin"
     ],
-    "url": "https://rausgegangen.de/en/events/fi-x-anthony-rother-akt-0/"
+    "url": "https://rausgegangen.de/en/events/fi-x-anthony-rother-akt-0/",
+    "id": "6528830b"
   },
   {
     "title": "fi x Recondite & In Limbo Audio & WetDreams",
@@ -62,7 +65,8 @@
       "MISMATCH b2b ALLEIRA",
       "TOMAKAOGER b2b BÆDURA"
     ],
-    "url": "https://rausgegangen.de/en/events/fi-x-recondite-in-limbo-audio-wetdreams-0/"
+    "url": "https://rausgegangen.de/en/events/fi-x-recondite-in-limbo-audio-wetdreams-0/",
+    "id": "6e15d9dd"
   },
   {
     "title": "MYZEL W / EXTRAWELT",
@@ -72,6 +76,7 @@
     "artists": [
       "Extrawelt"
     ],
-    "url": "https://rausgegangen.de/en/events/myzel-w-extrawelt-0/"
+    "url": "https://rausgegangen.de/en/events/myzel-w-extrawelt-0/",
+    "id": "23a26b0d"
   }
 ]
