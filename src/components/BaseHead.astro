@@ -88,52 +88,6 @@ const currentDate = new Date().toLocaleDateString('en-US', {
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
 
-<!-- Critical CSS Inlined for Performance -->
-<style>
-:root {
-  --bg-primary: #000000;
-  --bg-secondary: #0a0a0a;
-  --bg-card: #111111;
-  --text-primary: #ffffff;
-  --text-secondary: #888888;
-  --border: #333333;
-  --border-strong: #ffffff;
-  --accent-green: #00cc66;
-  color-scheme: dark;
-}
-* { box-sizing: border-box; }
-body {
-  font-family: 'JetBrains Mono', monospace;
-  margin: 0;
-  padding: 0;
-  text-align: left;
-  word-wrap: break-word;
-  overflow-wrap: break-word;
-  font-size: 16px;
-  line-height: 1.6;
-  background-color: var(--bg-primary);
-  color: var(--text-primary);
-}
-main {
-  width: 720px;
-  max-width: calc(100% - 2em);
-  margin: auto;
-  padding: 3em 1em;
-}
-h1, h2, h3, h4, h5, h6 {
-  margin: 0 0 0.5rem 0;
-  color: var(--text-primary);
-  line-height: 1.2;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-}
-h1 { font-size: 2rem; }
-h2 { font-size: 1.5rem; }
-h3 { font-size: 1.25rem; }
-a { color: var(--text-primary); }
-a:hover { color: var(--text-secondary); }
-.text-muted-foreground { color: var(--text-secondary); }
-</style>
 
 <script type="application/ld+json" set:html={JSON.stringify({
   "@context": "https://schema.org",
