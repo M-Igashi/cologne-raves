@@ -1,3 +1,6 @@
+@import "tailwindcss";
+@config "../../tailwind.config.mjs";
+
 /*
   Detroit Techno inspired design system
   Monochromatic palette with monospace typography

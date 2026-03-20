@@ -1,19 +1,17 @@
 // astro.config.mjs
 import { defineConfig } from "astro/config";
 import react from "@astrojs/react";
-
 import sitemap from "@astrojs/sitemap";
-import tailwind from "@astrojs/tailwind";
+import tailwindcss from "@tailwindcss/vite";
 
 export default defineConfig({
   site: "https://cologne.ravers.workers.dev",
   integrations: [
-    react(), 
+    react(),
     sitemap({
       customPages: [],
       entryLimit: 10000,
-    }), 
-    tailwind()
+    }),
   ],
   output: "static",
   build: {
@@ -21,6 +19,7 @@ export default defineConfig({
     inlineStylesheets: 'always',
   },
   vite: {
+    plugins: [tailwindcss()],
     build: {
       // Keep all CSS in one file for easier inlining
       cssCodeSplit: false,
