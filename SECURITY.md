@@ -2,20 +2,20 @@
 
 ## Supported Versions
 
-Use this section to tell people about which versions of your project are
-currently being supported with security updates.
+This project is a community event calendar deployed as a single instance.
+Only the latest deployed version is supported.
 
 | Version | Supported          |
 | ------- | ------------------ |
-| 5.1.x   | :white_check_mark: |
-| 5.0.x   | :x:                |
-| 4.0.x   | :white_check_mark: |
-| < 4.0   | :x:                |
+| latest  | :white_check_mark: |
 
 ## Reporting a Vulnerability
 
-Use this section to tell people how to report a vulnerability.
+If you discover a security vulnerability, please report it responsibly:
 
-Tell them where to go, how often they can expect to get an update on a
-reported vulnerability, what to expect if the vulnerability is accepted or
-declined, etc.
+1. **Do not open a public issue.**
+2. Use [GitHub Security Advisories](https://github.com/M-Igashi/cologne-raves/security/advisories/new) to report the vulnerability privately.
+3. You can expect an initial response within 7 days.
+4. Once confirmed, a fix will be prioritized and deployed promptly.
+
+Thank you for helping keep this project safe.
