@@ -14,8 +14,7 @@
       "MMARA",
       "PLOY"
     ],
-    "url": "https://rausgegangen.de/en/events/fi-x-narciss-phonovision-ploy-illusion-0/?mtm_campaign=teilen_gewinnspiel&mtm_kwd=web",
-    "id": "6579eaf1"
+    "url": "https://rausgegangen.de/en/events/fi-x-narciss-phonovision-ploy-illusion-0/?mtm_campaign=teilen_gewinnspiel&mtm_kwd=web"
   },
   {
     "title": "fi x Len Faki & Parakeet",
@@ -32,8 +31,7 @@
       "Omama",
       "Pelle"
     ],
-    "url": "https://rausgegangen.de/en/events/fi-x-len-faki-parakeet-0/",
-    "id": "35b05714"
+    "url": "https://rausgegangen.de/en/events/fi-x-len-faki-parakeet-0/"
   },
   {
     "title": "fi x Anthony Rother & Akt",
@@ -49,8 +47,17 @@
       "Sellycious",
       "Zahnatzin"
     ],
-    "url": "https://rausgegangen.de/en/events/fi-x-anthony-rother-akt-0/",
-    "id": "6528830b"
+    "url": "https://rausgegangen.de/en/events/fi-x-anthony-rother-akt-0/"
+  },
+  {
+    "title": "Aura at fi w/ Freddy K",
+    "venue": "fi",
+    "date": "2026-04-17",
+    "startTime": "23:00",
+    "artists": [
+      "Freddy K"
+    ],
+    "url": "https://aura.ticket.io"
   },
   {
     "title": "fi x Recondite & In Limbo Audio & WetDreams",
@@ -65,18 +72,106 @@
       "MISMATCH b2b ALLEIRA",
       "TOMAKAOGER b2b BÆDURA"
     ],
-    "url": "https://rausgegangen.de/en/events/fi-x-recondite-in-limbo-audio-wetdreams-0/",
-    "id": "6e15d9dd"
+    "url": "https://rausgegangen.de/en/events/fi-x-recondite-in-limbo-audio-wetdreams-0/"
   },
   {
-    "title": "MYZEL W / EXTRAWELT",
+    "title": "MYZEL w/ Extrawelt",
     "venue": "fi",
     "date": "2026-04-24",
     "startTime": "23:00",
     "artists": [
       "Extrawelt"
     ],
-    "url": "https://rausgegangen.de/en/events/myzel-w-extrawelt-0/",
-    "id": "23a26b0d"
+    "url": "https://rausgegangen.de/events/myzel-w-extrawelt-0/"
+  },
+  {
+    "title": "fi x Blawan & Trevor Rockcliffe",
+    "venue": "fi",
+    "date": "2026-04-25",
+    "startTime": "23:00",
+    "artists": [
+      "Ananda Priori",
+      "Blawan",
+      "Jonas Landwehr",
+      "DCHM",
+      "Måtyrer",
+      "Sandilè",
+      "Trevor Rockcliffe"
+    ],
+    "url": "https://rausgegangen.de/events/fi-x-blawan-trevor-rockcliffe-0"
+  },
+  {
+    "title": "fi x Township Rebellion & Flinta* Tunes",
+    "venue": "fi",
+    "date": "2026-04-30",
+    "startTime": "23:00",
+    "artists": [
+      "ELOTANZ",
+      "MARIA THERESIA VON EBERG",
+      "TOWNSHIP REBELLION",
+      "MAYD b2b TSCHATSCHING",
+      "SERVING CUNTS",
+      "SKATHI"
+    ],
+    "url": "https://rausgegangen.de/events/fi-x-township-rebellion-flinta-tunes-0"
+  },
+  {
+    "title": "fi x Marcel Dettmann & Rheinrhythmik",
+    "venue": "fi",
+    "date": "2026-05-02",
+    "startTime": "23:00",
+    "artists": [
+      "AINO",
+      "Marcel Dettmann",
+      "MEDEA",
+      "Anna Cainelli",
+      "Felix Monreal",
+      "Nils Pfeiffer"
+    ],
+    "url": "https://rausgegangen.de/events/fi-x-marcel-dettmann-rheinrhythmik-0"
+  },
+  {
+    "title": "fi x Sonja Moonear & avontuur & Cosmo Club",
+    "venue": "fi",
+    "date": "2026-05-08",
+    "startTime": "23:00",
+    "artists": [
+      "Clara Luise",
+      "Sonja Moonear",
+      "Sophietje",
+      "Daferwa",
+      "Dub Kimski",
+      "Tereza"
+    ],
+    "url": "https://rausgegangen.de/events/fi-x-sonja-moonear-avontuur-cosmo-0"
+  },
+  {
+    "title": "fi x Tipping Point w/ Frida Darko",
+    "venue": "fi",
+    "date": "2026-05-09",
+    "startTime": "23:00",
+    "artists": [
+      "Frida Darko",
+      "Flave",
+      "UREM",
+      "Anna Mancarella",
+      "Detmolt",
+      "Johannes Ton"
+    ],
+    "url": "https://undundbooking.ticket.io/fP9dcat2"
+  },
+  {
+    "title": "fi x Mira & Chris Schwarzwälder & Lafari",
+    "venue": "fi",
+    "date": "2026-05-13",
+    "startTime": "23:00",
+    "artists": [
+      "Mira",
+      "Christopher Schwarzwälder",
+      "Karsten Vetten b2b Daddy Dee",
+      "Rufous b2b Steve Bonde",
+      "Zahara"
+    ],
+    "url": "https://www.eventbrite.de/e/1985994169021"
   }
 ]
