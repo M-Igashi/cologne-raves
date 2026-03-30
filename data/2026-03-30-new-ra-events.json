@@ -4,14 +4,16 @@
     "date": "2026-03-28",
     "title": "Zwischenwelt Afterhour",
     "startTime": "06:30",
-    "url": "https://ra.co/events/2402392"
+    "url": "https://ra.co/events/2402392",
+    "id": "e00416d3"
   },
   {
     "venue": "Helios37",
     "date": "2026-03-28",
     "title": "Bunny Tiger Club - The Opening",
     "startTime": "16:30",
-    "url": "https://ra.co/events/2393199"
+    "url": "https://ra.co/events/2393199",
+    "id": "86ae7bf6"
   },
   {
     "venue": "Garagen",
@@ -24,14 +26,16 @@
       "ALLY",
       "2nd Floor",
       "MIXXR"
-    ]
+    ],
+    "id": "1d2890be"
   },
   {
     "venue": "Stadtgarten Konzertsaal / Cafe",
     "date": "2026-03-28",
     "title": "Stadtgarten with Bayamo Fusion Showcase // Ehrenfeld XL – 10 Clubs, 1 Night, 2 Districts",
     "startTime": "22:00",
-    "url": "https://ra.co/events/2389277"
+    "url": "https://ra.co/events/2389277",
+    "id": "cdd2fb9e"
   },
   {
     "venue": "Bootshaus",
@@ -43,7 +47,8 @@
       "Whales",
       "Synoxis",
       "BIANKA"
-    ]
+    ],
+    "id": "71a68cf1"
   },
   {
     "venue": "Garagen",
@@ -53,7 +58,8 @@
     "url": "https://ra.co/events/2405115",
     "artists": [
       "BISMONTAG"
-    ]
+    ],
+    "id": "dffa015b"
   },
   {
     "venue": "Odonien",
@@ -65,14 +71,16 @@
       "Atzendent",
       "C H A Y A",
       "TBA"
-    ]
+    ],
+    "id": "086852c6"
   },
   {
     "venue": "TBA - EARLY BIRD CLUB",
     "date": "2026-04-04",
     "title": "EARLY BIRD CLUB - DEINE DAY-DRINKING PARTY",
     "startTime": "13:00",
-    "url": "https://ra.co/events/2378635"
+    "url": "https://ra.co/events/2378635",
+    "id": "e64c25ee"
   },
   {
     "venue": "Bootshaus",
@@ -89,7 +97,8 @@
       "Jon Void",
       "Hiraeth",
       "MOTA"
-    ]
+    ],
+    "id": "90e6e387"
   },
   {
     "venue": "Bootshaus",
@@ -104,7 +113,8 @@
       "Jon Void",
       "Hiraeth",
       "MOTA"
-    ]
+    ],
+    "id": "14f2ee84"
   },
   {
     "venue": "H26",
@@ -114,7 +124,8 @@
     "url": "https://ra.co/events/2385704",
     "artists": [
       "Bensonius"
-    ]
+    ],
+    "id": "8c77eabd"
   },
   {
     "venue": "Schrotty",
@@ -130,7 +141,8 @@
       "Jean Mauj",
       "Domenik Deckert",
       "Sandilé"
-    ]
+    ],
+    "id": "7ed13b5c"
   },
   {
     "venue": "Helios37",
@@ -141,7 +153,8 @@
     "artists": [
       "Limoncello",
       "Panteros666"
-    ]
+    ],
+    "id": "f9cba595"
   },
   {
     "venue": "Odonien",
@@ -151,7 +164,8 @@
     "url": "https://ra.co/events/2352202",
     "artists": [
       "Dominik Eulberg"
-    ]
+    ],
+    "id": "94e118a0"
   },
   {
     "venue": "Artheater",
@@ -163,14 +177,16 @@
       "BIXBITA",
       "Krackk",
       "Laure Croft"
-    ]
+    ],
+    "id": "9fa2210f"
   },
   {
     "venue": "Club Bahnhof Ehrenfeld",
     "date": "2026-04-04",
     "title": "House Of Namus- Club Night Köln",
     "startTime": "23:30",
-    "url": "https://ra.co/events/2389576"
+    "url": "https://ra.co/events/2389576",
+    "id": "c6fd58f3"
   },
   {
     "venue": "Bikini Beach",
@@ -181,7 +197,8 @@
     "artists": [
       "Robag Wruhme",
       "Jonathan Kaspar"
-    ]
+    ],
+    "id": "f20b894f"
   },
   {
     "venue": "Gewölbe",
@@ -195,7 +212,8 @@
       "DJ C U SOON",
       "c00lm8",
       "Tils"
-    ]
+    ],
+    "id": "1a764554"
   },
   {
     "venue": "Bootshaus",
@@ -208,7 +226,8 @@
       "ATB",
       "Markus Schulz",
       "Sander van Doorn"
-    ]
+    ],
+    "id": "c352ec05"
   },
   {
     "venue": "Schrotty",
@@ -225,7 +244,8 @@
       "RaverPik",
       "Sabu!",
       "The Jakob Sister"
-    ]
+    ],
+    "id": "c0e5e03e"
   },
   {
     "venue": "Artheater",
@@ -239,7 +259,8 @@
       "TOXIMAMI",
       "Bella Claxton",
       "Linus Villa"
-    ]
+    ],
+    "id": "e86302a5"
   },
   {
     "venue": "Club Bahnhof Ehrenfeld",
@@ -249,14 +270,16 @@
     "url": "https://ra.co/events/2376147",
     "artists": [
       "D.KYU"
-    ]
+    ],
+    "id": "54cc7c4d"
   },
   {
     "venue": "Club Z in Zimmermans",
     "date": "2026-04-05",
     "title": "Schiebt Und Günstig - Oster Edition",
     "startTime": "23:00",
-    "url": "https://ra.co/events/2401528"
+    "url": "https://ra.co/events/2401528",
+    "id": "6c972fed"
   },
   {
     "venue": "Alter Wartesaal",
@@ -269,7 +292,8 @@
       "Chris Di Perri",
       "SIMES",
       "Josef Schumacher"
-    ]
+    ],
+    "id": "bf2547eb"
   },
   {
     "venue": "Bootshaus",
@@ -283,7 +307,8 @@
       "Neon Graveyard",
       "NOVAH",
       "Svetec"
-    ]
+    ],
+    "id": "4d708d16"
   },
   {
     "venue": "Odonien",
@@ -297,63 +322,72 @@
       "LALENA",
       "Avocado",
       "Diode Eins"
-    ]
+    ],
+    "id": "03c6a354"
   },
   {
     "venue": "Artheater",
     "date": "2026-04-10",
     "title": "DR. MOTTE (Berlin) at Artheater",
     "startTime": "23:00",
-    "url": "https://ra.co/events/2360372"
+    "url": "https://ra.co/events/2360372",
+    "id": "c26794bd"
   },
   {
     "venue": "Helios37",
     "date": "2026-04-10",
     "title": "bratty • with charli xcx & other brat coded artists • köln",
     "startTime": "23:00",
-    "url": "https://ra.co/events/2291664"
+    "url": "https://ra.co/events/2291664",
+    "id": "0b9bac55"
   },
   {
     "venue": "Hotel Europa",
     "date": "2026-04-10",
     "title": "DnBasement",
     "startTime": "23:00",
-    "url": "https://ra.co/events/2393227"
+    "url": "https://ra.co/events/2393227",
+    "id": "8879e51c"
   },
   {
     "venue": "N8Lounge",
     "date": "2026-04-10",
     "title": "Tinnitussi - make you sweat",
     "startTime": "23:00",
-    "url": "https://ra.co/events/2403330"
+    "url": "https://ra.co/events/2403330",
+    "id": "7e740484"
   },
   {
     "venue": "JAKI",
     "date": "2026-04-10",
     "title": "JAKI presents: Arte Facts - Club Edition",
     "startTime": "23:30",
-    "url": "https://ra.co/events/2393521"
+    "url": "https://ra.co/events/2393521",
+    "id": "8004f154"
   },
   {
     "venue": "Bootshaus",
     "date": "2026-04-11",
     "title": "Weekender Day I - WINSON - ALL DAY LONG",
     "startTime": "13:00",
-    "url": "https://ra.co/events/2370487"
+    "url": "https://ra.co/events/2370487",
+    "id": "7dbbc41b"
   },
   {
     "venue": "Bootshaus",
     "date": "2026-04-11",
     "title": "Weekender Day I - WINSON - ALL DAY LONG",
     "startTime": "13:00",
-    "url": "https://ra.co/events/2370487"
+    "url": "https://ra.co/events/2370487",
+    "id": "7dbbc41b"
   },
   {
     "venue": "Subway",
     "date": "2026-04-11",
     "title": "IMMERNOCH! TANZEN",
     "startTime": "17:00",
-    "url": "https://ra.co/events/2382574"
+    "url": "https://ra.co/events/2382574",
+    "id": "ca8e9eb9"
   },
   {
     "venue": "Artheater",
@@ -363,7 +397,8 @@
     "url": "https://ra.co/events/2379924",
     "artists": [
       "Kabeaushé"
-    ]
+    ],
+    "id": "7178aec8"
   },
   {
     "venue": "Bootshaus",
@@ -378,7 +413,8 @@
       "Lola Cerise",
       "Pawlowski (UK)",
       "SUSKA"
-    ]
+    ],
+    "id": "4e2e6862"
   },
   {
     "venue": "Helios37",
@@ -393,7 +429,8 @@
       "EGE363",
       "HENNESY",
       "PANACOTTA"
-    ]
+    ],
+    "id": "1a61169c"
   },
   {
     "venue": "Nachtigall",
@@ -403,7 +440,8 @@
     "url": "https://ra.co/events/2380588",
     "artists": [
       "Andre Winter"
-    ]
+    ],
+    "id": "4ffe1eb4"
   },
   {
     "venue": "Gewölbe",
@@ -415,7 +453,8 @@
       "Alex Neri",
       "Julian Feierabend",
       "sakali"
-    ]
+    ],
+    "id": "e74b6321"
   },
   {
     "venue": "Odonien",
@@ -430,14 +469,16 @@
       "DJ PLUS PLUS",
       "ZAHNATZIN",
       "alleira"
-    ]
+    ],
+    "id": "721247fc"
   },
   {
     "venue": "TBA - NOX Aachen",
     "date": "2026-04-11",
     "title": "Trauma Techno",
     "startTime": "23:00",
-    "url": "https://ra.co/events/2386207"
+    "url": "https://ra.co/events/2386207",
+    "id": "844894e3"
   },
   {
     "venue": "JAKI",
@@ -448,7 +489,8 @@
     "artists": [
       "Miche",
       "Nadim"
-    ]
+    ],
+    "id": "ea9803f1"
   },
   {
     "venue": "Mäurer",
@@ -458,7 +500,8 @@
     "url": "https://ra.co/events/2405605",
     "artists": [
       "Good Call"
-    ]
+    ],
+    "id": "55fca6a6"
   },
   {
     "venue": "Schrotty",
@@ -472,7 +515,8 @@
       "EMILIJA",
       "NYRA (DE)",
       "snoritz"
-    ]
+    ],
+    "id": "6923e37d"
   },
   {
     "venue": "Odonien",
@@ -487,7 +531,8 @@
       "MIXXR",
       "Noise Not War",
       "RBX"
-    ]
+    ],
+    "id": "60a51b2e"
   },
   {
     "venue": "Club Zimmermanns",
@@ -499,7 +544,8 @@
       "Annett Gapstream",
       "Yonah",
       "Max Blumen"
-    ]
+    ],
+    "id": "88183c5b"
   },
   {
     "venue": "Helios37",
@@ -512,7 +558,8 @@
       "DJ SODBRENNEN",
       "Bensonius",
       "Flex on Trax"
-    ]
+    ],
+    "id": "c0d34a14"
   },
   {
     "venue": "JAKI",
@@ -522,7 +569,8 @@
     "url": "https://ra.co/events/2393388",
     "artists": [
       "ZAHNATZIN"
-    ]
+    ],
+    "id": "5a4328aa"
   },
   {
     "venue": "Pure Space",
@@ -532,7 +580,8 @@
     "url": "https://ra.co/events/2402318",
     "artists": [
       "Tils"
-    ]
+    ],
+    "id": "2d05230d"
   },
   {
     "venue": "Bootshaus",
@@ -545,7 +594,8 @@
       "Rebelle",
       "Josef Schumacher",
       "BRIGITTE BELLING"
-    ]
+    ],
+    "id": "c99082a8"
   },
   {
     "venue": "Artheater",
@@ -560,7 +610,8 @@
       "DJ PLUS PLUS",
       "Annemalie",
       "lollo"
-    ]
+    ],
+    "id": "24b2c9fb"
   },
   {
     "venue": "Schrotty",
@@ -571,14 +622,16 @@
     "artists": [
       "zeze (2)",
       "alleira"
-    ]
+    ],
+    "id": "78220859"
   },
   {
     "venue": "JAKI",
     "date": "2026-04-18",
     "title": "Tom-Tom Discotec presents: Masala Movement",
     "startTime": "23:30",
-    "url": "https://ra.co/events/2393377"
+    "url": "https://ra.co/events/2393377",
+    "id": "48273840"
   },
   {
     "venue": "Parkcafe",
@@ -589,21 +642,24 @@
     "artists": [
       "Michael Mayer",
       "Marcus Worgull"
-    ]
+    ],
+    "id": "21f0e202"
   },
   {
     "venue": "Bootshaus",
     "date": "2026-04-23",
     "title": "TIMMY TRUMPET pres. by Bootshaus",
     "startTime": "20:00",
-    "url": "https://ra.co/events/2404477"
+    "url": "https://ra.co/events/2404477",
+    "id": "b454fb41"
   },
   {
     "venue": "Yuca Club",
     "date": "2026-04-24",
     "title": "TELYKAST",
     "startTime": "19:00",
-    "url": "https://ra.co/events/2398864"
+    "url": "https://ra.co/events/2398864",
+    "id": "7889ae07"
   },
   {
     "venue": "Artheater",
@@ -614,7 +670,8 @@
     "artists": [
       "Stan Christ",
       "Rosilicious"
-    ]
+    ],
+    "id": "1fc208cf"
   },
   {
     "venue": "Odonien",
@@ -626,7 +683,8 @@
       "Einmusik",
       "Fabian Laute",
       "Max Blumen"
-    ]
+    ],
+    "id": "4818f1f1"
   },
   {
     "venue": "Gewölbe",
@@ -637,14 +695,16 @@
     "artists": [
       "Marco Hilbert (2)",
       "Temudo"
-    ]
+    ],
+    "id": "531f0e3b"
   },
   {
     "venue": "Club Zimmermanns",
     "date": "2026-04-24",
     "title": "IMPULSIVE COLOGNE with CELODIC, G2, HEISS, MARV, STOR:NO, VINYA",
     "startTime": "23:00",
-    "url": "https://ra.co/events/2405265"
+    "url": "https://ra.co/events/2405265",
+    "id": "e6ff4c47"
   },
   {
     "venue": "JAKI",
@@ -657,7 +717,8 @@
       "Freydel",
       "Nic Lorenz",
       "Eszter"
-    ]
+    ],
+    "id": "863ce52a"
   },
   {
     "venue": "Jugendpark",
@@ -683,7 +744,8 @@
       "Savsannah",
       "Sedaction",
       "yung_womb"
-    ]
+    ],
+    "id": "e30c197b"
   },
   {
     "venue": "Kunstwerk",
@@ -694,7 +756,8 @@
     "artists": [
       "Redfreya",
       "DJ ASS TITS"
-    ]
+    ],
+    "id": "555e80bb"
   },
   {
     "venue": "Bootshaus",
@@ -720,14 +783,16 @@
       "Savsannah",
       "Sedaction",
       "yung_womb"
-    ]
+    ],
+    "id": "54888c14"
   },
   {
     "venue": "Schrotty",
     "date": "2026-04-25",
     "title": "Wyldhearts Springbreaker",
     "startTime": "23:00",
-    "url": "https://ra.co/events/2371425"
+    "url": "https://ra.co/events/2371425",
+    "id": "e5b199b9"
   },
   {
     "venue": "Helios37",
@@ -741,7 +806,8 @@
       "Daniel Noah",
       "In Furcht",
       "OSKAMAXX"
-    ]
+    ],
+    "id": "13dd283a"
   },
   {
     "venue": "Gewölbe",
@@ -752,7 +818,8 @@
     "artists": [
       "Dubfire",
       "Marcel Janovsky"
-    ]
+    ],
+    "id": "5ed02e78"
   },
   {
     "venue": "JAKI",
@@ -762,7 +829,8 @@
     "url": "https://ra.co/events/2393320",
     "artists": [
       "Asal"
-    ]
+    ],
+    "id": "0a615cba"
   },
   {
     "venue": "Stadtgarten Konzertsaal / Cafe",
@@ -772,14 +840,16 @@
     "url": "https://ra.co/events/2399420",
     "artists": [
       "Matthew Ryals"
-    ]
+    ],
+    "id": "200304a4"
   },
   {
     "venue": "High.Studios",
     "date": "2026-04-29",
     "title": "KDG Morning Rave #6",
     "startTime": "06:30",
-    "url": "https://ra.co/events/2377238"
+    "url": "https://ra.co/events/2377238",
+    "id": "e059c269"
   },
   {
     "venue": "Yuca Club",
@@ -789,7 +859,8 @@
     "url": "https://ra.co/events/2403917",
     "artists": [
       "KIDSØ"
-    ]
+    ],
+    "id": "9bc602bc"
   },
   {
     "venue": "TBA - Konrad-Adenauer-Ufer, 50668 Köln, Schiffanlegestelle Viking River Cruises 4",
@@ -799,7 +870,8 @@
     "url": "https://ra.co/events/2393370",
     "artists": [
       "Anna Reusch"
-    ]
+    ],
+    "id": "0a05c532"
   },
   {
     "venue": "Die Godesburg",
@@ -810,14 +882,16 @@
     "artists": [
       "Kaufmann",
       "Franca"
-    ]
+    ],
+    "id": "f402dc83"
   },
   {
     "venue": "JAKI",
     "date": "2026-04-30",
     "title": "Maitanzgelegenheit",
     "startTime": "21:00",
-    "url": "https://ra.co/events/2393315"
+    "url": "https://ra.co/events/2393315",
+    "id": "b8be48b1"
   },
   {
     "venue": "Carlswerk Victoria",
@@ -834,7 +908,8 @@
       "Frederic.",
       "Neon Graveyard",
       "In Verruf"
-    ]
+    ],
+    "id": "327961f7"
   },
   {
     "venue": "Odonien",
@@ -848,7 +923,8 @@
       "DJ ASS TITS",
       "Savsannah",
       "Shumi"
-    ]
+    ],
+    "id": "55218743"
   },
   {
     "venue": "Club Zimmermanns",
@@ -859,7 +935,8 @@
     "artists": [
       "SPEEDO (2)",
       "HENNESY"
-    ]
+    ],
+    "id": "ca7548f2"
   },
   {
     "venue": "Gewölbe",
@@ -869,20 +946,23 @@
     "url": "https://ra.co/events/2388361",
     "artists": [
       "dj sweet6teen"
-    ]
+    ],
+    "id": "ebfb4f5a"
   },
   {
     "venue": "Helios37",
     "date": "2026-04-30",
     "title": "Køre MAYRAVE",
     "startTime": "23:00",
-    "url": "https://ra.co/events/2360634"
+    "url": "https://ra.co/events/2360634",
+    "id": "b36eedc9"
   },
   {
     "venue": "Schrotty",
     "date": "2026-04-30",
     "title": "KLUENGEL Klubnacht - Tanz in den Mai",
     "startTime": "23:00",
-    "url": "https://ra.co/events/2405634"
+    "url": "https://ra.co/events/2405634",
+    "id": "58202e20"
   }
 ]

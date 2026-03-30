@@ -14,7 +14,8 @@
       "MMARA",
       "PLOY"
     ],
-    "url": "https://rausgegangen.de/en/events/fi-x-narciss-phonovision-ploy-illusion-0/?mtm_campaign=teilen_gewinnspiel&mtm_kwd=web"
+    "url": "https://rausgegangen.de/en/events/fi-x-narciss-phonovision-ploy-illusion-0/?mtm_campaign=teilen_gewinnspiel&mtm_kwd=web",
+    "id": "6579eaf1"
   },
   {
     "title": "fi x Len Faki & Parakeet",
@@ -31,7 +32,8 @@
       "Omama",
       "Pelle"
     ],
-    "url": "https://rausgegangen.de/en/events/fi-x-len-faki-parakeet-0/"
+    "url": "https://rausgegangen.de/en/events/fi-x-len-faki-parakeet-0/",
+    "id": "35b05714"
   },
   {
     "title": "fi x Anthony Rother & Akt",
@@ -47,7 +49,8 @@
       "Sellycious",
       "Zahnatzin"
     ],
-    "url": "https://rausgegangen.de/en/events/fi-x-anthony-rother-akt-0/"
+    "url": "https://rausgegangen.de/en/events/fi-x-anthony-rother-akt-0/",
+    "id": "6528830b"
   },
   {
     "title": "Aura at fi w/ Freddy K",
@@ -57,7 +60,8 @@
     "artists": [
       "Freddy K"
     ],
-    "url": "https://aura.ticket.io"
+    "url": "https://aura.ticket.io",
+    "id": "487f37f6"
   },
   {
     "title": "fi x Recondite & In Limbo Audio & WetDreams",
@@ -72,7 +76,8 @@
       "MISMATCH b2b ALLEIRA",
       "TOMAKAOGER b2b BÆDURA"
     ],
-    "url": "https://rausgegangen.de/en/events/fi-x-recondite-in-limbo-audio-wetdreams-0/"
+    "url": "https://rausgegangen.de/en/events/fi-x-recondite-in-limbo-audio-wetdreams-0/",
+    "id": "6e15d9dd"
   },
   {
     "title": "MYZEL w/ Extrawelt",
@@ -82,7 +87,8 @@
     "artists": [
       "Extrawelt"
     ],
-    "url": "https://rausgegangen.de/events/myzel-w-extrawelt-0/"
+    "url": "https://rausgegangen.de/events/myzel-w-extrawelt-0/",
+    "id": "4530b853"
   },
   {
     "title": "fi x Blawan & Trevor Rockcliffe",
@@ -98,7 +104,8 @@
       "Sandilè",
       "Trevor Rockcliffe"
     ],
-    "url": "https://rausgegangen.de/events/fi-x-blawan-trevor-rockcliffe-0"
+    "url": "https://rausgegangen.de/events/fi-x-blawan-trevor-rockcliffe-0",
+    "id": "3cae967d"
   },
   {
     "title": "fi x Township Rebellion & Flinta* Tunes",
@@ -113,7 +120,8 @@
       "SERVING CUNTS",
       "SKATHI"
     ],
-    "url": "https://rausgegangen.de/events/fi-x-township-rebellion-flinta-tunes-0"
+    "url": "https://rausgegangen.de/events/fi-x-township-rebellion-flinta-tunes-0",
+    "id": "9dce572f"
   },
   {
     "title": "fi x Marcel Dettmann & Rheinrhythmik",
@@ -128,7 +136,8 @@
       "Felix Monreal",
       "Nils Pfeiffer"
     ],
-    "url": "https://rausgegangen.de/events/fi-x-marcel-dettmann-rheinrhythmik-0"
+    "url": "https://rausgegangen.de/events/fi-x-marcel-dettmann-rheinrhythmik-0",
+    "id": "1d6f10da"
   },
   {
     "title": "fi x Sonja Moonear & avontuur & Cosmo Club",
@@ -143,7 +152,8 @@
       "Dub Kimski",
       "Tereza"
     ],
-    "url": "https://rausgegangen.de/events/fi-x-sonja-moonear-avontuur-cosmo-0"
+    "url": "https://rausgegangen.de/events/fi-x-sonja-moonear-avontuur-cosmo-0",
+    "id": "e51b38ab"
   },
   {
     "title": "fi x Tipping Point w/ Frida Darko",
@@ -158,7 +168,8 @@
       "Detmolt",
       "Johannes Ton"
     ],
-    "url": "https://undundbooking.ticket.io/fP9dcat2"
+    "url": "https://undundbooking.ticket.io/fP9dcat2",
+    "id": "9b5633de"
   },
   {
     "title": "fi x Mira & Chris Schwarzwälder & Lafari",
@@ -172,6 +183,7 @@
       "Rufous b2b Steve Bonde",
       "Zahara"
     ],
-    "url": "https://www.eventbrite.de/e/1985994169021"
+    "url": "https://www.eventbrite.de/e/1985994169021",
+    "id": "0185d543"
   }
 ]
