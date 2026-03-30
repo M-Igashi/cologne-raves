@@ -12,7 +12,8 @@
       "KBS",
       "Delusional"
     ],
-    "url": "https://tonite.ticket.io/DEN2r5es/"
+    "url": "https://tonite.ticket.io/DEN2r5es/",
+    "id": "3d038cac"
   },
   {
     "title": "Saus & Braus / Dominik Eulberg",
@@ -22,7 +23,8 @@
     "artists": [
       "Dominik Eulberg"
     ],
-    "url": "https://www.eventbrite.de/e/dominik-eulberg-x-odonien-am-ostersamstag-tickets-1981162034978"
+    "url": "https://www.eventbrite.de/e/dominik-eulberg-x-odonien-am-ostersamstag-tickets-1981162034978",
+    "id": "93634597"
   },
   {
     "title": "Simsalabim - 20 Years Anniversary",
@@ -48,7 +50,8 @@
       "Kerro Sin",
       "Angie"
     ],
-    "url": "https://vibezproduction.ticket.io/OFviblrp/"
+    "url": "https://vibezproduction.ticket.io/OFviblrp/",
+    "id": "b67a48c2"
   },
   {
     "title": "Katermukke Label Night",
@@ -63,7 +66,8 @@
       "Diode Eins",
       "Freiboitar"
     ],
-    "url": "https://lichtblick.ticket.io/VWzAj1iM/"
+    "url": "https://lichtblick.ticket.io/VWzAj1iM/",
+    "id": "88df119d"
   },
   {
     "title": "SUNDANCE - Openair Opening 2026",
@@ -71,7 +75,8 @@
     "date": "2026-04-12",
     "startTime": "15:00",
     "artists": [],
-    "url": "https://treibstoffklub.ticket.io/"
+    "url": "https://treibstoffklub.ticket.io/",
+    "id": "2302f5d1"
   },
   {
     "title": "Ehrenklub #27",
@@ -93,7 +98,8 @@
       "Penelope Nox",
       "Vaegent b2b Njoy"
     ],
-    "url": "https://rausgegangen.de/events/ehrenklub-in-odonien-27-mit-0/"
+    "url": "https://rausgegangen.de/events/ehrenklub-in-odonien-27-mit-0/",
+    "id": "740551e6"
   },
   {
     "title": "Odonien Records x Afterhour Sounds",
@@ -110,7 +116,8 @@
       "Just a name",
       "Daniel Sender"
     ],
-    "url": "https://rausgegangen.de/events/odonien-records-x-afterhour-sounds-0/"
+    "url": "https://rausgegangen.de/events/odonien-records-x-afterhour-sounds-0/",
+    "id": "c57a22fa"
   },
   {
     "title": "Lustig Wandern",
@@ -118,7 +125,8 @@
     "date": "2026-04-24",
     "startTime": "23:00",
     "artists": [],
-    "url": "https://odonien.de/en/events/lustigwandern"
+    "url": "https://odonien.de/en/events/lustigwandern",
+    "id": "b251d50e"
   },
   {
     "title": "20 Years klickklackklub Anniversary",
@@ -130,6 +138,7 @@
       "Breger",
       "Peter Groskreutz"
     ],
-    "url": "https://rausgegangen.de/events/20-jahre-klickklackklub-2/"
+    "url": "https://rausgegangen.de/events/20-jahre-klickklackklub-2/",
+    "id": "252809e4"
   }
 ]
