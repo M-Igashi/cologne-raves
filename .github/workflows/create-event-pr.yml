@@ -17,6 +17,9 @@ on:
         type: string
         default: 'anonymous'
 
+permissions:
+  contents: read
+
 jobs:
   create-pr:
     runs-on: ubuntu-latest
