@@ -107,21 +107,20 @@ const defaultImage = "https://cologne.ravers.workers.dev/og-cover.png";
       "name": "Cologne Ravers",
       "url": "https://cologne.ravers.workers.dev"
     },
-    ...(artists?.length > 0 ? {
-      "performer": artists.map(name => ({
-        "@type": "Person",
-        "name": name
-      }))
+    "performer": artists?.length > 0
+      ? artists.map(name => ({ "@type": "Person", "name": name }))
+      : [{ "@type": "PerformingGroup", "name": "TBA" }],
+    ...(url ? {
+      "offers": {
+        "@type": "Offer",
+        "url": url,
+        "availability": "https://schema.org/InStock",
+        "validFrom": new Date().toISOString().split('T')[0],
+        "price": "0",
+        "priceCurrency": "EUR",
+        "description": "Prices may vary at the door. Check event link for details."
+      }
     } : {}),
-    "offers": {
-      "@type": "Offer",
-      "url": url || `https://cologne.ravers.workers.dev/#event-${id}`,
-      "availability": "https://schema.org/InStock",
-      "validFrom": new Date().toISOString().split('T')[0],
-      "price": "0",
-      "priceCurrency": "EUR",
-      "description": "Prices may vary at the door. Check event link for details."
-    },
-    "url": url || `https://cologne.ravers.workers.dev/#event-${id}`
+    "url": url || "https://cologne.ravers.workers.dev/"
   })} />
 </article>
