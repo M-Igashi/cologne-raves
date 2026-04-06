@@ -1,0 +1,520 @@
+[
+  {
+    "id": "863ce52a",
+    "venue": "JAKI",
+    "date": "2026-04-24",
+    "title": "Lekker - Label Night",
+    "artists": [
+      "Jeremy Reinhard",
+      "Freydel",
+      "Nic Lorenz",
+      "Eszter"
+    ],
+    "startTime": "23:30",
+    "url": "https://ra.co/events/2393325"
+  },
+  {
+    "id": "e6ff4c47",
+    "venue": "Club Zimmermanns",
+    "date": "2026-04-24",
+    "title": "IMPULSIVE COLOGNE with CELODIC, G2, HEISS, MARV, STOR:NO, VINYA",
+    "artists": [],
+    "startTime": "23:00",
+    "url": "https://ra.co/events/2405265"
+  },
+  {
+    "id": "7889ae07",
+    "venue": "Yuca Club",
+    "date": "2026-04-24",
+    "title": "TELYKAST",
+    "artists": [],
+    "startTime": "19:00",
+    "url": "https://ra.co/events/2398864"
+  },
+  {
+    "id": "e5b199b9",
+    "venue": "Schrotty",
+    "date": "2026-04-25",
+    "title": "Wyldhearts Springbreaker",
+    "artists": [],
+    "startTime": "23:00",
+    "url": "https://ra.co/events/2371425"
+  },
+  {
+    "id": "e30c197b",
+    "venue": "Jugendpark",
+    "date": "2026-04-25",
+    "title": "PollerWiesen Opening 2026",
+    "artists": [
+      "DJ Frank",
+      "dj sweet6teen",
+      "KUKO",
+      "Johannes Schuster",
+      "Marie Montexier",
+      "Quest",
+      "Mischluft",
+      "Serafina",
+      "Somewhen",
+      "SLIC Unit",
+      "AMSL",
+      "Anna Cainelli",
+      "Nikity",
+      "Nissa Carrington",
+      "Savsannah",
+      "Sedaction",
+      "yung_womb"
+    ],
+    "startTime": "12:00",
+    "url": "https://ra.co/events/2316658"
+  },
+  {
+    "id": "54888c14",
+    "venue": "Bootshaus",
+    "date": "2026-04-25",
+    "title": "PollerWiesen Opening 2026 Night (Bootshaus)",
+    "artists": [
+      "Serafina",
+      "Johannes Schuster",
+      "Redfocks",
+      "SATYS FYRE",
+      "Gustav Ørgano",
+      "Arninho",
+      "DJ Palga",
+      "DJ SPORTSCHUH",
+      "Flavius (DE)",
+      "Schwesta P",
+      "AMSL",
+      "Anna Cainelli",
+      "Nikity",
+      "Nissa Carrington",
+      "Savsannah",
+      "Sedaction",
+      "yung_womb"
+    ],
+    "startTime": "22:00",
+    "url": "https://ra.co/events/2317790"
+  },
+  {
+    "id": "13dd283a",
+    "venue": "Helios37",
+    "date": "2026-04-25",
+    "title": "AESTHETIC w. CALLUSH, In Furcht, LSG, OSKAMAXX, RØM, ARRAX, DAESU, DANIEL NØAH, ",
+    "artists": [
+      "CALLUSH",
+      "DAESU",
+      "Daniel Noah",
+      "In Furcht",
+      "OSKAMAXX"
+    ],
+    "startTime": "23:00",
+    "url": "https://ra.co/events/2394125"
+  },
+  {
+    "id": "5ed02e78",
+    "venue": "Gewölbe",
+    "date": "2026-04-25",
+    "title": "Klubnacht with Dubfire, Marcel Janovsky",
+    "artists": [
+      "Dubfire",
+      "Marcel Janovsky"
+    ],
+    "startTime": "23:00",
+    "url": "https://ra.co/events/2388360"
+  },
+  {
+    "id": "555e80bb",
+    "venue": "Kunstwerk",
+    "date": "2026-04-25",
+    "title": "In Limbo Cologne",
+    "artists": [
+      "Redfreya",
+      "DJ ASS TITS"
+    ],
+    "startTime": "19:00",
+    "url": "https://ra.co/events/2390174"
+  },
+  {
+    "id": "0a615cba",
+    "venue": "JAKI",
+    "date": "2026-04-25",
+    "title": "Tom-Tom Discotec presents Disco Allianz Köln",
+    "artists": [
+      "Asal"
+    ],
+    "startTime": "23:30",
+    "url": "https://ra.co/events/2393320"
+  },
+  {
+    "id": "200304a4",
+    "venue": "Stadtgarten Konzertsaal / Cafe",
+    "date": "2026-04-27",
+    "title": "NICA live: ZEVRA – Niloufar Shiri, Matthew Ryals, Fan-Qi Wu, Jonas Engel",
+    "artists": [
+      "Matthew Ryals"
+    ],
+    "startTime": "19:30",
+    "url": "https://ra.co/events/2399420"
+  },
+  {
+    "id": "9bc602bc",
+    "venue": "Yuca Club",
+    "date": "2026-04-29",
+    "title": "KIDSØ Live",
+    "artists": [
+      "KIDSØ"
+    ],
+    "startTime": "20:00",
+    "url": "https://ra.co/events/2403917"
+  },
+  {
+    "id": "e059c269",
+    "venue": "High.Studios",
+    "date": "2026-04-29",
+    "title": "KDG Morning Rave #6",
+    "artists": [],
+    "startTime": "06:30",
+    "url": "https://ra.co/events/2377238"
+  },
+  {
+    "id": "327961f7",
+    "venue": "Carlswerk Victoria",
+    "date": "2026-04-30",
+    "title": "UNREAL X FACE 2 FACE: MAYDANCE COLOGNE",
+    "artists": [
+      "Alex Farell",
+      "SIKOTI",
+      "Amilli",
+      "GIØ (1)",
+      "MCR-T",
+      "Frederic.",
+      "Neon Graveyard",
+      "In Verruf"
+    ],
+    "startTime": "22:30",
+    "url": "https://ra.co/events/2364176"
+  },
+  {
+    "id": "f402dc83",
+    "venue": "Die Godesburg",
+    "date": "2026-04-30",
+    "title": "Tanz in den Mai auf der Godesburg",
+    "artists": [
+      "Kaufmann",
+      "Franca"
+    ],
+    "startTime": "20:00",
+    "url": "https://ra.co/events/2361064"
+  },
+  {
+    "id": "55218743",
+    "venue": "Odonien",
+    "date": "2026-04-30",
+    "title": "Tanz in den Mai: Lost Days Lost Nights with Roman Flügel, Julius Steinhoff uvm",
+    "artists": [
+      "Roman Flügel",
+      "Julius Steinhoff",
+      "DJ ASS TITS",
+      "Savsannah",
+      "Shumi"
+    ],
+    "startTime": "23:00",
+    "url": "https://ra.co/events/2395983"
+  },
+  {
+    "id": "0a05c532",
+    "venue": "TBA - Konrad-Adenauer-Ufer, 50668 Köln, Schiffanlegestelle Viking River Cruises 4",
+    "date": "2026-04-30",
+    "title": "Techno Dampfer Köln with Anna Reusch",
+    "artists": [
+      "Anna Reusch"
+    ],
+    "startTime": "17:30",
+    "url": "https://ra.co/events/2393370"
+  },
+  {
+    "id": "ca7548f2",
+    "venue": "Club Zimmermanns",
+    "date": "2026-04-30",
+    "title": "BZZBZZ TECHNO X RAVE IN DEN MAI",
+    "artists": [
+      "SPEEDO (2)",
+      "HENNESY"
+    ],
+    "startTime": "23:00",
+    "url": "https://ra.co/events/2389728"
+  },
+  {
+    "id": "ebfb4f5a",
+    "venue": "Gewölbe",
+    "date": "2026-04-30",
+    "title": "flirt: Tanz in den Mai with dj sweet6teen & Freddy",
+    "artists": [
+      "dj sweet6teen"
+    ],
+    "startTime": "23:00",
+    "url": "https://ra.co/events/2388361"
+  },
+  {
+    "id": "",
+    "venue": "Schrotty",
+    "date": "2026-04-30",
+    "title": "KLUENGEL XXL w/Per Pleks, KIM SWIM, Danila Filipe & 20 more",
+    "artists": [
+      "Per Pleks",
+      "KIM SWIM"
+    ],
+    "startTime": "23:00",
+    "url": "https://ra.co/events/2407026"
+  },
+  {
+    "id": "b36eedc9",
+    "venue": "Helios37",
+    "date": "2026-04-30",
+    "title": "Køre MAYRAVE",
+    "artists": [],
+    "startTime": "23:00",
+    "url": "https://ra.co/events/2360634"
+  },
+  {
+    "id": "58202e20",
+    "venue": "Schrotty",
+    "date": "2026-04-30",
+    "title": "KLUENGEL Klubnacht - Tanz in den Mai",
+    "artists": [],
+    "startTime": "23:00",
+    "url": "https://ra.co/events/2405634"
+  },
+  {
+    "id": "b8be48b1",
+    "venue": "JAKI",
+    "date": "2026-04-30",
+    "title": "Maitanzgelegenheit",
+    "artists": [],
+    "startTime": "21:00",
+    "url": "https://ra.co/events/2393315"
+  },
+  {
+    "id": "",
+    "venue": "Schrotty",
+    "date": "2026-05-01",
+    "title": "Lelantus presents a Secret Pioneer of Techno",
+    "artists": [],
+    "startTime": "22:00",
+    "url": "https://ra.co/events/2329071"
+  },
+  {
+    "id": "",
+    "venue": "Bikini Beach",
+    "date": "2026-05-01",
+    "title": "Kollektiv Turmstrasse & Jonathan Kaspar - strandliebe Open Air I Bikini Beach Bonn",
+    "artists": [
+      "Kollektiv Turmstrasse",
+      "Jonathan Kaspar"
+    ],
+    "startTime": "14:00",
+    "url": "https://ra.co/events/2334169"
+  },
+  {
+    "id": "",
+    "venue": "Bootshaus",
+    "date": "2026-05-01",
+    "title": "MADNESS x HARDBRAKE invite: GEARBOX",
+    "artists": [
+      "Bmberjck",
+      "Sparkz (NL)",
+      "Revelation",
+      "Andrew Cairns",
+      "Dela"
+    ],
+    "startTime": "23:00",
+    "url": "https://ra.co/events/2361419"
+  },
+  {
+    "id": "",
+    "venue": "Artheater",
+    "date": "2026-05-01",
+    "title": "CONNECTED COLOGNE",
+    "artists": [
+      "DJ Discostoff",
+      "OSKAMAXX"
+    ],
+    "startTime": "23:00",
+    "url": "https://ra.co/events/2368035"
+  },
+  {
+    "id": "",
+    "venue": "TBA - KESSEL SUED at Südbrücke",
+    "date": "2026-05-02",
+    "title": "Electronic Garden of Love -OPEN AIR- #1 at Kessel Sued/Suedbrücke with Fenrick, Nyco und SZG",
+    "artists": [
+      "Fenrick",
+      "Nyco",
+      "SZG",
+      "CRITICAL ERROR 404",
+      "Limoncello"
+    ],
+    "startTime": "14:00",
+    "url": "https://ra.co/events/2257144"
+  },
+  {
+    "id": "",
+    "venue": "Odonien",
+    "date": "2026-05-02",
+    "title": "Lichtblick- Frühling in Odonien",
+    "artists": [
+      "Diode Eins",
+      "Kos:mo",
+      "Vinicius Honorio",
+      "Ropemaker"
+    ],
+    "startTime": "23:00",
+    "url": "https://ra.co/events/2354939"
+  },
+  {
+    "id": "",
+    "venue": "Subway",
+    "date": "2026-05-02",
+    "title": "IMMERNOCH! TANZEN",
+    "artists": [],
+    "startTime": "17:00",
+    "url": "https://ra.co/events/2411312"
+  },
+  {
+    "id": "",
+    "venue": "Schrotty",
+    "date": "2026-05-02",
+    "title": "VooV Experience Party with Blazy, Electric Universe, X-Dream, Sun Project, Sensifeel",
+    "artists": [],
+    "startTime": "23:00",
+    "url": "https://ra.co/events/2405636"
+  },
+  {
+    "id": "",
+    "venue": "Odonien",
+    "date": "2026-05-08",
+    "title": "ANTEA with DVS1, Kaiser, Phil Berg, Gutkind, Szunflower, Amilli, Shrff, Tim Reineke",
+    "artists": [
+      "DVS1",
+      "Phil Berg",
+      "Gutkind",
+      "Szunflower",
+      "Amilli",
+      "Shrff"
+    ],
+    "startTime": "23:00",
+    "url": "https://ra.co/events/2402036"
+  },
+  {
+    "id": "",
+    "venue": "Garagen",
+    "date": "2026-05-08",
+    "title": "HYPERRAVE with DICA (LIVE), VAENT & MORE + SCHRANZ FLOOR by Aesthetic",
+    "artists": [
+      "DICA (FR)",
+      "VAENT",
+      "DAESU",
+      "Daniel Noah"
+    ],
+    "startTime": "23:00",
+    "url": "https://ra.co/events/2388466"
+  },
+  {
+    "id": "",
+    "venue": "Schrotty",
+    "date": "2026-05-08",
+    "title": "PRADA2000 All Night Long B2B Alba Franch, dasstudach, DJ SPORTSCHUH & Zwilling",
+    "artists": [
+      "PRADA2000",
+      "DJ SPORTSCHUH",
+      "Alba Franch",
+      "zwilling.",
+      "dasstudach"
+    ],
+    "startTime": "23:00",
+    "url": "https://ra.co/events/2403466"
+  },
+  {
+    "id": "",
+    "venue": "Club Bahnhof Ehrenfeld",
+    "date": "2026-05-08",
+    "title": "Shkoon / TRACES / KÖLN / Club Bahnhof Ehrenfeld",
+    "artists": [
+      "Shkoon"
+    ],
+    "startTime": "19:00",
+    "url": "https://ra.co/events/2400786"
+  },
+  {
+    "id": "",
+    "venue": "Bollwerk Cologne",
+    "date": "2026-05-08",
+    "title": "AFTER:DARK - A Highclass Techno Rave I Köln",
+    "artists": [],
+    "startTime": "22:00",
+    "url": "https://ra.co/events/2396381"
+  },
+  {
+    "id": "",
+    "venue": "TBA - NOX Aachen",
+    "date": "2026-05-08",
+    "title": "Trauma Techno with NEGITIV",
+    "artists": [],
+    "startTime": "23:00",
+    "url": "https://ra.co/events/2386217"
+  },
+  {
+    "id": "",
+    "venue": "Kunstwerk",
+    "date": "2026-05-08",
+    "title": "Rave51 - Psychedelic Experience",
+    "artists": [],
+    "startTime": "22:00",
+    "url": "https://ra.co/events/2399733"
+  },
+  {
+    "id": "",
+    "venue": "Schrotty",
+    "date": "2026-05-09",
+    "title": "EhrenKlub im Schrotty #12 with KAAI, KARAH, LESSSS, TOXIC MACHINERY, TiTi uvm",
+    "artists": [
+      "KAAI",
+      "KARAH",
+      "LESSSS",
+      "TiTi"
+    ],
+    "startTime": "23:00",
+    "url": "https://ra.co/events/2385642"
+  },
+  {
+    "id": "",
+    "venue": "fi",
+    "date": "2026-05-09",
+    "title": "fi x Tipping Point & &&",
+    "artists": [
+      "Frida Darko",
+      "FLAVE",
+      "Urem",
+      "Detmolt"
+    ],
+    "startTime": "23:00",
+    "url": "https://ra.co/events/2397444"
+  },
+  {
+    "id": "",
+    "venue": "Bootshaus",
+    "date": "2026-05-09",
+    "title": "KitKatClub",
+    "artists": [],
+    "startTime": "22:00",
+    "url": "https://ra.co/events/2402082"
+  },
+  {
+    "id": "",
+    "venue": "Friesenbar Cologne",
+    "date": "2026-05-09",
+    "title": "The Light Clubbing - House Classics",
+    "artists": [],
+    "startTime": "20:00",
+    "url": "https://ra.co/events/2403439"
+  }
+]
