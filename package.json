@@ -2,13 +2,13 @@
   "name": "cologne-raves",
   "description": "Cologne Raves - Event tracking and management system for Cologne's music scene.",
   "dependencies": {
-    "@astrojs/cloudflare": "^13.1.5",
-    "@astrojs/react": "^5.0.2",
+    "@astrojs/cloudflare": "^13.1.7",
+    "@astrojs/react": "^5.0.3",
     "@astrojs/sitemap": "^3.7.2",
     "@cloudflare/kv-asset-handler": "^0.4.0",
     "@radix-ui/react-dialog": "^1.1.15",
     "@tailwindcss/vite": "^4.2.2",
-    "astro": "^6.1.2",
+    "astro": "^6.1.4",
     "class-variance-authority": "^0.7.1",
     "date-fns": "^4.1.0",
     "date-fns-tz": "^3.2.0",
@@ -21,7 +21,7 @@
     "uuid": "^13.0.0"
   },
   "devDependencies": {
-    "@cloudflare/workers-types": "^4.20260329.1",
+    "@cloudflare/workers-types": "^4.20260405.1",
     "@types/file-saver": "^2.0.7",
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
