@@ -41,6 +41,7 @@
   },
   "overrides": {
     "undici": "^7.19.0",
+    "vite": "^7.3.2",
     "wrangler": "^4.60.0"
   },
   "type": "module"
