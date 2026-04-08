@@ -22,8 +22,11 @@
     "date": "2026-04-18",
     "title": "NURBÖSE Köln",
     "startTime": "23:00",
-    "artists": [],
-    "url": "https://nurboese.de/events/nurboese-18-04-26/",
+    "artists": ["MÉTARAPH",
+      "ARES", 
+      "DØPAIR", 
+      "SØSSA"],
+    "url": "https://rausgegangen.de/en/events/nurbose-1804-0/?mtm_campaign=teilen_gewinnspiel&mtm_kwd=web",
     "id": "1aa040e2"
   },
   {
