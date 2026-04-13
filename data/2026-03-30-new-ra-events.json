@@ -89,32 +89,17 @@
     "startTime": "22:00",
     "url": "https://ra.co/events/2316681",
     "artists": [
-      "T & Sugah",
-      "Whiney",
-      "Keeno",
       "AKTIVE",
       "Annix",
-      "Jon Void",
       "Hiraeth",
-      "MOTA"
+      "Jon Void",
+      "Keeno",
+      "MOTA",
+      "Maduk",
+      "T & Sugah",
+      "Whiney"
     ],
     "id": "90e6e387"
-  },
-  {
-    "venue": "Bootshaus",
-    "date": "2026-04-04",
-    "title": "Liquicity Cologne",
-    "startTime": "22:00",
-    "url": "https://ra.co/events/2362033",
-    "artists": [
-      "Maduk",
-      "Keeno",
-      "AKTIVE",
-      "Jon Void",
-      "Hiraeth",
-      "MOTA"
-    ],
-    "id": "14f2ee84"
   },
   {
     "venue": "H26",
@@ -440,19 +425,6 @@
     "id": "4ffe1eb4"
   },
   {
-    "venue": "Gewölbe",
-    "date": "2026-04-11",
-    "title": "HOOVE with Alex Neri, Julian Feierabend, sakali",
-    "startTime": "23:00",
-    "url": "https://ra.co/events/2383353",
-    "artists": [
-      "Alex Neri",
-      "Julian Feierabend",
-      "sakali"
-    ],
-    "id": "e74b6321"
-  },
-  {
     "venue": "Odonien",
     "date": "2026-04-11",
     "title": "DARK ORBIT LOUNGE",
@@ -683,18 +655,6 @@
     "id": "4818f1f1"
   },
   {
-    "venue": "Gewölbe",
-    "date": "2026-04-24",
-    "title": "rau.ton with Eva Mo, Marco Hilbert, Temudo",
-    "startTime": "23:00",
-    "url": "https://ra.co/events/2385823",
-    "artists": [
-      "Marco Hilbert (2)",
-      "Temudo"
-    ],
-    "id": "531f0e3b"
-  },
-  {
     "venue": "Club Zimmermanns",
     "date": "2026-04-24",
     "title": "IMPULSIVE COLOGNE with CELODIC, G2, HEISS, MARV, STOR:NO, VINYA",
@@ -804,18 +764,6 @@
       "OSKAMAXX"
     ],
     "id": "13dd283a"
-  },
-  {
-    "venue": "Gewölbe",
-    "date": "2026-04-25",
-    "title": "Klubnacht with Dubfire, Marcel Janovsky",
-    "startTime": "23:00",
-    "url": "https://ra.co/events/2388360",
-    "artists": [
-      "Dubfire",
-      "Marcel Janovsky"
-    ],
-    "id": "5ed02e78"
   },
   {
     "venue": "JAKI",
@@ -933,17 +881,6 @@
       "HENNESY"
     ],
     "id": "ca7548f2"
-  },
-  {
-    "venue": "Gewölbe",
-    "date": "2026-04-30",
-    "title": "flirt: Tanz in den Mai with dj sweet6teen & Freddy",
-    "startTime": "23:00",
-    "url": "https://ra.co/events/2388361",
-    "artists": [
-      "dj sweet6teen"
-    ],
-    "id": "ebfb4f5a"
   },
   {
     "venue": "Helios37",

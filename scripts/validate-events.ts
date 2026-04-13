@@ -18,7 +18,9 @@ const files = readdirSync(dataDir).filter(
 );
 
 let errors: string[] = [];
+let warnings: string[] = [];
 const seen = new Map<string, { file: string; id: string }>();
+const fuzzyByDateVenue = new Map<string, { file: string; title: string }[]>();
 
 for (const file of files.sort()) {
   const filePath = join(dataDir, file);
@@ -53,7 +55,7 @@ for (const file of files.sort()) {
       }
     }
 
-    // Cross-file duplicate check
+    // Cross-file duplicate check (exact title match)
     const key = `${e.title}|${e.date}|${e.venue || ""}`;
     if (seen.has(key)) {
       const prev = seen.get(key)!;
@@ -63,7 +65,31 @@ for (const file of files.sort()) {
     } else {
       seen.set(key, { file, id: e.id });
     }
+
+    // Fuzzy duplicate check (same date+venue, one title contains the other)
+    const fuzzyKey = `${e.date}|${(e.venue || "").toLowerCase().trim()}`;
+    const titleLower = (e.title || "").toLowerCase().trim();
+    if (!fuzzyByDateVenue.has(fuzzyKey)) {
+      fuzzyByDateVenue.set(fuzzyKey, []);
+    }
+    for (const prev of fuzzyByDateVenue.get(fuzzyKey)!) {
+      const prevTitle = prev.title.toLowerCase().trim();
+      if (
+        titleLower !== prevTitle &&
+        (titleLower.includes(prevTitle) || prevTitle.includes(titleLower))
+      ) {
+        warnings.push(
+          `${prefix}: possible duplicate of ${prev.file} — "${e.title}" vs "${prev.title}" (${e.date} @ ${e.venue})`
+        );
+      }
+    }
+    fuzzyByDateVenue.get(fuzzyKey)!.push({ file, title: e.title });
   }
+}
+
+if (warnings.length > 0) {
+  console.warn(`\n⚠️  ${warnings.length} warning(s) (possible fuzzy duplicates):\n`);
+  warnings.forEach((w) => console.warn(`  - ${w}`));
 }
 
 if (errors.length > 0) {
@@ -71,5 +97,5 @@ if (errors.length > 0) {
   errors.forEach((e) => console.error(`  - ${e}`));
   process.exit(1);
 } else {
-  console.log(`✅ All ${seen.size} events across ${files.length} files are valid.`);
+  console.log(`\n✅ All ${seen.size} events across ${files.length} files are valid.`);
 }
