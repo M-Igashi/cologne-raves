@@ -4,8 +4,11 @@
   "compatibility_flags": ["nodejs_compat"],
   "main": "workers-site/index.js",
 
-  "site": {
-    "bucket": "./dist"
+  "assets": {
+    "directory": "./dist",
+    "binding": "ASSETS",
+    "run_worker_first": true,
+    "not_found_handling": "404-page"
   },
 
   "build": {

@@ -1,8 +1,3 @@
-import { getAssetFromKV } from "@cloudflare/kv-asset-handler";
-import manifestJSON from "__STATIC_CONTENT_MANIFEST";
-
-const assetManifest = JSON.parse(manifestJSON);
-
 const ALLOWED_ORIGIN = "https://cologne.ravers.workers.dev";
 
 function corsHeaders(origin) {
@@ -28,95 +23,50 @@ export default {
       return handleNotifyEvent(request, env, ctx);
     }
 
-    return handleStaticAssets(request, env, ctx, url);
+    return handleStaticAssets(request, env, url);
   },
 };
 
-async function handleStaticAssets(request, env, ctx, url) {
-  const kvArgs = {
-    request,
-    waitUntil(promise) {
-      return ctx.waitUntil(promise);
-    },
-  };
-  const kvOptions = {
-    ASSET_NAMESPACE: env.__STATIC_CONTENT,
-    ASSET_MANIFEST: assetManifest,
-  };
+async function handleStaticAssets(request, env, url) {
+  const pathname = url.pathname;
+  const isHtmlRequest =
+    pathname === "/" ||
+    pathname.endsWith(".html") ||
+    pathname.endsWith(".htm") ||
+    !pathname.includes(".");
 
-  try {
-    const pathname = url.pathname;
-    const isHtmlRequest =
-      pathname === "/" ||
-      pathname.endsWith(".html") ||
-      pathname.endsWith(".htm") ||
-      (!pathname.includes(".") && pathname !== "/api/submit-event" && pathname !== "/api/notify-event");
+  const response = await env.ASSETS.fetch(request);
+  const headers = new Headers(response.headers);
 
-    if (isHtmlRequest) {
-      kvOptions.cacheControl = {
-        edgeTtl: 60 * 60,
-        browserTtl: 60 * 60,
-      };
-    } else {
-      kvOptions.cacheControl = {
-        edgeTtl: 30 * 24 * 60 * 60,
-        browserTtl: 24 * 60 * 60,
-      };
-    }
-
-    const response = await getAssetFromKV(kvArgs, kvOptions);
-    const headers = new Headers(response.headers);
-
-    // Cache headers per asset type
-    if (pathname.match(/\.(css|js)$/)) {
-      headers.set("Cache-Control", "public, max-age=31536000, immutable");
-    } else if (pathname.match(/\.(woff2?|ttf|otf|eot)$/)) {
-      headers.set("Cache-Control", "public, max-age=31536000, immutable");
-      headers.set("Access-Control-Allow-Origin", "*");
-    } else if (pathname.match(/\.(png|jpg|jpeg|gif|svg|webp|ico)$/)) {
-      headers.set("Cache-Control", "public, max-age=2592000");
-    } else if (isHtmlRequest) {
-      headers.set("Cache-Control", "public, max-age=3600, must-revalidate");
-    } else {
-      headers.set("Cache-Control", "public, max-age=86400");
-    }
-
-    // Security headers
-    headers.set("X-Content-Type-Options", "nosniff");
-    headers.set("X-Frame-Options", "DENY");
-    headers.set("Referrer-Policy", "strict-origin-when-cross-origin");
-
-    // Font preload for HTML pages
-    if (isHtmlRequest) {
-      headers.set(
-        "Link",
-        "</fonts/atkinson-regular.woff>; rel=preload; as=font; type=font/woff; crossorigin, </fonts/atkinson-bold.woff>; rel=preload; as=font; type=font/woff; crossorigin",
-      );
-    }
-
-    return new Response(response.body, {
-      status: response.status,
-      statusText: response.statusText,
-      headers,
-    });
-  } catch (e) {
-    try {
-      const notFoundResponse = await getAssetFromKV(kvArgs, {
-        ...kvOptions,
-        mapRequestToAsset: (req) =>
-          new Request(`${new URL(req.url).origin}/404.html`, req),
-      });
-
-      return new Response(notFoundResponse.body, {
-        ...notFoundResponse,
-        status: 404,
-      });
-    } catch {
-      // 404.html not found
-    }
-
-    return new Response(e.message || e.toString(), { status: 500 });
+  if (pathname.match(/\.(css|js)$/)) {
+    headers.set("Cache-Control", "public, max-age=31536000, immutable");
+  } else if (pathname.match(/\.(woff2?|ttf|otf|eot)$/)) {
+    headers.set("Cache-Control", "public, max-age=31536000, immutable");
+    headers.set("Access-Control-Allow-Origin", "*");
+  } else if (pathname.match(/\.(png|jpg|jpeg|gif|svg|webp|ico)$/)) {
+    headers.set("Cache-Control", "public, max-age=2592000");
+  } else if (isHtmlRequest) {
+    headers.set("Cache-Control", "public, max-age=3600, must-revalidate");
+  } else {
+    headers.set("Cache-Control", "public, max-age=86400");
   }
+
+  headers.set("X-Content-Type-Options", "nosniff");
+  headers.set("X-Frame-Options", "DENY");
+  headers.set("Referrer-Policy", "strict-origin-when-cross-origin");
+
+  if (isHtmlRequest) {
+    headers.set(
+      "Link",
+      "</fonts/atkinson-regular.woff>; rel=preload; as=font; type=font/woff; crossorigin, </fonts/atkinson-bold.woff>; rel=preload; as=font; type=font/woff; crossorigin",
+    );
+  }
+
+  return new Response(response.body, {
+    status: response.status,
+    statusText: response.statusText,
+    headers,
+  });
 }
 
 async function handleAPIRequest(request, env, ctx) {
