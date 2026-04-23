@@ -1,0 +1,544 @@
+[
+  {
+    "venue": "Club Zimmermanns",
+    "date": "2026-04-18",
+    "title": "Zwischenwelt Afterhour",
+    "artists": [],
+    "startTime": "06:00",
+    "url": "https://ra.co/events/2418296"
+  },
+  {
+    "venue": "Parkcafe",
+    "date": "2026-05-03",
+    "title": "Electric Cafe - Open Air with Michael Mayer & Marcus Worgull",
+    "artists": [
+      "Michael Mayer",
+      "Marcus Worgull"
+    ],
+    "startTime": "15:00",
+    "url": "https://ra.co/events/2390219"
+  },
+  {
+    "venue": "Garagen",
+    "date": "2026-04-22",
+    "title": "TECHNOLiEBE a.M. with RGB, JANARA, illlLYTH und CLUMBA",
+    "artists": [],
+    "startTime": "20:00",
+    "url": "https://ra.co/events/2421696"
+  },
+  {
+    "venue": "Garagen",
+    "date": "2026-04-24",
+    "title": "Sunny's Boiler Room Garagen Club Köln",
+    "artists": [
+      "DJ Discostoff",
+      "DJ SODBRENNEN",
+      "PANACOTTA"
+    ],
+    "startTime": "23:00",
+    "url": "https://ra.co/events/2416084"
+  },
+  {
+    "venue": "Südbrücke",
+    "date": "2026-04-25",
+    "title": "Südbrücke OPENING with Andre Galluzzi (Berghain) & Christian Burkhardt uvm",
+    "artists": [
+      "André Galluzzi",
+      "Christian Burkhardt",
+      "Alex New",
+      "Kevin Mey"
+    ],
+    "startTime": "12:00",
+    "url": "https://ra.co/events/2425440"
+  },
+  {
+    "venue": "Club Zimmermanns",
+    "date": "2026-04-25",
+    "title": "Zwischenwelt Afterhour",
+    "artists": [],
+    "startTime": "06:30",
+    "url": "https://ra.co/events/2424655"
+  },
+  {
+    "venue": "Schrotty",
+    "date": "2026-04-30",
+    "title": "KLUENGEL XXL w/Per Pleks, KIM SWIM, Danilo Filipe & 20 more",
+    "artists": [
+      "Per Pleks",
+      "KIM SWIM",
+      "Danilo Filipe"
+    ],
+    "startTime": "23:00",
+    "url": "https://ra.co/events/2407026"
+  },
+  {
+    "venue": "Garagen",
+    "date": "2026-04-30",
+    "title": "BOUNCE IN DEN MAI // EHRENFELD",
+    "artists": [
+      "Selunia"
+    ],
+    "startTime": "23:00",
+    "url": "https://ra.co/events/2417922"
+  },
+  {
+    "venue": "TBA - Zur Goldenen Nacht",
+    "date": "2026-04-30",
+    "title": "Tanz in den Mai",
+    "artists": [],
+    "startTime": "20:00",
+    "url": "https://ra.co/events/2416927"
+  },
+  {
+    "venue": "Schrotty",
+    "date": "2026-05-01",
+    "title": "Lelantus - Dance on 1st of May - 5€ Tickets",
+    "artists": [
+      "Black Box",
+      "Gareden",
+      "SCHAARUP",
+      "Unseen.",
+      "ZARE"
+    ],
+    "startTime": "22:00",
+    "url": "https://ra.co/events/2329071"
+  },
+  {
+    "venue": "JAKI",
+    "date": "2026-05-02",
+    "title": "Tom-Tom Discotec presents: Papercup Family & Friends",
+    "artists": [
+      "Savsannah"
+    ],
+    "startTime": "23:30",
+    "url": "https://ra.co/events/2423301"
+  },
+  {
+    "venue": "Odonien",
+    "date": "2026-05-06",
+    "title": "#MITTWOCHENENDE Summer Opening",
+    "artists": [
+      "LSG",
+      "MAURO",
+      "Paulina"
+    ],
+    "startTime": "23:00",
+    "url": "https://ra.co/events/2422104"
+  },
+  {
+    "venue": "Die Kunstbar",
+    "date": "2026-05-08",
+    "title": "Season Opening",
+    "artists": [
+      "Luca Olivotto",
+      "DJ Palga",
+      "DJ PLUS PLUS"
+    ],
+    "startTime": "22:00",
+    "url": "https://ra.co/events/2422802"
+  },
+  {
+    "venue": "JAKI",
+    "date": "2026-05-08",
+    "title": "Green Room Party Vol. 1",
+    "artists": [
+      "HiHat",
+      "Janis Zielinski",
+      "Mike Momburg",
+      "Schuhmacher (3)"
+    ],
+    "startTime": "23:30",
+    "url": "https://ra.co/events/2420456"
+  },
+  {
+    "venue": "TBA",
+    "date": "2026-05-08",
+    "title": "Yap&Yapper Gig",
+    "artists": [],
+    "startTime": "23:00",
+    "url": "https://ra.co/events/2421798"
+  },
+  {
+    "venue": "TBA",
+    "date": "2026-05-08",
+    "title": "KABELTECHNO - COLOGNE Session 001",
+    "artists": [],
+    "startTime": "22:00",
+    "url": "https://ra.co/events/2414207"
+  },
+  {
+    "venue": "Zum Scheuen Reh",
+    "date": "2026-05-09",
+    "title": "GOOEY",
+    "artists": [
+      "Sello",
+      "Siggatunez"
+    ],
+    "startTime": "22:00",
+    "url": "https://ra.co/events/2425196"
+  },
+  {
+    "venue": "Pure Space",
+    "date": "2026-05-09",
+    "title": "LISTEN TO Soundtrek (live)",
+    "artists": [],
+    "startTime": "18:00",
+    "url": "https://ra.co/events/2422607"
+  },
+  {
+    "venue": "Artheater",
+    "date": "2026-05-13",
+    "title": "Aura with future.666 all night long",
+    "artists": [
+      "future.666"
+    ],
+    "startTime": "23:00",
+    "url": "https://ra.co/events/2391347"
+  },
+  {
+    "venue": "Bikini Beach",
+    "date": "2026-05-13",
+    "title": "Mira & Chris Schwarzwälder und Jonathan Kaspar",
+    "artists": [
+      "Mira",
+      "Chris Schwarzwälder",
+      "Jonathan Kaspar"
+    ],
+    "startTime": "17:00",
+    "url": "https://ra.co/events/2360492"
+  },
+  {
+    "venue": "Garagen",
+    "date": "2026-05-13",
+    "title": "#MITTWOCHENENDE Special: NEON DREAMS x Gourski & Friends",
+    "artists": [
+      "ADEMES",
+      "PANACOTTA",
+      "Gourski",
+      "Enaly"
+    ],
+    "startTime": "23:00",
+    "url": "https://ra.co/events/2424785"
+  },
+  {
+    "venue": "Gewölbe",
+    "date": "2026-05-13",
+    "title": "instinkt lab with AMORAL, Anna & Ramón, Kribs",
+    "artists": [
+      "AMORAL",
+      "Anna Konda",
+      "Ramón Zappa",
+      "Kribs"
+    ],
+    "startTime": "23:00",
+    "url": "https://ra.co/events/2419559"
+  },
+  {
+    "venue": "Schrotty",
+    "date": "2026-05-13",
+    "title": "303 presents FEIERTAGSSPECIAL",
+    "artists": [],
+    "startTime": "23:00",
+    "url": "https://ra.co/events/2330543"
+  },
+  {
+    "venue": "Klub Domhof",
+    "date": "2026-05-13",
+    "title": "VIZION with Secret Headliner",
+    "artists": [],
+    "startTime": "23:00",
+    "url": "https://ra.co/events/2418018"
+  },
+  {
+    "venue": "N8Lounge",
+    "date": "2026-05-15",
+    "title": "Tinnitussi - Under Construction",
+    "artists": [
+      "Bouncy Bitch",
+      "MARRED"
+    ],
+    "startTime": "22:00",
+    "url": "https://ra.co/events/2422690"
+  },
+  {
+    "venue": "JAKI",
+    "date": "2026-05-15",
+    "title": "E.P.I.Q invites Nada Formosa",
+    "artists": [
+      "AMSL",
+      "Anna Cainelli",
+      "Nikity",
+      "Savsannah",
+      "Sedaction"
+    ],
+    "startTime": "23:30",
+    "url": "https://ra.co/events/2422626"
+  },
+  {
+    "venue": "MS Beethoven",
+    "date": "2026-05-16",
+    "title": "Rheinrauschen mit Einmusik",
+    "artists": [
+      "Einmusik"
+    ],
+    "startTime": "17:00",
+    "url": "https://ra.co/events/2402555"
+  },
+  {
+    "venue": "King Georg",
+    "date": "2026-05-16",
+    "title": "HiHat und Merlin Monroe im King Georg",
+    "artists": [
+      "HiHat",
+      "Merlin Monroe"
+    ],
+    "startTime": "23:59",
+    "url": "https://ra.co/events/2418555"
+  },
+  {
+    "venue": "fi",
+    "date": "2026-05-16",
+    "title": "fi x Schleuse Eins x Cruise",
+    "artists": [
+      "Beste Hira",
+      "Muallem",
+      "Carlos Valdes",
+      "limbic sis"
+    ],
+    "startTime": "23:00",
+    "url": "https://ra.co/events/2413932"
+  },
+  {
+    "venue": "674fm",
+    "date": "2026-05-16",
+    "title": "supersoft x sway LIVE with emer & swimming pool",
+    "artists": [],
+    "startTime": "21:00",
+    "url": "https://ra.co/events/2423716"
+  },
+  {
+    "venue": "Artheater",
+    "date": "2026-05-22",
+    "title": "BergWacht with Teho LIVE",
+    "artists": [
+      "Teho",
+      "TooL8",
+      "Liho"
+    ],
+    "startTime": "23:00",
+    "url": "https://ra.co/events/2403774"
+  },
+  {
+    "venue": "JAKI",
+    "date": "2026-05-22",
+    "title": "JAKI presents Di², DJ Very Good Plus, lu.wicked",
+    "artists": [
+      "Di² (1)",
+      "DJ Very Good Plus",
+      "lu.wicked"
+    ],
+    "startTime": "23:30",
+    "url": "https://ra.co/events/2422638"
+  },
+  {
+    "venue": "Elektroküche",
+    "date": "2026-05-22",
+    "title": "OPERATION w/ Bollmann & LEX LEDU",
+    "artists": [
+      "Bollmann"
+    ],
+    "startTime": "23:00",
+    "url": "https://ra.co/events/2417661"
+  },
+  {
+    "venue": "fi",
+    "date": "2026-05-22",
+    "title": "fi wird 2, Tag 1",
+    "artists": [
+      "Flavius",
+      "Mike Momburg",
+      "Jean Mauj",
+      "Mismatch Cologne",
+      "Alfalfa (2)",
+      "Elisen",
+      "Krackk",
+      "KALLE (NL)",
+      "Lemsn",
+      "Luzie"
+    ],
+    "startTime": "23:00",
+    "url": "https://ra.co/events/2422111"
+  },
+  {
+    "venue": "TBA - Anleger 13, Bastei Köln Köln",
+    "date": "2026-05-23",
+    "title": "BOUNCE BOAT Summer Opening 2026 by Koeln ist Techno",
+    "artists": [
+      "DJ Discostoff",
+      "HOTBOI2300",
+      "OSKAMAXX"
+    ],
+    "startTime": "14:00",
+    "url": "https://ra.co/events/2424845"
+  },
+  {
+    "venue": "fi",
+    "date": "2026-05-23",
+    "title": "fi wird 2, Tag 2",
+    "artists": [
+      "Goldie",
+      "Sedaction",
+      "NORO",
+      "Maka (2)",
+      "Felix Monreal",
+      "Phil2",
+      "Måtyrer",
+      "Gianni",
+      "KLARYOKO",
+      "Julian Feierabend",
+      "Ramî"
+    ],
+    "startTime": "14:00",
+    "url": "https://ra.co/events/2422113"
+  },
+  {
+    "venue": "Lemuria Kultur-BAR",
+    "date": "2026-05-23",
+    "title": "Fukurō - Techno & Drum and Bass im Castell Köln-Mülheim",
+    "artists": [],
+    "startTime": "21:30",
+    "url": "https://ra.co/events/2422293"
+  },
+  {
+    "venue": "Bikini Beach",
+    "date": "2026-05-24",
+    "title": "Andhim & Jonathan Kaspar - strandliebe Open Air I Bikini Beach",
+    "artists": [
+      "Andhim",
+      "Jonathan Kaspar"
+    ],
+    "startTime": "14:00",
+    "url": "https://ra.co/events/2334172"
+  },
+  {
+    "venue": "Revierpark Wischlingen, Dortmund",
+    "date": "2026-05-24",
+    "title": "FACE 2 FACE: PollerWiesen FESTIVAL",
+    "artists": [
+      "Alycia Bezgo",
+      "DJ GUESTLIST",
+      "DJ Palga",
+      "Robin Tasi",
+      "Mad Dog",
+      "Mike Momburg",
+      "Vagabund",
+      "NTBR",
+      "zwilling."
+    ],
+    "startTime": "11:00",
+    "url": "https://ra.co/events/2379521"
+  },
+  {
+    "venue": "TBA - Viking River Cruises Anleger Deutz",
+    "date": "2026-05-24",
+    "title": "Bootshaus x Deepblue on a Ship Vol. I",
+    "artists": [
+      "Lahos"
+    ],
+    "startTime": "14:00",
+    "url": "https://ra.co/events/2381527"
+  },
+  {
+    "venue": "Elektroküche",
+    "date": "2026-05-29",
+    "title": "Techno Allianz meets Nasty Nights Pres. Hard Techno vs Uptempo",
+    "artists": [
+      "Ropemaker"
+    ],
+    "startTime": "23:00",
+    "url": "https://ra.co/events/2419165"
+  },
+  {
+    "venue": "Artheater",
+    "date": "2026-05-29",
+    "title": "Kontur x Playhaus w/Egna",
+    "artists": [
+      "AEKO"
+    ],
+    "startTime": "23:00",
+    "url": "https://ra.co/events/2314647"
+  },
+  {
+    "venue": "Odonien",
+    "date": "2026-05-29",
+    "title": "Mark Dekoda x Odonien",
+    "artists": [
+      "Mark Dekoda"
+    ],
+    "startTime": "23:00",
+    "url": "https://ra.co/events/2364469"
+  },
+  {
+    "venue": "fi",
+    "date": "2026-05-29",
+    "title": "i x NUOBN x Feines Tier",
+    "artists": [
+      "Sarah Wild",
+      "Thomass Jackson"
+    ],
+    "startTime": "23:00",
+    "url": "https://ra.co/events/2419723"
+  },
+  {
+    "venue": "JAKI",
+    "date": "2026-05-29",
+    "title": "JAKI presents Tammo de Vries & Gunni",
+    "artists": [
+      "Tammo de Vries",
+      "Gunni"
+    ],
+    "startTime": "23:30",
+    "url": "https://ra.co/events/2422640"
+  },
+  {
+    "venue": "Artheater",
+    "date": "2026-05-30",
+    "title": "303 years of liquid sky cologne",
+    "artists": [
+      "Electric Indigo",
+      "Scanner",
+      "Irwin Leschet",
+      "Strobocop",
+      "Air Liquide",
+      "Bob Humid",
+      "Sheldon Drake",
+      "Dr Walker"
+    ],
+    "startTime": "16:00",
+    "url": "https://ra.co/events/2251932"
+  },
+  {
+    "venue": "fi",
+    "date": "2026-05-30",
+    "title": "fi x Estella Boersma & Das Ist Das Ja",
+    "artists": [
+      "Estella Boersma",
+      "Maruhni",
+      "paaradoxx",
+      "Play Boy Joe",
+      "Triqi"
+    ],
+    "startTime": "23:00",
+    "url": "https://ra.co/events/2406265"
+  },
+  {
+    "venue": "Bootshaus",
+    "date": "2026-05-30",
+    "title": "Wonderful Days – The Classic Rave Festival Vol. IX",
+    "artists": [
+      "Westbam"
+    ],
+    "startTime": "22:00",
+    "url": "https://ra.co/events/2408185"
+  }
+]

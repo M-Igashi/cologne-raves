@@ -66,7 +66,7 @@ def load_existing_events():
     existing_events_by_loose_key = {}
 
     for json_file in DATA_DIR.glob("*.json"):
-        if json_file.name in ["manifest.json", "1.json", "2.json", "3.json", "4.json"]:
+        if json_file.name in ["manifest.json", "1.json", "2.json", "3.json", "4.json", "5.json", "6.json"]:
             continue
 
         try:
@@ -157,7 +157,7 @@ def process_new_events():
     new_events = []
     skipped_events = []
 
-    for i in range(1, 5):
+    for i in range(1, 7):
         json_file = DATA_DIR / f"{i}.json"
         if not json_file.exists():
             print(f"  ⚠️  {i}.json が見つかりません")
