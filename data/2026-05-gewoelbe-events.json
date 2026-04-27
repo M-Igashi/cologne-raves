@@ -5,7 +5,8 @@
     "date": "2026-05-14",
     "startTime": "14:00",
     "artists": [],
-    "url": "https://gewoelbe.ticket.io/3CgheS1c/"
+    "url": "https://gewoelbe.ticket.io/3CgheS1c/",
+    "id": "e89d1207"
   },
   {
     "title": "Im Fokus",
@@ -17,7 +18,8 @@
       "Dimon & Bergen",
       "Gutkind"
     ],
-    "url": "https://gewoelbe.ticket.io/hk01KFwR/"
+    "url": "https://gewoelbe.ticket.io/hk01KFwR/",
+    "id": "18d31087"
   },
   {
     "title": "Last Beat Standing",
@@ -28,6 +30,7 @@
       "Cinthie",
       "Meat"
     ],
-    "url": "https://gewoelbe.ticket.io/CVK1x1C3/"
+    "url": "https://gewoelbe.ticket.io/CVK1x1C3/",
+    "id": "49c77232"
   }
 ]

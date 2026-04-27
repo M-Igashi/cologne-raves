@@ -21,7 +21,8 @@
       "Ulla",
       "Zentrifuge"
     ],
-    "url": "https://odonien.de/en/events/die-1-im-mai"
+    "url": "https://odonien.de/en/events/die-1-im-mai",
+    "id": "1e6e73c0"
   },
   {
     "title": "20 years of Odonien",
@@ -37,7 +38,8 @@
       "Tim Pichet",
       "Bach & Blüte"
     ],
-    "url": "https://odonien.de/en/events/20-years-party"
+    "url": "https://odonien.de/en/events/20-years-party",
+    "id": "35f55743"
   },
   {
     "title": "Treibstoff Klub - Love your locals",
@@ -56,7 +58,8 @@
       "Leolo Lozone",
       "Marcel Janovsky"
     ],
-    "url": "https://odonien.de/en/events/love-your-locals"
+    "url": "https://odonien.de/en/events/love-your-locals",
+    "id": "e2e18aae"
   },
   {
     "title": "Art of House x art of urban life",
@@ -79,7 +82,8 @@
       "Boys Do Cry",
       "Bambi"
     ],
-    "url": "https://odonien.de/en/events/art-of-house-x-of-urban-life"
+    "url": "https://odonien.de/en/events/art-of-house-x-of-urban-life",
+    "id": "00eb6538"
   },
   {
     "title": "EhrenKlub",
@@ -100,6 +104,7 @@
       "Rathberg",
       "VNSHN"
     ],
-    "url": "https://odonien.de/en/events/ehrenklub-28"
+    "url": "https://odonien.de/en/events/ehrenklub-28",
+    "id": "00ec467a"
   }
 ]
