@@ -64,8 +64,11 @@ def generate_loose_event_key(title, date, venue):
 def load_existing_events():
     existing_events_by_hash = {}
     existing_events_by_loose_key = {}
+    existing_events_by_url = {}
 
-    for json_file in DATA_DIR.glob("*.json"):
+    # Sort by filename so older files are processed first; setdefault then keeps
+    # the oldest ID per URL, which is the original/canonical one.
+    for json_file in sorted(DATA_DIR.glob("*.json"), key=lambda p: p.name):
         if json_file.name in ["manifest.json", "1.json", "2.json", "3.json", "4.json", "5.json", "6.json"]:
             continue
 
@@ -106,10 +109,13 @@ def load_existing_events():
                     )
                     existing_events_by_loose_key.setdefault(loose_key, []).append(event_info)
 
+                    if event_url and event_id:
+                        existing_events_by_url.setdefault(event_url, event_info)
+
         except Exception as e:
             print(f"Warning: Could not load {json_file.name}: {e}")
 
-    return existing_events_by_hash, existing_events_by_loose_key
+    return existing_events_by_hash, existing_events_by_loose_key, existing_events_by_url
 
 
 def convert_ra_to_standard_format(ra_event):
@@ -150,9 +156,10 @@ def convert_ra_to_standard_format(ra_event):
 
 def process_new_events():
     print("既存イベントを読み込み中...")
-    existing_by_hash, existing_by_loose_key = load_existing_events()
+    existing_by_hash, existing_by_loose_key, existing_by_url = load_existing_events()
     print(f"既存イベント数: {len(existing_by_hash)}")
     print(f"緩いキー数: {len(existing_by_loose_key)}")
+    print(f"URLインデックス数: {len(existing_by_url)}")
 
     new_events = []
     skipped_events = []
@@ -178,6 +185,19 @@ def process_new_events():
             loose_key = generate_loose_event_key(
                 standard_event["title"], standard_event["date"], standard_event["venue"]
             )
+
+            event_url = standard_event.get("url", "")
+
+            if event_url and event_url in existing_by_url:
+                existing = existing_by_url[event_url]
+                standard_event["id"] = existing["id"]
+                print(
+                    f"  ✓ 既存 (URL一致): {standard_event['title']} (ID: {existing['id']})"
+                )
+                if existing["name"] != standard_event["title"]:
+                    print(f"      旧タイトル: {existing['name']}")
+                new_events.append(standard_event)
+                continue
 
             if event_hash in existing_by_hash:
                 existing = existing_by_hash[event_hash]
