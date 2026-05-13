@@ -9,6 +9,7 @@ export default defineConfig({
   integrations: [
     react(),
     sitemap({
+      filter: (page) => !page.includes("/extract"),
       customPages: [],
       entryLimit: 10000,
     }),

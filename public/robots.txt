@@ -12,6 +12,9 @@ Sitemap: https://cologne.ravers.workers.dev/sitemap.xml
 Disallow: /admin
 Disallow: /api/
 
+# Internal tool — not for search indexing (also has noindex meta + sitemap excludes it)
+Disallow: /extract
+
 # Allow major search engine bots
 User-agent: Googlebot
 Allow: /
