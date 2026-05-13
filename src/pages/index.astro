@@ -4,8 +4,6 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import PartyCard from '../components/PartyCard.astro';
 import { getFeaturedParties } from '../lib/getFeaturedParties';
-import { startOfWeek, endOfWeek } from 'date-fns';
-import { toZonedTime } from 'date-fns-tz';
 
 const parties = await getFeaturedParties();
 
@@ -22,18 +20,12 @@ for (const party of parties) {
   partiesByDay[weekday].push(party);
 }
 
-// SEO関連の変数 - 週の日付を含める (getFeaturedPartiesと同じ月曜始まり+ベルリンTZ)
-const berlinNow = toZonedTime(new Date(), 'Europe/Berlin');
-const weekStart = startOfWeek(berlinNow, { weekStartsOn: 1 });
-const weekEnd = endOfWeek(berlinNow, { weekStartsOn: 1 });
-
-const formatDate = (date: Date) => {
-  return date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
-};
-
-const weekRange = `${formatDate(weekStart)} - ${formatDate(weekEnd)}`;
-const title = `This Week (${weekRange}) - Electronic Music Events in Cologne`;
-const description = `Discover the best techno and electronic music events happening this week (${weekRange}) in Cologne. Find ${parties.length} parties with dates, venues, DJs lineups and ticket information for underground raves and club nights.`;
+// SEO meta — kept length-stable on purpose:
+// - Bing flags titles >60 chars and descriptions outside 70-160 chars
+// - Embedding a weekly-changing date range or party count produced unstable
+//   meta that also blew past Bing's length limits.
+const title = "Cologne Electronic Music Events This Week";
+const description = "Weekly guide to techno and electronic music events in Cologne. Browse all upcoming parties — venues, lineups, and ticket info, community-driven and ad-free.";
 const keywords = "cologne techno this week, köln electronic music events, techno parties cologne weekend, house music cologne, rave events köln, underground techno cologne, club nights cologne";
 const canonicalURL = new URL(Astro.url.pathname, "https://cologne.ravers.workers.dev").href;
 ---
