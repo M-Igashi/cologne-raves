@@ -40,5 +40,39 @@
     ],
     "url": "https://rausgegangen.de/events/fi-x-regal-frank-music-0/",
     "id": "7cac312a"
+  },
+  {
+    "title": "fi x NUOBN x Playhaus",
+    "venue": "fi",
+    "date": "2026-06-12",
+    "startTime": "23:00",
+    "artists": [
+      "DI²",
+      "TWO SIDED AGENCY",
+      "JØRDY",
+      "JOSIANE",
+      "NEUTRAN",
+      "RELLK0"
+    ],
+    "url": "https://rausgegangen.de/events/fi-x-nuobn-x-playhaus-0/"
+  },
+  {
+    "title": "fi x Polygonia & Out Of System",
+    "venue": "fi",
+    "date": "2026-06-20",
+    "startTime": "23:00",
+    "artists": [
+      "MARIAMI",
+      "NULLMERIDIAN",
+      "POLYGONIA",
+      "BENO B.",
+      "DIE JANE.",
+      "GÎN BALI",
+      "MELO",
+      "VINESSE",
+      "RINA R!OT",
+      "TSAVAGE"
+    ],
+    "url": "https://rausgegangen.de/events/fi-x-polygonia-out-of-system-0/"
   }
 ]
