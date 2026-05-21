@@ -41,7 +41,8 @@
   "overrides": {
     "undici": "^7.19.0",
     "vite": "^7.3.2",
-    "wrangler": "^4.60.0"
+    "wrangler": "^4.60.0",
+    "ws": "^8.20.1"
   },
   "type": "module"
 }
