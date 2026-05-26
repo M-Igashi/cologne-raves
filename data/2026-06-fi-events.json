@@ -19,9 +19,7 @@
     "venue": "fi",
     "date": "2026-06-04",
     "startTime": "14:00",
-    "artists": [
-      "Jonathan Kaspar"
-    ],
+    "artists": ["Jonathan Kaspar"],
     "url": "https://rausgegangen.de/events/fi-garten-x-jonathan-kaspar-0/",
     "id": "73b7a826"
   },
@@ -74,7 +72,7 @@
       "RINA R!OT",
       "TSAVAGE"
     ],
-    "url": "https://rausgegangen.de/events/fi-x-polygonia-out-of-system-0/",
+    "url": "https://rausgegangen.de/en/events/fi-x-polygonia-out-of-system-0/?mtm_campaign=teilen_gewinnspiel&mtm_kwd=web",
     "id": "5237a13f"
   }
 ]
