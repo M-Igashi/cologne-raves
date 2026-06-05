@@ -22,10 +22,12 @@
     "date": "2026-04-18",
     "title": "NURBÖSE Köln",
     "startTime": "23:00",
-    "artists": ["MÉTARAPH",
-      "ARES", 
-      "DØPAIR", 
-      "SØSSA"],
+    "artists": [
+      "MÉTARAPH",
+      "ARES",
+      "DØPAIR",
+      "SØSSA"
+    ],
     "url": "https://rausgegangen.de/en/events/nurbose-1804-0/?mtm_campaign=teilen_gewinnspiel&mtm_kwd=web",
     "id": "1aa040e2"
   },
@@ -36,9 +38,9 @@
     "startTime": "23:00",
     "artists": [
       "Neon Graveyard",
-"DØPAIR",
-"Esther",
-"Sadicca b2b Maddycation"
+      "DØPAIR",
+      "Esther",
+      "Sadicca b2b Maddycation"
     ],
     "url": "https://rausgegangen.de/en/events/nurbose-1605-0/?action=participate-lottery-nurbose-1605-0?mtm_campaign=teilen_gewinnspiel&mtm_kwd=web",
     "id": "9cd25a16"
@@ -58,6 +60,7 @@
     "title": "NURBÖSE Open Air",
     "startTime": "13:00",
     "artists": [],
-    "url": "https://rausgegangen.de/en/events/nurbose-472026-open-air-0/"
+    "url": "https://rausgegangen.de/en/events/nurbose-472026-open-air-0/",
+    "id": "63f239fd"
   }
 ]
