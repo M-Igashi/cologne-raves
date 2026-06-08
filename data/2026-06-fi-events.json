@@ -19,7 +19,9 @@
     "venue": "fi",
     "date": "2026-06-04",
     "startTime": "14:00",
-    "artists": ["Jonathan Kaspar"],
+    "artists": [
+      "Jonathan Kaspar"
+    ],
     "url": "https://rausgegangen.de/events/fi-garten-x-jonathan-kaspar-0/",
     "id": "73b7a826"
   },
@@ -96,6 +98,7 @@
       "OFFERGELD",
       "CLARA LUISE"
     ],
-    "url": "https://rausgegangen.de/en/events/fi-garten-x-langer-tag-x-audrey-danza-vement-hoove-etage147-0/"
+    "url": "https://rausgegangen.de/en/events/fi-garten-x-langer-tag-x-audrey-danza-vement-hoove-etage147-0/",
+    "id": "982f2a1b"
   }
 ]
