@@ -25,7 +25,50 @@ export default {
 
     return handleStaticAssets(request, env, url);
   },
+
+  async scheduled(event, env, ctx) {
+    ctx.waitUntil(triggerRedeploy(env));
+  },
 };
+
+async function triggerRedeploy(env) {
+  const githubToken = env.GITHUB_TOKEN;
+
+  if (!githubToken) {
+    console.error(
+      JSON.stringify({ message: "GITHUB_TOKEN not configured for scheduled redeploy" }),
+    );
+    return;
+  }
+
+  const GITHUB_OWNER = "M-Igashi";
+  const GITHUB_REPO = "cologne-raves";
+
+  const response = await fetch(
+    `https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/actions/workflows/redeploy.yml/dispatches`,
+    {
+      method: "POST",
+      headers: {
+        Accept: "application/vnd.github.v3+json",
+        Authorization: `Bearer ${githubToken}`,
+        "Content-Type": "application/json",
+        "User-Agent": "Cologne-Raves-Worker",
+      },
+      body: JSON.stringify({ ref: "main" }),
+    },
+  );
+
+  if (response.status !== 204) {
+    const errorText = await response.text();
+    console.error(
+      JSON.stringify({
+        message: "Scheduled redeploy dispatch failed",
+        status: response.status,
+        error: errorText,
+      }),
+    );
+  }
+}
 
 async function handleStaticAssets(request, env, url) {
   const pathname = url.pathname;

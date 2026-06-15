@@ -15,6 +15,12 @@
     "command": "npm run build"
   },
 
+  "triggers": {
+    // Monday 00:30 UTC (01:30 CET / 02:30 CEST) — refresh "this week" early each Monday.
+    // The scheduled handler dispatches the redeploy.yml workflow to rebuild & deploy.
+    "crons": ["30 0 * * 1"]
+  },
+
   "dev": {
     "port": 8787,
     "local_protocol": "http"

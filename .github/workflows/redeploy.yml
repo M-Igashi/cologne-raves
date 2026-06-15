@@ -1,9 +1,9 @@
 name: Scheduled Redeploy to Cloudflare Workers
 
 on:
-  schedule:
-    - cron: '5 11 * * 1' # 毎週月曜日13:05 (Europe/Berlin)、UTCだと11:05
-  workflow_dispatch: # 手動実行も可能
+  # Triggered weekly by the Cloudflare Worker cron (scheduled handler dispatches this workflow).
+  # See wrangler.jsonc "triggers.crons" and workers-site/index.js scheduled().
+  workflow_dispatch:
 
 permissions:
   contents: read
