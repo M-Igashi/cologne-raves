@@ -41,7 +41,11 @@ for (const file of files.sort()) {
     if (!e.venue) errors.push(`${prefix}: missing venue`);
     if (!e.startTime) errors.push(`${prefix}: missing startTime`);
 
-    // ID validation
+    // ID validation. A mismatch is a WARNING, not an error: updated events
+    // intentionally reuse the original event's ID (a hash of its prior
+    // title/date/venue) so getAllParties shadows the stale entry with the
+    // newer file's data. Such an ID legitimately differs from the current
+    // content hash. New events carry no ID — backfill-id.js assigns one.
     if (e.title && e.date) {
       const correctId = generateStableId({
         title: e.title,
@@ -49,8 +53,8 @@ for (const file of files.sort()) {
         venue: e.venue,
       });
       if (e.id && e.id !== correctId) {
-        errors.push(
-          `${prefix}: ID mismatch: "${e.id}" should be "${correctId}" (${e.title})`
+        warnings.push(
+          `${prefix}: ID "${e.id}" differs from content hash "${correctId}" — expected if this is an updated event reusing its original ID (${e.title})`
         );
       }
     }
@@ -88,7 +92,7 @@ for (const file of files.sort()) {
 }
 
 if (warnings.length > 0) {
-  console.warn(`\n⚠️  ${warnings.length} warning(s) (possible fuzzy duplicates):\n`);
+  console.warn(`\n⚠️  ${warnings.length} warning(s) (fuzzy duplicates / reused IDs):\n`);
   warnings.forEach((w) => console.warn(`  - ${w}`));
 }
 
