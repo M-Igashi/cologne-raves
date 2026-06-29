@@ -261,9 +261,14 @@
     "venue": "fi",
     "date": "2026-07-03",
     "title": "fi x NUOBN x Los fiere x Basement Operations",
-    "artists": [],
+    "artists": [
+      "BABY TOOTH",
+      "FREDDY DECKERT",
+      "SOPHIETJE",
+      "TIMEFROG"
+    ],
     "startTime": "23:00",
-    "url": "https://ra.co/events/2464542",
+    "url": "https://rausgegangen.de/en/events/fi-x-nuobn-x-los-fiere-x-basement-operations-0/",
     "id": "44362f4b"
   },
   {
@@ -455,11 +460,14 @@
     "date": "2026-07-10",
     "title": "fi x NUOBN x Uptown Records Vinyl Bus",
     "artists": [
-      "Björn Torwellen",
-      "G.A.R.O.S."
+      "BJÖRN TORWELLEN",
+      "CHRISTIANO FERRAGAMO",
+      "G.A.R.O.S",
+      "MAQZ",
+      "MARCI.PK"
     ],
     "startTime": "23:00",
-    "url": "https://ra.co/events/2465550",
+    "url": "https://rausgegangen.de/en/events/fi-x-nuobn-x-uptown-records-vinyl-bus-0/",
     "id": "9859d7a6"
   },
   {
@@ -517,11 +525,22 @@
     "date": "2026-07-11",
     "title": "fi Garten x Langer Tag x Rampue & Lafari & Tiefgang",
     "artists": [
-      "Mwaah",
-      "Rampue"
+      "rampue",
+      "Lafari",
+      "Tiefgang",
+      "DADDY DEE",
+      "STEVE BONDE",
+      "UWE LACTO",
+      "ZAHARA",
+      "ALEX HÖVELMANN",
+      "MWAAH",
+      "CHIOMA",
+      "KRACHIM",
+      "NINA YPSILON",
+      "SUKKU & LENTE"
     ],
     "startTime": "14:00",
-    "url": "https://ra.co/events/2468665",
+    "url": "https://rausgegangen.de/en/events/fi-garten-x-langer-tag-x-rampue-lafari-tiefgang-0/",
     "id": "6feebd52"
   },
   {
@@ -614,11 +633,12 @@
     "date": "2026-07-17",
     "title": "fi x NUOBN x Moodfamily",
     "artists": [
-      "Kahl & Kæmena",
-      "Midas 104"
+      "KAHL & KæMENA",
+      "MIDAS 104",
+      "MIMIZAN"
     ],
     "startTime": "23:00",
-    "url": "https://ra.co/events/2469779",
+    "url": "https://rausgegangen.de/en/events/fi-x-nuobn-x-moodfamily-0/",
     "id": "36cd180e"
   }
 ]
