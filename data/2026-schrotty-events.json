@@ -36,7 +36,8 @@
       "STEVIE",
       "SWANNY"
     ],
-    "url": "https://rausgegangen.de/en/events/ehrenklub-im-schrotty-13-w-0/"
+    "url": "https://rausgegangen.de/en/events/ehrenklub-im-schrotty-13-w-0/",
+    "id": "0046bc82"
   },
   {
     "venue": "Schrotty",
@@ -44,7 +45,8 @@
     "title": "SOUND SOUND SUMMER SESSION",
     "startTime": "23:00",
     "artists": [],
-    "url": "https://rausgegangen.de/en/events/sound-sound-summer-session-0/"
+    "url": "https://rausgegangen.de/en/events/sound-sound-summer-session-0/",
+    "id": "ec48d685"
   },
   {
     "venue": "Schrotty",
@@ -54,7 +56,8 @@
     "artists": [
       "BART SKILLS"
     ],
-    "url": "https://schrotty.ticket.io/SNLRzTGk/"
+    "url": "https://schrotty.ticket.io/SNLRzTGk/",
+    "id": "2960a9ec"
   },
   {
     "venue": "Schrotty",
@@ -66,7 +69,8 @@
       "M¥SS KETA",
       "SHOKI287"
     ],
-    "url": "https://schrotty.ticket.io/QswtTYDE/"
+    "url": "https://schrotty.ticket.io/QswtTYDE/",
+    "id": "476eaacf"
   },
   {
     "venue": "Schrotty",
@@ -74,7 +78,8 @@
     "title": "ONE:Z w/ over 20 Bounce legends",
     "startTime": "23:00",
     "artists": [],
-    "url": "https://schrotty.ticket.io/rpMAZEFP/"
+    "url": "https://schrotty.ticket.io/rpMAZEFP/",
+    "id": "4a006146"
   },
   {
     "venue": "Schrotty",
@@ -85,7 +90,8 @@
       "Yanamaste",
       "future.666"
     ],
-    "url": "https://schrotty.ticket.io/h5DcIRAN/"
+    "url": "https://schrotty.ticket.io/h5DcIRAN/",
+    "id": "1d95b7d5"
   },
   {
     "venue": "Schrotty",
@@ -96,7 +102,8 @@
       "ANNA REUSCH",
       "THOMAS SCHUMACHER"
     ],
-    "url": "https://schrotty.ticket.io/quoDUcTN/"
+    "url": "https://schrotty.ticket.io/quoDUcTN/",
+    "id": "feaa091b"
   },
   {
     "venue": "Schrotty",
@@ -106,7 +113,8 @@
     "artists": [
       "Oliver Hess"
     ],
-    "url": "https://rausgegangen.de/en/events/warehouse-rave-xxl-yena-s-birthday-0/"
+    "url": "https://rausgegangen.de/en/events/warehouse-rave-xxl-yena-s-birthday-0/",
+    "id": "a5931c47"
   },
   {
     "venue": "Schrotty",
@@ -114,7 +122,8 @@
     "title": "EhrenKlub im Schrotty #14",
     "startTime": "23:00",
     "artists": [],
-    "url": "https://rausgegangen.de/en/events/ehrenklub-im-schrotty-14-0/"
+    "url": "https://rausgegangen.de/en/events/ehrenklub-im-schrotty-14-0/",
+    "id": "5ca73ae4"
   },
   {
     "venue": "Schrotty",
@@ -122,7 +131,8 @@
     "title": "ADRENALINE FAMILY TOUR / Schrotty, Cologne",
     "startTime": "23:00",
     "artists": [],
-    "url": "https://adrenaline.ticket.io/ZZ08W3YP/"
+    "url": "https://adrenaline.ticket.io/ZZ08W3YP/",
+    "id": "8ccda30c"
   },
   {
     "venue": "Schrotty",
@@ -135,6 +145,7 @@
       "Gravedgr",
       "Ally"
     ],
-    "url": "https://303.ticket.io/wWZ9sn9E/"
+    "url": "https://303.ticket.io/wWZ9sn9E/",
+    "id": "eb6140e0"
   }
 ]
