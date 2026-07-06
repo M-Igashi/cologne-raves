@@ -5,7 +5,8 @@
     "title": "SECRETRAVES // CSD SPECIAL // OPEN AIR // FREE ENTRY",
     "artists": [],
     "startTime": "19:00",
-    "url": "https://ra.co/events/2482364"
+    "url": "https://ra.co/events/2482364",
+    "id": "ad6624cc"
   },
   {
     "venue": "Nachtflug & Starz",
@@ -13,7 +14,8 @@
     "title": "GreenKomm Pride After Hour",
     "artists": [],
     "startTime": "06:00",
-    "url": "https://ra.co/events/2477694"
+    "url": "https://ra.co/events/2477694",
+    "id": "463842a3"
   },
   {
     "id": "fd786db2",
@@ -44,7 +46,8 @@
     "title": "TECHNOLiEBE #AmMittwoch",
     "artists": [],
     "startTime": "15:00",
-    "url": "https://ra.co/events/2472866"
+    "url": "https://ra.co/events/2472866",
+    "id": "9686b72f"
   },
   {
     "venue": "TBA",
@@ -52,7 +55,8 @@
     "title": "Space Invadrz Division meets Detroit Techno Militia",
     "artists": [],
     "startTime": "22:00",
-    "url": "https://ra.co/events/2474759"
+    "url": "https://ra.co/events/2474759",
+    "id": "e62fadcb"
   },
   {
     "venue": "Garagen",
@@ -60,7 +64,8 @@
     "title": "TECHNOLiEBE #AmMittwoch",
     "artists": [],
     "startTime": "15:00",
-    "url": "https://ra.co/events/2477859"
+    "url": "https://ra.co/events/2477859",
+    "id": "2fbb48cb"
   },
   {
     "venue": "Odonien",
@@ -72,7 +77,8 @@
       "Liho"
     ],
     "startTime": "23:00",
-    "url": "https://ra.co/events/2475236"
+    "url": "https://ra.co/events/2475236",
+    "id": "f174d8d8"
   },
   {
     "venue": "Reineke Fuchs",
@@ -83,7 +89,8 @@
       "Jeremy Reinhard"
     ],
     "startTime": "23:00",
-    "url": "https://ra.co/events/2476078"
+    "url": "https://ra.co/events/2476078",
+    "id": "e0395787"
   },
   {
     "venue": "Südbrücke",
@@ -97,7 +104,8 @@
       "Badlokk"
     ],
     "startTime": "14:00",
-    "url": "https://ra.co/events/2430199"
+    "url": "https://ra.co/events/2430199",
+    "id": "06a18337"
   },
   {
     "venue": "Parkcafe",
@@ -116,7 +124,8 @@
       "Katia Curie"
     ],
     "startTime": "13:00",
-    "url": "https://ra.co/events/2433314"
+    "url": "https://ra.co/events/2433314",
+    "id": "c19c916b"
   },
   {
     "venue": "Bumann & Sohn",
@@ -126,7 +135,8 @@
       "JUCI VISION"
     ],
     "startTime": "14:00",
-    "url": "https://ra.co/events/2455316"
+    "url": "https://ra.co/events/2455316",
+    "id": "1b02c8de"
   },
   {
     "venue": "Gewölbe",
@@ -138,6 +148,7 @@
       "Ricardo E."
     ],
     "startTime": "23:00",
-    "url": "https://ra.co/events/2476248"
+    "url": "https://ra.co/events/2476248",
+    "id": "a110eceb"
   }
 ]
