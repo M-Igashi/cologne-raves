@@ -2,6 +2,17 @@
   {
     "title": "Klubnacht",
     "venue": "Gewölbe",
+    "date": "2026-08-01",
+    "startTime": "23:00",
+    "artists": [
+      "Etane",
+      "Westbam"
+    ],
+    "url": "https://gewoelbe.ticket.io/d4TN3MZA/"
+  },
+  {
+    "title": "Klubnacht",
+    "venue": "Gewölbe",
     "date": "2026-08-08",
     "startTime": "23:00",
     "artists": [
@@ -11,5 +22,17 @@
     ],
     "url": "https://gewoelbe.ticket.io/AzcJSRRK/",
     "id": "a5e5ee35"
+  },
+  {
+    "title": "Perfect Timing",
+    "venue": "Gewölbe",
+    "date": "2026-08-15",
+    "startTime": "23:00",
+    "artists": [
+      "Fero Duman & Nic Lorenz & Simes",
+      "Michelle Vanja",
+      "Nick Curly"
+    ],
+    "url": "https://gewoelbe.ticket.io/RqdJKWTd/"
   }
 ]
