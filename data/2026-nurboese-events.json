@@ -69,5 +69,18 @@
     "artists": [],
     "url": "https://rausgegangen.de/en/events/nurbose-472026-open-air-0/",
     "id": "63f239fd"
+  },
+  {
+    "venue": "Helios37",
+    "date": "2026-08-15",
+    "title": "NURBÖSE 15.08",
+    "startTime": "23:00",
+    "artists": [
+      "Métaraph",
+      "Skippo",
+      "Tariel",
+      "Calima"
+    ],
+    "url": "https://rausgegangen.de/en/events/nurbose-1508-0/?mtm_campaign=teilen_gewinnspiel&mtm_kwd=web"
   }
 ]
