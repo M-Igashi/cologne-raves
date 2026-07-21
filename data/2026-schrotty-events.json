@@ -139,7 +139,11 @@
     "date": "2026-10-02",
     "title": "ADRENALINE FAMILY TOUR / Schrotty, Cologne",
     "startTime": "23:00",
-    "artists": [],
+    "artists": [
+      "Cloudy",
+      "Adrian Mills",
+      "KUKO"
+    ],
     "url": "https://adrenaline.ticket.io/ZZ08W3YP/",
     "id": "8ccda30c"
   },
