@@ -27,7 +27,7 @@ interface EventData {
   venue: string;
   date: string;
   startTime: string;
-  artists?: string[];
+  artists?: string; // raw comma-separated input; split into string[] in generateJson
   url?: string;
 }
 
@@ -37,7 +37,7 @@ const generateDefaultEvent = (): EventData => ({
   venue: "",
   date: "",
   startTime: "",
-  artists: [],
+  artists: "",
   url: "",
 });
 
@@ -62,11 +62,7 @@ export default function EventForm() {
     value: string,
   ) => {
     const updated = [...events];
-    if (field === "artists") {
-      updated[index][field] = value.split(",").map((s) => s.trim());
-    } else {
-      updated[index][field] = value;
-    }
+    updated[index][field] = value;
     setEvents(updated);
   };
 
@@ -84,6 +80,10 @@ export default function EventForm() {
     return events.map((event) => ({
       ...event,
       id: event.id.trim(), // Keep empty if no ID provided - GitHub Actions will generate it
+      artists: (event.artists || "")
+        .split(",")
+        .map((s) => s.trim())
+        .filter(Boolean),
     }));
   };
 
@@ -463,7 +463,7 @@ export default function EventForm() {
               <Input
                 className="border-l-4 border-gray-300"
                 placeholder="Artists (optional, comma separated)"
-                value={event.artists?.join(", ") || ""}
+                value={event.artists || ""}
                 onChange={(e) => updateEvent(i, "artists", e.target.value)}
               />
               <Textarea
