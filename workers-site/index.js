@@ -23,6 +23,10 @@ export default {
       return handleNotifyEvent(request, env, ctx);
     }
 
+    if (url.pathname === "/favicon.ico") {
+      return Response.redirect(`${ALLOWED_ORIGIN}/favicon.png`, 301);
+    }
+
     return handleStaticAssets(request, env, url);
   },
 
