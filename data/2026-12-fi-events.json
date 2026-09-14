@@ -1,0 +1,32 @@
+[
+  {
+    "title": "fi x Kaufmann",
+    "venue": "fi",
+    "date": "2026-12-12",
+    "startTime": "23:00",
+    "artists": [
+      "Kaufmann"
+    ],
+    "url": "https://ursprung-fi.de/"
+  },
+  {
+    "title": "fi x Dax J",
+    "venue": "fi",
+    "date": "2026-12-18",
+    "startTime": "23:00",
+    "artists": [
+      "Dax J"
+    ],
+    "url": "https://ursprung-fi.de/"
+  },
+  {
+    "title": "fi x Pan Pot",
+    "venue": "fi",
+    "date": "2026-12-26",
+    "startTime": "23:00",
+    "artists": [
+      "Pan Pot"
+    ],
+    "url": "https://ursprung-fi.de/"
+  }
+]
