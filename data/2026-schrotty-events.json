@@ -109,7 +109,8 @@
     "startTime": "16:00",
     "artists": [
       "ANNA REUSCH",
-      "THOMAS SCHUMACHER"
+      "THOMAS SCHUMACHER",
+      "A.D.H.S."
     ],
     "url": "https://schrotty.ticket.io/quoDUcTN/",
     "id": "feaa091b"
@@ -130,7 +131,13 @@
     "date": "2026-09-25",
     "title": "EhrenKlub im Schrotty #14",
     "startTime": "23:00",
-    "artists": [],
+    "artists": [
+      "USH",
+      "Riot Shift",
+      "TITI",
+      "Dikke Baap",
+      "S*Y*N*K"
+    ],
     "url": "https://rausgegangen.de/en/events/ehrenklub-im-schrotty-14-0/",
     "id": "5ca73ae4"
   },

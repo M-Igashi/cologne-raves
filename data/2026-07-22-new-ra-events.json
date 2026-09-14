@@ -355,7 +355,6 @@
     "startTime": "23:00",
     "url": "https://ra.co/events/2472123"
   },
-
   {
     "id": "67ba3b58",
     "venue": "TBA - Konrad-Adenauer-Ufer, 50668 Köln, Schiffanlegestelle Viking River Cruises 4",
@@ -601,22 +600,13 @@
     "url": "https://ra.co/events/2357583"
   },
   {
-    "id": "edfd2b43",
-    "venue": "fi",
-    "date": "2026-10-02",
-    "title": "Aura with Chlär",
-    "artists": [
-      "Chlär"
-    ],
-    "startTime": "23:00",
-    "url": "https://ra.co/events/2391353"
-  },
-  {
     "id": "749deeea",
     "venue": "Club Bahnhof Ehrenfeld",
     "date": "2026-10-02",
     "title": "Chin Chin - Tiere der Nacht",
-    "artists": [],
+    "artists": [
+      "clubm8"
+    ],
     "startTime": "22:00",
     "url": "https://ra.co/events/2481390"
   },
@@ -626,7 +616,14 @@
     "date": "2026-10-10",
     "title": "STUDIO 69 w/ Egyptian Lover & ARABIAN PRINCE",
     "artists": [
-      "Egyptian Lover"
+      "Egyptian Lover",
+      "Cufme",
+      "DJ Business (2)",
+      "DJ DURSTLÖSCHER",
+      "Lizzle",
+      "Nikity",
+      "Sneaky Pete",
+      "Sophti"
     ],
     "startTime": "23:00",
     "url": "https://ra.co/events/2433879"
