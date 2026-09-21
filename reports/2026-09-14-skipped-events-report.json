@@ -1,0 +1,274 @@
+[
+  {
+    "ra_event": {
+      "id": "",
+      "venue": "Gewölbe",
+      "date": "2026-09-19",
+      "title": "Klubnacht with Adiel, Di², EPHIE",
+      "artists": [
+        "Adiel",
+        "Di² (1)",
+        "EPHIE"
+      ],
+      "startTime": "23:00",
+      "url": "https://ra.co/events/2516822"
+    },
+    "existing_event": {
+      "id": "",
+      "url": "https://gewoelbe.ticket.io/vfuXdxqy/",
+      "name": "Klubnacht",
+      "date": "2026-09-19",
+      "venue": "Gewölbe",
+      "source_file": "2026-09-gewoelbe-events.json"
+    },
+    "reason": "similar_match_non_ra"
+  },
+  {
+    "ra_event": {
+      "id": "",
+      "venue": "fi",
+      "date": "2026-09-26",
+      "title": "fi x u.r. trax & Phonovision & Flinta*Tunes",
+      "artists": [
+        "Arninho",
+        "HiHat",
+        "u.r.trax",
+        "alleira"
+      ],
+      "startTime": "23:00",
+      "url": "https://ra.co/events/2506402"
+    },
+    "existing_event": {
+      "id": "",
+      "url": "https://rausgegangen.de/en/events/fi-garten-x-ur-trax-phonovison-flintatunes-0/",
+      "name": "fi x u.r. trax & Phonovision & Flinta*Tunes",
+      "date": "2026-09-26",
+      "venue": "fi",
+      "source_file": "2026-09-fi-events.json"
+    },
+    "reason": "exact_match_non_ra"
+  },
+  {
+    "ra_event": {
+      "id": "",
+      "venue": "Gewölbe",
+      "date": "2026-09-26",
+      "title": "Klubnacht with DJ ASS TITS, Sarah Sommers -live-, Plumitaa",
+      "artists": [
+        "DJ ASS TITS",
+        "Sarah Sommers",
+        "Plumitaa"
+      ],
+      "startTime": "23:00",
+      "url": "https://ra.co/events/2534408"
+    },
+    "existing_event": {
+      "id": "",
+      "url": "https://gewoelbe.ticket.io/ACnLNyAK/",
+      "name": "Klubnacht",
+      "date": "2026-09-26",
+      "venue": "Gewölbe",
+      "source_file": "2026-09-gewoelbe-events.json"
+    },
+    "reason": "similar_match_non_ra"
+  },
+  {
+    "ra_event": {
+      "id": "",
+      "venue": "Gewölbe",
+      "date": "2026-10-02",
+      "title": "rau.ton with BLANKA, Marco Hilbert, Nick Deeken",
+      "artists": [
+        "BLANKA",
+        "Marco Hilbert (2)",
+        "Nick Deeken"
+      ],
+      "startTime": "23:00",
+      "url": "https://ra.co/events/2525204"
+    },
+    "existing_event": {
+      "id": "",
+      "url": "https://gewoelbe.ticket.io/U7SzDlAE/",
+      "name": "rau.ton",
+      "date": "2026-10-02",
+      "venue": "Gewölbe",
+      "source_file": "2026-10-gewoelbe-events.json"
+    },
+    "reason": "similar_match_non_ra"
+  },
+  {
+    "ra_event": {
+      "id": "",
+      "venue": "Gewölbe",
+      "date": "2026-10-03",
+      "title": "Im Fokus with Habben & Sandilé, salmjak, Savsannah & Philo",
+      "artists": [
+        "Sebastian Habben",
+        "Sandilé",
+        "salmjak",
+        "Savsannah",
+        "Philo_"
+      ],
+      "startTime": "23:00",
+      "url": "https://ra.co/events/2536738"
+    },
+    "existing_event": {
+      "id": "",
+      "url": "https://gewoelbe.ticket.io/NrMSy8jT/",
+      "name": "Im Fokus",
+      "date": "2026-10-03",
+      "venue": "Gewölbe",
+      "source_file": "2026-10-gewoelbe-events.json"
+    },
+    "reason": "similar_match_non_ra"
+  },
+  {
+    "ra_event": {
+      "id": "",
+      "venue": "fi",
+      "date": "2026-10-03",
+      "title": "fi x Patrick Mason & Loveselectors",
+      "artists": [
+        "Juni",
+        "Patrick Mason",
+        "DJ ASS TITS",
+        "Rafiki",
+        "zinho"
+      ],
+      "startTime": "23:00",
+      "url": "https://ra.co/events/2530446"
+    },
+    "existing_event": {
+      "id": "",
+      "url": "https://rausgegangen.de/en/events/fi-x-patrick-mason-loveselectors-0/",
+      "name": "fi x Patrick Mason & Loveselectors",
+      "date": "2026-10-03",
+      "venue": "fi",
+      "source_file": "2026-10-fi-events.json"
+    },
+    "reason": "exact_match_non_ra"
+  },
+  {
+    "ra_event": {
+      "id": "",
+      "venue": "fi",
+      "date": "2026-10-09",
+      "title": "fi x LAMMER & Wetdreams & SoundSound",
+      "artists": [
+        "Lizzle",
+        "LAMMER",
+        "Mismatch Cologne",
+        "909 RACING TEAM",
+        "Vagabund",
+        "Carl Bergé",
+        "alleira"
+      ],
+      "startTime": "23:00",
+      "url": "https://ra.co/events/2532413"
+    },
+    "existing_event": {
+      "id": "",
+      "url": "https://rausgegangen.de/en/events/fi-x-lammer-wetdreams-soundsound-0/",
+      "name": "fi x Lammer & Wetdreams & SoundSound",
+      "date": "2026-10-09",
+      "venue": "fi",
+      "source_file": "2026-10-fi-events.json"
+    },
+    "reason": "exact_match_non_ra"
+  },
+  {
+    "ra_event": {
+      "id": "",
+      "venue": "fi",
+      "date": "2026-10-16",
+      "title": "fi x The Hacker & Hoove",
+      "artists": [
+        "ALFALFA (UK)",
+        "Julian Bomm",
+        "Krackk",
+        "The Hacker",
+        "Greta Perola",
+        "Leon Hagen",
+        "Thalo Santana"
+      ],
+      "startTime": "23:00",
+      "url": "https://ra.co/events/2533664"
+    },
+    "existing_event": {
+      "id": "",
+      "url": "https://rausgegangen.de/en/events/fi-x-the-hacker-hoove-0/",
+      "name": "fi x The Hacker & Hoove",
+      "date": "2026-10-16",
+      "venue": "fi",
+      "source_file": "2026-10-fi-events.json"
+    },
+    "reason": "exact_match_non_ra"
+  },
+  {
+    "ra_event": {
+      "id": "",
+      "venue": "fi",
+      "date": "2026-10-17",
+      "title": "fi x Kollektiv Turmstrasse & Jonathan Kaspar & friendly Connections",
+      "artists": [
+        "Kollektiv Turmstrasse",
+        "Jonathan Kaspar"
+      ],
+      "startTime": "23:00",
+      "url": "https://ra.co/events/2516469"
+    },
+    "existing_event": {
+      "id": "",
+      "url": "https://www.eventbrite.de/e/fi-x-kollektiv-turmstrasse-jonathan-kaspar-friendly-connections-tickets-1998414548711",
+      "name": "fi x Kollektiv Turmstrasse & Jonathan Kaspar & friendly Connections",
+      "date": "2026-10-17",
+      "venue": "fi",
+      "source_file": "2026-10-fi-events.json"
+    },
+    "reason": "exact_match_non_ra"
+  },
+  {
+    "ra_event": {
+      "id": "",
+      "venue": "Gewölbe",
+      "date": "2026-10-17",
+      "title": "krakelee club with Andy Garvey, a:tok, oskø",
+      "artists": [
+        "Andy Garvey",
+        "a:tok",
+        "oskø"
+      ],
+      "startTime": "23:00",
+      "url": "https://ra.co/events/2533398"
+    },
+    "existing_event": {
+      "id": "",
+      "url": "https://gewoelbe.ticket.io/zpb3mFW3/",
+      "name": "krakelee club",
+      "date": "2026-10-17",
+      "venue": "Gewölbe",
+      "source_file": "2026-10-gewoelbe-events.json"
+    },
+    "reason": "similar_match_non_ra"
+  },
+  {
+    "ra_event": {
+      "id": "",
+      "venue": "Bootshaus",
+      "date": "2026-10-31",
+      "title": "Bootshaus & Loonyland pres. Halloween 2026",
+      "artists": [],
+      "startTime": "21:00",
+      "url": "https://ra.co/events/2355552"
+    },
+    "existing_event": {
+      "id": "caff640d",
+      "url": "https://bootshaus-club.ticket.io/Hv4f09p8/",
+      "name": "Bootshaus & Loonyland pres. Halloween 2026",
+      "date": "2026-10-31",
+      "venue": "Bootshaus",
+      "source_file": "2026-bootshaus-events.json"
+    },
+    "reason": "exact_match_non_ra"
+  }
+]
