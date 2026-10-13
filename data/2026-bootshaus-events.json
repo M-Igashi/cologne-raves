@@ -235,7 +235,13 @@
     "venue": "Bootshaus",
     "date": "2026-10-31",
     "startTime": "21:00",
-    "artists": [],
+    "artists": [
+      "Jerome",
+      "Ave (DE)",
+      "Chris El Greco",
+      "Caro van Ee",
+      "LSG"
+    ],
     "url": "https://bootshaus-club.ticket.io/Hv4f09p8/",
     "id": "caff640d"
   },

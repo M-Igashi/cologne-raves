@@ -1,22 +1,31 @@
 [
   {
-    "title": "fi x Traumer",
+    "title": "fi x Traumer & Akte",
     "venue": "fi",
     "date": "2026-11-20",
     "startTime": "23:00",
     "artists": [
-      "Traumer"
+      "Traumer",
+      "Interplay",
+      "Phil2",
+      "ISABELL",
+      "Costanza",
+      "Philipp Stoffel"
     ],
     "url": "https://ursprung-fi.de/",
     "id": "dea782b8"
   },
   {
-    "title": "fi x Dr. Banana",
+    "title": "fi x Dr. Banana & avontuur & Kontur",
     "venue": "fi",
     "date": "2026-11-28",
     "startTime": "23:00",
     "artists": [
-      "Dr. Banana"
+      "Dr. Banana",
+      "Soft Force",
+      "DJ Flatbeat",
+      "Kribs",
+      "Mariami"
     ],
     "url": "https://ursprung-fi.de/",
     "id": "7147249c"
