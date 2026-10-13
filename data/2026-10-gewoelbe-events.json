@@ -39,6 +39,19 @@
     "id": "3bbe460d"
   },
   {
+    "title": "Night of Suprise",
+    "venue": "Gewölbe",
+    "date": "2026-10-16",
+    "startTime": "23:00",
+    "artists": [
+      "1LDK",
+      "CRYSTALLMESS",
+      "Deena Abdelwahed",
+      "KAVARI"
+    ],
+    "url": "https://gewoelbe.ticket.io/lpiwP2me/"
+  },
+  {
     "title": "krakelee club",
     "venue": "Gewölbe",
     "date": "2026-10-17",
@@ -75,5 +88,29 @@
     ],
     "url": "https://gewoelbe.ticket.io/Sau31E99/",
     "id": "115b12bb"
+  },
+  {
+    "title": "Klubnacht",
+    "venue": "Gewölbe",
+    "date": "2026-10-30",
+    "startTime": "23:00",
+    "artists": [
+      "Anna Cainelli",
+      "Fritz Kalkbrenner",
+      "Motip White"
+    ],
+    "url": "https://gewoelbe.ticket.io/YXuFar6m/"
+  },
+  {
+    "title": "instinkt lab",
+    "venue": "Gewölbe",
+    "date": "2026-10-31",
+    "startTime": "23:00",
+    "artists": [
+      "04061",
+      "Blasha & Allatt",
+      "mojo"
+    ],
+    "url": "https://gewoelbe.ticket.io/gx3bv4xm/"
   }
 ]
