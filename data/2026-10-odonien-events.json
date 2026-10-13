@@ -5,7 +5,8 @@
     "date": "2026-10-14",
     "startTime": "23:00",
     "artists": [],
-    "url": "https://odonien.de/veranstaltungen/beats-bass-14-10"
+    "url": "https://odonien.de/veranstaltungen/beats-bass-14-10",
+    "id": "6058a1fe"
   },
   {
     "title": "20 Jahre Double Impact",
@@ -40,7 +41,8 @@
       "Thury Tonarm",
       "MC Best Basstard"
     ],
-    "url": "https://double-impact.ticket.io/sbFGRDbD/"
+    "url": "https://double-impact.ticket.io/sbFGRDbD/",
+    "id": "bb3dfb3f"
   },
   {
     "title": "ONLYRAVES pres. Lilly Palmer XXL Set",
@@ -50,7 +52,8 @@
     "artists": [
       "Lilly Palmer (4h set)"
     ],
-    "url": "https://tonite.ticket.io/OFwlroK5/"
+    "url": "https://tonite.ticket.io/OFwlroK5/",
+    "id": "433eea69"
   },
   {
     "title": "10 Jahre KETOGA",
@@ -58,7 +61,8 @@
     "date": "2026-10-23",
     "startTime": "23:00",
     "artists": [],
-    "url": "https://111000111.de/3K/LE/"
+    "url": "https://111000111.de/3K/LE/",
+    "id": "1fbfdcb8"
   },
   {
     "title": "Katermukke Label Night // Ehrenfeld XL",
@@ -75,7 +79,8 @@
       "Minoas Cirillo",
       "Christian Freden"
     ],
-    "url": "https://ehrenfeldxl.ticket.io/hn8UjhpE/"
+    "url": "https://ehrenfeldxl.ticket.io/hn8UjhpE/",
+    "id": "5af11d8b"
   },
   {
     "title": "SIMSALABIM Magic Halloween",
@@ -102,6 +107,7 @@
       "Sab.Rix",
       "Einfach Ich"
     ],
-    "url": "https://vibezproduction.ticket.io/1csM0noW/"
+    "url": "https://vibezproduction.ticket.io/1csM0noW/",
+    "id": "9ec55493"
   }
 ]
