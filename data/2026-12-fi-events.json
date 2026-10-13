@@ -1,5 +1,35 @@
 [
   {
+    "title": "fi x 3000 Grad",
+    "venue": "fi",
+    "date": "2026-12-05",
+    "startTime": "23:00",
+    "artists": [
+      "Corios & Maria Theresia von Eberg",
+      "Justice",
+      "Mollono.Bass & Stephan Zovsky aka Green Lake Project",
+      "Bonnie Spacey",
+      "Zahara"
+    ],
+    "url": "https://rausgegangen.de/en/events/fi-x-3000-grad-0/"
+  },
+  {
+    "title": "fi x [a:rpia:r] & rheinrhythmik",
+    "venue": "fi",
+    "date": "2026-12-11",
+    "startTime": "23:00",
+    "artists": [
+      "Petre Inspirescu",
+      "Raresh",
+      "Rhadoo",
+      "Felix",
+      "Felix Monreal",
+      "Isabell",
+      "Nils"
+    ],
+    "url": "https://rausgegangen.de/en/events/fi-x-arpiar-rheinrhythmik-0/"
+  },
+  {
     "title": "fi x Kaufmann",
     "venue": "fi",
     "date": "2026-12-12",
@@ -20,6 +50,21 @@
     ],
     "url": "https://ursprung-fi.de/",
     "id": "1b1832c1"
+  },
+  {
+    "title": "fi x Acid Pauli & Jonathan Kaspar & Plasma",
+    "venue": "fi",
+    "date": "2026-12-19",
+    "startTime": "23:00",
+    "artists": [
+      "Acid Pauli",
+      "Jonathan Kaspar",
+      "Egna",
+      "Elisen",
+      "Di²",
+      "Mariami"
+    ],
+    "url": "https://www.eventbrite.de/e/fi-x-acid-pauli-jonathan-kaspar-plasma-tickets-2003255195215"
   },
   {
     "title": "fi x Pan Pot",

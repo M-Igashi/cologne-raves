@@ -1,19 +1,78 @@
 [
   {
+    "title": "fi x Cologne Is For Lovers",
+    "venue": "fi",
+    "date": "2026-11-07",
+    "startTime": "23:00",
+    "artists": [
+      "DJ Deep",
+      "Tom Kutsche",
+      "Femdelic",
+      "DJ Funky Fresh Mike"
+    ],
+    "url": "https://rausgegangen.de/en/events/fi-x-cologne-is-for-lovers-0/"
+  },
+  {
+    "title": "fi x ELFTER ELFTER x Kalte Liebe & Akt",
+    "venue": "fi",
+    "date": "2026-11-11",
+    "startTime": "18:00",
+    "artists": [
+      "DJ Hörde",
+      "Evissimax",
+      "Kalte Liebe (DJ Set)",
+      "Kimme",
+      "Paaradoxx",
+      "Ursula Erdmann",
+      "Zahnatzin"
+    ],
+    "url": "https://rausgegangen.de/en/events/fi-x-hyper-dreams-akt-0/"
+  },
+  {
+    "title": "fi x && x Tipping Point w/ Frida Darko",
+    "venue": "fi",
+    "date": "2026-11-14",
+    "startTime": "23:00",
+    "artists": [
+      "Frida Darko",
+      "Atric",
+      "Sahra Bass",
+      "ksheesh & fröhlich",
+      "NUAH",
+      "V. Paul"
+    ],
+    "url": "https://undundbooking.ticket.io/sA67nkD0/"
+  },
+  {
     "title": "fi x Traumer & Akte",
     "venue": "fi",
     "date": "2026-11-20",
     "startTime": "23:00",
     "artists": [
       "Traumer",
-      "Interplay",
-      "Phil2",
-      "ISABELL",
+      "Interplay b2b Phil2",
+      "Isabell b2b Mira Mertens",
       "Costanza",
       "Philipp Stoffel"
     ],
-    "url": "https://ursprung-fi.de/",
+    "url": "https://rausgegangen.de/en/events/fi-x-traumer-akte-0/",
     "id": "dea782b8"
+  },
+  {
+    "title": "fi x Dominik Eulberg & neunsechsneun",
+    "venue": "fi",
+    "date": "2026-11-21",
+    "startTime": "23:00",
+    "artists": [
+      "Dominik Eulberg",
+      "Cosanne",
+      "Frau Rü",
+      "André Wiese",
+      "Carl1ta",
+      "DJ Bowlz",
+      "PATEK"
+    ],
+    "url": "https://www.eventbrite.de/e/fi-x-dominik-eulberg-neunsechsneun-tickets-2002691718842"
   },
   {
     "title": "fi x Dr. Banana & avontuur & Kontur",
@@ -22,12 +81,14 @@
     "startTime": "23:00",
     "artists": [
       "Dr. Banana",
-      "Soft Force",
-      "DJ Flatbeat",
+      "Simon Behrendt",
+      "Soft Force b2b DJ Flatbeat",
+      "Æko",
       "Kribs",
+      "Kyohara",
       "Mariami"
     ],
-    "url": "https://ursprung-fi.de/",
+    "url": "https://rausgegangen.de/en/events/fi-x-dr-banana-avontuur-kontur-0/",
     "id": "7147249c"
   }
 ]
