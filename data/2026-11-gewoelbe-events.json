@@ -40,6 +40,20 @@
     "id": "0c0a1bde"
   },
   {
+    "title": "Perfect Timing",
+    "venue": "Gewölbe",
+    "date": "2026-11-13",
+    "startTime": "23:00",
+    "artists": [
+      "Biggie Schoellz",
+      "Fero Duman",
+      "Nic Lorenz",
+      "Sidney Charles",
+      "SIMES"
+    ],
+    "url": "https://gewoelbe.ticket.io/uSSVqGPf/"
+  },
+  {
     "title": "Klubnacht",
     "venue": "Gewölbe",
     "date": "2026-11-14",
@@ -62,5 +76,40 @@
     ],
     "url": "https://gewoelbe.ticket.io/nspwLrRk/",
     "id": "628f4a1a"
+  },
+  {
+    "title": "CSM",
+    "venue": "Gewölbe",
+    "date": "2026-11-21",
+    "startTime": "23:00",
+    "artists": [
+      "Anatoli & DJ Brause",
+      "DJ Karriere",
+      "Paula Tape"
+    ],
+    "url": "https://gewoelbe.ticket.io/xBBSlTHu/"
+  },
+  {
+    "title": "Klubnacht",
+    "venue": "Gewölbe",
+    "date": "2026-11-27",
+    "startTime": "23:00",
+    "artists": [
+      "LALENA",
+      "Moonbootica"
+    ],
+    "url": "https://gewoelbe.ticket.io/MQ7KNwM7/"
+  },
+  {
+    "title": "Im Fokus",
+    "venue": "Gewölbe",
+    "date": "2026-11-28",
+    "startTime": "23:00",
+    "artists": [
+      "Di² & Elisen",
+      "Locrian",
+      "Marco Hilbert & Rilé"
+    ],
+    "url": "https://gewoelbe.ticket.io/e26aZlrs/"
   }
 ]

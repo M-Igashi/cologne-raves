@@ -1,5 +1,27 @@
 [
   {
+    "title": "Hoove",
+    "venue": "Gewölbe",
+    "date": "2026-12-04",
+    "startTime": "23:00",
+    "artists": [
+      "Chiara Kley",
+      "Julian",
+      "Onur Özer"
+    ],
+    "url": "https://gewoelbe.ticket.io/x44Cg92S/"
+  },
+  {
+    "title": "Schleuse Eins",
+    "venue": "Gewölbe",
+    "date": "2026-12-05",
+    "startTime": "23:00",
+    "artists": [
+      "ATEQ & Skee Mask (all night long)"
+    ],
+    "url": "https://gewoelbe.ticket.io/hT4bn7Cj/"
+  },
+  {
     "title": "CLR",
     "venue": "Gewölbe",
     "date": "2026-12-11",
@@ -9,5 +31,58 @@
     ],
     "url": "https://gewoelbe.ticket.io/kjC470Ay/",
     "id": "89767ac8"
+  },
+  {
+    "title": "Jack This",
+    "venue": "Gewölbe",
+    "date": "2026-12-12",
+    "startTime": "23:00",
+    "artists": [
+      "evolpeeD & Raphael Hansen",
+      "lyzanne",
+      "Tasha"
+    ],
+    "url": "https://gewoelbe.ticket.io/Cu1sNmhg/"
+  },
+  {
+    "title": "House of Rekids",
+    "venue": "Gewölbe",
+    "date": "2026-12-18",
+    "startTime": "23:00",
+    "artists": [
+      "Mathias Kaden",
+      "Radio Slave",
+      "Sandilé"
+    ],
+    "url": "https://gewoelbe.ticket.io/YnPr8GEb/"
+  },
+  {
+    "title": "Phantasy Dance",
+    "venue": "Gewölbe",
+    "date": "2026-12-19",
+    "startTime": "23:00",
+    "artists": [
+      "dj sweet6teen",
+      "Ivan Smagghe"
+    ],
+    "url": "https://gewoelbe.ticket.io/EjjjCwpr/"
+  },
+  {
+    "title": "Heiligabend",
+    "venue": "Gewölbe",
+    "date": "2026-12-24",
+    "startTime": "23:00",
+    "artists": [
+      "Shumi (all night long)"
+    ],
+    "url": "https://gewoelbe.ticket.io/zlRBEpqq/"
+  },
+  {
+    "title": "Silvester",
+    "venue": "Gewölbe",
+    "date": "2026-12-31",
+    "startTime": "23:00",
+    "artists": [],
+    "url": "https://gewoelbe.ticket.io/Ntk9r2kF/"
   }
 ]

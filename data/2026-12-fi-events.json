@@ -32,25 +32,36 @@
     "id": "1ac5aaa9"
   },
   {
-    "title": "fi x Kaufmann",
+    "title": "fi x Kaufmann & Pl4net Balearic",
     "venue": "fi",
     "date": "2026-12-12",
     "startTime": "23:00",
     "artists": [
-      "Kaufmann"
+      "Kaufmann",
+      "Daniel Krau",
+      "Pardis",
+      "Claus Casper",
+      "Eszter",
+      "Maltitz"
     ],
-    "url": "https://ursprung-fi.de/",
+    "url": "https://rausgegangen.de/en/events/fi-x-kaufmann-pl4net-balearic-0/",
     "id": "306b0a42"
   },
   {
-    "title": "fi x Dax J",
+    "title": "fi x Dax J & Hoove",
     "venue": "fi",
     "date": "2026-12-18",
     "startTime": "23:00",
     "artists": [
-      "Dax J"
+      "Dax J",
+      "Hoove",
+      "Krackk",
+      "Robin Tasi",
+      "Adri",
+      "Annyrock",
+      "Thalo Santana"
     ],
-    "url": "https://ursprung-fi.de/",
+    "url": "https://rausgegangen.de/en/events/fi-x-dax-j-hoove-0/",
     "id": "1b1832c1"
   },
   {
@@ -70,14 +81,35 @@
     "id": "746dcbb8"
   },
   {
-    "title": "fi x Pan Pot",
+    "title": "fi x Pan-Pot & Etage147",
     "venue": "fi",
     "date": "2026-12-26",
     "startTime": "23:00",
     "artists": [
-      "Pan Pot"
+      "Pan-Pot",
+      "LALENA",
+      "Chiara Kley",
+      "Eva Mo",
+      "SEL/TEN",
+      "Jakob Kraft"
     ],
-    "url": "https://ursprung-fi.de/",
+    "url": "https://rausgegangen.de/en/events/fi-x-pan-pot-etage147-0/",
     "id": "9e851ddd"
+  },
+  {
+    "title": "fi x NEU 2027",
+    "venue": "fi",
+    "date": "2026-12-31",
+    "startTime": "22:00",
+    "artists": [
+      "Anna & Ramón",
+      "Theta Kavka b2b Robin Kamp",
+      "Zahara b2b Steve Bonde",
+      "ISO",
+      "Fjaka",
+      "Julien Charles b2b André Sennet",
+      "Miri"
+    ],
+    "url": "https://rausgegangen.de/en/events/fi-x-neu-2027-0/"
   }
 ]

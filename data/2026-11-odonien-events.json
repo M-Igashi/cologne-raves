@@ -16,5 +16,69 @@
     ],
     "url": "https://www.eventbrite.de/e/1111-in-odonien-18h-outdoorindoor-rave-i-oliver-koletzki-uvm-tickets-2000522654111",
     "id": "3dafb861"
+  },
+  {
+    "title": "ROBODONIEN LEUCHTET Aftershowparty",
+    "venue": "Odonien",
+    "date": "2026-11-13",
+    "startTime": "22:00",
+    "artists": [
+      "domingo",
+      "berg2berg",
+      "no:elia",
+      "avocado",
+      "snabel",
+      "juNi b2b bernau"
+    ],
+    "url": "https://rausgegangen.de/events/robodonien-leuchtet-afterparty-0/"
+  },
+  {
+    "title": "Praerie Herbstfest(ival)",
+    "venue": "Odonien",
+    "date": "2026-11-14",
+    "startTime": "23:00",
+    "artists": [
+      "Pauli Pocket",
+      "Lampé",
+      "Aio",
+      "Maurice Mino",
+      "Sheila",
+      "sin:port",
+      "Rachel Raw",
+      "Martin Ka",
+      "ZweiE"
+    ],
+    "url": "https://rausgegangen.de/events/praerie-festival-hebstfest-w-pauli-pocket-lampe-aio-mino-sin-0/",
+    "id": "e1106990"
+  },
+  {
+    "title": "Saus & Braus pres. Mira & Chris Schwarzwälder",
+    "venue": "Odonien",
+    "date": "2026-11-20",
+    "startTime": "23:00",
+    "artists": [
+      "Mira & Chris Schwarzwälder",
+      "Bruno Traum b2b arthur",
+      "Nessy b2b JOTTY",
+      "Tamer b2b moriza",
+      "Tim aus Tralien b2b Alien"
+    ],
+    "url": "https://www.eventbrite.de/e/mira-chris-schwarzwalder-all-night-long-in-odonien-tickets-1998890497286",
+    "id": "a46b5176"
+  },
+  {
+    "title": "OCN - odonische Clubnacht",
+    "venue": "Odonien",
+    "date": "2026-11-28",
+    "startTime": "23:00",
+    "artists": [
+      "janein",
+      "me_dha",
+      "stigmatique",
+      "lena m",
+      "moglis_music",
+      "lizzlbeth"
+    ],
+    "url": "https://rausgegangen.de/events/ocn-odonische-clubnacht-0/"
   }
 ]
