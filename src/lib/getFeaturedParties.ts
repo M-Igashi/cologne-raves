@@ -1,31 +1,24 @@
-import { startOfWeek, endOfWeek } from "date-fns";
+import { startOfWeek, endOfWeek, format } from "date-fns";
 import { toZonedTime } from "date-fns-tz";
 import { getAllParties, type Party } from "./getAllParties.js";
 
 const BERLIN_TIMEZONE = "Europe/Berlin";
-const MONDAY = 1;
+const DATE_FORMAT = "yyyy-MM-dd";
 
-function getBerlinNow(): Date {
-  return toZonedTime(new Date(), BERLIN_TIMEZONE);
-}
-
-function getFeaturedDateRange(): { start: Date; end: Date } {
-  const now = getBerlinNow();
+// Current Monday-to-Sunday week in Berlin as YYYY-MM-DD strings, directly
+// comparable with event dates regardless of the build machine's timezone.
+export function getBerlinWeekRange(): { start: string; end: string } {
+  const now = toZonedTime(new Date(), BERLIN_TIMEZONE);
+  const options = { weekStartsOn: 1 } as const;
   return {
-    start: startOfWeek(now, { weekStartsOn: MONDAY }),
-    end: endOfWeek(now, { weekStartsOn: MONDAY }),
+    start: format(startOfWeek(now, options), DATE_FORMAT),
+    end: format(endOfWeek(now, options), DATE_FORMAT),
   };
-}
-
-function isWithinRange(date: Date, start: Date, end: Date): boolean {
-  return date >= start && date <= end;
 }
 
 export async function getFeaturedParties(): Promise<Party[]> {
   const allParties = await getAllParties();
-  const { start, end } = getFeaturedDateRange();
+  const { start, end } = getBerlinWeekRange();
 
-  return allParties.filter(function (party) {
-    return isWithinRange(new Date(party.date), start, end);
-  });
+  return allParties.filter((party) => party.date >= start && party.date <= end);
 }

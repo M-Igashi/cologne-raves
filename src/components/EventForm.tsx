@@ -61,9 +61,11 @@ export default function EventForm() {
     field: keyof EventData,
     value: string,
   ) => {
-    const updated = [...events];
-    updated[index][field] = value;
-    setEvents(updated);
+    setEvents(
+      events.map((event, i) =>
+        i === index ? { ...event, [field]: value } : event,
+      ),
+    );
   };
 
   const addEvent = () => {
@@ -77,13 +79,15 @@ export default function EventForm() {
   };
 
   const generateJson = () => {
-    return events.map((event) => ({
-      ...event,
-      id: event.id.trim(), // Keep empty if no ID provided - GitHub Actions will generate it
-      artists: (event.artists || "")
+    // New events carry no id (GitHub Actions backfills it); empty url is omitted too.
+    return events.map(({ id, url, artists, ...rest }) => ({
+      ...(id.trim() && { id: id.trim() }),
+      ...rest,
+      artists: (artists || "")
         .split(",")
         .map((s) => s.trim())
         .filter(Boolean),
+      ...(url?.trim() && { url: url.trim() }),
     }));
   };
 
@@ -160,12 +164,9 @@ export default function EventForm() {
             result.message || "Your events have been submitted successfully!",
           issueUrl: result.issueUrl,
         });
-        setTimeout(() => {
-          setEvents([generateDefaultEvent()]);
-          setFilenameSuffix("");
-          setSubmitterEmail("");
-          setSubmitStatus({ type: null, message: "" });
-        }, 10000);
+        setEvents([generateDefaultEvent()]);
+        setFilenameSuffix("");
+        setSubmitterEmail("");
       } else {
         setSubmitStatus({
           type: "error",
@@ -219,12 +220,9 @@ export default function EventForm() {
             result.message || "Your event URL has been submitted for review!",
           issueUrl: result.issueUrl,
         });
-        setTimeout(() => {
-          setEventUrl("");
-          setUrlNote("");
-          setSubmitterEmail("");
-          setSubmitStatus({ type: null, message: "" });
-        }, 10000);
+        setEventUrl("");
+        setUrlNote("");
+        setSubmitterEmail("");
       } else {
         setSubmitStatus({
           type: "error",

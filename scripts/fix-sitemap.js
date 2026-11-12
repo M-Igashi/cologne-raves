@@ -1,6 +1,6 @@
 import fs from "fs";
 import path from "path";
-import { execSync } from "node:child_process";
+import { execFileSync } from "node:child_process";
 
 const distDir = "./dist";
 const dataDir = "./data";
@@ -14,10 +14,11 @@ const STATIC_LASTMOD = "2026-04-09";
 
 function getGitLastModified(filePath) {
   try {
-    const result = execSync(`git log -1 --format=%aI -- "${filePath}"`, {
-      encoding: "utf8",
-      stdio: ["pipe", "pipe", "ignore"],
-    }).trim();
+    const result = execFileSync(
+      "git",
+      ["log", "-1", "--format=%aI", "--", filePath],
+      { encoding: "utf8", stdio: ["pipe", "pipe", "ignore"] },
+    ).trim();
     return result ? new Date(result) : null;
   } catch {
     try {

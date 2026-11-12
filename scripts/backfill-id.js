@@ -9,7 +9,7 @@ const dataDir = path.join(__dirname, "..", "data");
 function generateId(party) {
   const hash = crypto
     .createHash("md5")
-    .update(JSON.stringify([party.title, party.date, party.venue]))
+    .update(JSON.stringify([party.title, party.date, party.venue || ""]))
     .digest("hex");
   return hash.slice(0, 8);
 }

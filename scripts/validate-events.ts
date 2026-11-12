@@ -61,12 +61,14 @@ for (const file of files.sort()) {
 
     // Cross-file duplicate check (exact title match)
     const key = `${e.title}|${e.date}|${e.venue || ""}`;
-    if (seen.has(key)) {
-      const prev = seen.get(key)!;
+    const prev = seen.get(key);
+    // A re-emitted event with the same ID is an update shadowing the earlier file.
+    const isUpdate = prev && e.id && prev.id === e.id;
+    if (prev && !isUpdate) {
       errors.push(
         `${prefix}: duplicate of ${prev.file} (${e.title} @ ${e.date} @ ${e.venue})`
       );
-    } else {
+    } else if (!prev) {
       seen.set(key, { file, id: e.id });
     }
 

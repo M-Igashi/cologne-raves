@@ -1,5 +1,6 @@
 ---
 import { CalendarDays, Clock, Headphones, GitBranch } from 'lucide-react';
+import { formatInTimeZone, fromZonedTime } from 'date-fns-tz';
 const {
   id,
   title,
@@ -12,13 +13,14 @@ const {
   showEditLink = true
 } = Astro.props;
 
-// Create start and end date times
-const startDateTime = `${date}T${startTime ?? '23:00'}:00+01:00`;
-// Default end time to 3 hours after start time if not specified
-const endTime = startTime ?
-  String(Math.floor((parseInt(startTime.split(':')[0]) + 3) % 24)).padStart(2, '0') + ':00' :
-  '02:00';
-const endDateTime = `${date}T${endTime}:00+01:00`;
+// Start in Berlin local time (correct CET/CEST offset); end defaults to 3 hours
+// later, which may fall on the next day.
+const TIMEZONE = 'Europe/Berlin';
+const ISO_FORMAT = "yyyy-MM-dd'T'HH:mm:ssxxx";
+const time = /^\d{2}:\d{2}$/.test(startTime ?? '') ? startTime : '23:00';
+const start = fromZonedTime(`${date}T${time}:00`, TIMEZONE);
+const startDateTime = formatInTimeZone(start, TIMEZONE, ISO_FORMAT);
+const endDateTime = formatInTimeZone(new Date(start.getTime() + 3 * 60 * 60 * 1000), TIMEZONE, ISO_FORMAT);
 
 // Default event image
 const defaultImage = "https://cologne.ravers.workers.dev/og-cover.png";
@@ -37,7 +39,8 @@ const defaultImage = "https://cologne.ravers.workers.dev/og-cover.png";
       weekday: 'short',
       day: 'numeric',
       month: 'short',
-      year: 'numeric'
+      year: 'numeric',
+      timeZone: 'UTC'
     })}
     {startTime && (
       <>
@@ -122,5 +125,5 @@ const defaultImage = "https://cologne.ravers.workers.dev/og-cover.png";
       }
     } : {}),
     "url": url || "https://cologne.ravers.workers.dev/"
-  })} />
+  }).replace(/</g, '\\u003c')} />
 </article>

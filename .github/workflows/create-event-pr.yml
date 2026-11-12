@@ -29,6 +29,16 @@ jobs:
       issues: write
 
     steps:
+    - name: Validate filename
+      env:
+        FILENAME: ${{ inputs.filename }}
+      run: |
+        # Must stay in sync with FILENAME_PATTERN in workers-site/index.js
+        if ! printf '%s' "$FILENAME" | grep -Eqx '[A-Za-z0-9][A-Za-z0-9._-]{0,99}\.json'; then
+          echo "Invalid filename"
+          exit 1
+        fi
+
     - name: Checkout repository
       uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
       with:
@@ -48,10 +58,12 @@ jobs:
         echo "name=${BRANCH_NAME}" >> $GITHUB_OUTPUT
 
     - name: Create new branch
+      env:
+        BRANCH_NAME: ${{ steps.branch.outputs.name }}
       run: |
         git config --global user.email "github-actions[bot]@users.noreply.github.com"
         git config --global user.name "GitHub Actions Bot"
-        git checkout -b ${{ steps.branch.outputs.name }}
+        git checkout -b "$BRANCH_NAME"
 
     - name: Create event file
       env:
@@ -128,8 +140,10 @@ jobs:
         Timestamp: $(date -u +%Y-%m-%d' '%H:%M:%S' UTC')"
 
     - name: Push branch
+      env:
+        BRANCH_NAME: ${{ steps.branch.outputs.name }}
       run: |
-        git push origin ${{ steps.branch.outputs.name }}
+        git push origin "$BRANCH_NAME"
 
     - name: Create labels if they don't exist
       env:
@@ -150,10 +164,11 @@ jobs:
         GH_TOKEN: ${{ secrets.PAT_TOKEN || secrets.GITHUB_TOKEN }}
         FILENAME: ${{ inputs.filename }}
         SUBMITTER_EMAIL: ${{ inputs.submitter_email }}
+        BRANCH_NAME: ${{ steps.branch.outputs.name }}
       run: |
         TIMESTAMP="$(date -u +%Y-%m-%d' '%H:%M:%S' UTC')"
         gh pr create \
-          --head "${{ steps.branch.outputs.name }}" \
+          --head "$BRANCH_NAME" \
           --base main \
           --title "New Events: ${FILENAME}" \
           --label "event-submission,automated" \

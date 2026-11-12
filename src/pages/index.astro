@@ -3,9 +3,7 @@ import BaseHead from '../components/BaseHead.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import PartyCard from '../components/PartyCard.astro';
-import { getFeaturedParties } from '../lib/getFeaturedParties';
-import { startOfWeek } from 'date-fns';
-import { toZonedTime } from 'date-fns-tz';
+import { getFeaturedParties, getBerlinWeekRange } from '../lib/getFeaturedParties';
 
 const parties = await getFeaturedParties();
 
@@ -14,8 +12,7 @@ const weekdays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Frida
 const partiesByDay: Record<string, typeof parties> = {};
 
 for (const party of parties) {
-  const date = new Date(party.date);
-  const weekday = weekdays[date.getDay()];
+  const weekday = weekdays[new Date(party.date).getUTCDay()];
   if (!partiesByDay[weekday]) {
     partiesByDay[weekday] = [];
   }
@@ -25,9 +22,7 @@ for (const party of parties) {
 // SEO meta — dynamic week label is intentional (changes weekly when content does).
 // Length budget: Bing wants title <=60 chars (incl. "| Cologne Raves" suffix from
 // BaseHead, ~15 chars) and description in 70-160 chars.
-const berlinNow = toZonedTime(new Date(), 'Europe/Berlin');
-const weekStart = startOfWeek(berlinNow, { weekStartsOn: 1 });
-const weekLabel = weekStart.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+const weekLabel = new Date(getBerlinWeekRange().start).toLocaleDateString('en-US', { month: 'short', day: 'numeric', timeZone: 'UTC' });
 
 const title = `This Week (week of ${weekLabel}) — Cologne Events`;
 const description = `Cologne electronic music events for the week of ${weekLabel}. Browse upcoming parties — venues, lineups, and ticket info. Community-driven, ad-free.`;

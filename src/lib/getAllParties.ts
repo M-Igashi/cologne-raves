@@ -1,6 +1,6 @@
 import fs from "fs";
 import path from "path";
-import { execSync } from "node:child_process";
+import { execFileSync } from "node:child_process";
 import { generateStableId } from "./generateStableId.js";
 
 export interface Party {
@@ -49,23 +49,33 @@ function mergeArtists(a: string[], b: string[]): string[] {
 
 function getGitLastModified(filePath: string): Date | null {
   try {
-    const result = execSync(`git log -1 --format=%aI -- "${filePath}"`, {
-      encoding: "utf8",
-      stdio: ["pipe", "pipe", "ignore"],
-    }).trim();
-
-    return result ? new Date(result) : null;
+    const result = execFileSync(
+      "git",
+      ["log", "-1", "--format=%aI", "--", filePath],
+      { encoding: "utf8", stdio: ["pipe", "pipe", "ignore"] },
+    ).trim();
+    if (result) return new Date(result);
   } catch {
-    try {
-      const stats = fs.statSync(filePath);
-      return stats.mtime;
-    } catch {
-      return null;
-    }
+    // git unavailable: fall through to the file's mtime
+  }
+
+  // Not committed yet (or no git): use mtime so a new local file counts as newest.
+  try {
+    return fs.statSync(filePath).mtime;
+  } catch {
+    return null;
   }
 }
 
-export async function getAllParties(): Promise<Party[]> {
+let cachedParties: Promise<Party[]> | undefined;
+
+// Several pages need the full list; load it once per build.
+export function getAllParties(): Promise<Party[]> {
+  if (import.meta.env?.DEV) return loadAllParties();
+  return (cachedParties ??= loadAllParties());
+}
+
+async function loadAllParties(): Promise<Party[]> {
   const files = fs
     .readdirSync(dataDir)
     .filter((f) => f.endsWith(".json"))
@@ -144,16 +154,16 @@ export async function getAllParties(): Promise<Party[]> {
 
   // Secondary dedup: detect same event at same venue+date with different titles
   // (e.g. RA.co "HOOVE with Alex Neri" vs venue site "Hoove")
-  const venueeDateGroups = new Map<string, Party[]>();
+  const venueDateGroups = new Map<string, Party[]>();
   for (const party of partyMap.values()) {
     const key = `${party.date}|${party.venue}`;
-    if (!venueeDateGroups.has(key)) {
-      venueeDateGroups.set(key, []);
+    if (!venueDateGroups.has(key)) {
+      venueDateGroups.set(key, []);
     }
-    venueeDateGroups.get(key)!.push(party);
+    venueDateGroups.get(key)!.push(party);
   }
 
-  for (const [key, parties] of venueeDateGroups) {
+  for (const parties of venueDateGroups.values()) {
     if (parties.length < 2) continue;
 
     const raEvents = parties.filter((p) => isRAUrl(p.url));

@@ -1,30 +1,41 @@
-const ALLOWED_ORIGIN = "https://cologne.ravers.workers.dev";
+const SITE_ORIGIN = "https://cologne.ravers.workers.dev";
+const GITHUB_API = "https://api.github.com/repos/M-Igashi/cologne-raves";
 
-function corsHeaders(origin) {
-  const allowedOrigin =
-    origin === ALLOWED_ORIGIN ? ALLOWED_ORIGIN : ALLOWED_ORIGIN;
-  return {
-    "Access-Control-Allow-Origin": allowedOrigin,
-    "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
-    "Access-Control-Allow-Headers": "Content-Type",
-    "Content-Type": "application/json",
-  };
-}
+const MAX_EVENTS = 20;
+const MAX_TEXT_LENGTH = 200;
+const MAX_URL_LENGTH = 500;
+const MAX_NOTE_LENGTH = 1000;
+const MAX_ARTISTS = 100;
+
+// Must stay in sync with the filename check in .github/workflows/create-event-pr.yml
+const FILENAME_PATTERN = /^[A-Za-z0-9][A-Za-z0-9._-]{0,99}\.json$/;
+const EVENT_ID_PATTERN = /^[A-Za-z0-9_-]{0,32}$/;
+const DATE_PATTERN = /^\d{4}-\d{2}-\d{2}$/;
+const TIME_PATTERN = /^\d{2}:\d{2}$/;
+const EMAIL_PATTERN = /^[^\s@<>`]+@[^\s@<>`]+\.[^\s@<>`]+$/;
+const EVENT_FIELDS = ["id", "title", "venue", "date", "startTime", "artists", "url"];
+
+const API_HEADERS = {
+  "Access-Control-Allow-Origin": SITE_ORIGIN,
+  "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
+  "Access-Control-Allow-Headers": "Content-Type",
+  "Content-Type": "application/json",
+};
 
 export default {
-  async fetch(request, env, ctx) {
+  async fetch(request, env) {
     const url = new URL(request.url);
 
     if (url.pathname === "/api/submit-event") {
-      return handleAPIRequest(request, env, ctx);
+      return handleSubmitEvent(request, env);
     }
 
     if (url.pathname === "/api/notify-event") {
-      return handleNotifyEvent(request, env, ctx);
+      return handleNotifyEvent(request, env);
     }
 
     if (url.pathname === "/favicon.ico") {
-      return Response.redirect(`${ALLOWED_ORIGIN}/favicon.png`, 301);
+      return Response.redirect(`${SITE_ORIGIN}/favicon.png`, 301);
     }
 
     return handleStaticAssets(request, env, url);
@@ -35,42 +46,114 @@ export default {
   },
 };
 
-async function triggerRedeploy(env) {
-  const githubToken = env.GITHUB_TOKEN;
+function json(body, status = 200) {
+  return new Response(JSON.stringify(body), { status, headers: API_HEADERS });
+}
 
-  if (!githubToken) {
-    console.error(
-      JSON.stringify({ message: "GITHUB_TOKEN not configured for scheduled redeploy" }),
-    );
+function logError(message, details = {}) {
+  console.error(JSON.stringify({ message, ...details }));
+}
+
+function githubFetch(env, path, body) {
+  return fetch(`${GITHUB_API}${path}`, {
+    method: "POST",
+    headers: {
+      Accept: "application/vnd.github.v3+json",
+      Authorization: `Bearer ${env.GITHUB_TOKEN}`,
+      "Content-Type": "application/json",
+      "User-Agent": "Cologne-Raves-Worker",
+    },
+    body: JSON.stringify(body),
+  });
+}
+
+function dispatchWorkflow(env, workflow, inputs) {
+  return githubFetch(env, `/actions/workflows/${workflow}/dispatches`, {
+    ref: "main",
+    ...(inputs && { inputs }),
+  });
+}
+
+function isText(value, maxLength) {
+  return (
+    typeof value === "string" &&
+    value.trim().length > 0 &&
+    value.length <= maxLength
+  );
+}
+
+function isHttpUrl(value) {
+  if (typeof value !== "string" || value.length > MAX_URL_LENGTH) return false;
+  try {
+    const { protocol } = new URL(value);
+    return protocol === "http:" || protocol === "https:";
+  } catch {
+    return false;
+  }
+}
+
+function normalizeSubmitter(email) {
+  return typeof email === "string" && email.length <= 254 && EMAIL_PATTERN.test(email)
+    ? email
+    : "anonymous";
+}
+
+function validateEvent(evt) {
+  if (!evt || typeof evt !== "object" || Array.isArray(evt)) {
+    return "must be an object";
+  }
+  const unknown = Object.keys(evt).filter((key) => !EVENT_FIELDS.includes(key));
+  if (unknown.length > 0) {
+    return `has unknown fields: ${unknown.join(", ")}`;
+  }
+  if (!isText(evt.title, MAX_TEXT_LENGTH) || !isText(evt.venue, MAX_TEXT_LENGTH)) {
+    return `needs a title and venue of at most ${MAX_TEXT_LENGTH} characters`;
+  }
+  if (typeof evt.date !== "string" || !DATE_PATTERN.test(evt.date)) {
+    return "needs a date in YYYY-MM-DD format";
+  }
+  if (typeof evt.startTime !== "string" || !TIME_PATTERN.test(evt.startTime)) {
+    return "needs a startTime in HH:MM format";
+  }
+  if (evt.id !== undefined && (typeof evt.id !== "string" || !EVENT_ID_PATTERN.test(evt.id))) {
+    return "has an invalid id";
+  }
+  if (evt.url !== undefined && evt.url !== "" && !isHttpUrl(evt.url)) {
+    return "needs an http(s) url";
+  }
+  if (
+    evt.artists !== undefined &&
+    (!Array.isArray(evt.artists) ||
+      evt.artists.length > MAX_ARTISTS ||
+      !evt.artists.every((artist) => isText(artist, MAX_TEXT_LENGTH)))
+  ) {
+    return "has an invalid artists list";
+  }
+  return null;
+}
+
+async function readJsonBody(request) {
+  try {
+    const body = await request.json();
+    return body && typeof body === "object" ? body : null;
+  } catch {
+    return null;
+  }
+}
+
+async function triggerRedeploy(env) {
+  if (!env.GITHUB_TOKEN) {
+    logError("GITHUB_TOKEN not configured for scheduled redeploy");
     return;
   }
 
-  const GITHUB_OWNER = "M-Igashi";
-  const GITHUB_REPO = "cologne-raves";
-
-  const response = await fetch(
-    `https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/actions/workflows/redeploy.yml/dispatches`,
-    {
-      method: "POST",
-      headers: {
-        Accept: "application/vnd.github.v3+json",
-        Authorization: `Bearer ${githubToken}`,
-        "Content-Type": "application/json",
-        "User-Agent": "Cologne-Raves-Worker",
-      },
-      body: JSON.stringify({ ref: "main" }),
-    },
-  );
+  const response = await dispatchWorkflow(env, "redeploy.yml");
 
   if (response.status !== 204) {
-    const errorText = await response.text();
-    console.error(
-      JSON.stringify({
-        message: "Scheduled redeploy dispatch failed",
-        status: response.status,
-        error: errorText,
-      }),
-    );
+    logError("Scheduled redeploy dispatch failed", {
+      status: response.status,
+      error: await response.text(),
+    });
   }
 }
 
@@ -85,29 +168,25 @@ async function handleStaticAssets(request, env, url) {
   const response = await env.ASSETS.fetch(request);
   const headers = new Headers(response.headers);
 
-  if (pathname.match(/\.(css|js)$/)) {
-    headers.set("Cache-Control", "public, max-age=31536000, immutable");
-  } else if (pathname.match(/\.(woff2?|ttf|otf|eot)$/)) {
-    headers.set("Cache-Control", "public, max-age=31536000, immutable");
-    headers.set("Access-Control-Allow-Origin", "*");
-  } else if (pathname.match(/\.(png|jpg|jpeg|gif|svg|webp|ico)$/)) {
-    headers.set("Cache-Control", "public, max-age=2592000");
-  } else if (isHtmlRequest) {
-    headers.set("Cache-Control", "public, max-age=3600, must-revalidate");
-  } else {
-    headers.set("Cache-Control", "public, max-age=86400");
+  // Do not let error responses (e.g. a 404 for a .js path) inherit long-lived caching.
+  if (response.status < 400) {
+    if (pathname.match(/\.(css|js)$/)) {
+      headers.set("Cache-Control", "public, max-age=31536000, immutable");
+    } else if (pathname.match(/\.(woff2?|ttf|otf|eot)$/)) {
+      headers.set("Cache-Control", "public, max-age=31536000, immutable");
+      headers.set("Access-Control-Allow-Origin", "*");
+    } else if (pathname.match(/\.(png|jpg|jpeg|gif|svg|webp|ico)$/)) {
+      headers.set("Cache-Control", "public, max-age=2592000");
+    } else if (isHtmlRequest) {
+      headers.set("Cache-Control", "public, max-age=3600, must-revalidate");
+    } else {
+      headers.set("Cache-Control", "public, max-age=86400");
+    }
   }
 
   headers.set("X-Content-Type-Options", "nosniff");
   headers.set("X-Frame-Options", "DENY");
   headers.set("Referrer-Policy", "strict-origin-when-cross-origin");
-
-  if (isHtmlRequest) {
-    headers.set(
-      "Link",
-      "</fonts/atkinson-regular.woff>; rel=preload; as=font; type=font/woff; crossorigin, </fonts/atkinson-bold.woff>; rel=preload; as=font; type=font/woff; crossorigin",
-    );
-  }
 
   return new Response(response.body, {
     status: response.status,
@@ -116,145 +195,99 @@ async function handleStaticAssets(request, env, url) {
   });
 }
 
-async function handleAPIRequest(request, env, ctx) {
+async function handleSubmitEvent(request, env) {
   if (request.method === "OPTIONS") {
-    return new Response(null, {
-      status: 204,
-      headers: corsHeaders(request.headers.get("Origin")),
-    });
+    return new Response(null, { status: 204, headers: API_HEADERS });
   }
 
   if (request.method === "GET") {
-    return new Response(
-      JSON.stringify({
-        status: "ok",
-        message: "API endpoint is working",
-        timestamp: new Date().toISOString(),
-      }),
+    return json({
+      status: "ok",
+      message: "API endpoint is working",
+      timestamp: new Date().toISOString(),
+    });
+  }
+
+  if (request.method !== "POST") {
+    return new Response("Method not allowed", { status: 405 });
+  }
+
+  const body = await readJsonBody(request);
+  if (!body) {
+    return json({ error: "Request body must be a JSON object" }, 400);
+  }
+
+  const { events, filename } = body;
+  const submitter = normalizeSubmitter(body.submitterEmail);
+
+  if (!Array.isArray(events) || events.length === 0 || events.length > MAX_EVENTS) {
+    return json(
       {
-        status: 200,
-        headers: corsHeaders(request.headers.get("Origin")),
+        error: "Invalid events data",
+        details: `Events must be an array of 1 to ${MAX_EVENTS} items`,
       },
+      400,
     );
   }
 
-  if (request.method === "POST") {
-    return handleEventSubmission(request, env, ctx);
+  if (typeof filename !== "string" || !FILENAME_PATTERN.test(filename)) {
+    return json(
+      {
+        error: "Invalid filename",
+        details: "Filename must be a plain .json file name (letters, digits, dot, dash, underscore)",
+      },
+      400,
+    );
   }
 
-  return new Response("Method not allowed", { status: 405 });
-}
+  for (const [index, evt] of events.entries()) {
+    const problem = validateEvent(evt);
+    if (problem) {
+      return json(
+        { error: `Event ${index + 1} ${problem}`, details: "Invalid event data" },
+        400,
+      );
+    }
+  }
 
-async function handleEventSubmission(request, env, ctx) {
-  const headers = corsHeaders(request.headers.get("Origin"));
+  if (!env.GITHUB_TOKEN) {
+    logError("GITHUB_TOKEN not configured");
+    return json(
+      { error: "Submissions are temporarily unavailable. Please try again later." },
+      503,
+    );
+  }
 
   try {
-    const body = await request.json();
-    const { events, filename, submitterEmail } = body;
-
-    if (!events || !Array.isArray(events) || events.length === 0) {
-      return new Response(
-        JSON.stringify({
-          error: "Invalid events data",
-          details: "Events must be a non-empty array",
-        }),
-        { status: 400, headers },
-      );
-    }
-
-    if (!filename || typeof filename !== "string") {
-      return new Response(
-        JSON.stringify({
-          error: "Invalid filename",
-          details: "Filename must be a non-empty string",
-        }),
-        { status: 400, headers },
-      );
-    }
-
-    for (const evt of events) {
-      if (!evt.title || !evt.venue || !evt.date || !evt.startTime) {
-        return new Response(
-          JSON.stringify({
-            error: "Missing required fields in event data",
-            details: "Each event must have title, venue, date, and startTime",
-          }),
-          { status: 400, headers },
-        );
-      }
-    }
-
-    const githubToken = env.GITHUB_TOKEN;
-
-    if (!githubToken) {
-      console.error(
-        JSON.stringify({ message: "GITHUB_TOKEN not configured" }),
-      );
-      return new Response(
-        JSON.stringify({
-          warning: "GitHub token not configured",
-          message:
-            "Your event data has been received but cannot be automatically processed. Please contact the administrator.",
-          events,
-          filename,
-        }),
-        { status: 200, headers },
-      );
-    }
-
-    const GITHUB_OWNER = "M-Igashi";
-    const GITHUB_REPO = "cologne-raves";
-
-    const workflowResponse = await fetch(
-      `https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/actions/workflows/create-event-pr.yml/dispatches`,
-      {
-        method: "POST",
-        headers: {
-          Accept: "application/vnd.github.v3+json",
-          Authorization: `Bearer ${githubToken}`,
-          "Content-Type": "application/json",
-          "User-Agent": "Cologne-Raves-Worker",
-        },
-        body: JSON.stringify({
-          ref: "main",
-          inputs: {
-            events_json: JSON.stringify(events),
-            filename: filename,
-            submitter_email: submitterEmail || "anonymous",
-          },
-        }),
-      },
-    );
+    const workflowResponse = await dispatchWorkflow(env, "create-event-pr.yml", {
+      events_json: JSON.stringify(events),
+      filename,
+      submitter_email: submitter,
+    });
 
     if (workflowResponse.status === 204) {
-      return new Response(
-        JSON.stringify({
-          success: true,
-          message:
-            "Pull request creation initiated! Check the repository for the new PR in a few moments.",
-          workflowTriggered: true,
-        }),
-        { status: 200, headers },
-      );
+      return json({
+        success: true,
+        message:
+          "Pull request creation initiated! Check the repository for the new PR in a few moments.",
+        workflowTriggered: true,
+      });
     }
 
-    console.error(
-      JSON.stringify({
-        message: "Workflow dispatch failed, creating issue instead",
-        status: workflowResponse.status,
-      }),
-    );
+    logError("Workflow dispatch failed, creating issue instead", {
+      status: workflowResponse.status,
+    });
 
     const issueBody = `## New Event Submission
 
 **Filename:** \`${filename}\`
-**Submitted by:** ${submitterEmail || "anonymous"}
+**Submitted by:** ${submitter}
 **Timestamp:** ${new Date().toISOString()}
 
 ### Event Data
 
 \`\`\`json
-${JSON.stringify(events, null, 2)}
+${JSON.stringify(events, null, 2).replaceAll("```", "'''")}
 \`\`\`
 
 ### How to add this event:
@@ -264,196 +297,111 @@ ${JSON.stringify(events, null, 2)}
 3. Paste the JSON content
 4. Create a pull request
 
-Or use GitHub Actions:
-1. Go to [Actions > Create Event PR](https://github.com/${GITHUB_OWNER}/${GITHUB_REPO}/actions/workflows/create-event-pr.yml)
-2. Click "Run workflow"
-3. Paste the JSON data and filename from above
-
 ---
-*This submission was created from https://cologne.ravers.workers.dev/form/*`;
+*This submission was created from ${SITE_ORIGIN}/form/*`;
 
-    const issueResponse = await fetch(
-      `https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/issues`,
-      {
-        method: "POST",
-        headers: {
-          Accept: "application/vnd.github.v3+json",
-          Authorization: `Bearer ${githubToken}`,
-          "Content-Type": "application/json",
-          "User-Agent": "Cologne-Raves-Worker",
-        },
-        body: JSON.stringify({
-          title: `New Event Submission: ${filename}`,
-          body: issueBody,
-          labels: [],
-        }),
-      },
-    );
-
-    if (issueResponse.ok) {
-      const issueData = await issueResponse.json();
-      return new Response(
-        JSON.stringify({
-          success: true,
-          message: `Event submission created as Issue #${issueData.number}. You can view it on GitHub.`,
-          issueUrl: issueData.html_url,
-          issueNumber: issueData.number,
-        }),
-        { status: 200, headers },
-      );
-    }
-
-    const errorText = await issueResponse.text();
-    console.error(
-      JSON.stringify({
-        message: "Both workflow and issue creation failed",
-        error: errorText,
-      }),
-    );
-
-    return new Response(
-      JSON.stringify({
-        error: "Failed to process submission",
-        details: "Could not create PR or issue. Please try again later.",
-      }),
-      { status: 500, headers },
+    return await createIssue(
+      env,
+      { title: `New Event Submission: ${filename}`, body: issueBody, labels: [] },
+      (issue) => `Event submission created as Issue #${issue.number}. You can view it on GitHub.`,
     );
   } catch (error) {
-    console.error(
-      JSON.stringify({
-        message: "Error processing event submission",
-        error: error.message || String(error),
-      }),
-    );
-    return new Response(
-      JSON.stringify({
-        error: "Internal server error",
-        details: error.message || "Unknown error",
-      }),
-      { status: 500, headers },
-    );
+    logError("Error processing event submission", { error: String(error) });
+    return json({ error: "Failed to process submission. Please try again later." }, 500);
   }
 }
 
-async function handleNotifyEvent(request, env, ctx) {
+async function handleNotifyEvent(request, env) {
   if (request.method === "OPTIONS") {
-    return new Response(null, {
-      status: 204,
-      headers: corsHeaders(request.headers.get("Origin")),
-    });
+    return new Response(null, { status: 204, headers: API_HEADERS });
   }
 
   if (request.method !== "POST") {
     return new Response("Method not allowed", { status: 405 });
   }
 
-  const headers = corsHeaders(request.headers.get("Origin"));
+  const body = await readJsonBody(request);
+  if (!body) {
+    return json({ error: "Request body must be a JSON object" }, 400);
+  }
 
-  try {
-    const body = await request.json();
-    const { url, note, submitterEmail } = body;
+  const { url, note } = body;
+  const submitter = normalizeSubmitter(body.submitterEmail);
 
-    if (!url || typeof url !== "string") {
-      return new Response(
-        JSON.stringify({
-          error: "Invalid URL",
-          details: "Event URL must be a non-empty string",
-        }),
-        { status: 400, headers },
-      );
-    }
+  if (!isHttpUrl(url)) {
+    return json(
+      {
+        error: "Invalid URL",
+        details: `Event URL must be an http(s) link of at most ${MAX_URL_LENGTH} characters`,
+      },
+      400,
+    );
+  }
 
-    const githubToken = env.GITHUB_TOKEN;
+  if (note !== undefined && (typeof note !== "string" || note.length > MAX_NOTE_LENGTH)) {
+    return json(
+      {
+        error: "Invalid note",
+        details: `Note must be text of at most ${MAX_NOTE_LENGTH} characters`,
+      },
+      400,
+    );
+  }
 
-    if (!githubToken) {
-      console.error(
-        JSON.stringify({ message: "GITHUB_TOKEN not configured" }),
-      );
-      return new Response(
-        JSON.stringify({
-          warning: "GitHub token not configured",
-          message:
-            "Your event link has been received but cannot be automatically processed.",
-        }),
-        { status: 200, headers },
-      );
-    }
+  if (!env.GITHUB_TOKEN) {
+    logError("GITHUB_TOKEN not configured");
+    return json(
+      { error: "Submissions are temporarily unavailable. Please try again later." },
+      503,
+    );
+  }
 
-    const GITHUB_OWNER = "M-Igashi";
-    const GITHUB_REPO = "cologne-raves";
+  // The note goes into a fenced block so it cannot inject markdown or @mentions.
+  const noteBlock = note?.trim()
+    ? `\n**Note:**\n\n\`\`\`text\n${note.trim().replaceAll("```", "'''")}\n\`\`\`\n`
+    : "";
 
-    const issueBody = `## Event Link Submission
+  const issueBody = `## Event Link Submission
 
 **URL:** ${url}
-**Submitted by:** ${submitterEmail || "anonymous"}
+**Submitted by:** ${submitter}
 **Timestamp:** ${new Date().toISOString()}
-${note ? `\n**Note:** ${note}\n` : ""}
+${noteBlock}
 ### Next steps
 
 Use the \`crawl-events\` command to scrape this URL and add the event(s) to the calendar.
 
 ---
-*Submitted from https://cologne.ravers.workers.dev/form/*`;
+*Submitted from ${SITE_ORIGIN}/form/*`;
 
-    const issueResponse = await fetch(
-      `https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/issues`,
-      {
-        method: "POST",
-        headers: {
-          Accept: "application/vnd.github.v3+json",
-          Authorization: `Bearer ${githubToken}`,
-          "Content-Type": "application/json",
-          "User-Agent": "Cologne-Raves-Worker",
-        },
-        body: JSON.stringify({
-          title: `Event link: ${url}`,
-          body: issueBody,
-          labels: ["event-link"],
-        }),
-      },
-    );
-
-    if (issueResponse.ok) {
-      const issueData = await issueResponse.json();
-      return new Response(
-        JSON.stringify({
-          success: true,
-          message: `Thanks! Your event link has been submitted for review (Issue #${issueData.number}).`,
-          issueUrl: issueData.html_url,
-          issueNumber: issueData.number,
-        }),
-        { status: 200, headers },
-      );
-    }
-
-    const errorText = await issueResponse.text();
-    console.error(
-      JSON.stringify({
-        message: "Failed to create issue for event link",
-        error: errorText,
-      }),
-    );
-
-    return new Response(
-      JSON.stringify({
-        error: "Failed to submit event link",
-        details: "Could not create issue. Please try again later.",
-      }),
-      { status: 500, headers },
+  try {
+    return await createIssue(
+      env,
+      { title: `Event link: ${url}`.slice(0, 200), body: issueBody, labels: ["event-link"] },
+      (issue) => `Thanks! Your event link has been submitted for review (Issue #${issue.number}).`,
     );
   } catch (error) {
-    console.error(
-      JSON.stringify({
-        message: "Error processing event link notification",
-        error: error.message || String(error),
-      }),
-    );
-    return new Response(
-      JSON.stringify({
-        error: "Internal server error",
-        details: error.message || "Unknown error",
-      }),
-      { status: 500, headers },
-    );
+    logError("Error processing event link notification", { error: String(error) });
+    return json({ error: "Failed to submit event link. Please try again later." }, 500);
   }
+}
+
+async function createIssue(env, issue, successMessage) {
+  const response = await githubFetch(env, "/issues", issue);
+
+  if (!response.ok) {
+    logError("Issue creation failed", {
+      status: response.status,
+      error: await response.text(),
+    });
+    return json({ error: "Failed to submit. Please try again later." }, 500);
+  }
+
+  const created = await response.json();
+  return json({
+    success: true,
+    message: successMessage(created),
+    issueUrl: created.html_url,
+    issueNumber: created.number,
+  });
 }

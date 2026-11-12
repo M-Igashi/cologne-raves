@@ -3,23 +3,14 @@ import BaseHead from '../components/BaseHead.astro';
 import Header from '../components/Header.astro';
 import PartyCard from '../components/PartyCard.astro';
 import { getAllParties } from '../lib/getAllParties';
+import { getBerlinWeekRange } from '../lib/getFeaturedParties';
 
 const allParties = await getAllParties();
 
-// Europe/Berlin タイムゾーンで今週月曜00:00を取得
-const now = new Date();
-const berlinNow = new Date(now.toLocaleString('en-US', { timeZone: 'Europe/Berlin' }));
+// Keep events from this week's Monday (Berlin time) onwards
+const { start: thisMonday } = getBerlinWeekRange();
+const futureParties = allParties.filter(p => p.date >= thisMonday);
 
-const day = berlinNow.getDay();
-const diff = (day + 6) % 7; // 月曜基準で0
-berlinNow.setHours(0, 0, 0, 0);
-const thisMonday = new Date(berlinNow);
-thisMonday.setDate(berlinNow.getDate() - diff);
-
-// thisMonday 以降のイベントだけを抽出
-const futureParties = allParties.filter(p => new Date(p.date) >= thisMonday);
-
-// 月別にグループ化
 const partiesByMonth: Record<string, typeof futureParties> = {};
 for (const party of futureParties) {
   const month = party.date.slice(0, 7); // "YYYY-MM"
@@ -31,7 +22,6 @@ for (const party of futureParties) {
 
 const sortedMonthKeys = Object.keys(partiesByMonth).sort();
 
-// SEO関連の変数
 // Length budget: Bing wants title <=60 chars (incl. " | Cologne Raves" appended
 // by BaseHead, ~15 chars) and description in 70-160 chars.
 const totalParties = futureParties.length;

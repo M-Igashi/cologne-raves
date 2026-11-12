@@ -7,9 +7,6 @@ on:
       - main
     paths:
       - 'data/*.json'
-  pull_request:
-    paths:
-      - 'data/*.json'
 
 permissions:
   contents: read
@@ -50,27 +47,3 @@ jobs:
             git push "https://x-access-token:${GH_PAT}@github.com/${REPO}.git" HEAD:main
             echo "Changes pushed - main deploy workflow will handle deployment"
           fi
-
-      - name: Comment on PR
-        if: github.event_name == 'pull_request'
-        uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9.0.0
-        with:
-          script: |
-            const fs = require('fs');
-            const path = require('path');
-
-            // Check if any files were modified
-            const { execSync } = require('child_process');
-            const diffOutput = execSync('git diff --name-only data/*.json').toString().trim();
-
-            if (diffOutput) {
-              const modifiedFiles = diffOutput.split('\n');
-              const comment = `**ID Backfill Bot**\n\nI've added missing IDs to the following files:\n${modifiedFiles.map(f => `- \`${f}\``).join('\n')}\n\nPlease review the changes.`;
-
-              github.rest.issues.createComment({
-                issue_number: context.issue.number,
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                body: comment
-              });
-            }
