@@ -1,0 +1,15 @@
+---
+const { items } = Astro.props;
+---
+
+{items.length > 0 && (
+  <div class="ticker">
+    <div class="ticker-track">
+      {[false, true].map((duplicate) => (
+        <ul aria-hidden={duplicate ? 'true' : undefined}>
+          {items.map((item: string) => <li>{item}</li>)}
+        </ul>
+      ))}
+    </div>
+  </div>
+)}

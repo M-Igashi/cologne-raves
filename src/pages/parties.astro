@@ -1,75 +1,114 @@
 ---
-import BaseHead from '../components/BaseHead.astro';
-import Header from '../components/Header.astro';
+import Base from '../layouts/Base.astro';
 import PartyCard from '../components/PartyCard.astro';
+import Ticker from '../components/Ticker.astro';
 import { getAllParties } from '../lib/getAllParties';
 import { getBerlinWeekRange } from '../lib/getFeaturedParties';
+import { SITE_URL, eventJsonLd, formatDate, topVenues } from '../utils/seo';
 
 const allParties = await getAllParties();
 
 // Keep events from this week's Monday (Berlin time) onwards
 const { start: thisMonday } = getBerlinWeekRange();
-const futureParties = allParties.filter(p => p.date >= thisMonday);
+const futureParties = allParties.filter((party) => party.date >= thisMonday);
 
-const partiesByMonth: Record<string, typeof futureParties> = {};
-for (const party of futureParties) {
-  const month = party.date.slice(0, 7); // "YYYY-MM"
-  if (!partiesByMonth[month]) {
-    partiesByMonth[month] = [];
-  }
-  partiesByMonth[month].push(party);
-}
+const months = [...new Set(futureParties.map((party) => party.date.slice(0, 7)))].map((month) => ({
+  key: month,
+  name: formatDate(`${month}-01`, { month: 'long' }),
+  short: formatDate(`${month}-01`, { month: 'short' }),
+  year: month.slice(0, 4),
+  parties: futureParties.filter((party) => party.date.startsWith(month)),
+}));
 
-const sortedMonthKeys = Object.keys(partiesByMonth).sort();
-
-// Length budget: Bing wants title <=60 chars (incl. " | Cologne Raves" appended
-// by BaseHead, ~15 chars) and description in 70-160 chars.
+const monthLabel = (month: (typeof months)[number]) => `${month.name} ${month.year}`;
 const totalParties = futureParties.length;
-const monthCount = sortedMonthKeys.length;
-const title = `All Upcoming Parties (${totalParties}) — Cologne Events`;
-const description = `${totalParties} upcoming techno and electronic music events in Cologne across ${monthCount} months. Browse venues, DJ lineups, dates, and ticket info.`;
-const keywords = "cologne electronic music calendar, all techno parties köln, upcoming raves cologne, electronic events calendar cologne, techno club nights köln, complete party guide cologne";
-const canonicalURL = new URL(Astro.url.pathname, "https://cologne.ravers.workers.dev").href;
+const venues = topVenues(futureParties);
+const span = months.length > 1
+  ? `${monthLabel(months[0])} to ${monthLabel(months[months.length - 1])}`
+  : months.length === 1 ? monthLabel(months[0]) : '';
+
+// Length budget: title <=60 chars, description 70-160 chars.
+const title = `Techno Events Cologne: ${totalParties} Upcoming Raves & Parties in Köln`;
+const description = `All ${totalParties} upcoming techno events, raves, and club nights in Cologne (Köln), ${span}. Search by artist or venue. Community-run, no ads.`;
+const canonicalURL = `${SITE_URL}/parties/`;
 ---
 
-<html lang="en" class="dark">
-  <head>
-    <BaseHead
-      title={title}
-      description={description}
-      keywords={keywords}
-      canonicalURL={canonicalURL}
-    />
-  </head>
-  <body style="min-height: 100vh; background: #000000; color: #ffffff; max-width: 768px; margin: 0 auto; padding: 32px 24px; display: flex; flex-direction: column;">
-    <Header active="all-parties" />
+<Base
+  title={title}
+  description={description}
+  canonicalURL={canonicalURL}
+  pageType="CollectionPage"
+  breadcrumb="All upcoming parties"
+  jsonLd={futureParties.map(eventJsonLd)}
+  active="all-parties"
+>
+  <section class="hero hero-compact wrap">
+    <p class="kicker">Rave calendar <span lang="de">/ Rave-Kalender</span> · {span} · Köln</p>
+    <h1 class="hero-title">All upcoming techno events &amp; raves <em>in Cologne</em></h1>
+    <p class="hero-sub">
+      {totalParties} parties, club nights, and open airs, sorted by date.
+      <span lang="de">Alle kommenden Techno-Partys, Raves und elektronischen Events in Köln.</span>
+    </p>
 
-    {/* Event Submission Banner */}
-    <div style="background: #111111; border: 1px solid #333333; padding: 20px; margin-bottom: 24px;">
-      <h2 style="font-size: 0.85rem; font-weight: 700; color: #ffffff; margin-bottom: 4px;">Got an event coming up?</h2>
-      <p style="font-size: 0.75rem; color: #888888; margin: 0;">Submit your party or live show to our community calendar using the button above!</p>
+    <div class="filter">
+      <label for="q" class="sr-only">Search events by artist, venue, or title</label>
+      <input id="q" type="search" placeholder="Search artist, venue, party…" autocomplete="off" spellcheck="false" />
+      <p id="filter-count" class="filter-count" aria-live="polite">{totalParties} events</p>
     </div>
 
-    <main style="flex: 1;">
-      <nav style="display: flex; gap: 12px; margin-bottom: 24px;" aria-label="Event filters">
-        <a href="/" style="padding: 10px 20px; background: transparent; color: #ffffff; text-decoration: none; font-weight: 700; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 2px; border: 1px solid #ffffff; font-family: 'JetBrains Mono', monospace;">This Week</a>
-        <a href="/parties/" style="padding: 10px 20px; background: #ffffff; color: #000000; text-decoration: none; font-weight: 700; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 2px; border: 1px solid #ffffff; font-family: 'JetBrains Mono', monospace;">All Parties</a>
-      </nav>
+    <nav class="month-nav" aria-label="Jump to month">
+      {months.map((month) => (
+        <a href={`#${month.key}`}>{month.short} {month.year.slice(2)} <span>{month.parties.length}</span></a>
+      ))}
+    </nav>
+  </section>
 
-      <h1 style="font-size: 1.25rem; font-weight: 700; margin-bottom: 24px; text-transform: uppercase; letter-spacing: 2px;">All Upcoming Parties</h1>
+  <Ticker items={venues} />
 
-      {
-        sortedMonthKeys.map(month => (
-          <section>
-            <h3 style="font-size: 1rem; font-weight: 700; margin-top: 40px; margin-bottom: 16px; padding-bottom: 8px; border-bottom: 1px solid #333333; text-transform: uppercase; letter-spacing: 2px;">{month}</h3>
-            {
-              partiesByMonth[month].map(party => (
-                <PartyCard {...party} />
-              ))
-            }
-          </section>
-        ))
-      }
-    </main>
-  </body>
-</html>
+  <div class="wrap">
+    {months.map((month) => (
+      <section class="group" id={month.key}>
+        <header class="group-head">
+          <h2>{month.name} <span>{month.year}</span></h2>
+          <p class="group-count">{month.parties.length} {month.parties.length === 1 ? 'event' : 'events'}</p>
+        </header>
+        <div class="group-events">
+          {month.parties.map((party) => <PartyCard {...party} showDate />)}
+        </div>
+      </section>
+    ))}
+
+    <p id="filter-empty" class="empty" hidden>No events match that search. <a href="/form/">Know one we are missing?</a></p>
+  </div>
+
+  <script is:inline>
+    (() => {
+      const input = document.getElementById('q');
+      const count = document.getElementById('filter-count');
+      const empty = document.getElementById('filter-empty');
+      const groups = [...document.querySelectorAll('.group')];
+      const key = (text) => text.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '');
+
+      const apply = () => {
+        const terms = key(input.value).split(/\s+/).filter(Boolean);
+        let shown = 0;
+        for (const group of groups) {
+          let visible = 0;
+          for (const event of group.querySelectorAll('.event')) {
+            const match = terms.every((term) => event.dataset.search.includes(term));
+            event.hidden = !match;
+            if (match) visible++;
+          }
+          group.hidden = visible === 0;
+          shown += visible;
+        }
+        count.textContent = `${shown} ${shown === 1 ? 'event' : 'events'}`;
+        empty.hidden = shown > 0;
+      };
+
+      input.value = new URLSearchParams(location.search).get('q') ?? '';
+      input.addEventListener('input', apply);
+      if (input.value) apply();
+    })();
+  </script>
+</Base>

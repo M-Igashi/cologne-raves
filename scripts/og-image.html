@@ -1,0 +1,53 @@
+<!doctype html>
+<!--
+  Source for public/og-cologne-raves.png (1200x630). Re-render with headless Chrome:
+  chrome --headless --hide-scrollbars --force-device-scale-factor=1 --window-size=1200,630 \
+    --screenshot=public/og-cologne-raves.png scripts/og-image.html
+-->
+<meta charset="utf-8">
+<style>
+  @font-face { font-family: Anton; src: url("../public/fonts/anton-latin.woff2"); }
+  @font-face { font-family: Mono; font-weight: 100 800; src: url("../public/fonts/jetbrains-mono-latin.woff2"); }
+  * { margin: 0; box-sizing: border-box; }
+  body {
+    width: 1200px; height: 630px; overflow: hidden; position: relative;
+    background: #0b0b0a; color: #f1efe7; font-family: Mono, monospace;
+  }
+  .glow {
+    position: absolute; right: -180px; top: -260px; width: 900px; height: 900px;
+    background: radial-gradient(closest-side, rgba(214, 255, 63, .22), transparent);
+  }
+  .grain {
+    position: absolute; inset: 0; opacity: .1;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 .6 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+  .kicker {
+    position: absolute; left: 64px; top: 52px;
+    font-size: 22px; font-weight: 700; letter-spacing: .2em; color: #d6ff3f;
+  }
+  h1 {
+    position: absolute; left: 60px; top: 88px;
+    font: 400 262px/0.9 Anton; text-transform: uppercase; letter-spacing: -.005em;
+  }
+  h1 em { font-style: normal; color: #d6ff3f; display: block; }
+  .mark { position: absolute; right: 64px; top: 300px; width: 232px; height: 232px; transform: rotate(12deg); }
+  .band {
+    position: absolute; left: -20px; right: -20px; bottom: 0; height: 66px;
+    display: flex; align-items: center; justify-content: space-between; padding: 0 84px;
+    background: #d6ff3f; color: #0b0b0a;
+    font-size: 22px; font-weight: 800; letter-spacing: .14em;
+  }
+</style>
+<body>
+  <div class="glow"></div>
+  <div class="kicker">TECHNO PARTIES &amp; RAVES · KÖLN · EVERY WEEK</div>
+  <h1>Cologne<em>Raves</em></h1>
+  <svg class="mark" viewBox="0 0 32 32">
+    <circle cx="16" cy="16" r="16" fill="#d6ff3f"/>
+    <ellipse cx="11.2" cy="12" rx="2" ry="3.2" fill="#0b0b0a"/>
+    <ellipse cx="20.8" cy="12" rx="2" ry="3.2" fill="#0b0b0a"/>
+    <path d="M7.5 18.5c2 4.2 5 6.3 8.5 6.3s6.5-2.1 8.5-6.3" fill="none" stroke="#0b0b0a" stroke-width="2" stroke-linecap="round"/>
+  </svg>
+  <div class="grain"></div>
+  <div class="band"><span>COMMUNITY-RUN · NO ADS · NO COOKIES</span><span>cologne.ravers.workers.dev</span></div>
+</body>

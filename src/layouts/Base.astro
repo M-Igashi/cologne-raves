@@ -1,0 +1,36 @@
+---
+import BaseHead, { type Props as HeadProps } from '../components/BaseHead.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+interface Props extends HeadProps {
+  active?: 'this-week' | 'all-parties' | 'submit';
+}
+
+const { active, ...head } = Astro.props;
+---
+
+<html lang="en" class="dark">
+  <head>
+    <BaseHead {...head} />
+  </head>
+  <body>
+    <a href="#main" class="skip-link">Skip to content</a>
+    <Header active={active} />
+    <main id="main">
+      <slot />
+    </main>
+    <Footer />
+    <script is:inline>
+      // The site is rebuilt at most once a day, so "today" is resolved in the browser.
+      (() => {
+        const today = new Intl.DateTimeFormat('en-CA', { timeZone: 'Europe/Berlin' }).format(new Date());
+        for (const el of document.querySelectorAll('[data-day]')) {
+          if (el.dataset.day === today) el.classList.add('is-today');
+          else if (el.dataset.day < today) el.classList.add('is-past');
+        }
+      })();
+    </script>
+    <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "d2f09f5d6b604f4e9986c797f43be1bc"}'></script><!-- End Cloudflare Web Analytics -->
+  </body>
+</html>

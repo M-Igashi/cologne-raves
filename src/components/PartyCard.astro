@@ -1,129 +1,57 @@
 ---
-import { CalendarDays, Clock, Headphones, GitBranch } from 'lucide-react';
-import { formatInTimeZone, fromZonedTime } from 'date-fns-tz';
+import { eventTimes, formatDate, searchKey } from '../utils/seo';
+
 const {
   id,
   title,
   venue,
   date,
   startTime,
-  artists,
+  artists = [],
   url,
   sourceFile,
-  showEditLink = true
+  showDate = false,
+  showEditLink = true,
 } = Astro.props;
 
-// Start in Berlin local time (correct CET/CEST offset); end defaults to 3 hours
-// later, which may fall on the next day.
-const TIMEZONE = 'Europe/Berlin';
-const ISO_FORMAT = "yyyy-MM-dd'T'HH:mm:ssxxx";
-const time = /^\d{2}:\d{2}$/.test(startTime ?? '') ? startTime : '23:00';
-const start = fromZonedTime(`${date}T${time}:00`, TIMEZONE);
-const startDateTime = formatInTimeZone(start, TIMEZONE, ISO_FORMAT);
-const endDateTime = formatInTimeZone(new Date(start.getTime() + 3 * 60 * 60 * 1000), TIMEZONE, ISO_FORMAT);
-
-// Default event image
-const defaultImage = "https://cologne.ravers.workers.dev/og-cover.png";
+const { start } = eventTimes({ date, startTime });
+const search = searchKey([title, venue, ...artists].join(' '));
 ---
 
-<article style="background: #111111; border: 1px solid #333333; padding: 20px; margin-bottom: 16px; position: relative;">
-  <div style="position: absolute; top: 12px; right: 16px; font-size: 0.7rem; color: #888888; text-transform: uppercase; letter-spacing: 1px;">#{id}</div>
-
-  <h2 style="font-size: 0.9rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px;">
-    {title}{venue && ` @ ${venue}`}
-  </h2>
-
-  <p class="flex items-center gap-1 mt-1" style="font-size: 0.8rem; color: #888888;">
-    <CalendarDays class="size-4" />
-    {new Date(date).toLocaleDateString('en-US', {
-      weekday: 'short',
-      day: 'numeric',
-      month: 'short',
-      year: 'numeric',
-      timeZone: 'UTC'
-    })}
-    {startTime && (
-      <>
-        <span class="inline-block w-1" />–<Clock class="size-4" />
-        {startTime}
-      </>
+<article class="event" data-day={showDate ? date : undefined} data-search={search}>
+  <div class="event-when">
+    {showDate && (
+      <span class="event-date">
+        <span>{formatDate(date, { weekday: 'short' })}</span>
+        <b>{formatDate(date, { day: '2-digit' })}</b>
+      </span>
     )}
-  </p>
+    <time class="event-time" datetime={start}>{startTime || 'TBA'}</time>
+    <span class="live">Tonight</span>
+  </div>
 
-  {artists?.length > 0 && (
-    <p class="flex items-center gap-1 mt-1" style="font-size: 0.8rem; color: #888888;">
-      <Headphones class="size-4" />
-      {artists.join(', ')}
-    </p>
-  )}
+  <div class="event-body">
+    <h3 class="event-title">
+      {url
+        ? <a href={url} class="event-link" target="_blank" rel="noopener noreferrer">{title}</a>
+        : title}
+    </h3>
+    {artists.length > 0 && <p class="event-artists">{artists.join(' · ')}</p>}
+  </div>
 
-  {url && (
-    <p style="margin-top: 10px; font-size: 0.75rem;">
-      <a
-        href={url}
-        style="color: #ffffff; text-decoration: none; text-transform: uppercase; letter-spacing: 1px; border-bottom: 1px solid #888888; padding-bottom: 2px;"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        More Info
-      </a>
-    </p>
-  )}
+  <div class="event-meta">
+    {venue && <span class="event-venue">{venue}</span>}
+    <span class="event-id">
+      #{id}
+      {showEditLink && sourceFile && (
+        <a
+          href={`https://github.com/M-Igashi/cologne-raves/edit/main/data/${sourceFile}`}
+          target="_blank"
+          rel="noopener noreferrer nofollow"
+        >Edit</a>
+      )}
+    </span>
+  </div>
 
-  {showEditLink && sourceFile && (
-    <p class="flex items-center gap-1" style="margin-top: 10px; font-size: 0.75rem; color: #888888;">
-      <GitBranch class="size-4" />
-      <a
-        href={`https://github.com/M-Igashi/cologne-raves/edit/main/data/${sourceFile}`}
-        style="color: #888888; text-decoration: none; text-transform: uppercase; letter-spacing: 1px; border-bottom: 1px solid #333333; padding-bottom: 2px;"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        Edit on GitHub
-      </a>
-    </p>
-  )}
-
-  <!-- JSON-LD Structured Data -->
-  <script type="application/ld+json" set:html={JSON.stringify({
-    "@context": "https://schema.org",
-    "@type": "Event",
-    "name": title,
-    "description": `${title}${venue ? ` at ${venue}` : ''} - Electronic music event in Cologne${artists?.length > 0 ? ` featuring ${artists.join(', ')}` : ''}`,
-    "startDate": startDateTime,
-    "endDate": endDateTime,
-    "eventStatus": "https://schema.org/EventScheduled",
-    "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
-    "location": {
-      "@type": "Place",
-      "name": venue || "Cologne",
-      "address": {
-        "@type": "PostalAddress",
-        "addressLocality": "Cologne",
-        "addressRegion": "North Rhine-Westphalia",
-        "addressCountry": "DE"
-      }
-    },
-    "image": defaultImage,
-    "organizer": {
-      "@type": "Organization",
-      "name": "Cologne Ravers",
-      "url": "https://cologne.ravers.workers.dev"
-    },
-    "performer": artists?.length > 0
-      ? artists.map(name => ({ "@type": "Person", "name": name }))
-      : [{ "@type": "PerformingGroup", "name": "TBA" }],
-    ...(url ? {
-      "offers": {
-        "@type": "Offer",
-        "url": url,
-        "availability": "https://schema.org/InStock",
-        "validFrom": new Date().toISOString().split('T')[0],
-        "price": "0",
-        "priceCurrency": "EUR",
-        "description": "Prices may vary at the door. Check event link for details."
-      }
-    } : {}),
-    "url": url || "https://cologne.ravers.workers.dev/"
-  }).replace(/</g, '\\u003c')} />
+  {url && <span class="event-arrow" aria-hidden="true">↗</span>}
 </article>

@@ -1,0 +1,21 @@
+---
+import Base from '../layouts/Base.astro';
+import { SITE_URL } from '../utils/seo';
+---
+
+<Base
+  title="Page Not Found | Cologne Raves"
+  description="This page does not exist. Head back to the Cologne rave calendar."
+  canonicalURL={`${SITE_URL}/404`}
+  noindex={true}
+>
+  <section class="hero wrap">
+    <p class="kicker">Error 404 · wrong door</p>
+    <h1 class="hero-title">Lost on the <em>dancefloor</em></h1>
+    <p class="hero-sub">This page does not exist, but the parties do.</p>
+    <div class="hero-actions">
+      <a href="/" class="btn btn-acid">Raves this week</a>
+      <a href="/parties/" class="btn">All upcoming parties</a>
+    </div>
+  </section>
+</Base>

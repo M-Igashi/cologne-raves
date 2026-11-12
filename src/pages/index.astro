@@ -1,79 +1,121 @@
 ---
-import BaseHead from '../components/BaseHead.astro';
-import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
+import { getISOWeek } from 'date-fns';
+import Base from '../layouts/Base.astro';
 import PartyCard from '../components/PartyCard.astro';
-import { getFeaturedParties, getBerlinWeekRange } from '../lib/getFeaturedParties';
+import Ticker from '../components/Ticker.astro';
+import { getAllParties } from '../lib/getAllParties';
+import { getBerlinWeekRange } from '../lib/getFeaturedParties';
+import { SITE_URL, eventJsonLd, formatDate, topVenues } from '../utils/seo';
 
-const parties = await getFeaturedParties();
+const { start, end } = getBerlinWeekRange();
+const allParties = await getAllParties();
+const upcoming = allParties.filter((party) => party.date >= start);
+const parties = upcoming.filter((party) => party.date <= end);
 
-// Group by weekday
-const weekdays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-const partiesByDay: Record<string, typeof parties> = {};
+const days = [...new Set(parties.map((party) => party.date))].map((date) => ({
+  date,
+  parties: parties.filter((party) => party.date === date),
+}));
 
-for (const party of parties) {
-  const weekday = weekdays[new Date(party.date).getUTCDay()];
-  if (!partiesByDay[weekday]) {
-    partiesByDay[weekday] = [];
-  }
-  partiesByDay[weekday].push(party);
-}
+const venues = topVenues(upcoming);
+const weekVenueCount = new Set(parties.map((party) => party.venue)).size;
+const weekNumber = getISOWeek(new Date(start));
+const weekRange = `${formatDate(start, { day: 'numeric', month: 'short' })} to ${formatDate(end, { day: 'numeric', month: 'short', year: 'numeric' })}`;
 
-// SEO meta — dynamic week label is intentional (changes weekly when content does).
-// Length budget: Bing wants title <=60 chars (incl. "| Cologne Raves" suffix from
-// BaseHead, ~15 chars) and description in 70-160 chars.
-const weekLabel = new Date(getBerlinWeekRange().start).toLocaleDateString('en-US', { month: 'short', day: 'numeric', timeZone: 'UTC' });
+const faq = [
+  {
+    question: 'What is Cologne Raves?',
+    answer: 'A community-run calendar of techno parties, raves, and electronic music events in Cologne (Köln). It is maintained by volunteers from the Cologne Ravers WhatsApp group, with no ads and no cookies.',
+  },
+  {
+    question: 'Which clubs and venues are covered?',
+    answer: `Anything electronic in and around Cologne: club nights, open airs, day raves, and festivals. Venues with upcoming dates include ${venues.slice(0, 8).join(', ')}, and more.`,
+  },
+  {
+    question: 'How do I add my party?',
+    answer: 'Use the submission form: fill in the details or just paste a link to the event page. Promoters, venues, and ravers are all welcome to submit.',
+  },
+  {
+    question: 'Is it free?',
+    answer: 'Yes. The calendar is free to use and free to list on. It is an open-source hobby project with no commercial interest.',
+  },
+];
 
-const title = `This Week (week of ${weekLabel}) — Cologne Events`;
-const description = `Cologne electronic music events for the week of ${weekLabel}. Browse upcoming parties — venues, lineups, and ticket info. Community-driven, ad-free.`;
-const keywords = "cologne techno this week, köln electronic music events, techno parties cologne weekend, house music cologne, rave events köln, underground techno cologne, club nights cologne";
-const canonicalURL = new URL(Astro.url.pathname, "https://cologne.ravers.workers.dev").href;
+// Length budget: title <=60 chars, description 70-160 chars.
+const title = 'Cologne Raves: Techno Parties & Raves in Köln This Week';
+const description = `${parties.length} techno parties, raves, and club nights in Cologne (Köln) this week, ${weekRange}. Lineups, venues, start times, and ticket links. No ads.`;
+
+const jsonLd = [
+  ...parties.map(eventJsonLd),
+  {
+    '@type': 'FAQPage',
+    mainEntity: faq.map(({ question, answer }) => ({
+      '@type': 'Question',
+      name: question,
+      acceptedAnswer: { '@type': 'Answer', text: answer },
+    })),
+  },
+];
 ---
 
-<html lang="en" class="dark">
-  <head>
-    <BaseHead
-      title={title}
-      description={description}
-      canonicalURL={canonicalURL}
-      keywords={keywords}
-    />
-  </head>
-  <body style="min-height: 100vh; background: #000000; color: #ffffff; max-width: 768px; margin: 0 auto; padding: 32px 24px; display: flex; flex-direction: column;">
-    <Header active="this-week" />
-
-    {/* Event Submission Banner */}
-    <div style="background: #111111; border: 1px solid #333333; padding: 20px; margin-bottom: 24px;">
-      <h2 style="font-size: 0.85rem; font-weight: 700; color: #ffffff; margin-bottom: 4px;">Got an event coming up?</h2>
-      <p style="font-size: 0.75rem; color: #888888; margin: 0;">Submit your party or live show to our community calendar using the button above!</p>
+<Base
+  title={title}
+  description={description}
+  canonicalURL={`${SITE_URL}/`}
+  pageType="CollectionPage"
+  jsonLd={jsonLd}
+  active="this-week"
+>
+  <section class="hero wrap">
+    <p class="kicker">Week {weekNumber} <span lang="de">/ KW {weekNumber}</span> · {weekRange} · Köln</p>
+    <h1 class="hero-title">Raves &amp; techno parties in Cologne <em>this week</em></h1>
+    <p class="hero-sub">
+      {parties.length} events at {weekVenueCount} venues, picked by the people who actually go.
+      <span lang="de">Alle Techno-Partys, Raves und elektronischen Events in Köln diese Woche.</span>
+    </p>
+    <div class="hero-actions">
+      <a href="/parties/" class="btn btn-acid">All {upcoming.length} upcoming events</a>
+      <a href="/form/" class="btn">+ Submit event</a>
     </div>
+  </section>
 
-    <main style="flex: 1;" role="main" itemscope itemtype="https://schema.org/EventSeries">
-      <nav style="display: flex; gap: 12px; margin-bottom: 24px;" aria-label="Event filters">
-        <a href="/" style="padding: 10px 20px; background: #ffffff; color: #000000; text-decoration: none; font-weight: 700; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 2px; border: 1px solid #ffffff; font-family: 'JetBrains Mono', monospace;" aria-current="page">This Week</a>
-        <a href="/parties/" style="padding: 10px 20px; background: transparent; color: #ffffff; text-decoration: none; font-weight: 700; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 2px; border: 1px solid #ffffff; font-family: 'JetBrains Mono', monospace;">All Parties</a>
-      </nav>
+  <Ticker items={venues} />
 
-      <h1 style="font-size: 1.25rem; font-weight: 700; margin-bottom: 24px; text-transform: uppercase; letter-spacing: 2px;" itemprop="name">Electronic Music Events This Week in Cologne</h1>
-      <meta itemprop="description" content={description} />
-      <meta itemprop="location" content="Cologne, Germany" />
+  <div class="wrap">
+    {days.length === 0 && (
+      <p class="empty">Nothing listed for this week yet. <a href="/parties/">See all upcoming parties</a> or <a href="/form/">submit an event</a>.</p>
+    )}
 
-      {
-        ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'].map((day) => (
-          partiesByDay[day]?.length > 0 && (
-            <section>
-              <h3 style="font-size: 1rem; font-weight: 700; margin-top: 32px; margin-bottom: 16px; padding-bottom: 8px; border-bottom: 1px solid #333333; text-transform: uppercase; letter-spacing: 2px;">{day}</h3>
-              {
-                partiesByDay[day].map((party) => (
-                  <PartyCard {...party} showEditLink={false} />
-                ))
-              }
-            </section>
-          )
-        ))
-      }
-    </main>
-    <Footer />
-    <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "d2f09f5d6b604f4e9986c797f43be1bc"}'></script><!-- End Cloudflare Web Analytics -->
-  </body>
-</html>
+    {days.map((day) => (
+      <section class="group" data-day={day.date}>
+        <header class="group-head">
+          <h2>
+            {formatDate(day.date, { weekday: 'long' })}
+            <span>{formatDate(day.date, { day: 'numeric', month: 'short' })}</span>
+          </h2>
+          <p class="group-count">{day.parties.length} {day.parties.length === 1 ? 'event' : 'events'}</p>
+          <span class="live">Tonight</span>
+        </header>
+        <div class="group-events">
+          {day.parties.map((party) => <PartyCard {...party} showEditLink={false} />)}
+        </div>
+      </section>
+    ))}
+
+    <p class="more">
+      <a href="/parties/" class="btn btn-acid">All upcoming raves &amp; techno events in Cologne →</a>
+    </p>
+
+    <section class="faq" aria-labelledby="faq-title">
+      <h2 id="faq-title">The fine print</h2>
+      <dl>
+        {faq.map(({ question, answer }) => (
+          <div>
+            <dt>{question}</dt>
+            <dd>{answer}</dd>
+          </div>
+        ))}
+      </dl>
+    </section>
+  </div>
+</Base>

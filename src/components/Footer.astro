@@ -1,19 +1,41 @@
-<footer style="text-align: center; margin-top: 60px; padding-top: 24px; border-top: 1px solid #333333;">
+<footer class="site-footer">
+  <a href="/form/" class="cta-band">
+    <span class="wrap cta-band-inner">
+      <span class="cta-band-title">Throwing a party?</span>
+      <span class="cta-band-action">Submit your event <span aria-hidden="true">→</span></span>
+    </span>
+  </a>
+
+  <div class="wrap footer-grid">
+    <div>
+      <p class="footer-brand">Cologne Raves</p>
+      <p>A community-run calendar of techno parties, raves, and club nights in Cologne. No ads, no cookies, maintained by volunteers from the Cologne Ravers WhatsApp group.</p>
+      <p lang="de">Der Community-Kalender für Techno-Partys, Raves und elektronische Musik in Köln. Werbefrei, ohne Cookies, von Ravern für Raver.</p>
+    </div>
+
+    <nav aria-label="Footer">
+      <p class="footer-label">Calendar</p>
+      <a href="/">Raves in Cologne this week</a>
+      <a href="/parties/">All upcoming techno events</a>
+      <a href="/form/">Submit an event</a>
+    </nav>
+
+    <div>
+      <p class="footer-label">Community</p>
+      <a href="https://github.com/M-Igashi/cologne-raves" target="_blank" rel="noopener">Contribute on GitHub</a>
+      <button type="button" class="reveal" onclick="revealWhatsappLink()">Reveal WhatsApp group</button>
+      <div id="whatsapp-link"></div>
+    </div>
+  </div>
+
   <script type="module">
+    // The invite link stays out of the HTML so scrapers do not pick it up.
     function revealWhatsappLink() {
       const link = document.getElementById('whatsapp-link');
       if (link) {
-        link.innerHTML = '<a href="https://chat.whatsapp.com/BtyIpZcgG671qCXV5lbhFI" target="_blank" rel="noopener" style="color: #00cc66; text-decoration: none; text-transform: uppercase; letter-spacing: 1px; font-size: 0.75rem; border-bottom: 1px solid #00cc66; padding-bottom: 2px;">Join Cologne Ravers WhatsApp Group</a>';
+        link.innerHTML = '<a href="https://chat.whatsapp.com/BtyIpZcgG671qCXV5lbhFI" target="_blank" rel="noopener">Join Cologne Ravers on WhatsApp</a>';
       }
     }
     globalThis.revealWhatsappLink = revealWhatsappLink;
   </script>
-
-  <button
-    onclick="revealWhatsappLink()"
-    style="display: inline-flex; align-items: center; gap: 8px; padding: 12px 24px; background: transparent; color: #00cc66; border: 1px solid #00cc66; font-weight: 700; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 2px; font-family: 'JetBrains Mono', monospace; cursor: pointer;"
-  >
-    Reveal WhatsApp Group
-  </button>
-  <div id="whatsapp-link" style="margin-top: 12px;"></div>
 </footer>

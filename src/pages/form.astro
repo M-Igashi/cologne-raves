@@ -1,21 +1,23 @@
 ---
-import BaseHead from '../components/BaseHead.astro';
+import Base from '../layouts/Base.astro';
 import EventForm from '../components/EventForm.tsx';
-
-const canonicalURL = "https://cologne.ravers.workers.dev/form/";
+import { SITE_URL } from '../utils/seo';
 ---
 
-<html lang="en" class="dark">
-  <head>
-    <BaseHead 
-      title="Submit Event | Cologne Raves" 
-      description="Submit your party or live show to Cologne's electronic music community calendar. Easy form to create and submit events."
-      canonicalURL={canonicalURL}
-    />
-  </head>
-  <body style="min-height: 100vh; background: #000000; color: #ffffff; max-width: 768px; margin: 0 auto; padding: 32px 24px;">
-    <a href="/" style="display: inline-block; margin-bottom: 16px; color: #888; text-decoration: none; font-size: 0.875rem;">&larr; Back to Calendar</a>
-    <h1 style="font-size: 1.25rem; font-weight: 700; margin-bottom: 24px; text-transform: uppercase; letter-spacing: 2px;">Submit Events to Cologne Raves</h1>
+<Base
+  title="Submit a Party or Rave in Cologne | Cologne Raves"
+  description="Add your techno party, rave, or club night to the Cologne Raves community calendar. Fill in the details or paste an event link. Free, no account needed."
+  canonicalURL={`${SITE_URL}/form/`}
+  breadcrumb="Submit an event"
+  active="submit"
+>
+  <section class="hero hero-compact wrap">
+    <p class="kicker">Community calendar · free listing · Köln</p>
+    <h1 class="hero-title">Submit <em>your event</em></h1>
+    <p class="hero-sub">Promoter, venue, or raver: put your party in front of Cologne. Fill in the details or just paste a link.</p>
+  </section>
+
+  <div class="wrap form-shell">
     <EventForm client:load />
-  </body>
-</html>
+  </div>
+</Base>

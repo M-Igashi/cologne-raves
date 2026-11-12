@@ -1,65 +1,78 @@
-// SEO utilities for Cologne Raves
+import { formatInTimeZone, fromZonedTime } from "date-fns-tz";
+import type { Party } from "../lib/getAllParties";
 
-export function generateEventSchema(party: any, index: number) {
-  const eventDate = new Date(party.date);
-  const doorTime = party.time || "23:00";
-  
+export const SITE_URL = "https://cologne.ravers.workers.dev";
+export const SITE_NAME = "Cologne Raves";
+export const OG_IMAGE = `${SITE_URL}/og-cologne-raves.png`;
+
+const TIMEZONE = "Europe/Berlin";
+const ISO_FORMAT = "yyyy-MM-dd'T'HH:mm:ssxxx";
+
+// Event dates are plain YYYY-MM-DD strings, so format them in UTC to avoid day shifts.
+export function formatDate(date: string, options: Intl.DateTimeFormatOptions, locale = "en-GB"): string {
+  return new Date(date).toLocaleDateString(locale, { timeZone: "UTC", ...options });
+}
+
+// Lowercase and strip diacritics so "gewolbe" finds "Gewölbe". Mirrored in the
+// filter script on the parties page.
+export function searchKey(text: string): string {
+  return text.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "");
+}
+
+// Start in Berlin local time (correct CET/CEST offset); end defaults to 3 hours
+// later, which may fall on the next day.
+export function eventTimes(party: Pick<Party, "date" | "startTime">) {
+  const time = /^\d{2}:\d{2}$/.test(party.startTime ?? "") ? party.startTime : "23:00";
+  const start = fromZonedTime(`${party.date}T${time}:00`, TIMEZONE);
+  return {
+    start: formatInTimeZone(start, TIMEZONE, ISO_FORMAT),
+    end: formatInTimeZone(new Date(start.getTime() + 3 * 60 * 60 * 1000), TIMEZONE, ISO_FORMAT),
+  };
+}
+
+export function eventJsonLd(party: Party) {
+  const { start, end } = eventTimes(party);
+  const artists = party.artists ?? [];
   return {
     "@type": "MusicEvent",
-    "@id": `https://cologne.ravers.workers.dev/#event-${index}`,
-    "name": party.venue || "Electronic Music Event",
-    "startDate": `${party.date}T${doorTime}:00+02:00`,
-    "endDate": `${party.date}T06:00:00+02:00`,
-    "location": {
+    name: party.title,
+    description: `${party.title}${party.venue ? ` at ${party.venue}` : ""}, Cologne (Köln)${artists.length ? `. Lineup: ${artists.join(", ")}` : ""}`,
+    startDate: start,
+    endDate: end,
+    eventStatus: "https://schema.org/EventScheduled",
+    eventAttendanceMode: "https://schema.org/OfflineEventAttendanceMode",
+    location: {
       "@type": "Place",
-      "name": party.venue,
-      "address": {
+      name: party.venue || "Cologne",
+      address: {
         "@type": "PostalAddress",
-        "addressLocality": "Cologne",
-        "addressRegion": "NRW",
-        "addressCountry": "DE"
-      }
+        addressLocality: "Köln",
+        addressRegion: "NW",
+        addressCountry: "DE",
+      },
     },
-    "performer": party.lineup ? party.lineup.map((artist: string) => ({
-      "@type": "PerformingGroup",
-      "name": artist
-    })) : [],
-    "organizer": {
-      "@type": "Organization",
-      "name": party.venue || "Cologne Venue"
-    },
-    "eventStatus": "https://schema.org/EventScheduled",
-    "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
-    "genre": ["Electronic Music", "Techno", "House"],
-    "description": `${party.venue} presents electronic music featuring ${party.lineup?.join(', ') || 'various artists'}`
+    image: OG_IMAGE,
+    ...(artists.length && {
+      performer: artists.map((name) => ({ "@type": "Person", name })),
+    }),
+    ...(party.url && { offers: { "@type": "Offer", url: party.url } }),
+    url: party.url || `${SITE_URL}/parties/`,
   };
 }
 
-export function getVenueKeywords(venue: string): string {
-  const venueKeywords: Record<string, string> = {
-    "Gewölbe": "gewölbe cologne, gewölbe köln techno",
-    "Odonien": "odonien cologne, odonien köln electronic",
-    "Bootshaus": "bootshaus cologne, bootshaus köln edm",
-    "Artheater": "artheater cologne, artheater köln underground",
-    "Jaki": "club jaki cologne, jaki köln techno",
-    "Elektroküche": "elektroküche cologne, elektroküche köln house",
-    "Studio 672": "studio 672 cologne, studio 672 köln",
-    "Heinz Gaul": "heinz gaul cologne, heinz gaul köln",
-    "YUCA": "yuca cologne, yuca köln club",
-    "Reineke Fuchs": "reineke fuchs cologne, reineke fuchs köln"
-  };
-  
-  return venueKeywords[venue] || "";
-}
-
-export function generateBreadcrumb(items: Array<{name: string, url?: string}>) {
-  return {
-    "@type": "BreadcrumbList",
-    "itemListElement": items.map((item, index) => ({
-      "@type": "ListItem",
-      "position": index + 1,
-      "name": item.name,
-      "item": item.url || undefined
-    }))
-  };
+// Venues with the most listed events first. Spelling variants ("Helios37" vs
+// "Helios 37") count as one venue; "TBA" placeholders are skipped.
+export function topVenues(parties: Party[], limit = 12): string[] {
+  const venues = new Map<string, { name: string; count: number }>();
+  for (const { venue } of parties) {
+    const key = searchKey(venue ?? "").replace(/[^a-z0-9]/g, "");
+    if (!key || key === "tba") continue;
+    const entry = venues.get(key) ?? { name: venue, count: 0 };
+    entry.count++;
+    venues.set(key, entry);
+  }
+  return [...venues.values()]
+    .sort((a, b) => b.count - a.count)
+    .slice(0, limit)
+    .map(({ name }) => name);
 }

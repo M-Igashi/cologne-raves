@@ -41,6 +41,11 @@ const generateDefaultEvent = (): EventData => ({
   url: "",
 });
 
+const tabClass = (active: boolean) =>
+  `-mb-px cursor-pointer border-b-2 px-4 py-3 text-xs font-bold uppercase tracking-widest transition-colors ${
+    active ? "border-acid text-ink" : "border-transparent text-mute hover:text-ink"
+  }`;
+
 export default function EventForm() {
   const [mode, setMode] = useState<SubmitMode>("details");
   const [events, setEvents] = useState<EventData[]>([generateDefaultEvent()]);
@@ -241,48 +246,35 @@ export default function EventForm() {
 
   return (
     <div className="space-y-6">
-      <h2 className="text-xl font-bold">Submit Events to Cologne Raves</h2>
-      <p className="text-gray-400">
-        Submit events to the community calendar
-      </p>
-
       {/* Mode tabs */}
-      <div className="flex gap-2">
+      <div className="flex border-b border-line">
         <button
           onClick={() => { setMode("details"); setSubmitStatus({ type: null, message: "" }); }}
-          className={`px-4 py-2 rounded-t-lg text-sm font-medium transition-colors ${
-            mode === "details"
-              ? "bg-gray-800 text-white border border-b-0 border-gray-600"
-              : "bg-gray-900 text-gray-400 border border-transparent hover:text-gray-200"
-          }`}
+          className={tabClass(mode === "details")}
         >
           Fill in Details
         </button>
         <button
           onClick={() => { setMode("url"); setSubmitStatus({ type: null, message: "" }); }}
-          className={`px-4 py-2 rounded-t-lg text-sm font-medium transition-colors ${
-            mode === "url"
-              ? "bg-gray-800 text-white border border-b-0 border-gray-600"
-              : "bg-gray-900 text-gray-400 border border-transparent hover:text-gray-200"
-          }`}
+          className={tabClass(mode === "url")}
         >
           Share Event Link
         </button>
       </div>
 
       {/* How it works */}
-      <div className="rounded-lg border border-gray-700 bg-gray-900 p-4 space-y-2">
-        <h3 className="text-sm font-semibold text-gray-200 uppercase tracking-wide">How it works</h3>
+      <div className="border border-line bg-panel p-4 space-y-2">
+        <h3 className="text-xs font-bold text-acid uppercase tracking-widest">How it works</h3>
         {mode === "details" ? (
-          <p className="text-sm text-gray-400 leading-relaxed">
-            Fill out the event details below and click <strong className="text-gray-200">"Submit Events"</strong> to
+          <p className="text-sm text-mute leading-relaxed">
+            Fill out the event details below and click <strong className="text-ink">"Submit Events"</strong> to
             automatically create a GitHub Pull Request.
             <br />
-            <span className="text-green-400">New events:</span> Leave ID field empty &mdash;{" "}
+            <span className="text-acid">New events:</span> Leave ID field empty &mdash;{" "}
             <span className="text-orange-400">Update existing:</span> Enter the event ID without #
           </p>
         ) : (
-          <p className="text-sm text-gray-400 leading-relaxed">
+          <p className="text-sm text-mute leading-relaxed">
             Paste a link to an event page (e.g. from ticket shops, venue sites, info sites).
             <br />
             We'll review it and add the event to the calendar. No need to fill in details manually.
@@ -294,7 +286,7 @@ export default function EventForm() {
         /* URL notification mode */
         <>
           <div>
-            <label className="block font-medium mb-1">
+            <label className="block text-sm font-bold mb-1">
               Event Page URL <span className="text-red-400">*</span>
             </label>
             <Input
@@ -302,14 +294,14 @@ export default function EventForm() {
               value={eventUrl}
               onChange={(e) => setEventUrl(e.target.value)}
               placeholder="https://ra.co/events/..."
-              className="border-l-4 border-red-500"
+              className="border-l-4 border-l-hot"
             />
           </div>
 
           <div>
-            <label className="block font-medium mb-1">
+            <label className="block text-sm font-bold mb-1">
               Note{" "}
-              <span className="text-gray-500 text-sm">(optional)</span>
+              <span className="text-mute text-sm">(optional)</span>
             </label>
             <Textarea
               value={urlNote}
@@ -320,9 +312,9 @@ export default function EventForm() {
           </div>
 
           <div>
-            <label className="block font-medium mb-1">
+            <label className="block text-sm font-bold mb-1">
               Your Email{" "}
-              <span className="text-gray-500 text-sm">(optional, for attribution)</span>
+              <span className="text-mute text-sm">(optional, for attribution)</span>
             </label>
             <Input
               type="email"
@@ -336,9 +328,9 @@ export default function EventForm() {
         /* Details mode */
         <>
           <div>
-            <label className="block font-medium">
+            <label className="block text-sm font-bold mb-1">
               Filename suffix{" "}
-              <span className="text-gray-500 text-sm">(e.g. "update")</span>
+              <span className="text-mute text-sm">(e.g. "update")</span>
             </label>
             <Input
               value={filenameSuffix}
@@ -348,9 +340,9 @@ export default function EventForm() {
           </div>
 
           <div>
-            <label className="block font-medium">
+            <label className="block text-sm font-bold mb-1">
               Your Email{" "}
-              <span className="text-gray-500 text-sm">
+              <span className="text-mute text-sm">
                 (optional, for attribution)
               </span>
             </label>
@@ -367,8 +359,8 @@ export default function EventForm() {
       {mode === "details" && (
         <>
           {events.map((event, i) => (
-            <Card key={i} className="p-4 space-y-3 border border-gray-300">
-              <h3 className="font-semibold">Event {i + 1}</h3>
+            <Card key={i} className="space-y-3">
+              <h3 className="font-display text-2xl uppercase">Event {i + 1}</h3>
 
               <div className="flex items-center gap-2">
                 <Input
@@ -404,8 +396,8 @@ export default function EventForm() {
                           </strong>
                           <br />
                           <span className="text-orange-700">
-                            1. Find the event ID in the top-right corner of the
-                            event card (e.g., <code>#be790c46</code>)
+                            1. Find the event ID next to the venue on the event
+                            card (e.g., <code>#be790c46</code>)
                             <br />
                             2. Remove the <code>#</code> symbol and enter only the
                             ID (e.g., <code>be790c46</code>)
@@ -427,21 +419,21 @@ export default function EventForm() {
 
               <Input
                 required
-                className="border-l-4 border-red-500"
+                className="border-l-4 border-l-hot"
                 placeholder="Title (required)"
                 value={event.title}
                 onChange={(e) => updateEvent(i, "title", e.target.value)}
               />
               <Input
                 required
-                className="border-l-4 border-red-500"
+                className="border-l-4 border-l-hot"
                 placeholder="Venue (required)"
                 value={event.venue}
                 onChange={(e) => updateEvent(i, "venue", e.target.value)}
               />
               <Input
                 required
-                className="border-l-4 border-red-500"
+                className="border-l-4 border-l-hot"
                 type="date"
                 placeholder="Date (required, YYYY-MM-DD)"
                 value={event.date}
@@ -451,21 +443,21 @@ export default function EventForm() {
                 required
                 className={
                   isValidTime(event.startTime)
-                    ? "border-l-4 border-red-500"
-                    : "border-l-4 border-yellow-400"
+                    ? "border-l-4 border-l-hot"
+                    : "border-l-4 border-l-yellow-400"
                 }
                 placeholder="Start Time (e.g. 23:00)"
                 value={event.startTime}
                 onChange={(e) => updateEvent(i, "startTime", e.target.value)}
               />
               <Input
-                className="border-l-4 border-gray-300"
+                className="border-l-4"
                 placeholder="Artists (optional, comma separated)"
                 value={event.artists || ""}
                 onChange={(e) => updateEvent(i, "artists", e.target.value)}
               />
               <Textarea
-                className="border-l-4 border-gray-300"
+                className="border-l-4"
                 placeholder="Event URL (optional)"
                 value={event.url || ""}
                 onChange={(e) => updateEvent(i, "url", e.target.value)}
@@ -501,7 +493,7 @@ export default function EventForm() {
                   href={submitStatus.issueUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-blue-400 hover:underline"
+                  className="text-acid underline"
                 >
                   View on GitHub →
                 </a>
@@ -518,7 +510,7 @@ export default function EventForm() {
             <Button
               onClick={submitAsPullRequest}
               disabled={isSubmitting}
-              className="bg-green-600 hover:bg-green-700"
+              variant="accent"
             >
               {isSubmitting ? "Submitting..." : "🚀 Submit Events"}
             </Button>
@@ -530,7 +522,7 @@ export default function EventForm() {
           <Button
             onClick={submitUrl}
             disabled={isSubmitting}
-            className="bg-green-600 hover:bg-green-700"
+            variant="accent"
           >
             {isSubmitting ? "Submitting..." : "🔗 Submit Event Link"}
           </Button>
@@ -538,7 +530,7 @@ export default function EventForm() {
       </div>
 
       {showJson && mode === "details" && (
-        <pre className="mt-4 p-4 bg-gray-900 text-gray-300 text-sm overflow-x-auto rounded border border-gray-700">
+        <pre className="mt-4 p-4 bg-panel text-mute text-sm overflow-x-auto border border-line">
           {JSON.stringify(generateJson(), null, 2)}
         </pre>
       )}

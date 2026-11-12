@@ -10,7 +10,7 @@ const sitemapPath = path.join(distDir, "sitemap.xml");
 
 // Last-modified date for static pages (/form, /extract).
 // Update only when those pages' content actually changes.
-const STATIC_LASTMOD = "2026-04-09";
+const STATIC_LASTMOD = "2026-11-12";
 
 function getGitLastModified(filePath) {
   try {

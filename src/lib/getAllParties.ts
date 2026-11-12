@@ -201,7 +201,9 @@ async function loadAllParties(): Promise<Party[]> {
     }
   }
 
-  return Array.from(partyMap.values()).sort((a, b) =>
-    a.date.localeCompare(b.date),
+  return Array.from(partyMap.values()).sort(
+    (a, b) =>
+      a.date.localeCompare(b.date) ||
+      (a.startTime ?? "").localeCompare(b.startTime ?? ""),
   );
 }

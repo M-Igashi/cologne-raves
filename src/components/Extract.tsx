@@ -57,7 +57,7 @@ export default function ExtractEvents({ allParties }: Props) {
   return (
     <div className="space-y-6">
       <h2 className="text-xl font-bold">Extract Events</h2>
-      <p className="text-gray-700">Download events by date range</p>
+      <p className="text-mute">Download events by date range</p>
 
       <div className="flex flex-col gap-4">
         <Input
@@ -85,7 +85,7 @@ export default function ExtractEvents({ allParties }: Props) {
           </div>
 
           {showJson && (
-            <pre className="mt-4 p-4 bg-gray-100 text-sm overflow-x-auto">
+            <pre className="mt-4 p-4 bg-panel border border-line text-sm overflow-x-auto">
               {JSON.stringify(filteredEvents, null, 2)}
             </pre>
           )}

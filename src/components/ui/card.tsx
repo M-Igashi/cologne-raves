@@ -2,7 +2,7 @@
 import * as React from "react";
 
 export function Card({ className, children }: React.HTMLAttributes<HTMLDivElement>) {
-  return <div className={`rounded-2xl border p-4 shadow-md ${className ?? ""}`}>{children}</div>;
+  return <div className={`border border-line bg-panel p-4 ${className ?? ""}`}>{children}</div>;
 }
 
 export function CardContent({ className, children }: React.HTMLAttributes<HTMLDivElement>) {
