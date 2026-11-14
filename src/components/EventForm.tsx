@@ -19,7 +19,7 @@ import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 
 const { saveAs } = fileSaver;
 
-type SubmitMode = "auto" | "details" | "url";
+type SubmitMode = "auto" | "details";
 
 const TURNSTILE_SITEKEY = "0x4AAAAAAGAeakB328iS_632";
 // Must stay in sync with TURNSTILE_ACTIONS in workers-site/index.js
@@ -105,8 +105,6 @@ export default function EventForm() {
   const [filenameSuffix, setFilenameSuffix] = useState<string>("");
   const [showJson, setShowJson] = useState(false);
   const [submitterEmail, setSubmitterEmail] = useState<string>("");
-  const [eventUrl, setEventUrl] = useState<string>("");
-  const [urlNote, setUrlNote] = useState<string>("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<{
     type: "success" | "error" | null;
@@ -115,7 +113,6 @@ export default function EventForm() {
   }>({ type: null, message: "" });
 
   useEffect(() => {
-    if (mode === "url") return;
     let cancelled = false;
 
     loadTurnstile()
@@ -136,7 +133,7 @@ export default function EventForm() {
         setSubmitStatus({
           type: "error",
           message:
-            "The verification check could not load. Please reload the page, or use Share Event Link instead.",
+            "The verification check could not load. Please reload the page and try again.",
         });
       });
 
@@ -364,61 +361,6 @@ export default function EventForm() {
     }
   };
 
-  const submitUrl = async () => {
-    if (!eventUrl.trim()) {
-      setSubmitStatus({
-        type: "error",
-        message: "Please enter an event page URL.",
-      });
-      return;
-    }
-
-    setIsSubmitting(true);
-    setSubmitStatus({ type: null, message: "" });
-
-    try {
-      const response = await fetch("/api/notify-event", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          url: eventUrl.trim(),
-          note: urlNote.trim(),
-          submitterEmail: submitterEmail || "anonymous",
-        }),
-      });
-
-      const result = (await response.json()) as {
-        message?: string;
-        issueUrl?: string;
-        error?: string;
-      };
-
-      if (response.ok) {
-        setSubmitStatus({
-          type: "success",
-          message:
-            result.message || "Your event URL has been submitted for review!",
-          issueUrl: result.issueUrl,
-        });
-        setEventUrl("");
-        setUrlNote("");
-        setSubmitterEmail("");
-      } else {
-        setSubmitStatus({
-          type: "error",
-          message: result.error || "Failed to submit. Please try again.",
-        });
-      }
-    } catch {
-      setSubmitStatus({
-        type: "error",
-        message: "Network error. Please check your connection and try again.",
-      });
-    } finally {
-      setIsSubmitting(false);
-    }
-  };
-
   return (
     <div className="space-y-6">
       {/* Mode tabs */}
@@ -428,9 +370,6 @@ export default function EventForm() {
         </button>
         <button onClick={() => switchMode("details")} className={tabClass(mode === "details")}>
           Fill in Details
-        </button>
-        <button onClick={() => switchMode("url")} className={tabClass(mode === "url")}>
-          Share Event Link
         </button>
       </div>
 
@@ -463,19 +402,13 @@ export default function EventForm() {
               </li>
             </ul>
           </>
-        ) : mode === "details" ? (
+        ) : (
           <p className="text-sm text-mute leading-relaxed">
             Fill out the event details below and click <strong className="text-ink">"Submit Events"</strong> to
             automatically create a GitHub Pull Request.
             <br />
             <span className="text-acid">New events:</span> Leave ID field empty &mdash;{" "}
             <span className="text-orange-400">Update existing:</span> Enter the event ID without #
-          </p>
-        ) : (
-          <p className="text-sm text-mute leading-relaxed">
-            Paste a link to an event page (e.g. from ticket shops, venue sites, info sites).
-            <br />
-            We'll review it and add the event to the calendar. No need to fill in details manually.
           </p>
         )}
       </div>
@@ -493,48 +426,6 @@ export default function EventForm() {
               rows={6}
               maxLength={MAX_AUTOFILL_LENGTH}
               className="border-l-4 border-l-hot"
-            />
-          </div>
-        </>
-      ) : mode === "url" ? (
-        /* URL notification mode */
-        <>
-          <div>
-            <label className="block text-sm font-bold mb-1">
-              Event Page URL <span className="text-red-400">*</span>
-            </label>
-            <Input
-              type="url"
-              value={eventUrl}
-              onChange={(e) => setEventUrl(e.target.value)}
-              placeholder="https://ra.co/events/..."
-              className="border-l-4 border-l-hot"
-            />
-          </div>
-
-          <div>
-            <label className="block text-sm font-bold mb-1">
-              Note{" "}
-              <span className="text-mute text-sm">(optional)</span>
-            </label>
-            <Textarea
-              value={urlNote}
-              onChange={(e) => setUrlNote(e.target.value)}
-              placeholder="Any additional info (e.g. 'multiple dates', 'lineup TBA')"
-              rows={2}
-            />
-          </div>
-
-          <div>
-            <label className="block text-sm font-bold mb-1">
-              Your Email{" "}
-              <span className="text-mute text-sm">(optional, for attribution)</span>
-            </label>
-            <Input
-              type="email"
-              value={submitterEmail}
-              onChange={(e) => setSubmitterEmail(e.target.value)}
-              placeholder="your@email.com"
             />
           </div>
         </>
@@ -727,14 +618,14 @@ export default function EventForm() {
         </Alert>
       )}
 
-      {mode !== "url" && <div key={mode} ref={turnstileBox} />}
+      <div key={mode} ref={turnstileBox} />
 
       <div className="flex flex-wrap gap-4 pt-4">
         {mode === "auto" ? (
           <Button onClick={autofill} disabled={isExtracting} variant="accent">
             {isExtracting ? "Reading..." : "✨ Auto-fill the form"}
           </Button>
-        ) : mode === "details" ? (
+        ) : (
           <>
             <Button onClick={downloadJson}>📥 Download JSON</Button>
             <Button
@@ -748,14 +639,6 @@ export default function EventForm() {
               {showJson ? "Hide JSON" : "Show JSON"}
             </Button>
           </>
-        ) : (
-          <Button
-            onClick={submitUrl}
-            disabled={isSubmitting}
-            variant="accent"
-          >
-            {isSubmitting ? "Submitting..." : "🔗 Submit Event Link"}
-          </Button>
         )}
       </div>
 

@@ -14,7 +14,6 @@ const GITHUB_API = "https://api.github.com/repos/M-Igashi/cologne-raves";
 const MAX_EVENTS = 20;
 const MAX_TEXT_LENGTH = 200;
 const MAX_URL_LENGTH = 500;
-const MAX_NOTE_LENGTH = 1000;
 const MAX_ARTISTS = 100;
 
 // Must stay in sync with the filename check in .github/workflows/create-event-pr.yml
@@ -38,10 +37,6 @@ export default {
 
     if (url.pathname === "/api/submit-event") {
       return handleSubmitEvent(request, env);
-    }
-
-    if (url.pathname === "/api/notify-event") {
-      return handleNotifyEvent(request, env);
     }
 
     if (url.pathname === "/api/extract-event") {
@@ -327,81 +322,6 @@ ${JSON.stringify(events, null, 2).replaceAll("```", "'''")}
   } catch (error) {
     logError("Error processing event submission", { error: String(error) });
     return json({ error: "Failed to process submission. Please try again later." }, 500);
-  }
-}
-
-async function handleNotifyEvent(request, env) {
-  if (request.method === "OPTIONS") {
-    return new Response(null, { status: 204, headers: API_HEADERS });
-  }
-
-  if (request.method !== "POST") {
-    return new Response("Method not allowed", { status: 405 });
-  }
-
-  const body = await readJsonBody(request);
-  if (!body) {
-    return json({ error: "Request body must be a JSON object" }, 400);
-  }
-
-  const { url, note } = body;
-  const submitter = normalizeSubmitter(body.submitterEmail);
-
-  if (!isHttpUrl(url)) {
-    return json(
-      {
-        error: "Invalid URL",
-        details: `Event URL must be an http(s) link of at most ${MAX_URL_LENGTH} characters`,
-      },
-      400,
-    );
-  }
-
-  if (note !== undefined && (typeof note !== "string" || note.length > MAX_NOTE_LENGTH)) {
-    return json(
-      {
-        error: "Invalid note",
-        details: `Note must be text of at most ${MAX_NOTE_LENGTH} characters`,
-      },
-      400,
-    );
-  }
-
-  if (!env.GITHUB_TOKEN) {
-    logError("GITHUB_TOKEN not configured");
-    return json(
-      { error: "Submissions are temporarily unavailable. Please try again later." },
-      503,
-    );
-  }
-
-  // The note goes into a fenced block so it cannot inject markdown or @mentions.
-  const noteBlock = note?.trim()
-    ? `\n**Note:**\n\n\`\`\`text\n${note.trim().replaceAll("```", "'''")}\n\`\`\`\n`
-    : "";
-
-  const issueBody = `## Event Link Submission
-
-**URL:** ${url}
-**Submitted by:** ${submitter}
-**Timestamp:** ${new Date().toISOString()}
-${noteBlock}
-### Next steps
-
-Use the \`crawl-events\` command to scrape this URL and add the event(s) to the calendar.
-
----
-*Submitted from ${SITE_ORIGIN}/form/*`;
-
-  try {
-    return await createIssue(
-      env,
-      { title: `Event link: ${url}`.slice(0, 200), body: issueBody, labels: ["event-link"] },
-      (issue) => `Thanks! Your event link has been submitted for review (Issue #${issue.number}).`,
-    );
-  } catch (error) {
-    logError("Error processing event link notification", { error: String(error) });
-    return json({ error: "Failed to submit event link. Please try again later." }, 500);
   }
 }
 
