@@ -235,6 +235,8 @@ jobs:
       run: |
         for attempt in 1 2 3; do
           if gh pr merge "$BRANCH_NAME" --repo "$REPO" --squash; then
+            # Let the pull request checks check out the branch before it is deleted.
+            sleep 60
             git push origin --delete "$BRANCH_NAME" || true
             exit 0
           fi
