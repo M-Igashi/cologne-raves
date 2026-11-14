@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import fileSaver from "file-saver";
 import { v4 as uuidv4 } from "uuid";
 import { Card } from "@/components/ui/card";
@@ -19,7 +19,54 @@ import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 
 const { saveAs } = fileSaver;
 
-type SubmitMode = "details" | "url";
+type SubmitMode = "auto" | "details" | "url";
+
+const TURNSTILE_SITEKEY = "0x4AAAAAAGAeakB328iS_632";
+// Must stay in sync with TURNSTILE_ACTION in workers-site/index.js
+const TURNSTILE_ACTION = "extract-event";
+// Must stay in sync with MAX_EXTRACT_TEXT_LENGTH in workers-site/extract.js
+const MAX_AUTOFILL_LENGTH = 5000;
+
+interface TurnstileApi {
+  render: (
+    container: HTMLElement,
+    options: {
+      sitekey: string;
+      action: string;
+      theme: "dark";
+      callback: (token: string) => void;
+      "expired-callback": () => void;
+      "error-callback": () => void;
+    },
+  ) => string;
+  reset: (widgetId: string) => void;
+  remove: (widgetId: string) => void;
+}
+
+const getTurnstile = () => (window as Window & { turnstile?: TurnstileApi }).turnstile;
+
+let turnstileLoading: Promise<void> | undefined;
+const loadTurnstile = () =>
+  (turnstileLoading ??= new Promise<void>((resolve, reject) => {
+    const script = document.createElement("script");
+    script.src = "https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit";
+    script.async = true;
+    script.onload = () => resolve();
+    script.onerror = () => {
+      turnstileLoading = undefined;
+      reject(new Error("Turnstile failed to load"));
+    };
+    document.head.appendChild(script);
+  }));
+
+interface ExtractedEvent {
+  title: string;
+  venue: string;
+  date: string;
+  startTime: string;
+  artists: string[];
+  url?: string;
+}
 
 interface EventData {
   id: string;
@@ -47,7 +94,13 @@ const tabClass = (active: boolean) =>
   }`;
 
 export default function EventForm() {
-  const [mode, setMode] = useState<SubmitMode>("details");
+  const [mode, setMode] = useState<SubmitMode>("auto");
+  const [autoInput, setAutoInput] = useState<string>("");
+  const [autofillNote, setAutofillNote] = useState<string>("");
+  const [isExtracting, setIsExtracting] = useState(false);
+  const [turnstileToken, setTurnstileToken] = useState<string>("");
+  const turnstileBox = useRef<HTMLDivElement>(null);
+  const turnstileWidget = useRef<string | undefined>(undefined);
   const [events, setEvents] = useState<EventData[]>([generateDefaultEvent()]);
   const [filenameSuffix, setFilenameSuffix] = useState<string>("");
   const [showJson, setShowJson] = useState(false);
@@ -60,6 +113,118 @@ export default function EventForm() {
     message: string;
     issueUrl?: string;
   }>({ type: null, message: "" });
+
+  useEffect(() => {
+    if (mode !== "auto") return;
+    let cancelled = false;
+
+    loadTurnstile()
+      .then(() => {
+        const turnstile = getTurnstile();
+        if (cancelled || !turnstile || !turnstileBox.current) return;
+        turnstileWidget.current = turnstile.render(turnstileBox.current, {
+          sitekey: TURNSTILE_SITEKEY,
+          action: TURNSTILE_ACTION,
+          theme: "dark",
+          callback: setTurnstileToken,
+          "expired-callback": () => setTurnstileToken(""),
+          "error-callback": () => setTurnstileToken(""),
+        });
+      })
+      .catch(() => {
+        if (cancelled) return;
+        setSubmitStatus({
+          type: "error",
+          message:
+            "The verification check could not load, so auto-fill is unavailable. Please fill in the details manually.",
+        });
+      });
+
+    return () => {
+      cancelled = true;
+      if (turnstileWidget.current !== undefined) {
+        getTurnstile()?.remove(turnstileWidget.current);
+        turnstileWidget.current = undefined;
+      }
+      setTurnstileToken("");
+    };
+  }, [mode]);
+
+  const switchMode = (next: SubmitMode) => {
+    setMode(next);
+    setSubmitStatus({ type: null, message: "" });
+  };
+
+  const autofill = async () => {
+    const input = autoInput.trim();
+    if (!input) {
+      setSubmitStatus({ type: "error", message: "Please paste an event link or event text." });
+      return;
+    }
+    if (!turnstileToken) {
+      setSubmitStatus({
+        type: "error",
+        message: "Please wait for the verification check to finish, then try again.",
+      });
+      return;
+    }
+
+    setIsExtracting(true);
+    setSubmitStatus({ type: null, message: "" });
+
+    try {
+      const isUrl = /^https?:\/\/\S+$/i.test(input);
+      const response = await fetch("/api/extract-event", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ ...(isUrl ? { url: input } : { text: input }), turnstileToken }),
+      });
+
+      const result = (await response.json()) as {
+        events?: ExtractedEvent[];
+        source?: string;
+        error?: string;
+      };
+
+      if (response.ok && result.events?.length) {
+        setEvents(
+          result.events.map((event) => ({
+            id: "",
+            title: event.title,
+            venue: event.venue,
+            date: event.date,
+            startTime: event.startTime,
+            artists: event.artists.join(", "),
+            url: event.url || "",
+          })),
+        );
+        setAutofillNote(
+          result.source === "ai"
+            ? "These details were read by AI and may be wrong or incomplete."
+            : "These details were read from the event page.",
+        );
+        setAutoInput("");
+        switchMode("details");
+      } else {
+        setSubmitStatus({
+          type: "error",
+          message: result.error || "Auto-fill failed. Please fill in the details manually.",
+        });
+      }
+    } catch {
+      setSubmitStatus({
+        type: "error",
+        message: "Network error. Please check your connection and try again.",
+      });
+    } finally {
+      // Tokens are single-use: get a fresh one before the next attempt.
+      setTurnstileToken("");
+      if (turnstileWidget.current !== undefined) {
+        getTurnstile()?.reset(turnstileWidget.current);
+      }
+      setIsExtracting(false);
+    }
+  };
 
   const updateEvent = (
     index: number,
@@ -170,6 +335,7 @@ export default function EventForm() {
           issueUrl: result.issueUrl,
         });
         setEvents([generateDefaultEvent()]);
+        setAutofillNote("");
         setFilenameSuffix("");
         setSubmitterEmail("");
       } else {
@@ -248,16 +414,13 @@ export default function EventForm() {
     <div className="space-y-6">
       {/* Mode tabs */}
       <div className="flex border-b border-line">
-        <button
-          onClick={() => { setMode("details"); setSubmitStatus({ type: null, message: "" }); }}
-          className={tabClass(mode === "details")}
-        >
+        <button onClick={() => switchMode("auto")} className={tabClass(mode === "auto")}>
+          Auto-fill
+        </button>
+        <button onClick={() => switchMode("details")} className={tabClass(mode === "details")}>
           Fill in Details
         </button>
-        <button
-          onClick={() => { setMode("url"); setSubmitStatus({ type: null, message: "" }); }}
-          className={tabClass(mode === "url")}
-        >
+        <button onClick={() => switchMode("url")} className={tabClass(mode === "url")}>
           Share Event Link
         </button>
       </div>
@@ -265,7 +428,33 @@ export default function EventForm() {
       {/* How it works */}
       <div className="border border-line bg-panel p-4 space-y-2">
         <h3 className="text-xs font-bold text-acid uppercase tracking-widest">How it works</h3>
-        {mode === "details" ? (
+        {mode === "auto" ? (
+          <>
+            <p className="text-sm text-mute leading-relaxed">
+              Paste an event link or any event text (a flyer caption, a newsletter, a chat message).
+              We read it, using AI where needed, and pre-fill the form for you.{" "}
+              <strong className="text-ink">Nothing is submitted until you have checked the details.</strong>
+            </p>
+            <h3 className="pt-2 text-xs font-bold text-orange-400 uppercase tracking-widest">Limitations</h3>
+            <ul className="list-disc space-y-1 pl-5 text-sm text-mute leading-relaxed">
+              <li>Links work best for venue websites and ticket shops.</li>
+              <li>
+                <strong className="text-ink">Resident Advisor</strong> links cannot be read (RA blocks
+                automated access). Paste the event text instead.
+              </li>
+              <li>
+                <strong className="text-ink">Instagram and Facebook</strong> links cannot be read (login
+                required). Paste the caption or event description instead.
+              </li>
+              <li>Pages that only load their content with JavaScript may come back empty.</li>
+              <li>AI makes mistakes. Always check the date and the start time.</li>
+              <li>
+                Up to 4 events per request. Auto-fill runs on a free daily AI quota, so it can be
+                unavailable late in the day.
+              </li>
+            </ul>
+          </>
+        ) : mode === "details" ? (
           <p className="text-sm text-mute leading-relaxed">
             Fill out the event details below and click <strong className="text-ink">"Submit Events"</strong> to
             automatically create a GitHub Pull Request.
@@ -282,7 +471,24 @@ export default function EventForm() {
         )}
       </div>
 
-      {mode === "url" ? (
+      {mode === "auto" ? (
+        <>
+          <div>
+            <label className="block text-sm font-bold mb-1">
+              Event link or text <span className="text-red-400">*</span>
+            </label>
+            <Textarea
+              value={autoInput}
+              onChange={(e) => setAutoInput(e.target.value)}
+              placeholder={"https://venue.example/events/my-party\n\nor paste the event text here"}
+              rows={6}
+              maxLength={MAX_AUTOFILL_LENGTH}
+              className="border-l-4 border-l-hot"
+            />
+          </div>
+          <div ref={turnstileBox} />
+        </>
+      ) : mode === "url" ? (
         /* URL notification mode */
         <>
           <div>
@@ -358,6 +564,16 @@ export default function EventForm() {
 
       {mode === "details" && (
         <>
+          {autofillNote && (
+            <Alert className="border-orange-400 bg-panel">
+              <AlertTitle>Auto-filled: please check</AlertTitle>
+              <AlertDescription>
+                {autofillNote} Check every field, especially the date and the start time, fill in
+                anything missing, then press "Submit Events".
+              </AlertDescription>
+            </Alert>
+          )}
+
           {events.map((event, i) => (
             <Card key={i} className="space-y-3">
               <h3 className="font-display text-2xl uppercase">Event {i + 1}</h3>
@@ -504,7 +720,11 @@ export default function EventForm() {
       )}
 
       <div className="flex flex-wrap gap-4 pt-4">
-        {mode === "details" ? (
+        {mode === "auto" ? (
+          <Button onClick={autofill} disabled={isExtracting} variant="accent">
+            {isExtracting ? "Reading..." : "✨ Auto-fill the form"}
+          </Button>
+        ) : mode === "details" ? (
           <>
             <Button onClick={downloadJson}>📥 Download JSON</Button>
             <Button

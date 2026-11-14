@@ -1,4 +1,14 @@
+import {
+  ExtractError,
+  MAX_EXTRACT_TEXT_LENGTH,
+  extractFromText,
+  extractFromUrl,
+} from "./extract.js";
+
 const SITE_ORIGIN = "https://cologne.ravers.workers.dev";
+const TURNSTILE_VERIFY_URL = "https://challenges.cloudflare.com/turnstile/v0/siteverify";
+// Must stay in sync with TURNSTILE_ACTION in src/components/EventForm.tsx
+const TURNSTILE_ACTION = "extract-event";
 const GITHUB_API = "https://api.github.com/repos/M-Igashi/cologne-raves";
 
 const MAX_EVENTS = 20;
@@ -32,6 +42,10 @@ export default {
 
     if (url.pathname === "/api/notify-event") {
       return handleNotifyEvent(request, env);
+    }
+
+    if (url.pathname === "/api/extract-event") {
+      return handleExtractEvent(request, env);
     }
 
     if (url.pathname === "/favicon.ico") {
@@ -383,6 +397,108 @@ Use the \`crawl-events\` command to scrape this URL and add the event(s) to the 
   } catch (error) {
     logError("Error processing event link notification", { error: String(error) });
     return json({ error: "Failed to submit event link. Please try again later." }, 500);
+  }
+}
+
+// Fails closed: any doubt about the token means the request is rejected.
+async function verifyTurnstile(request, env, token) {
+  if (typeof token !== "string" || token.length === 0 || token.length > 2048) return false;
+
+  // TURNSTILE_HOSTNAMES overrides the production hostname for local development only.
+  const hostnames = (env.TURNSTILE_HOSTNAMES || new URL(SITE_ORIGIN).hostname)
+    .split(",")
+    .map((hostname) => hostname.trim())
+    .filter(Boolean);
+
+  try {
+    const response = await fetch(TURNSTILE_VERIFY_URL, {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      signal: AbortSignal.timeout(10_000),
+      body: new URLSearchParams({
+        secret: env.TURNSTILE_SECRET,
+        response: token,
+        remoteip: request.headers.get("CF-Connecting-IP") || "",
+      }),
+    });
+    if (!response.ok) return false;
+    const result = await response.json();
+    return (
+      result.success === true &&
+      result.action === TURNSTILE_ACTION &&
+      hostnames.includes(result.hostname)
+    );
+  } catch {
+    return false;
+  }
+}
+
+async function handleExtractEvent(request, env) {
+  if (request.method === "OPTIONS") {
+    return new Response(null, { status: 204, headers: API_HEADERS });
+  }
+
+  if (request.method !== "POST") {
+    return new Response("Method not allowed", { status: 405 });
+  }
+
+  const body = await readJsonBody(request);
+  if (!body) {
+    return json({ error: "Request body must be a JSON object" }, 400);
+  }
+
+  const { url, text } = body;
+  const hasUrl = url !== undefined && url !== "";
+  const hasText = typeof text === "string" && text.trim().length > 0;
+
+  if (hasUrl === hasText) {
+    return json({ error: "Send either an event link or event text." }, 400);
+  }
+  if (hasUrl && !isHttpUrl(url)) {
+    return json({ error: "Event link must be an http(s) URL." }, 400);
+  }
+  if (hasText && text.length > MAX_EXTRACT_TEXT_LENGTH) {
+    return json(
+      { error: `Event text must be at most ${MAX_EXTRACT_TEXT_LENGTH} characters.` },
+      400,
+    );
+  }
+
+  if (!env.TURNSTILE_SECRET || !env.AI) {
+    logError("Auto-fill is not configured");
+    return json({ error: "Auto-fill is temporarily unavailable." }, 503);
+  }
+
+  if (!(await verifyTurnstile(request, env, body.turnstileToken))) {
+    return json({ error: "Verification failed. Please try again." }, 403);
+  }
+
+  if (env.EXTRACT_RATE_LIMITER) {
+    const key = request.headers.get("CF-Connecting-IP") || "unknown";
+    const { success } = await env.EXTRACT_RATE_LIMITER.limit({ key });
+    if (!success) {
+      return json({ error: "Too many requests. Please wait a minute and try again." }, 429);
+    }
+  }
+
+  try {
+    const { source, events } = hasUrl
+      ? await extractFromUrl(env, url)
+      : await extractFromText(env, text);
+
+    if (events.length === 0) {
+      return json(
+        { error: "No event details were found. Paste the event text or fill in the details manually." },
+        422,
+      );
+    }
+    return json({ success: true, source, events });
+  } catch (error) {
+    if (error instanceof ExtractError) {
+      return json({ error: error.message }, error.status);
+    }
+    logError("Error extracting event", { error: String(error) });
+    return json({ error: "Auto-fill failed. Please fill in the details manually." }, 500);
   }
 }
 
