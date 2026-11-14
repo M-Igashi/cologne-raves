@@ -7,8 +7,8 @@ import {
 
 const SITE_ORIGIN = "https://cologne.ravers.workers.dev";
 const TURNSTILE_VERIFY_URL = "https://challenges.cloudflare.com/turnstile/v0/siteverify";
-// Must stay in sync with TURNSTILE_ACTION in src/components/EventForm.tsx
-const TURNSTILE_ACTION = "extract-event";
+// Must stay in sync with TURNSTILE_ACTIONS in src/components/EventForm.tsx
+const TURNSTILE_ACTIONS = { extract: "extract-event", submit: "submit-event" };
 const GITHUB_API = "https://api.github.com/repos/M-Igashi/cologne-raves";
 
 const MAX_EVENTS = 20;
@@ -264,12 +264,17 @@ async function handleSubmitEvent(request, env) {
     }
   }
 
-  if (!env.GITHUB_TOKEN) {
-    logError("GITHUB_TOKEN not configured");
+  if (!env.GITHUB_TOKEN || !env.TURNSTILE_SECRET) {
+    logError("GITHUB_TOKEN or TURNSTILE_SECRET not configured");
     return json(
       { error: "Submissions are temporarily unavailable. Please try again later." },
       503,
     );
+  }
+
+  // Events that pass this check may be merged without review (see create-event-pr.yml).
+  if (!(await verifyTurnstile(request, env, body.turnstileToken, TURNSTILE_ACTIONS.submit))) {
+    return json({ error: "Verification failed. Please reload the page and try again." }, 403);
   }
 
   try {
@@ -283,7 +288,7 @@ async function handleSubmitEvent(request, env) {
       return json({
         success: true,
         message:
-          "Pull request creation initiated! Check the repository for the new PR in a few moments.",
+          "Thanks! Your events were submitted. New events usually go live within a few minutes; updates to existing events are reviewed first.",
         workflowTriggered: true,
       });
     }
@@ -401,7 +406,7 @@ Use the \`crawl-events\` command to scrape this URL and add the event(s) to the 
 }
 
 // Fails closed: any doubt about the token means the request is rejected.
-async function verifyTurnstile(request, env, token) {
+async function verifyTurnstile(request, env, token, action) {
   if (typeof token !== "string" || token.length === 0 || token.length > 2048) return false;
 
   // TURNSTILE_HOSTNAMES overrides the production hostname for local development only.
@@ -425,7 +430,7 @@ async function verifyTurnstile(request, env, token) {
     const result = await response.json();
     return (
       result.success === true &&
-      result.action === TURNSTILE_ACTION &&
+      result.action === action &&
       hostnames.includes(result.hostname)
     );
   } catch {
@@ -469,7 +474,7 @@ async function handleExtractEvent(request, env) {
     return json({ error: "Auto-fill is temporarily unavailable." }, 503);
   }
 
-  if (!(await verifyTurnstile(request, env, body.turnstileToken))) {
+  if (!(await verifyTurnstile(request, env, body.turnstileToken, TURNSTILE_ACTIONS.extract))) {
     return json({ error: "Verification failed. Please try again." }, 403);
   }
 

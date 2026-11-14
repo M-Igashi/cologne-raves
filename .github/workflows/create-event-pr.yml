@@ -128,6 +128,27 @@ jobs:
         console.log('All events validated successfully!');
         "
 
+    # Runs the script from main: the branch only adds the data file.
+    - name: Check auto-merge eligibility
+      id: automerge
+      env:
+        FILENAME: ${{ inputs.filename }}
+      run: |
+        if REASONS="$(node scripts/auto-merge-check.js "data/$FILENAME")"; then
+          echo "eligible=true" >> "$GITHUB_OUTPUT"
+          NOTE="Eligible for automatic merge: new events dated within the next year, with no duplicates."
+        else
+          echo "eligible=false" >> "$GITHUB_OUTPUT"
+          NOTE="Needs manual review:
+        ${REASONS:-The eligibility check could not run.}"
+        fi
+        {
+          echo "note<<AUTOMERGE_NOTE_EOF"
+          echo "$NOTE"
+          echo "AUTOMERGE_NOTE_EOF"
+        } >> "$GITHUB_OUTPUT"
+        echo "$NOTE"
+
     - name: Commit changes
       env:
         FILENAME: ${{ inputs.filename }}
@@ -165,6 +186,7 @@ jobs:
         FILENAME: ${{ inputs.filename }}
         SUBMITTER_EMAIL: ${{ inputs.submitter_email }}
         BRANCH_NAME: ${{ steps.branch.outputs.name }}
+        AUTOMERGE_NOTE: ${{ steps.automerge.outputs.note }}
       run: |
         TIMESTAMP="$(date -u +%Y-%m-%d' '%H:%M:%S' UTC')"
         gh pr create \
@@ -180,6 +202,9 @@ jobs:
 
         ### Events Summary
         This PR adds new events from the web form submission.
+
+        ### Auto-merge
+        ${AUTOMERGE_NOTE}
 
         ### Validation Status
         - JSON format validated
@@ -199,3 +224,20 @@ jobs:
         *This PR was automatically created from a form submission at https://cologne.ravers.workers.dev/form/*"
 
         echo "Pull request created successfully!"
+
+    # Merging with GH_PAT (not GITHUB_TOKEN) lets the push to main trigger backfill and deploy.
+    - name: Auto-merge
+      if: steps.automerge.outputs.eligible == 'true'
+      env:
+        GH_TOKEN: ${{ secrets.GH_PAT }}
+        BRANCH_NAME: ${{ steps.branch.outputs.name }}
+        REPO: ${{ github.repository }}
+      run: |
+        for attempt in 1 2 3; do
+          if gh pr merge "$BRANCH_NAME" --repo "$REPO" --squash; then
+            git push origin --delete "$BRANCH_NAME" || true
+            exit 0
+          fi
+          sleep 10
+        done
+        echo "::warning::Auto-merge failed. The pull request stays open for manual review."

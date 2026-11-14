@@ -22,8 +22,8 @@ const { saveAs } = fileSaver;
 type SubmitMode = "auto" | "details" | "url";
 
 const TURNSTILE_SITEKEY = "0x4AAAAAAGAeakB328iS_632";
-// Must stay in sync with TURNSTILE_ACTION in workers-site/index.js
-const TURNSTILE_ACTION = "extract-event";
+// Must stay in sync with TURNSTILE_ACTIONS in workers-site/index.js
+const TURNSTILE_ACTIONS = { auto: "extract-event", details: "submit-event" } as const;
 // Must stay in sync with MAX_EXTRACT_TEXT_LENGTH in workers-site/extract.js
 const MAX_AUTOFILL_LENGTH = 5000;
 
@@ -115,7 +115,7 @@ export default function EventForm() {
   }>({ type: null, message: "" });
 
   useEffect(() => {
-    if (mode !== "auto") return;
+    if (mode === "url") return;
     let cancelled = false;
 
     loadTurnstile()
@@ -124,7 +124,7 @@ export default function EventForm() {
         if (cancelled || !turnstile || !turnstileBox.current) return;
         turnstileWidget.current = turnstile.render(turnstileBox.current, {
           sitekey: TURNSTILE_SITEKEY,
-          action: TURNSTILE_ACTION,
+          action: TURNSTILE_ACTIONS[mode],
           theme: "dark",
           callback: setTurnstileToken,
           "expired-callback": () => setTurnstileToken(""),
@@ -136,7 +136,7 @@ export default function EventForm() {
         setSubmitStatus({
           type: "error",
           message:
-            "The verification check could not load, so auto-fill is unavailable. Please fill in the details manually.",
+            "The verification check could not load. Please reload the page, or use Share Event Link instead.",
         });
       });
 
@@ -150,6 +150,23 @@ export default function EventForm() {
     };
   }, [mode]);
 
+  // Tokens are single-use: get a fresh one after every request.
+  const resetTurnstile = () => {
+    setTurnstileToken("");
+    if (turnstileWidget.current !== undefined) {
+      getTurnstile()?.reset(turnstileWidget.current);
+    }
+  };
+
+  const requireTurnstileToken = () => {
+    if (turnstileToken) return true;
+    setSubmitStatus({
+      type: "error",
+      message: "Please wait for the verification check to finish, then try again.",
+    });
+    return false;
+  };
+
   const switchMode = (next: SubmitMode) => {
     setMode(next);
     setSubmitStatus({ type: null, message: "" });
@@ -161,13 +178,7 @@ export default function EventForm() {
       setSubmitStatus({ type: "error", message: "Please paste an event link or event text." });
       return;
     }
-    if (!turnstileToken) {
-      setSubmitStatus({
-        type: "error",
-        message: "Please wait for the verification check to finish, then try again.",
-      });
-      return;
-    }
+    if (!requireTurnstileToken()) return;
 
     setIsExtracting(true);
     setSubmitStatus({ type: null, message: "" });
@@ -217,11 +228,7 @@ export default function EventForm() {
         message: "Network error. Please check your connection and try again.",
       });
     } finally {
-      // Tokens are single-use: get a fresh one before the next attempt.
-      setTurnstileToken("");
-      if (turnstileWidget.current !== undefined) {
-        getTurnstile()?.reset(turnstileWidget.current);
-      }
+      resetTurnstile();
       setIsExtracting(false);
     }
   };
@@ -301,7 +308,7 @@ export default function EventForm() {
   };
 
   const submitAsPullRequest = async () => {
-    if (!validateEvents()) {
+    if (!validateEvents() || !requireTurnstileToken()) {
       return;
     }
 
@@ -318,6 +325,7 @@ export default function EventForm() {
           events: generateJson(),
           filename: getFilename(),
           submitterEmail: submitterEmail || "anonymous",
+          turnstileToken,
         }),
       });
 
@@ -351,6 +359,7 @@ export default function EventForm() {
         message: "Network error. Please check your connection and try again.",
       });
     } finally {
+      resetTurnstile();
       setIsSubmitting(false);
     }
   };
@@ -486,7 +495,6 @@ export default function EventForm() {
               className="border-l-4 border-l-hot"
             />
           </div>
-          <div ref={turnstileBox} />
         </>
       ) : mode === "url" ? (
         /* URL notification mode */
@@ -718,6 +726,8 @@ export default function EventForm() {
           </AlertDescription>
         </Alert>
       )}
+
+      {mode !== "url" && <div key={mode} ref={turnstileBox} />}
 
       <div className="flex flex-wrap gap-4 pt-4">
         {mode === "auto" ? (
