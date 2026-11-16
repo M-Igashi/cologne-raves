@@ -14,7 +14,8 @@
       "AVENTOX vs SITTENLOS",
       "PANO vs MORASTIC"
     ],
-    "url": "https://tagesraver.ticket.io"
+    "url": "https://tagesraver.ticket.io",
+    "id": "abcf4ec1"
   },
   {
     "title": "MDMA",
@@ -31,7 +32,8 @@
       "Hellmayer",
       "Lee-Ann b2b Dystopia",
       "Faust"
-    ]
+    ],
+    "id": "c06da6c4"
   },
   {
     "title": "Ehrenklub Odonien",
@@ -49,7 +51,8 @@
       "Trancestrudel",
       "Xamuel"
     ],
-    "url": "https://beacons.ai/ehrenklub"
+    "url": "https://beacons.ai/ehrenklub",
+    "id": "401b7c89"
   },
   {
     "title": "Affenkäfig – End of Year Rave",
@@ -68,7 +71,8 @@
       "Tommy Libera",
       "Unromantic"
     ],
-    "url": "https://affenkaefig.info/tickets/"
+    "url": "https://affenkaefig.info/tickets/",
+    "id": "36326c31"
   },
   {
     "title": "Fiebertraum – Hard Edition",
@@ -83,7 +87,8 @@
       "Ramona",
       "Wan"
     ],
-    "url": "https://fiebertraum.ticket.io/dNpreUL5"
+    "url": "https://fiebertraum.ticket.io/dNpreUL5",
+    "id": "9e2c24a0"
   },
   {
     "title": "Sober Raves N°7 – Nikolausparty",
@@ -91,7 +96,8 @@
     "date": "2026-12-06",
     "startTime": "23:00",
     "artists": [],
-    "url": "https://soberraves.ditix.shop/event/mdg799xalhgm38mv?t=false"
+    "url": "https://soberraves.ditix.shop/event/mdg799xalhgm38mv?t=false",
+    "id": "6e9831ef"
   },
   {
     "title": "Neon Dreams Cologne – The Grande Finale of 2026",
@@ -114,7 +120,8 @@
       "Nia",
       "Trauma"
     ],
-    "url": "https://linktr.ee/neondreams.cologne"
+    "url": "https://linktr.ee/neondreams.cologne",
+    "id": "254e6250"
   },
   {
     "title": "TEKK War Nie Weg",
@@ -129,7 +136,8 @@
       "Leetekk",
       "Numondo"
     ],
-    "url": "https://stagedates.com/events/tekk-war-nie-weg-pres-kannadiss-friends-elektrokuche-koln-20261218-b5MuX"
+    "url": "https://stagedates.com/events/tekk-war-nie-weg-pres-kannadiss-friends-elektrokuche-koln-20261218-b5MuX",
+    "id": "df822e43"
   },
   {
     "title": "KitKatClub",
@@ -137,7 +145,8 @@
     "date": "2026-12-27",
     "startTime": "23:00",
     "artists": [],
-    "url": "https://bootshaus.tv/tickets/"
+    "url": "https://bootshaus.tv/tickets/",
+    "id": "b8891ed9"
   },
   {
     "title": "Unreal – New Years Tradition",
@@ -151,7 +160,8 @@
       "O.B.I.",
       "Vendex"
     ],
-    "url": "https://www.unrealgermany.de/#events"
+    "url": "https://www.unrealgermany.de/#events",
+    "id": "af4e6f0b"
   },
   {
     "title": "Nibirii – New Year's Eve",
@@ -166,7 +176,8 @@
       "Ventris",
       "Ehrenklub (360° Special)"
     ],
-    "url": "https://nibirii.com"
+    "url": "https://nibirii.com",
+    "id": "b384fb1b"
   },
   {
     "title": "Affenkäfig Special Friday",
@@ -182,7 +193,8 @@
       "Sick Sonic",
       "Tommy Libera"
     ],
-    "url": "https://affenkaefig.info/tickets/"
+    "url": "https://affenkaefig.info/tickets/",
+    "id": "f44d7cbf"
   },
   {
     "title": "Ehrenklub x Feral",
@@ -190,7 +202,8 @@
     "date": "2027-01-30",
     "startTime": "23:00",
     "artists": [],
-    "url": "https://tickets.stgdts.com/events/ehrenklub-x-feral-at-schrotty-schrotty-20270130-KXAb8/checkout/products"
+    "url": "https://tickets.stgdts.com/events/ehrenklub-x-feral-at-schrotty-schrotty-20270130-KXAb8/checkout/products",
+    "id": "e9facddc"
   },
   {
     "title": "Fabitekk Tour 2027",
@@ -204,6 +217,7 @@
       "Mr. Bombastic",
       "Rotzbengel vs Leetekk",
       "5XD"
-    ]
+    ],
+    "id": "3f85b208"
   }
 ]
