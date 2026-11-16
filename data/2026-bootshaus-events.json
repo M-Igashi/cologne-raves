@@ -273,7 +273,8 @@
     "artists": [
       "Alle Farben"
     ],
-    "url": "https://bootshaus-club.ticket.io/PNYFH1ZR/"
+    "url": "https://bootshaus-club.ticket.io/PNYFH1ZR/",
+    "id": "cbdb42f5"
   },
   {
     "title": "JEBROER 360 LIVE SHOW",
@@ -283,7 +284,8 @@
     "artists": [
       "Jebroer"
     ],
-    "url": "https://bootshaus-club.ticket.io/DZ06n7vL/"
+    "url": "https://bootshaus-club.ticket.io/DZ06n7vL/",
+    "id": "800b0caf"
   },
   {
     "title": "NEELIX at BOOTSHAUS pres by NIBIRII",
@@ -293,7 +295,8 @@
     "artists": [
       "Neelix"
     ],
-    "url": "https://bootshaus-club.ticket.io/CaLvGd1J/"
+    "url": "https://bootshaus-club.ticket.io/CaLvGd1J/",
+    "id": "33cadb62"
   },
   {
     "title": "NEONSPLASH Paint-Rave",
@@ -301,7 +304,8 @@
     "date": "2026-12-04",
     "startTime": "22:00",
     "artists": [],
-    "url": "https://bootshaus-club.ticket.io/e6McBSGU/"
+    "url": "https://bootshaus-club.ticket.io/e6McBSGU/",
+    "id": "dd080f4e"
   },
   {
     "title": "HOLLER AT ME",
@@ -309,7 +313,8 @@
     "date": "2026-12-04",
     "startTime": "23:00",
     "artists": [],
-    "url": "https://bootshaus-club.ticket.io/UeAXzTdy/"
+    "url": "https://bootshaus-club.ticket.io/UeAXzTdy/",
+    "id": "25eeea9b"
   },
   {
     "title": "Brennan Heart: 4 Hour Solo Set [25 YEARS SPECIAL]",
@@ -319,7 +324,8 @@
     "artists": [
       "Brennan Heart"
     ],
-    "url": "https://bootshaus-club.ticket.io/FYUFXtGJ/"
+    "url": "https://bootshaus-club.ticket.io/FYUFXtGJ/",
+    "id": "6c5d5826"
   },
   {
     "title": "BLACKLIST pres. THE RESISTANCE",
@@ -327,7 +333,8 @@
     "date": "2026-12-11",
     "startTime": "22:30",
     "artists": [],
-    "url": "https://bootshaus-club.ticket.io/S01XvZGt/"
+    "url": "https://bootshaus-club.ticket.io/S01XvZGt/",
+    "id": "e0c82844"
   },
   {
     "title": "SARA LANDRY pres. by BOOTSHAUS",
@@ -337,7 +344,8 @@
     "artists": [
       "Sara Landry"
     ],
-    "url": "https://bootshaus-club.ticket.io/jhUP7WQl/"
+    "url": "https://bootshaus-club.ticket.io/jhUP7WQl/",
+    "id": "3e6c4c70"
   },
   {
     "title": "KOROLOVA pres by BOOTSHAUS",
@@ -347,7 +355,8 @@
     "artists": [
       "Korolova"
     ],
-    "url": "https://bootshaus-club.ticket.io/E7LnkxhC/"
+    "url": "https://bootshaus-club.ticket.io/E7LnkxhC/",
+    "id": "66e6dc42"
   },
   {
     "title": "INURFASE MASSIVE - Through The Looking Glass",
@@ -355,6 +364,7 @@
     "date": "2026-12-18",
     "startTime": "22:30",
     "artists": [],
-    "url": "https://bootshaus-club.ticket.io/JaqcDXsN/"
+    "url": "https://bootshaus-club.ticket.io/JaqcDXsN/",
+    "id": "bb8e2383"
   }
 ]
