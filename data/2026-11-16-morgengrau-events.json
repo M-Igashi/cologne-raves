@@ -5,7 +5,8 @@
     "date": "2026-11-18",
     "startTime": "20:00",
     "artists": [],
-    "url": "https://www.morgengrau.net/party/technoliebe-aftrwrkshs/79432"
+    "url": "https://www.morgengrau.net/party/technoliebe-aftrwrkshs/79432",
+    "id": "8215f7ee"
   },
   {
     "title": "Aquarium",
@@ -13,7 +14,8 @@
     "date": "2026-11-19",
     "startTime": "20:00",
     "artists": [],
-    "url": "https://www.morgengrau.net/party/aquarium/79547"
+    "url": "https://www.morgengrau.net/party/aquarium/79547",
+    "id": "3531f206"
   },
   {
     "title": "xyz w/ Daniel Wang, Pina, Uh-Young Kim + Dance Jam",
@@ -25,7 +27,8 @@
       "Pina",
       "Uh-Young Kim + Dance Jam"
     ],
-    "url": "https://www.morgengrau.net/party/xyz-w-daniel-wang-pina-uh-young-kim-dance-jam/79502"
+    "url": "https://www.morgengrau.net/party/xyz-w-daniel-wang-pina-uh-young-kim-dance-jam/79502",
+    "id": "e8a90fe5"
   },
   {
     "title": "Utopya goes +313 Boiler Room Edition at H26",
@@ -33,7 +36,8 @@
     "date": "2026-11-20",
     "startTime": "23:00",
     "artists": [],
-    "url": "https://utopya.ticket.io/SSkCcIWY/?redirectFromEventInPast=1"
+    "url": "https://utopya.ticket.io/SSkCcIWY/?redirectFromEventInPast=1",
+    "id": "a81ee29f"
   },
   {
     "title": "Basement Grooves",
@@ -41,7 +45,8 @@
     "date": "2026-11-20",
     "startTime": "19:00",
     "artists": [],
-    "url": "https://www.morgengrau.net/party/basement-grooves/79492"
+    "url": "https://www.morgengrau.net/party/basement-grooves/79492",
+    "id": "9e25d7fe"
   },
   {
     "title": "SUNRISE AFTERHOUR",
@@ -49,7 +54,8 @@
     "date": "2026-11-21",
     "startTime": "06:30",
     "artists": [],
-    "url": "https://www.morgengrau.net/party/sunrise-afterhour/79462"
+    "url": "https://www.morgengrau.net/party/sunrise-afterhour/79462",
+    "id": "169f19df"
   },
   {
     "title": "TECHNOLiEBE #aftrwrkshs",
@@ -57,7 +63,8 @@
     "date": "2026-11-25",
     "startTime": "20:00",
     "artists": [],
-    "url": "https://www.morgengrau.net/party/technoliebe-aftrwrkshs/79433"
+    "url": "https://www.morgengrau.net/party/technoliebe-aftrwrkshs/79433",
+    "id": "5d86fc02"
   },
   {
     "title": "Shake Up Session w/Selecta (Double Impact), Erdy Bat & X-Plorer (Shake Up)",
@@ -68,7 +75,8 @@
       "Selecta (Double Impact)",
       "Erdy Bat & X-Plorer (Shake Up)"
     ],
-    "url": "https://www.morgengrau.net/party/shake-up-session-wselecta-double-impact-erdy-bat-x-plorer-shake-up/79524"
+    "url": "https://www.morgengrau.net/party/shake-up-session-wselecta-double-impact-erdy-bat-x-plorer-shake-up/79524",
+    "id": "808a349b"
   },
   {
     "title": "Glüh Dich Glücklich - Garagen, Köln-Ehrenfeld",
@@ -76,7 +84,8 @@
     "date": "2026-11-26",
     "startTime": "17:00",
     "artists": [],
-    "url": "https://t.rausgegangen.de/tickets/shop/petrified-phoenix"
+    "url": "https://t.rausgegangen.de/tickets/shop/petrified-phoenix",
+    "id": "7733f5be"
   },
   {
     "title": "#round2 – Nyokabi Kariũki",
@@ -84,7 +93,8 @@
     "date": "2026-11-26",
     "startTime": "21:00",
     "artists": [],
-    "url": "https://www.koelner-philharmonie.de/de/konzerte/round2-nyokabi-kariuki/9478"
+    "url": "https://www.koelner-philharmonie.de/de/konzerte/round2-nyokabi-kariuki/9478",
+    "id": "161f8a6c"
   },
   {
     "title": "AETHER x NOREYA: The darker side of Drum and Bass",
@@ -92,7 +102,8 @@
     "date": "2026-11-27",
     "startTime": "22:00",
     "artists": [],
-    "url": "https://rausgegangen.de/events/aether-x-noreya-the-darker-side-of-drum-and-bass-0/"
+    "url": "https://rausgegangen.de/events/aether-x-noreya-the-darker-side-of-drum-and-bass-0/",
+    "id": "4ec56bb0"
   },
   {
     "title": "SUNRISE AFTERHOUR",
@@ -100,7 +111,8 @@
     "date": "2026-11-28",
     "startTime": "06:30",
     "artists": [],
-    "url": "https://www.morgengrau.net/party/sunrise-afterhour/79463"
+    "url": "https://www.morgengrau.net/party/sunrise-afterhour/79463",
+    "id": "f9239cb1"
   },
   {
     "title": "CLUBNACHT w/ Katzengold, Max Blumen, Eik, Elias Paul",
@@ -113,7 +125,8 @@
       "Eik",
       "Elias Paul"
     ],
-    "url": "https://rausgegangen.de/events/clubnacht-w-katzengold-max-blumen-eik-0/"
+    "url": "https://rausgegangen.de/events/clubnacht-w-katzengold-max-blumen-eik-0/",
+    "id": "3eda417b"
   },
   {
     "title": "Glüh Dich Glücklich - Garagen, Köln-Ehrenfeld",
@@ -121,7 +134,8 @@
     "date": "2026-12-03",
     "startTime": "17:00",
     "artists": [],
-    "url": "https://t.rausgegangen.de/tickets/shop/petrified-phoenix"
+    "url": "https://t.rausgegangen.de/tickets/shop/petrified-phoenix",
+    "id": "81b0180d"
   },
   {
     "title": "ZWISCHENMIETE WOHNZIMMER EDITION",
@@ -129,7 +143,8 @@
     "date": "2026-12-04",
     "startTime": "23:00",
     "artists": [],
-    "url": "https://www.morgengrau.net/party/zwischenmiete-wohnzimmer-edition/79396"
+    "url": "https://www.morgengrau.net/party/zwischenmiete-wohnzimmer-edition/79396",
+    "id": "c8410dab"
   },
   {
     "title": "3 THE HARD WAY",
@@ -137,7 +152,8 @@
     "date": "2026-12-04",
     "startTime": "21:00",
     "artists": [],
-    "url": "https://rausgegangen.de/events/3-the-hard-way-0/?mtm_campaign=teilen_event&mtm_kwd=web"
+    "url": "https://rausgegangen.de/events/3-the-hard-way-0/?mtm_campaign=teilen_event&mtm_kwd=web",
+    "id": "28842ecc"
   },
   {
     "title": "Feines Tier & Laut & Luise && Park Café",
@@ -145,7 +161,8 @@
     "date": "2026-12-05",
     "startTime": "23:00",
     "artists": [],
-    "url": "https://undundbooking.ticket.io/pB0dmBfe/"
+    "url": "https://undundbooking.ticket.io/pB0dmBfe/",
+    "id": "4467d8d3"
   },
   {
     "title": "Glüh Dich Glücklich - Garagen, Köln-Ehrenfeld",
@@ -153,7 +170,8 @@
     "date": "2026-12-10",
     "startTime": "17:00",
     "artists": [],
-    "url": "https://t.rausgegangen.de/tickets/shop/petrified-phoenix"
+    "url": "https://t.rausgegangen.de/tickets/shop/petrified-phoenix",
+    "id": "56f5b690"
   },
   {
     "title": "XYZ: GETTO MOUSE | NYX NYX | DUB KIMSKI",
@@ -161,7 +179,8 @@
     "date": "2026-12-11",
     "startTime": "20:00",
     "artists": [],
-    "url": "https://www.morgengrau.net/party/xyz-getto-mouse-nyx-nyx-dub-kimski/79557"
+    "url": "https://www.morgengrau.net/party/xyz-getto-mouse-nyx-nyx-dub-kimski/79557",
+    "id": "3ec1b7bc"
   },
   {
     "title": "KIRMESTECHNO",
@@ -169,7 +188,8 @@
     "date": "2026-12-11",
     "startTime": "23:00",
     "artists": [],
-    "url": "https://rausgegangen.de/events/kirmestechno-freibier-fur-alle-0/"
+    "url": "https://rausgegangen.de/events/kirmestechno-freibier-fur-alle-0/",
+    "id": "4a455cb7"
   },
   {
     "title": "Glüh Dich Glücklich - Garagen, Köln-Ehrenfeld",
@@ -177,7 +197,8 @@
     "date": "2026-12-17",
     "startTime": "17:00",
     "artists": [],
-    "url": "https://t.rausgegangen.de/tickets/shop/petrified-phoenix"
+    "url": "https://t.rausgegangen.de/tickets/shop/petrified-phoenix",
+    "id": "2f0e7742"
   },
   {
     "title": "reiheM präsentiert: Rhodri Davies",
@@ -185,7 +206,8 @@
     "date": "2026-12-18",
     "startTime": "20:00",
     "artists": [],
-    "url": "https://www.morgengrau.net/party/reihem-prasentiert-rhodri-davies/79548"
+    "url": "https://www.morgengrau.net/party/reihem-prasentiert-rhodri-davies/79548",
+    "id": "cbc85b6e"
   },
   {
     "title": "CLUBNACHT",
@@ -193,7 +215,8 @@
     "date": "2026-12-19",
     "startTime": "23:00",
     "artists": [],
-    "url": "https://www.morgengrau.net/party/clubnacht/78941"
+    "url": "https://www.morgengrau.net/party/clubnacht/78941",
+    "id": "35a460b1"
   },
   {
     "title": "Techno Allianz @ Artheater",
@@ -201,7 +224,8 @@
     "date": "2026-12-26",
     "startTime": "23:00",
     "artists": [],
-    "url": "https://taplink.cc/techno_allianz"
+    "url": "https://taplink.cc/techno_allianz",
+    "id": "416f0820"
   },
   {
     "title": "Klubnacht w/ Jonathan Kaspar",
@@ -211,7 +235,8 @@
     "artists": [
       "Jonathan Kaspar"
     ],
-    "url": "https://t.rausgegangen.de/tickets/klubnacht-w-jonathan-kaspar"
+    "url": "https://t.rausgegangen.de/tickets/klubnacht-w-jonathan-kaspar",
+    "id": "55ea2a6b"
   },
   {
     "title": "BergWacht",
@@ -219,7 +244,8 @@
     "date": "2027-01-08",
     "startTime": "23:00",
     "artists": [],
-    "url": "https://bergwacht.ticket.io/"
+    "url": "https://bergwacht.ticket.io/",
+    "id": "2238ada2"
   },
   {
     "title": "UnderDive @Club Zimmermanns",
@@ -227,7 +253,8 @@
     "date": "2027-01-22",
     "startTime": "23:00",
     "artists": [],
-    "url": "https://www.morgengrau.net/party/underdive-club-zimmermanns/79255"
+    "url": "https://www.morgengrau.net/party/underdive-club-zimmermanns/79255",
+    "id": "056b9c5d"
   },
   {
     "title": "Odonien Karneval by BergWacht",
@@ -235,7 +262,8 @@
     "date": "2027-02-06",
     "startTime": "21:00",
     "artists": [],
-    "url": "https://bergwacht.ticket.io/"
+    "url": "https://bergwacht.ticket.io/",
+    "id": "f4f6b7e5"
   },
   {
     "title": "#round3 – SANFTE ARBEIT",
@@ -243,7 +271,8 @@
     "date": "2027-02-18",
     "startTime": "21:00",
     "artists": [],
-    "url": "https://www.koelner-philharmonie.de/de/konzerte/round3-sanfte-arbeit/9477"
+    "url": "https://www.koelner-philharmonie.de/de/konzerte/round3-sanfte-arbeit/9477",
+    "id": "5e1559de"
   },
   {
     "title": "BergWacht",
@@ -251,7 +280,8 @@
     "date": "2027-03-05",
     "startTime": "23:00",
     "artists": [],
-    "url": "https://bergwacht.ticket.io/"
+    "url": "https://bergwacht.ticket.io/",
+    "id": "dc80d5e6"
   },
   {
     "title": "Kontur x Odonien",
@@ -259,7 +289,8 @@
     "date": "2027-03-13",
     "startTime": "23:00",
     "artists": [],
-    "url": "https://kontur.ticket.io"
+    "url": "https://kontur.ticket.io",
+    "id": "6b2c2e5e"
   },
   {
     "title": "UnderDive @Club Zimmermanns",
@@ -267,7 +298,8 @@
     "date": "2027-04-02",
     "startTime": "23:00",
     "artists": [],
-    "url": "https://www.morgengrau.net/party/underdive-club-zimmermanns/79507"
+    "url": "https://www.morgengrau.net/party/underdive-club-zimmermanns/79507",
+    "id": "516e6639"
   },
   {
     "title": "A TECHNO BALLET ODYSSEY",
@@ -275,7 +307,8 @@
     "date": "2027-04-22",
     "startTime": "19:30",
     "artists": [],
-    "url": "https://www.morgengrau.net/party/a-techno-ballet-odyssey/79332"
+    "url": "https://www.morgengrau.net/party/a-techno-ballet-odyssey/79332",
+    "id": "8cbaa498"
   },
   {
     "title": "Kontur x Odonien",
@@ -283,7 +316,8 @@
     "date": "2027-05-22",
     "startTime": "23:00",
     "artists": [],
-    "url": "https://kontur.ticket.io"
+    "url": "https://kontur.ticket.io",
+    "id": "a14b1082"
   },
   {
     "title": "HIDDEN EMPIRE ✚ ODONIEN",
@@ -291,7 +325,8 @@
     "date": "2027-05-29",
     "startTime": "23:00",
     "artists": [],
-    "url": "https://www.morgengrau.net/party/hidden-empire-odonien/79504"
+    "url": "https://www.morgengrau.net/party/hidden-empire-odonien/79504",
+    "id": "715497db"
   },
   {
     "title": "BergWacht",
@@ -299,7 +334,8 @@
     "date": "2027-06-04",
     "startTime": "23:00",
     "artists": [],
-    "url": "https://bergwacht.ticket.io/"
+    "url": "https://bergwacht.ticket.io/",
+    "id": "7eb26eb5"
   },
   {
     "title": "#round4 – Anushka Chkheidze",
@@ -307,7 +343,8 @@
     "date": "2027-06-09",
     "startTime": "21:00",
     "artists": [],
-    "url": "https://www.koelner-philharmonie.de/de/konzerte/round4-anushka-chkheidze/9488"
+    "url": "https://www.koelner-philharmonie.de/de/konzerte/round4-anushka-chkheidze/9488",
+    "id": "5264ad55"
   },
   {
     "title": "BergWacht",
@@ -315,6 +352,7 @@
     "date": "2027-07-17",
     "startTime": "23:00",
     "artists": [],
-    "url": "https://bergwacht.ticket.io/"
+    "url": "https://bergwacht.ticket.io/",
+    "id": "7ff1bec4"
   }
 ]
