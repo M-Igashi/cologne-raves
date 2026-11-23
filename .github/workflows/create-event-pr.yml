@@ -65,21 +65,13 @@ jobs:
         git config --global user.name "GitHub Actions Bot"
         git checkout -b "$BRANCH_NAME"
 
+    # jq fails the step on invalid JSON.
     - name: Create event file
       env:
         EVENTS_JSON: ${{ inputs.events_json }}
         FILENAME: ${{ inputs.filename }}
       run: |
         printf '%s' "$EVENTS_JSON" | jq '.' > "data/$FILENAME"
-
-    - name: Validate JSON format
-      env:
-        FILENAME: ${{ inputs.filename }}
-      run: |
-        if ! jq empty "data/$FILENAME"; then
-          echo "Invalid JSON format"
-          exit 1
-        fi
 
     - name: Validate events
       env:

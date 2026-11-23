@@ -1,11 +1,10 @@
 /**
  * Validates all event data files:
- * 1. All IDs match generateStableId(title, date, venue)
+ * 1. Required fields are present
  * 2. No duplicate events across files (by title+date+venue)
- * 3. Required fields are present
+ * 3. Warns when an ID differs from generateStableId(title, date, venue)
  *
  * Run: npx tsx scripts/validate-events.ts
- * Use as pre-commit or CI check.
  */
 
 import { readdirSync, readFileSync } from "fs";
@@ -13,9 +12,7 @@ import { join } from "path";
 import { generateStableId } from "../src/lib/generateStableId";
 
 const dataDir = join(import.meta.dirname, "..", "data");
-const files = readdirSync(dataDir).filter(
-  (f) => f.endsWith(".json") && f !== "event.schema.json"
-);
+const files = readdirSync(dataDir).filter((f) => f.endsWith(".json"));
 
 let errors: string[] = [];
 let warnings: string[] = [];

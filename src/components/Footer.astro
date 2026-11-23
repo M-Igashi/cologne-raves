@@ -23,19 +23,16 @@
     <div>
       <p class="footer-label">Community</p>
       <a href="https://github.com/M-Igashi/cologne-raves" target="_blank" rel="noopener">Contribute on GitHub</a>
-      <button type="button" class="reveal" onclick="revealWhatsappLink()">Reveal WhatsApp group</button>
+      <button type="button" class="reveal" id="reveal-whatsapp">Reveal WhatsApp group</button>
       <div id="whatsapp-link"></div>
     </div>
   </div>
 
   <script type="module">
-    // The invite link stays out of the HTML so scrapers do not pick it up.
-    function revealWhatsappLink() {
-      const link = document.getElementById('whatsapp-link');
-      if (link) {
-        link.innerHTML = '<a href="https://chat.whatsapp.com/BtyIpZcgG671qCXV5lbhFI" target="_blank" rel="noopener">Join Cologne Ravers on WhatsApp</a>';
-      }
-    }
-    globalThis.revealWhatsappLink = revealWhatsappLink;
+    // The invite link is only rendered as a link on click, so link scrapers do not pick it up.
+    document.getElementById('reveal-whatsapp').addEventListener('click', () => {
+      document.getElementById('whatsapp-link').innerHTML =
+        '<a href="https://chat.whatsapp.com/BtyIpZcgG671qCXV5lbhFI" target="_blank" rel="noopener">Join Cologne Ravers on WhatsApp</a>';
+    });
   </script>
 </footer>

@@ -3,8 +3,7 @@ import Base from '../layouts/Base.astro';
 import PartyCard from '../components/PartyCard.astro';
 import Ticker from '../components/Ticker.astro';
 import { getAllParties } from '../lib/getAllParties';
-import { getBerlinWeekRange } from '../lib/getFeaturedParties';
-import { SITE_URL, eventJsonLd, formatDate, topVenues } from '../utils/seo';
+import { SITE_URL, eventJsonLd, formatDate, getBerlinWeekRange, topVenues } from '../utils/seo';
 
 const allParties = await getAllParties();
 

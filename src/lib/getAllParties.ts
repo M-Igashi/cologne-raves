@@ -47,24 +47,24 @@ function mergeArtists(a: string[], b: string[]): string[] {
   return result;
 }
 
-function getGitLastModified(filePath: string): Date | null {
+// Author date of the latest commit touching each data file, from one git call.
+function getGitDates(): Map<string, Date> {
+  const dates = new Map<string, Date>();
   try {
-    const result = execFileSync(
+    const log = execFileSync(
       "git",
-      ["log", "-1", "--format=%aI", "--", filePath],
+      ["log", "--format=@%aI", "--name-only", "--", dataDir],
       { encoding: "utf8", stdio: ["pipe", "pipe", "ignore"] },
-    ).trim();
-    if (result) return new Date(result);
+    );
+    let date: Date | undefined;
+    for (const line of log.split("\n")) {
+      if (line.startsWith("@")) date = new Date(line.slice(1));
+      else if (line && date && !dates.has(path.basename(line))) dates.set(path.basename(line), date);
+    }
   } catch {
-    // git unavailable: fall through to the file's mtime
+    // git unavailable: every file falls back to its mtime
   }
-
-  // Not committed yet (or no git): use mtime so a new local file counts as newest.
-  try {
-    return fs.statSync(filePath).mtime;
-  } catch {
-    return null;
-  }
+  return dates;
 }
 
 let cachedParties: Promise<Party[]> | undefined;
@@ -76,19 +76,17 @@ export function getAllParties(): Promise<Party[]> {
 }
 
 async function loadAllParties(): Promise<Party[]> {
-  const files = fs
+  const gitDates = getGitDates();
+  const filesWithGitDates = fs
     .readdirSync(dataDir)
-    .filter((f) => f.endsWith(".json"))
-    .filter((f) => f !== "manifest.json" && !f.startsWith("."));
-
-  const filesWithGitDates = files
+    .filter((f) => f.endsWith(".json") && !f.startsWith("."))
     .map((file) => {
       const filePath = path.join(dataDir, file);
-      const gitDate = getGitLastModified(filePath);
       return {
         name: file,
         path: filePath,
-        lastModified: gitDate || new Date(0), // Use epoch if no date available
+        // Not committed yet: use mtime so a new local file counts as newest.
+        lastModified: gitDates.get(file) ?? fs.statSync(filePath).mtime,
       };
     })
     .sort((a, b) => a.lastModified.getTime() - b.lastModified.getTime());

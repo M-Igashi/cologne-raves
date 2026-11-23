@@ -10,9 +10,7 @@ Usage:
 """
 
 import argparse
-import collections
 import datetime
-import glob
 import json
 import os
 import re
@@ -21,7 +19,14 @@ import time
 import urllib.request
 
 sys.dont_write_bytecode = True
-from fetch_onlytechno_events import clean_url, norm, same_title, same_venue
+from fetch_onlytechno_events import (
+    clean_url,
+    load_existing,
+    norm,
+    same_title,
+    same_venue,
+    write_events,
+)
 
 BASE = "https://www.morgengrau.net"
 HEADERS = {"User-Agent": "Mozilla/5.0", "Accept": "application/json"}
@@ -83,17 +88,7 @@ def main():
     if not args.dry_run and os.path.exists(args.output):
         sys.exit(f"{args.output} already exists; pass --output to choose another name")
 
-    existing = []
-    for path in glob.glob(os.path.join(root, "data", "*.json")):
-        with open(path, encoding="utf-8") as f:
-            existing += json.load(f)
-    canonical = {}
-    for venue, _ in collections.Counter(e["venue"] for e in existing).most_common():
-        canonical.setdefault(norm(venue), venue.strip())
-    by_date = collections.defaultdict(list)
-    for e in existing:
-        by_date[e["date"]].append(e)
-
+    canonical, by_date = load_existing(root)
     last_date = (today + datetime.timedelta(days=MAX_DAYS_AHEAD)).isoformat()
     source = fetch_events()
     new, dups, outside, placeholders = [], [], [], []
@@ -165,12 +160,8 @@ def main():
         if event["artists"]:
             print(f"      artists: {event['artists']}")
 
-    if args.dry_run or not new:
-        return
-    with open(args.output, "w", encoding="utf-8") as f:
-        json.dump(new, f, ensure_ascii=False, indent=2)
-        f.write("\n")
-    print(f"\nWrote {len(new)} events to {os.path.relpath(args.output, root)}")
+    if not args.dry_run and new:
+        write_events(args.output, new, root)
 
 
 if __name__ == "__main__":

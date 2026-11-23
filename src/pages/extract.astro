@@ -4,7 +4,8 @@ import ExtractEvents from "@/components/Extract";
 import { getAllParties } from "@/lib/getAllParties";
 import { SITE_URL } from '../utils/seo';
 
-const allParties = await getAllParties();
+// Build-only fields are not part of the event schema, so keep them out of downloads.
+const allParties = (await getAllParties()).map(({ sourceFile, lastModified, ...party }) => party);
 ---
 
 <Base

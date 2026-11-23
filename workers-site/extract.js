@@ -2,7 +2,7 @@
 // The result is only ever a prefill: a human reviews it before anything is submitted.
 
 const AI_MODEL = "@cf/meta/llama-3.3-70b-instruct-fp8-fast";
-const MAX_EVENTS = 4; // the form holds at most four events
+export const MAX_EVENTS = 4; // the form holds at most four events
 const MAX_FIELD_LENGTH = 200;
 const MAX_ARTISTS = 100;
 const MAX_HTML_BYTES = 1_000_000;
@@ -254,7 +254,7 @@ function cleanText(value) {
     : "";
 }
 
-function isRealDate(date) {
+export function isRealDate(date) {
   if (!/^\d{4}-\d{2}-\d{2}$/.test(date)) return false;
   const parsed = new Date(`${date}T00:00:00Z`);
   return !Number.isNaN(parsed.getTime()) && parsed.toISOString().startsWith(date);

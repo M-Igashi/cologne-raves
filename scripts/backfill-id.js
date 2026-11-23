@@ -1,29 +1,14 @@
-import crypto from "crypto";
 import fs from "fs";
 import path from "path";
 import { fileURLToPath } from "url";
+import { generateStableId } from "../src/lib/generateStableId.ts";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const dataDir = path.join(__dirname, "..", "data");
 
-function generateId(party) {
-  const hash = crypto
-    .createHash("md5")
-    .update(JSON.stringify([party.title, party.date, party.venue || ""]))
-    .digest("hex");
-  return hash.slice(0, 8);
-}
-
 function processFile(filePath) {
   const filename = path.basename(filePath);
-
-  if (filename === "manifest.json") {
-    console.log(`Skipped ${filename} (configuration file)`);
-    return;
-  }
-
-  const raw = fs.readFileSync(filePath, "utf-8");
-  const data = JSON.parse(raw);
+  const data = JSON.parse(fs.readFileSync(filePath, "utf-8"));
 
   if (!Array.isArray(data)) {
     console.log(`Skipped ${filename} (not an array)`);
@@ -33,7 +18,7 @@ function processFile(filePath) {
   let changed = false;
   for (const party of data) {
     if (!party.id) {
-      party.id = generateId(party);
+      party.id = generateStableId(party);
       changed = true;
     }
   }
@@ -46,10 +31,6 @@ function processFile(filePath) {
   }
 }
 
-const jsonFiles = fs.readdirSync(dataDir).filter(function (f) {
-  return f.endsWith(".json");
-});
-
-for (const f of jsonFiles) {
+for (const f of fs.readdirSync(dataDir).filter((f) => f.endsWith(".json"))) {
   processFile(path.join(dataDir, f));
 }

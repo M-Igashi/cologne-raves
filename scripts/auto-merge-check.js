@@ -5,6 +5,7 @@
 
 import fs from "fs";
 import path from "path";
+import { isRealDate } from "../workers-site/extract.js";
 
 const MAX_EVENTS = 4;
 const MAX_DAYS_AHEAD = 365;
@@ -18,9 +19,6 @@ const readEvents = (file) => {
   return Array.isArray(data) ? data : [];
 };
 const berlinDate = (date) => date.toLocaleDateString("sv-SE", { timeZone: "Europe/Berlin" });
-const isRealDate = (date) =>
-  /^\d{4}-\d{2}-\d{2}$/.test(date) &&
-  new Date(`${date}T00:00:00Z`).toISOString().startsWith(date);
 const sameParty = (a, b) => {
   const [titleA, titleB] = [normalize(a.title), normalize(b.title)];
   return (

@@ -3,9 +3,16 @@ name: Deploy to Cloudflare Workers
 on:
   push:
     branches: [ main ]
+  # Dispatched weekly by the Worker's cron trigger (scheduled() in workers-site/index.js).
+  workflow_dispatch:
 
 permissions:
   contents: read
+
+# A data push is followed seconds later by its backfill commit; only the newest deploy matters.
+concurrency:
+  group: deploy
+  cancel-in-progress: true
 
 jobs:
   deploy:
@@ -15,7 +22,7 @@ jobs:
     - name: Checkout
       uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
       with:
-        fetch-depth: 0  # Fetch full history for Git timestamp-based processing
+        fetch-depth: 0  # Full history: getAllParties orders data files by git commit date
 
     - name: Setup Node.js
       uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
@@ -27,9 +34,7 @@ jobs:
     - name: Install dependencies
       run: npm install
 
-    - name: Build
-      run: npm run build
-
+    # wrangler deploy runs `npm run build` itself (build.command in wrangler.jsonc).
     - name: Deploy to Cloudflare Workers
       uses: cloudflare/wrangler-action@953926a2e2182532811c01a25e53647d93bf07c0  # v4.1.3
       with:

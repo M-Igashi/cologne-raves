@@ -1,4 +1,5 @@
-import { formatInTimeZone, fromZonedTime } from "date-fns-tz";
+import { endOfWeek, format, startOfWeek } from "date-fns";
+import { formatInTimeZone, fromZonedTime, toZonedTime } from "date-fns-tz";
 import type { Party } from "../lib/getAllParties";
 
 export const SITE_URL = "https://cologne.ravers.workers.dev";
@@ -7,6 +8,17 @@ export const OG_IMAGE = `${SITE_URL}/og-cologne-raves.png`;
 
 const TIMEZONE = "Europe/Berlin";
 const ISO_FORMAT = "yyyy-MM-dd'T'HH:mm:ssxxx";
+
+// Current Monday-to-Sunday week in Berlin as YYYY-MM-DD strings, directly
+// comparable with event dates regardless of the build machine's timezone.
+export function getBerlinWeekRange(): { start: string; end: string } {
+  const now = toZonedTime(new Date(), TIMEZONE);
+  const options = { weekStartsOn: 1 } as const;
+  return {
+    start: format(startOfWeek(now, options), "yyyy-MM-dd"),
+    end: format(endOfWeek(now, options), "yyyy-MM-dd"),
+  };
+}
 
 // Event dates are plain YYYY-MM-DD strings, so format them in UTC to avoid day shifts.
 export function formatDate(date: string, options: Intl.DateTimeFormatOptions, locale = "en-GB"): string {

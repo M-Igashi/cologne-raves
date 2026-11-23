@@ -1,58 +1,28 @@
-"use client";
-
 import { useState } from "react";
-import fileSaver from "file-saver";
-import { parseISO } from "date-fns";
+import type { Party } from "@/lib/getAllParties";
+import { datedFilename, saveJson } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 
-const { saveAs } = fileSaver;
-
-interface EventData {
-  id: string;
-  title: string;
-  venue: string;
-  date: string;
-  startTime: string;
-  artists?: string[];
-  url?: string;
-}
-
 interface Props {
-  allParties: EventData[];
+  allParties: Party[];
 }
 
 export default function ExtractEvents({ allParties }: Props) {
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
-  const [filteredEvents, setFilteredEvents] = useState<EventData[]>([]);
+  const [filteredEvents, setFilteredEvents] = useState<Party[]>([]);
   const [showJson, setShowJson] = useState(false);
 
   const filterEvents = () => {
     if (!startDate || !endDate) return;
-    const start = parseISO(startDate);
-    const end = parseISO(endDate);
-
-    const result = allParties.filter((event) => {
-      const eventDate = parseISO(event.date);
-      return eventDate >= start && eventDate <= end;
-    });
-
-    setFilteredEvents(result);
+    setFilteredEvents(
+      allParties.filter((event) => event.date >= startDate && event.date <= endDate),
+    );
     setShowJson(true);
   };
 
-  const downloadJson = () => {
-    const json = JSON.stringify(filteredEvents, null, 2);
-    const blob = new Blob([json], { type: "application/json" });
-
-    const now = new Date();
-    const y = now.getFullYear();
-    const m = String(now.getMonth() + 1).padStart(2, "0");
-    const d = String(now.getDate()).padStart(2, "0");
-
-    saveAs(blob, `${y}-${m}-cologne-${d}-extract.json`);
-  };
+  const downloadJson = () => saveJson(filteredEvents, datedFilename("-extract"));
 
   return (
     <div className="space-y-6">

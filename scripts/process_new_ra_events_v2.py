@@ -267,7 +267,8 @@ def process_new_events():
         json.dump(new_events, f, ensure_ascii=False, indent=2)
 
     if skipped_events:
-        report_file = DATA_DIR / f"{today}-skipped-events-report.json"
+        # Outside data/: every reader there would load the report as events.
+        report_file = PROJECT_DIR / "reports" / f"{today}-skipped-events-report.json"
         with open(report_file, "w", encoding="utf-8") as f:
             json.dump(skipped_events, f, ensure_ascii=False, indent=2)
         print(

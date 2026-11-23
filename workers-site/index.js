@@ -1,8 +1,10 @@
 import {
   ExtractError,
+  MAX_EVENTS,
   MAX_EXTRACT_TEXT_LENGTH,
   extractFromText,
   extractFromUrl,
+  isRealDate,
 } from "./extract.js";
 
 const SITE_ORIGIN = "https://cologne.ravers.workers.dev";
@@ -11,7 +13,6 @@ const TURNSTILE_VERIFY_URL = "https://challenges.cloudflare.com/turnstile/v0/sit
 const TURNSTILE_ACTIONS = { extract: "extract-event", submit: "submit-event" };
 const GITHUB_API = "https://api.github.com/repos/M-Igashi/cologne-raves";
 
-const MAX_EVENTS = 20;
 const MAX_TEXT_LENGTH = 200;
 const MAX_URL_LENGTH = 500;
 const MAX_ARTISTS = 100;
@@ -19,7 +20,6 @@ const MAX_ARTISTS = 100;
 // Must stay in sync with the filename check in .github/workflows/create-event-pr.yml
 const FILENAME_PATTERN = /^[A-Za-z0-9][A-Za-z0-9._-]{0,99}\.json$/;
 const EVENT_ID_PATTERN = /^[A-Za-z0-9_-]{0,32}$/;
-const DATE_PATTERN = /^\d{4}-\d{2}-\d{2}$/;
 const TIME_PATTERN = /^\d{2}:\d{2}$/;
 const EMAIL_PATTERN = /^[^\s@<>`]+@[^\s@<>`]+\.[^\s@<>`]+$/;
 const EVENT_FIELDS = ["id", "title", "venue", "date", "startTime", "artists", "url"];
@@ -43,11 +43,8 @@ export default {
       return handleExtractEvent(request, env);
     }
 
-    if (url.pathname === "/favicon.ico") {
-      return Response.redirect(`${SITE_ORIGIN}/favicon.png`, 301);
-    }
-
-    return handleStaticAssets(request, env, url);
+    // Only /api/* reaches the Worker (assets.run_worker_first); serve the 404 page for the rest.
+    return env.ASSETS.fetch(request);
   },
 
   async scheduled(event, env, ctx) {
@@ -118,8 +115,8 @@ function validateEvent(evt) {
   if (!isText(evt.title, MAX_TEXT_LENGTH) || !isText(evt.venue, MAX_TEXT_LENGTH)) {
     return `needs a title and venue of at most ${MAX_TEXT_LENGTH} characters`;
   }
-  if (typeof evt.date !== "string" || !DATE_PATTERN.test(evt.date)) {
-    return "needs a date in YYYY-MM-DD format";
+  if (typeof evt.date !== "string" || !isRealDate(evt.date)) {
+    return "needs a valid date in YYYY-MM-DD format";
   }
   if (typeof evt.startTime !== "string" || !TIME_PATTERN.test(evt.startTime)) {
     return "needs a startTime in HH:MM format";
@@ -156,7 +153,7 @@ async function triggerRedeploy(env) {
     return;
   }
 
-  const response = await dispatchWorkflow(env, "redeploy.yml");
+  const response = await dispatchWorkflow(env, "deploy.yml");
 
   if (response.status !== 204) {
     logError("Scheduled redeploy dispatch failed", {
@@ -164,44 +161,6 @@ async function triggerRedeploy(env) {
       error: await response.text(),
     });
   }
-}
-
-async function handleStaticAssets(request, env, url) {
-  const pathname = url.pathname;
-  const isHtmlRequest =
-    pathname === "/" ||
-    pathname.endsWith(".html") ||
-    pathname.endsWith(".htm") ||
-    !pathname.includes(".");
-
-  const response = await env.ASSETS.fetch(request);
-  const headers = new Headers(response.headers);
-
-  // Do not let error responses (e.g. a 404 for a .js path) inherit long-lived caching.
-  if (response.status < 400) {
-    if (pathname.match(/\.(css|js)$/)) {
-      headers.set("Cache-Control", "public, max-age=31536000, immutable");
-    } else if (pathname.match(/\.(woff2?|ttf|otf|eot)$/)) {
-      headers.set("Cache-Control", "public, max-age=31536000, immutable");
-      headers.set("Access-Control-Allow-Origin", "*");
-    } else if (pathname.match(/\.(png|jpg|jpeg|gif|svg|webp|ico)$/)) {
-      headers.set("Cache-Control", "public, max-age=2592000");
-    } else if (isHtmlRequest) {
-      headers.set("Cache-Control", "public, max-age=3600, must-revalidate");
-    } else {
-      headers.set("Cache-Control", "public, max-age=86400");
-    }
-  }
-
-  headers.set("X-Content-Type-Options", "nosniff");
-  headers.set("X-Frame-Options", "DENY");
-  headers.set("Referrer-Policy", "strict-origin-when-cross-origin");
-
-  return new Response(response.body, {
-    status: response.status,
-    statusText: response.statusText,
-    headers,
-  });
 }
 
 async function handleSubmitEvent(request, env) {
@@ -314,11 +273,7 @@ ${JSON.stringify(events, null, 2).replaceAll("```", "'''")}
 ---
 *This submission was created from ${SITE_ORIGIN}/form/*`;
 
-    return await createIssue(
-      env,
-      { title: `New Event Submission: ${filename}`, body: issueBody, labels: [] },
-      (issue) => `Event submission created as Issue #${issue.number}. You can view it on GitHub.`,
-    );
+    return await createIssue(env, `New Event Submission: ${filename}`, issueBody);
   } catch (error) {
     logError("Error processing event submission", { error: String(error) });
     return json({ error: "Failed to process submission. Please try again later." }, 500);
@@ -427,8 +382,8 @@ async function handleExtractEvent(request, env) {
   }
 }
 
-async function createIssue(env, issue, successMessage) {
-  const response = await githubFetch(env, "/issues", issue);
+async function createIssue(env, title, body) {
+  const response = await githubFetch(env, "/issues", { title, body });
 
   if (!response.ok) {
     logError("Issue creation failed", {
@@ -441,7 +396,7 @@ async function createIssue(env, issue, successMessage) {
   const created = await response.json();
   return json({
     success: true,
-    message: successMessage(created),
+    message: `Event submission created as Issue #${created.number}. You can view it on GitHub.`,
     issueUrl: created.html_url,
     issueNumber: created.number,
   });

@@ -8,41 +8,20 @@ const sitemapIndexPath = path.join(distDir, "sitemap-index.xml");
 const sitemap0Path = path.join(distDir, "sitemap-0.xml");
 const sitemapPath = path.join(distDir, "sitemap.xml");
 
-// Last-modified date for static pages (/form, /extract).
+// Last-modified date for static pages (/form).
 // Update only when those pages' content actually changes.
 const STATIC_LASTMOD = "2026-11-12";
 
-function getGitLastModified(filePath) {
+// Date of the latest commit touching the party data, used for / and /parties,
+// whose content reflects that data.
+function getLatestDataDate() {
   try {
     const result = execFileSync(
       "git",
-      ["log", "-1", "--format=%aI", "--", filePath],
+      ["log", "-1", "--format=%aI", "--", dataDir],
       { encoding: "utf8", stdio: ["pipe", "pipe", "ignore"] },
     ).trim();
-    return result ? new Date(result) : null;
-  } catch {
-    try {
-      return fs.statSync(filePath).mtime;
-    } catch {
-      return null;
-    }
-  }
-}
-
-// Compute the latest data update across all party JSON files.
-// Used for /, /parties — pages whose content reflects the underlying party data.
-function getLatestDataDate() {
-  try {
-    const files = fs
-      .readdirSync(dataDir)
-      .filter((f) => f.endsWith(".json") && f !== "manifest.json" && !f.startsWith("."));
-    let latest = new Date(0);
-    for (const file of files) {
-      const d = getGitLastModified(path.join(dataDir, file));
-      if (d && d > latest) latest = d;
-    }
-    if (latest.getTime() === 0) return STATIC_LASTMOD;
-    return latest.toISOString().split("T")[0];
+    return result ? new Date(result).toISOString().split("T")[0] : STATIC_LASTMOD;
   } catch {
     return STATIC_LASTMOD;
   }
@@ -57,9 +36,6 @@ function getUrlMetadata(url, dynamicLastmod) {
   }
   if (url.includes("/form")) {
     return { priority: "0.7", changefreq: "monthly", lastmod: STATIC_LASTMOD };
-  }
-  if (url.includes("/extract")) {
-    return { priority: "0.3", changefreq: "monthly", lastmod: STATIC_LASTMOD };
   }
   return { priority: "0.5", changefreq: "weekly", lastmod: STATIC_LASTMOD };
 }

@@ -131,6 +131,30 @@ def same_title(a, b):
     return bool(a and b) and (a in b or b in a or (len(a) >= 8 and a[:8] in b))
 
 
+def load_existing(root):
+    """Return (normalized venue -> most used spelling, date -> events) for data/."""
+    existing = []
+    for path in glob.glob(os.path.join(root, "data", "*.json")):
+        with open(path, encoding="utf-8") as f:
+            data = json.load(f)
+        if isinstance(data, list):  # skips raw RA dumps (1.json to 6.json)
+            existing += data
+    canonical = {}
+    for venue, _ in collections.Counter(e["venue"] for e in existing).most_common():
+        canonical.setdefault(norm(venue), venue.strip())
+    by_date = collections.defaultdict(list)
+    for e in existing:
+        by_date[e["date"]].append(e)
+    return canonical, by_date
+
+
+def write_events(path, events, root):
+    with open(path, "w", encoding="utf-8") as f:
+        json.dump(events, f, ensure_ascii=False, indent=2)
+        f.write("\n")
+    print(f"\nWrote {len(events)} events to {os.path.relpath(path, root)}")
+
+
 def main():
     root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     today = datetime.date.today().isoformat()
@@ -143,17 +167,7 @@ def main():
     if not args.dry_run and os.path.exists(args.output):
         sys.exit(f"{args.output} already exists; pass --output to choose another name")
 
-    existing = []
-    for path in glob.glob(os.path.join(root, "data", "*.json")):
-        with open(path, encoding="utf-8") as f:
-            existing += json.load(f)
-    canonical = {}
-    for venue, _ in collections.Counter(e["venue"] for e in existing).most_common():
-        canonical.setdefault(norm(venue), venue.strip())
-    by_date = collections.defaultdict(list)
-    for e in existing:
-        by_date[e["date"]].append(e)
-
+    canonical, by_date = load_existing(root)
     records = fetch_records()
     new, dups, no_venue = [], [], []
     for rec in records:
@@ -210,12 +224,8 @@ def main():
         suffix = f"  [{'; '.join(flags)}]" if flags else ""
         print(f"{event['date']} | {event['venue']} | {event['title']}{suffix}")
 
-    if args.dry_run or not new:
-        return
-    with open(args.output, "w", encoding="utf-8") as f:
-        json.dump(new, f, ensure_ascii=False, indent=2)
-        f.write("\n")
-    print(f"\nWrote {len(new)} events to {os.path.relpath(args.output, root)}")
+    if not args.dry_run and new:
+        write_events(args.output, new, root)
 
 
 if __name__ == "__main__":

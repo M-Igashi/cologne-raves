@@ -1,23 +1,10 @@
-"use client";
-
 import { useEffect, useRef, useState } from "react";
-import fileSaver from "file-saver";
-import { v4 as uuidv4 } from "uuid";
+import { datedFilename, saveJson } from "@/lib/utils";
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
-
-const { saveAs } = fileSaver;
 
 type SubmitMode = "auto" | "details";
 
@@ -26,6 +13,8 @@ const TURNSTILE_SITEKEY = "0x4AAAAAAGAeakB328iS_632";
 const TURNSTILE_ACTIONS = { auto: "extract-event", details: "submit-event" } as const;
 // Must stay in sync with MAX_EXTRACT_TEXT_LENGTH in workers-site/extract.js
 const MAX_AUTOFILL_LENGTH = 5000;
+// Must stay in sync with MAX_EVENTS in workers-site/extract.js
+const MAX_EVENTS = 4;
 
 interface TurnstileApi {
   render: (
@@ -74,8 +63,8 @@ interface EventData {
   venue: string;
   date: string;
   startTime: string;
-  artists?: string; // raw comma-separated input; split into string[] in generateJson
-  url?: string;
+  artists: string; // raw comma-separated input; split into string[] in generateJson
+  url: string;
 }
 
 const generateDefaultEvent = (): EventData => ({
@@ -101,6 +90,7 @@ export default function EventForm() {
   const [turnstileToken, setTurnstileToken] = useState<string>("");
   const turnstileBox = useRef<HTMLDivElement>(null);
   const turnstileWidget = useRef<string | undefined>(undefined);
+  const idInfo = useRef<HTMLDialogElement>(null);
   const [events, setEvents] = useState<EventData[]>([generateDefaultEvent()]);
   const [filenameSuffix, setFilenameSuffix] = useState<string>("");
   const [showJson, setShowJson] = useState(false);
@@ -243,7 +233,7 @@ export default function EventForm() {
   };
 
   const addEvent = () => {
-    if (events.length < 4) setEvents([...events, generateDefaultEvent()]);
+    if (events.length < MAX_EVENTS) setEvents([...events, generateDefaultEvent()]);
   };
 
   const removeEvent = (index: number) => {
@@ -257,29 +247,21 @@ export default function EventForm() {
     return events.map(({ id, url, artists, ...rest }) => ({
       ...(id.trim() && { id: id.trim() }),
       ...rest,
-      artists: (artists || "")
+      artists: artists
         .split(",")
         .map((s) => s.trim())
         .filter(Boolean),
-      ...(url?.trim() && { url: url.trim() }),
+      ...(url.trim() && { url: url.trim() }),
     }));
   };
 
   const getFilename = () => {
-    const now = new Date();
-    const y = now.getFullYear();
-    const m = String(now.getMonth() + 1).padStart(2, "0");
-    const d = String(now.getDate()).padStart(2, "0");
     const suffix = filenameSuffix.trim().replace(/[^a-zA-Z0-9_-]/g, "-");
-    const hash = uuidv4().slice(0, 6); // Add unique hash to prevent conflicts
-    return `${y}-${m}-cologne-${d}${suffix ? "-" + suffix : ""}-${hash}.json`;
+    const hash = crypto.randomUUID().slice(0, 6); // Add unique hash to prevent conflicts
+    return datedFilename(`${suffix ? "-" + suffix : ""}-${hash}`);
   };
 
-  const downloadJson = () => {
-    const json = JSON.stringify(generateJson(), null, 2);
-    const blob = new Blob([json], { type: "application/json" });
-    saveAs(blob, getFilename());
-  };
+  const downloadJson = () => saveJson(generateJson(), getFilename());
 
   const isValidTime = (time: string) => /^\d{2}:\d{2}$/.test(time);
 
@@ -414,21 +396,19 @@ export default function EventForm() {
       </div>
 
       {mode === "auto" ? (
-        <>
-          <div>
-            <label className="block text-sm font-bold mb-1">
-              Event link or text <span className="text-red-400">*</span>
-            </label>
-            <Textarea
-              value={autoInput}
-              onChange={(e) => setAutoInput(e.target.value)}
-              placeholder={"https://venue.example/events/my-party\n\nor paste the event text here"}
-              rows={6}
-              maxLength={MAX_AUTOFILL_LENGTH}
-              className="border-l-4 border-l-hot"
-            />
-          </div>
-        </>
+        <div>
+          <label className="block text-sm font-bold mb-1">
+            Event link or text <span className="text-red-400">*</span>
+          </label>
+          <Textarea
+            value={autoInput}
+            onChange={(e) => setAutoInput(e.target.value)}
+            placeholder={"https://venue.example/events/my-party\n\nor paste the event text here"}
+            rows={6}
+            maxLength={MAX_AUTOFILL_LENGTH}
+            className="border-l-4 border-l-hot"
+          />
+        </div>
       ) : (
         /* Details mode */
         <>
@@ -458,11 +438,7 @@ export default function EventForm() {
               placeholder="your@email.com"
             />
           </div>
-        </>
-      )}
 
-      {mode === "details" && (
-        <>
           {autofillNote && (
             <Alert className="border-orange-400 bg-panel">
               <AlertTitle>Auto-filled: please check</AlertTitle>
@@ -484,52 +460,13 @@ export default function EventForm() {
                   onChange={(e) => updateEvent(i, "id", e.target.value)}
                   className={event.id ? "border-orange-400" : ""}
                 />
-                <Dialog>
-                  <DialogTrigger asChild>
-                    <Button variant="outline" size="sm">
-                      ❗ ID Info
-                    </Button>
-                  </DialogTrigger>
-                  <DialogContent className="max-w-xl">
-                    <DialogHeader>
-                      <DialogTitle>⚠️ IMPORTANT: Event ID Instructions</DialogTitle>
-                      <DialogDescription className="pt-3 space-y-3">
-                        <div className="bg-green-50 p-3 rounded border border-green-300">
-                          <strong className="text-green-800">
-                            🆕 For NEW events:
-                          </strong>
-                          <br />
-                          <span className="text-green-700">
-                            Leave the ID field EMPTY - an ID will be automatically
-                            generated
-                          </span>
-                        </div>
-
-                        <div className="bg-orange-50 p-3 rounded border border-orange-300">
-                          <strong className="text-orange-800">
-                            ✏️ For UPDATING existing events:
-                          </strong>
-                          <br />
-                          <span className="text-orange-700">
-                            1. Find the event ID next to the venue on the event
-                            card (e.g., <code>#be790c46</code>)
-                            <br />
-                            2. Remove the <code>#</code> symbol and enter only the
-                            ID (e.g., <code>be790c46</code>)
-                            <br />
-                            3. This will update the existing event instead of
-                            creating a duplicate
-                          </span>
-                        </div>
-                      </DialogDescription>
-                    </DialogHeader>
-                    <img
-                      src="/id-override.png"
-                      alt="ID override example"
-                      className="rounded shadow mt-4 max-w-full"
-                    />
-                  </DialogContent>
-                </Dialog>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={() => idInfo.current?.showModal()}
+                >
+                  ❗ ID Info
+                </Button>
               </div>
 
               <Input
@@ -568,13 +505,13 @@ export default function EventForm() {
               <Input
                 className="border-l-4"
                 placeholder="Artists (optional, comma separated)"
-                value={event.artists || ""}
+                value={event.artists}
                 onChange={(e) => updateEvent(i, "artists", e.target.value)}
               />
               <Textarea
                 className="border-l-4"
                 placeholder="Event URL (optional)"
-                value={event.url || ""}
+                value={event.url}
                 onChange={(e) => updateEvent(i, "url", e.target.value)}
               />
               {events.length > 1 && (
@@ -585,7 +522,7 @@ export default function EventForm() {
             </Card>
           ))}
 
-          {events.length < 4 && <Button onClick={addEvent}>+ Add Event</Button>}
+          {events.length < MAX_EVENTS && <Button onClick={addEvent}>+ Add Event</Button>}
         </>
       )}
 
@@ -647,6 +584,52 @@ export default function EventForm() {
           {JSON.stringify(generateJson(), null, 2)}
         </pre>
       )}
+
+      {/* Clicks outside the inner box land on the dialog itself, i.e. the backdrop. */}
+      <dialog
+        ref={idInfo}
+        onClick={(e) => e.target === e.currentTarget && e.currentTarget.close()}
+        className="m-auto w-full max-w-xl max-h-[90vh] overflow-y-auto border border-line bg-panel text-ink shadow-lg backdrop:bg-black/70 backdrop:backdrop-blur-sm"
+      >
+        <div className="relative p-6">
+          <button
+            type="button"
+            aria-label="Close"
+            onClick={() => idInfo.current?.close()}
+            className="absolute top-3 right-3 cursor-pointer text-mute hover:text-acid"
+          >
+            ✕
+          </button>
+          <h2 className="text-lg font-semibold">⚠️ IMPORTANT: Event ID Instructions</h2>
+          <div className="mt-3 space-y-3 text-sm font-semibold text-mute">
+            <div className="bg-green-50 p-3 rounded border border-green-300">
+              <strong className="text-green-800">🆕 For NEW events:</strong>
+              <br />
+              <span className="text-green-700">
+                Leave the ID field EMPTY - an ID will be automatically generated
+              </span>
+            </div>
+            <div className="bg-orange-50 p-3 rounded border border-orange-300">
+              <strong className="text-orange-800">✏️ For UPDATING existing events:</strong>
+              <br />
+              <span className="text-orange-700">
+                1. Find the event ID next to the venue on the event card (e.g.,{" "}
+                <code>#be790c46</code>)
+                <br />
+                2. Remove the <code>#</code> symbol and enter only the ID (e.g.,{" "}
+                <code>be790c46</code>)
+                <br />
+                3. This will update the existing event instead of creating a duplicate
+              </span>
+            </div>
+          </div>
+          <img
+            src="/id-override.png"
+            alt="ID override example"
+            className="rounded shadow mt-6 max-w-full"
+          />
+        </div>
+      </dialog>
     </div>
   );
 }

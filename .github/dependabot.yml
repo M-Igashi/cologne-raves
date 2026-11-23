@@ -8,12 +8,9 @@ updates:
       npm_and_yarn:
         patterns:
           - "*"
-    # Astro 7 requires Vite 8, which conflicts with the Vite 7 pin in the
-    # toolchain. Block Astro major bumps until the ecosystem catches up.
+    # Astro major upgrades need a manual migration, so block them here.
     ignore:
       - dependency-name: "astro"
-        update-types: ["version-update:semver-major"]
-      - dependency-name: "@astrojs/cloudflare"
         update-types: ["version-update:semver-major"]
       - dependency-name: "@astrojs/react"
         update-types: ["version-update:semver-major"]
