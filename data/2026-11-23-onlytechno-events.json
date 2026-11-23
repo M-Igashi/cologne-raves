@@ -13,7 +13,8 @@
       "Oskamaxx",
       "Rundfunk"
     ],
-    "url": "https://wyldhearts.de/"
+    "url": "https://wyldhearts.de/",
+    "id": "2199bd53"
   },
   {
     "title": "Queeer Inc x Boudica",
@@ -25,7 +26,8 @@
       "Samantha Togni b2b Boris",
       "Juan del Chambo",
       "ADHDSHOW"
-    ]
+    ],
+    "id": "4c515012"
   },
   {
     "title": "Bzzbzz Techno – Local Heroes",
@@ -48,7 +50,8 @@
       "Koelschetrance",
       "DJ Mat",
       "Wholter Whyte"
-    ]
+    ],
+    "id": "6f05c629"
   },
   {
     "title": "Lange Nacht der Wissenschaft x Phonovision",
@@ -63,13 +66,15 @@
       "Lizzle & Sneaky Pete",
       "alleira & juno.j",
       "zeze (2) & Schuhmacher (3)"
-    ]
+    ],
+    "id": "d5b4aeda"
   },
   {
     "title": "Hardfusion",
     "venue": "Garagen Club",
     "date": "2027-02-19",
     "startTime": "23:00",
-    "artists": []
+    "artists": [],
+    "id": "f466d02a"
   }
 ]
