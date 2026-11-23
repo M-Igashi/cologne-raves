@@ -1,7 +1,6 @@
 {
   "name": "cologne",
-  "compatibility_date": "2025-06-05",
-  "compatibility_flags": ["nodejs_compat"],
+  "compatibility_date": "2026-11-23",
   "main": "workers-site/index.js",
 
   // Only the API runs the Worker. Everything else is served as static assets
