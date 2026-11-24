@@ -1,0 +1,55 @@
+[
+  {
+    "title": "Silvester NYE XXL Rave",
+    "venue": "Elektroküche",
+    "date": "2026-12-31",
+    "startTime": "23:00",
+    "artists": [
+      "Ben Dust",
+      "Kopf&Hörer",
+      "ImHappy",
+      "Stimulate",
+      "8288",
+      "Lhyst",
+      "Ployzz",
+      "PØUL",
+      "Rikso & Romek666",
+      "Tommy Libera",
+      "Zantøs"
+    ],
+    "url": "https://www.affenkaefig.info"
+  },
+  {
+    "title": "Artheater New Years Eve",
+    "venue": "Artheater",
+    "date": "2027-01-01",
+    "startTime": "00:30",
+    "artists": [
+      "Leo.Pardyy b2b Panacotta",
+      "Lichtenberg b2b Moutevelidis",
+      "Lollo b2b Kyndahuman",
+      "Neuf b2b Flacco",
+      "Schepperschwester b2b Aamaa",
+      "Slaymira b2b Gianni",
+      "Tschatsching b2b Szunflower"
+    ],
+    "url": "https://rausgegangen.de/en/events/artheater-new-years-eve-0"
+  },
+  {
+    "title": "Vieze Asbak",
+    "venue": "Schrotty",
+    "date": "2027-01-09",
+    "startTime": "23:00",
+    "artists": [
+      "Vieze Asbak"
+    ]
+  },
+  {
+    "title": "Nasty Nights",
+    "venue": "Elektroküche",
+    "date": "2027-03-05",
+    "startTime": "23:00",
+    "artists": [],
+    "url": "https://www.nasty-nights.de/"
+  }
+]
