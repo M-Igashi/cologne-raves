@@ -27,7 +27,8 @@
       "Juan del Chambo",
       "ADHDSHOW"
     ],
-    "id": "4c515012"
+    "id": "4c515012",
+    "url": "https://artheater.de/veranstaltungen/queeer-inc-x-boudica-the-underground-christmas-special-2026-12-19"
   },
   {
     "title": "Bzzbzz Techno – Local Heroes",
@@ -51,7 +52,8 @@
       "DJ Mat",
       "Wholter Whyte"
     ],
-    "id": "6f05c629"
+    "id": "6f05c629",
+    "url": "https://www.helios37.de/event-details/bzz-bzz-techno-1"
   },
   {
     "title": "Lange Nacht der Wissenschaft x Phonovision",
@@ -65,9 +67,10 @@
       "S.3000",
       "Lizzle & Sneaky Pete",
       "alleira & juno.j",
-      "zeze (2) & Schuhmacher (3)"
+      "zeze & Schuhmacher"
     ],
-    "id": "d5b4aeda"
+    "id": "d5b4aeda",
+    "url": "https://ra.co/events/2560289"
   },
   {
     "title": "Hardfusion",
@@ -75,6 +78,7 @@
     "date": "2027-02-19",
     "startTime": "23:00",
     "artists": [],
-    "id": "f466d02a"
+    "id": "f466d02a",
+    "url": "https://hardfusion.ticket.io/GrM48J0w/"
   }
 ]

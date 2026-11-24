@@ -58,6 +58,7 @@ VENUE_ALIASES = {
     "Essigfabrik / Elektroküche": "Elektroküche",
     "Elektroküche / Essigfabrik (Siegburger Str. 110)": "Elektroküche",
     "Carlswerk": "Carlswerk Victoria",
+    "Bollwerk": "Bollwerk Cologne",
 }
 # Venues sharing one site: an event listed under either counts as the same place.
 VENUE_GROUPS = [{"Essigfabrik", "Elektroküche"}]
@@ -68,6 +69,8 @@ LINEUP_PREFIX = re.compile(
     r"^(mainfloor|second floor|third floor|essigfabrik|elektroküche)\s*:\s*", re.I
 )
 LINEUP_SKIP = {"tba", "newcomer", "newcomer floor"}
+# RA's disambiguation suffix on artist names, as in "Speedo (2)".
+RA_NUMBER = re.compile(r"\s*\(\d+\)")
 
 
 def norm(s):
@@ -102,7 +105,7 @@ def fetch_records():
 
 def split_lineup(s):
     parts = re.split(r"\s*[,|\n]\s*", (s or "").strip())
-    parts = [LINEUP_PREFIX.sub("", p).strip() for p in parts]
+    parts = [RA_NUMBER.sub("", LINEUP_PREFIX.sub("", p)).strip() for p in parts]
     return [p for p in parts if p and p.lower() not in LINEUP_SKIP]
 
 

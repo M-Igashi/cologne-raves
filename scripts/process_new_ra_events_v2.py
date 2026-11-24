@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 import hashlib
 import json
+import re
 from datetime import datetime
 from pathlib import Path
 
@@ -133,7 +134,8 @@ def convert_ra_to_standard_format(ra_event):
         date_str = dt.strftime("%Y-%m-%d")
         time_str = "23:00"
 
-    artists = [artist.get("name", "") for artist in event.get("artists", [])]
+    # Drop RA's disambiguation suffix, as in "Speedo (2)".
+    artists = [re.sub(r"\s*\(\d+\)", "", artist.get("name", "")) for artist in event.get("artists", [])]
 
     venue = event.get("venue", {})
     venue_name = venue.get("name", "")

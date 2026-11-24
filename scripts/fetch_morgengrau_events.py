@@ -35,10 +35,13 @@ HEADERS = {"User-Agent": "Mozilla/5.0", "Accept": "application/json"}
 # venue (ignoring case, umlauts, and punctuation) need no entry here.
 VENUE_ALIASES = {
     "t.b.a.": "TBA",
-    "Philharmonie": "Kölner Philharmonie",
     "674fm (Konzertraum)": "674fm",
     "Park-Cafe im Rheinpark": "Parkcafe",
+    "Bollwerk": "Bollwerk Cologne",
 }
+# Concerts and other non-club listings the calendar leaves out.
+EXCLUDED_VENUES = {"Philharmonie"}
+EXCLUDED_TITLES = re.compile(r"glüh dich glücklich|reihem", re.I)
 # Events dated further ahead than this are treated as placeholders.
 MAX_DAYS_AHEAD = 400
 
@@ -91,12 +94,15 @@ def main():
     canonical, by_date = load_existing(root)
     last_date = (today + datetime.timedelta(days=MAX_DAYS_AHEAD)).isoformat()
     source = fetch_events()
-    new, dups, outside, placeholders = [], [], [], []
+    new, dups, outside, placeholders, excluded = [], [], [], [], []
     for src in source:
         title = src["title"].strip()
         date = src["date"][:10]
         if src["location"]["is_outside_cologne"]:
             outside.append((date, src["location"]["name"], title))
+            continue
+        if src["location"]["name"].strip() in EXCLUDED_VENUES or EXCLUDED_TITLES.search(title):
+            excluded.append((date, src["location"]["name"], title))
             continue
         if date < today.isoformat() or date > last_date:
             placeholders.append((date, src["location"]["name"], title))
@@ -135,7 +141,7 @@ def main():
     known = {norm(v) for v in canonical.values()}
 
     print(f"{len(source)} events fetched: {len(new)} new, {len(dups)} already in data/, "
-          f"{len(outside)} outside Cologne, {len(placeholders)} placeholder dates")
+          f"{len(outside)} outside Cologne, {len(placeholders)} placeholder dates, {len(excluded)} excluded")
     print("\n== Already in data/ (source -> existing) ==")
     for event, matches in sorted(dups, key=lambda d: key(d[0])):
         found = " ;; ".join(f"{m['venue']}: {m['title']}" for m in matches)
@@ -145,6 +151,9 @@ def main():
         print(" | ".join(row))
     print("\n== Skipped: placeholder date ==")
     for row in placeholders:
+        print(" | ".join(row))
+    print("\n== Skipped: excluded venue or title ==")
+    for row in excluded:
         print(" | ".join(row))
     print("\n== New ==")
     for event in new:
