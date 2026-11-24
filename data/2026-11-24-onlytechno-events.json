@@ -17,7 +17,8 @@
       "Tommy Libera",
       "Zantøs"
     ],
-    "url": "https://www.affenkaefig.info"
+    "url": "https://www.affenkaefig.info",
+    "id": "d96fb223"
   },
   {
     "title": "Artheater New Years Eve",
@@ -33,7 +34,8 @@
       "Slaymira b2b Gianni",
       "Tschatsching b2b Szunflower"
     ],
-    "url": "https://rausgegangen.de/en/events/artheater-new-years-eve-0"
+    "url": "https://rausgegangen.de/en/events/artheater-new-years-eve-0",
+    "id": "a150cb1d"
   },
   {
     "title": "Vieze Asbak",
@@ -42,7 +44,8 @@
     "startTime": "23:00",
     "artists": [
       "Vieze Asbak"
-    ]
+    ],
+    "id": "cb30c17e"
   },
   {
     "title": "Nasty Nights",
@@ -50,6 +53,7 @@
     "date": "2027-03-05",
     "startTime": "23:00",
     "artists": [],
-    "url": "https://www.nasty-nights.de/"
+    "url": "https://www.nasty-nights.de/",
+    "id": "a2103d93"
   }
 ]
